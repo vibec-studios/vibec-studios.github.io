@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
+  <!-- Pixel-Block: Deckfläche lila, Seiten türkis -->
+  <path fill="#d39bff" d="M16 2 30 9 16 16 2 9z"/>
+  <path fill="#b86cff" d="M16 4 26 9 16 14 6 9z"/>
+  <path fill="#2fb8a3" d="M2 9 16 16v14L2 23z"/>
+  <path fill="#3fe0c5" d="M30 9 16 16v14l14-7z"/>
+  <path fill="#1f7d70" d="M5 13h2v2H5zM9 17h2v2H9zM5 19h2v2H5zM11 23h2v2h-2z"/>
+  <path fill="#8ff5e3" d="M25 13h2v2h-2zM21 17h2v2h-2zM25 19h2v2h-2zM19 23h2v2h-2z"/>
+  <path fill="#f1e2ff" d="M15 7h2v2h-2zM11 9h2v2h-2zM19 9h2v2h-2z"/>
+</svg>

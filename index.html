@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="de" data-lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibe Craft Studios · Minecraft Mods</title>
+<meta name="description" content="Vibe Craft Studios baut Minecraft-Mods mit Bosskämpfen, eigenen Welten und echten 3D-Effekten.">
+<meta property="og:title" content="Vibe Craft Studios">
+<meta property="og:description" content="Minecraft-Mods mit Bosskämpfen, eigenen Welten und echten 3D-Effekten: H&H Armors, HHA Blood, HHA Void.">
+<meta property="og:image" content="https://vibec-studios.github.io/assets/mods/hha/img/palast.webp">
+<meta property="og:url" content="https://vibec-studios.github.io/">
+<meta name="theme-color" content="#0f0b14">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script>
+  (function () {
+    var l = '';
+    try { l = localStorage.getItem('vcs-lang') || ''; } catch (e) { l = ''; }
+    if (l !== 'de' && l !== 'en') l = /^de\b/i.test(navigator.language || '') ? 'de' : 'en';
+    document.documentElement.dataset.lang = l;
+    document.documentElement.lang = l;
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav-logo" href="/" data-link aria-label="Vibe Craft Studios">
+    <img src="/favicon.svg" alt="" width="30" height="30"><span>Vibe Craft <b>Studios</b></span>
+  </a>
+  <nav class="nav-links" aria-label="Navigation"></nav>
+  <div class="lang" role="group" aria-label="Sprache / Language">
+    <button class="mc-btn small" data-set-lang="de">DE</button>
+    <button class="mc-btn small" data-set-lang="en">EN</button>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer class="footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-brand"><img src="/favicon.svg" alt="" width="26" height="26"> <b>Vibe Craft Studios</b></p>
+      <p class="small"><span class="de">Minecraft-Mods mit Bossen, Geschichten und echten 3D-Effekten.</span><span class="en">Minecraft mods with bosses, stories and real 3D effects.</span></p>
+    </div>
+    <div class="foot-links">
+      <a href="/" data-link><span class="de">Start</span><span class="en">Home</span></a>
+      <a href="/mods/hha/" data-link>H&amp;H Armors</a>
+      <a href="https://github.com/vibec-studios" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="small legal"><span class="de">Stimmen der Cutscenes: ElevenLabs. Kein offizielles Minecraft-Produkt. Nicht von Mojang oder Microsoft genehmigt oder mit ihnen verbunden.</span><span class="en">Cutscene voices: ElevenLabs. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span></p>
+  </div>
+</footer>
+
+<div class="mc-tooltip" id="mc-tooltip" hidden></div>
+<div class="lightbox" id="lightbox" hidden>
+  <button class="mc-btn small lb-close" aria-label="Schließen / Close">X</button>
+  <img alt="">
+  <p class="lb-caption"></p>
+</div>
+
+<div id="warp" class="boot on" aria-hidden="true">
+  <div class="warp-grid"></div>
+  <div class="warp-center">
+    <div class="warp-label">Vibe Craft Studios<small><span class="de">Welt wird geladen …</span><span class="en">Loading world …</span></small></div>
+    <div class="warp-bar"><i></i></div>
+  </div>
+</div>
+
+<noscript><p class="noscript">Diese Seite braucht JavaScript. / This site needs JavaScript.</p></noscript>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>
