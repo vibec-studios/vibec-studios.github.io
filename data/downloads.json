@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T21:03:59Z",
+ "updated": "2026-11-16T21:24:08Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -93,8 +93,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.5.1/HHA-0.5.1.jar",
        "sha256": "ded131c20ece27374ed56834bbcc0753253e8cdd06e74a73889c5322dd87491f",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:01:09Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T21:05:01Z",
+        "checked": "2026-11-16T21:05:31Z"
        }
       }
      ]
@@ -113,8 +118,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.5.0/HHA-0.5.0.jar",
        "sha256": "2d80371dae37e667d5cd8cb056ecdc716cb43ea6508451ceb25a0620d0e61da6",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:01:24Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T21:06:03Z",
+        "checked": "2026-11-16T21:06:49Z"
        }
       }
      ]
@@ -133,8 +143,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.4.1/HHA-0.4.1.jar",
        "sha256": "6625700feff84c902f0844241141b93ff64676dab1e32a0fc8360719dcf221ab",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:01:40Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T21:07:21Z",
+        "checked": "2026-11-16T21:08:07Z"
        }
       }
      ]
@@ -153,8 +168,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.4.0/HHA-0.4.0.jar",
        "sha256": "6fe9955872ca32ee4029864cbf50185c19f82d369c9f4481d86651e228ac963e",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:01:55Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T21:08:38Z",
+        "checked": "2026-11-16T21:10:26Z"
        }
       }
      ]
@@ -173,8 +193,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.3/HHA-0.3.3.jar",
        "sha256": "e3c2b8a8e176c9cbe3d10cde95d5ba956e2141f4f14b52b85eca5cba3e922fa3",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:02:11Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T21:10:58Z",
+        "checked": "2026-11-16T21:11:44Z"
        }
       }
      ]
@@ -193,8 +218,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.2/HHA-0.3.2.jar",
        "sha256": "5c1ff2092cfeb9818d05d9d4b12a89d0acdc9819b289d46153bb882080b40b2f",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:02:26Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T21:12:15Z",
+        "checked": "2026-11-16T21:12:45Z"
        }
       }
      ]
@@ -213,8 +243,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.1/HHA-0.3.1.jar",
        "sha256": "edb3290858718888158a9153381ac3a2a88f6457653e1d2a270f5444f8726a1b",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:02:42Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T21:13:17Z",
+        "checked": "2026-11-16T21:13:48Z"
        }
       }
      ]
@@ -233,8 +268,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.0/HHA-0.3.0.jar",
        "sha256": "d2718e56afbf4e9461de5175ff8845bd08909aeaf171617bcba55f80df84f02f",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:02:57Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T21:14:19Z",
+        "checked": "2026-11-16T21:16:23Z"
        }
       }
      ]
@@ -253,8 +293,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.2.1/HHA-0.2.1.jar",
        "sha256": "e19342f27e34e409d5ed1a109252e7ca18945d1ff9a7c0451d9895fd73882af7",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:03:13Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T21:16:54Z",
+        "checked": "2026-11-16T21:18:11Z"
        }
       }
      ]
@@ -273,8 +318,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.2.0/HHA-0.2.0.jar",
        "sha256": "f425f3ad886a1259aaedec450617716dfebe56a10aa43177ba1f77e9957c1ba3",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:03:28Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 59,
+        "total": 59,
+        "date": "2026-11-16T21:18:43Z",
+        "checked": "2026-11-16T21:21:02Z"
        }
       }
      ]
@@ -293,8 +343,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.1.0/HHA-0.1.0.jar",
        "sha256": "5fb549637a2b920b6bc90791ee1dab5fc241170eb091df2dcccf025e5fbed452",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:03:44Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T21:21:33Z",
+        "checked": "2026-11-16T21:22:50Z"
        }
       }
      ]
@@ -313,8 +368,13 @@
        "url": "https://github.com/vibec-studios/HHA/releases/download/v0.0.1/HHA-0.0.1.jar",
        "sha256": "eabab77a9f9a1a20ade7f149eacde318945ec34ab4179d49c5bcfccfb7f52bcf",
        "vt": {
-        "status": "unknown",
-        "checked": "2026-11-16T21:03:59Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T21:23:21Z",
+        "checked": "2026-11-16T21:24:08Z"
        }
       }
      ]
