@@ -1,5 +1,6 @@
 // Vibey Multiplayer: erste eigenständige Mod außerhalb der HHA-Reihe (Quelle: vibec-studios/vibey-multiplayer, README,
 // Screenshots aus dem automatischen Client-Test). Bewusst kurz gehalten: drei Schritte, vier Features, drei Bilder.
+// Seit 17.11.2026 veröffentlicht (v1.0.0, 20 Jars); Downloads kommen über data/downloads.json und den Auswahl-Dialog.
 const S = (de, en) => ({ de, en });
 
 export default {
@@ -11,13 +12,12 @@ export default {
   accent: '#3b82f6', accent2: '#8b5cf6',
   version: '1.0.0', mc: '1.21 – 26.3', loader: 'Fabric / NeoForge',
   requires: [S('Fabric API (nur Fabric)', 'Fabric API (Fabric only)'), S('Nur im Client, Gäste brauchen nichts', 'Client only, guests need nothing')],
-  status: S('Bald verfügbar', 'Coming soon'),
+  status: S('Veröffentlicht', 'Released'),
   outroTitle: S('Bereit zum Hosten?', 'Ready to host?'),
   source: 'https://github.com/vibec-studios/vibey-multiplayer',
   icon: 'icon.png',
   statusPage: '/status/',
   band: false,
-  downloadNote: S('Der Download kommt, sobald der Relay-Server online ist.', 'The download arrives as soon as the relay server is online.'),
   hero: { kind: 'shot', img: 'img/host-online.webp' },
   intro: S('Welt im Pausenmenü öffnen, Adresse kopieren, Freunde einladen. Sie spielen mit ganz normalem Minecraft mit.',
     'Open your world from the pause menu, copy your address, invite your friends. They join with plain Minecraft.'),
