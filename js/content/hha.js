@@ -293,7 +293,7 @@ export default {
   requires: ['Fabric API', 'Fabric Language Kotlin'],
   status: S('Veröffentlicht', 'Released'),
   source: 'https://github.com/vibec-studios/HHA',
-  download: 'https://github.com/vibec-studios/HHA/releases',
+  series: 'HHA', role: 'core', icon: 'icon.png',
   card: { model: 'zeus' },
   hero: { kind: 'duo' },
   intro: S('Die Grundlage des Studios: zwei vollwertige Endgame-Sets mit eigenen Fähigkeiten, Schwert und Streitkolben. Die Heaven-Rüstung erkämpfst du dir auf dem Olymp bis hinauf zu Zeus, die Hell-Rüstung im Tartaros bei Hades und Kronos.',

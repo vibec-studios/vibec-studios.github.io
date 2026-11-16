@@ -18,7 +18,8 @@ export default {
   loader: 'Fabric',
   requires: ['H&H Armors ≥ 0.6.0', 'Fabric API', 'Fabric Language Kotlin'],
   status: { de: 'In Entwicklung', en: 'In development' },
-  source: null,
+  source: 'https://github.com/vibec-studios/HHA_void',
+  series: 'HHA', role: 'addon', icon: 'item/void_sword.png',
   card: { model: 'oruun' },
   hero: { kind: 'boss', model: 'oruun' },
   intro: {

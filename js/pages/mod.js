@@ -3,6 +3,7 @@
 import { $, $$, t, tx, esc, short, onColor, pixelURL, openLightbox, animateIcons } from '../core.js';
 import { stageScene, bossViewer } from '../views.js';
 import { heldItem } from '../items.js';
+import { latestRelease } from '../downloads.js';
 
 const L = (de, en) => ({ de, en });
 const hex = (c) => parseInt(String(c).slice(1), 16);
@@ -86,14 +87,18 @@ const LABEL = {
 
 export function title(mod) { return `${mod.name} · Vibe Craft Studios`; }
 
-export function render(mod) {
+export function render(mod, dl) {
+  // Download nur, wenn es auf GitHub ein Release gibt; dann führt der Knopf ins Download-Center.
+  const rel = latestRelease(dl, mod.id);
+  const download = rel ? `/downloads/#${mod.id}` : null;
+  const dlLink = (cls) => `<a class="btn ${cls}" href="${download}" data-link>↓ ${t(L('Herunterladen', 'Download'))}</a>`;
   const sections = mod.sections.filter((s) => SHOWN.has(s.type));
   const install = mod.sections.find((s) => s.type === 'install');
   const accent = mod.accent, accent2 = mod.accent2 || mod.accent;
-  const meta = [mod.status && t(mod.status), mod.version && `v${esc(mod.version)}`, `Minecraft ${esc(mod.mc || '1.21.11')}`, esc(mod.loader || 'Fabric')].filter(Boolean);
+  const meta = [mod.status && t(mod.status), (rel?.version || mod.version) && `v${esc(rel?.version || mod.version)}`, `Minecraft ${esc(mod.mc || '1.21.11')}`, esc(mod.loader || 'Fabric')].filter(Boolean);
   const cta = [
-    mod.download ? `<a class="btn primary" href="${mod.download}" target="_blank" rel="noopener">↓ ${t(L('Herunterladen', 'Download'))}</a>` : '',
-    `<a class="btn ${mod.download ? 'ghost' : 'primary'}" href="#${sections[0]?.id || ''}" data-anchor>${t(L('Ansehen', 'Take a look'))}</a>`,
+    download ? dlLink('primary') : '',
+    `<a class="btn ${download ? 'ghost' : 'primary'}" href="#${sections[0]?.id || ''}" data-anchor>${t(L('Ansehen', 'Take a look'))}</a>`,
     mod.source ? `<a class="btn ghost" href="${mod.source}" target="_blank" rel="noopener">GitHub</a>` : '',
   ].join('');
 
@@ -130,18 +135,18 @@ export function render(mod) {
     <div class="wrap outro-grid" data-reveal>
       <div>
         <p class="eyebrow">${t(L('Los geht’s', 'Get started'))}</p>
-        <h2 class="display sm">${mod.download ? t(L('Bereit für den Kampf?', 'Ready to fight?')) : t(L('Bald spielbar.', 'Coming soon.'))}</h2>
-        <p class="lead">${mod.download
+        <h2 class="display sm">${download ? t(L('Bereit für den Kampf?', 'Ready to fight?')) : t(L('Bald spielbar.', 'Coming soon.'))}</h2>
+        <p class="lead">${download
           ? t(L('Mod herunterladen, in den <code>mods</code>-Ordner legen, Minecraft mit Fabric starten. Fertig.', 'Download the mod, drop it into your <code>mods</code> folder, start Minecraft with Fabric. Done.'))
           : t(L('Noch kein öffentlicher Download. Folge dem Studio auf GitHub, dann verpasst du den Start nicht.', 'No public download yet. Follow the studio on GitHub so you don’t miss the launch.'))}</p>
-        <div class="cta">${mod.download ? `<a class="btn primary" href="${mod.download}" target="_blank" rel="noopener">↓ ${t(L('Herunterladen', 'Download'))}</a>` : `<a class="btn primary" href="https://github.com/vibec-studios" target="_blank" rel="noopener">${t(L('Studio auf GitHub', 'Studio on GitHub'))}</a>`}</div>
+        <div class="cta">${download ? `${dlLink('primary')}<a class="btn ghost" href="/downloads/" data-link>${t(L('Download-Center', 'Download center'))}</a>` : `<a class="btn primary" href="https://github.com/vibec-studios" target="_blank" rel="noopener">${t(L('Studio auf GitHub', 'Studio on GitHub'))}</a>`}</div>
       </div>
       <ul class="req mono">${reqs.map((r) => `<li>${r}</li>`).join('')}</ul>
     </div>
   </section>`;
 
   return `<div class="mod-page" style="--accent:${accent};--accent2:${accent2};--on-accent:${onColor(accent)}">
-    ${hero}<nav class="toc" aria-label="${esc(tx(L('Inhalt', 'Contents')))}"><div class="wrap toc-inner">${toc}<a href="#${install?.id || 'download'}" data-anchor class="toc-cta">${mod.download ? t(L('Download', 'Download')) : t(L('Status', 'Status'))}</a></div></nav>${body}${outro}</div>`;
+    ${hero}<nav class="toc" aria-label="${esc(tx(L('Inhalt', 'Contents')))}"><div class="wrap toc-inner">${toc}<a href="#${install?.id || 'download'}" data-anchor class="toc-cta">${download ? t(L('Download', 'Download')) : t(L('Status', 'Status'))}</a></div></nav>${body}${outro}</div>`;
 }
 
 function figureFor(mod, group, i, extra = {}) {

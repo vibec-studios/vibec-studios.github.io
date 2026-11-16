@@ -1,14 +1,16 @@
-// Router, Seitenübergänge (Block-Wipe) und gemeinsame Seitenlogik.
+// Router, Seitenübergänge und gemeinsame Seitenlogik.
 import { $, $$, t, tx, esc, lang, setLang, onLang, onColor, initTooltip, initLightbox, hideTip, pixelURL, reduceMotion } from './core.js';
 import { disposeViews } from './views.js';
 import { loadMods } from './content/index.js';
 import * as Home from './pages/home.js';
 import * as Mod from './pages/mod.js';
+import * as Downloads from './pages/downloads.js';
+import { loadDownloads } from './downloads.js';
 
 const app = $('#app');
 const SPLASH = {
-  de: ['Jetzt mit Kronos!', 'Fang den Boten!', 'Blut fließt!', 'Ins Nichts!', 'Nur Vanilla-Blöcke!', 'Bitte hier unterschreiben.', 'Goldene Rune = zuschlagen!', '100 % handgebaut!', 'Wähle deine Seite!'],
-  en: ['Now with Kronos!', 'Catch the messenger!', 'Blood flows!', 'Into the void!', 'Vanilla blocks only!', 'Please sign here.', 'Golden rune = strike!', '100% handmade!', 'Choose your side!'],
+  de: ['Mehr kommt!', 'Jetzt mit Zeus!', 'Fang den Boten!', 'Blut fließt!', 'Ins Nichts!', 'Nur Vanilla-Blöcke!', 'Bitte hier unterschreiben.', 'Goldene Rune = zuschlagen!', '100 % handgebaut!', 'Wähle deine Seite!'],
+  en: ['More to come!', 'Now with Zeus!', 'Catch the messenger!', 'Blood flows!', 'Into the void!', 'Vanilla blocks only!', 'Please sign here.', 'Golden rune = strike!', '100% handmade!', 'Choose your side!'],
 };
 
 // ============================================================ Seitenwechsel
@@ -46,10 +48,12 @@ const warp = (() => {
 // ============================================================ Seiten
 
 let mods = [];
+let dl = null;
 let pageAbort = null;
 let navigating = false;
 
 function routeOf(path) {
+  if (/^\/downloads\/?$/i.test(path)) return { kind: 'downloads', accent: Downloads.ACCENT, path: '/downloads/' };
   const m = path.match(/^\/mods\/([a-z0-9_-]+)\/?$/i);
   if (m) {
     const mod = mods.find((x) => x.id === m[1].toLowerCase());
@@ -69,15 +73,20 @@ function renderRoute(route) {
   pageAbort = new AbortController();
   const signal = pageAbort.signal;
   if (route.kind === 'mod') {
-    app.innerHTML = Mod.render(route.mod);
+    app.innerHTML = Mod.render(route.mod, dl);
     document.title = Mod.title(route.mod);
     setMeta(tx(route.mod.short));
     Mod.mount(app, route.mod, signal).catch(console.error);
     initToc(signal);
+  } else if (route.kind === 'downloads') {
+    app.innerHTML = Downloads.render(mods, dl);
+    document.title = Downloads.title();
+    setMeta(tx({ de: 'Alle Mods von Vibe Craft Studios zum Herunterladen, mit SHA-256-Prüfsumme und VirusTotal-Scan.', en: 'Download every Vibe Craft Studios mod, with SHA-256 checksum and VirusTotal scan.' }));
+    Downloads.mount(app, mods, dl, signal).catch(console.error);
   } else {
     app.innerHTML = Home.render(mods);
     document.title = 'Vibe Craft Studios · Minecraft Mods';
-    setMeta(tx({ de: 'Vibe Craft Studios baut Minecraft-Mods mit Bosskämpfen, eigenen Welten und echten 3D-Effekten.', en: 'Vibe Craft Studios builds Minecraft mods with boss fights, worlds of their own and real 3D effects.' }));
+    setMeta(tx({ de: 'Vibe Craft Studios ist ein kleines Studio für Minecraft-Mods mit eigenen Modellen, Welten und Bosskämpfen.', en: 'Vibe Craft Studios is a small studio making Minecraft mods with their own models, worlds and boss fights.' }));
     Home.mount(app, mods, signal).catch(console.error);
     splash();
   }
@@ -160,7 +169,8 @@ function initToc(signal) {
 function buildNav() {
   const links = $('.nav-links');
   links.innerHTML = `<a href="/" data-link>${t({ de: 'Start', en: 'Home' })}</a>` +
-    mods.map((m) => `<a href="${m.path}" data-link style="--accent:${m.accent}">${esc(m.name)}</a>`).join('');
+    mods.map((m) => `<a href="${m.path}" data-link style="--accent:${m.accent}">${esc(m.name)}</a>`).join('') +
+    `<a href="/downloads/" data-link>Downloads</a>`;
   const foot = $('.foot-mods');
   if (foot) foot.innerHTML = mods.map((m) => `<a href="${m.path}" data-link>${esc(m.name)}</a>`).join('');
 }
@@ -192,7 +202,7 @@ onLang(() => { splash(); });
   initTooltip();
   initLightbox();
   setLang(lang());
-  mods = await loadMods();
+  [mods, dl] = await Promise.all([loadMods(), loadDownloads()]);
   buildNav();
   const route = routeOf(location.pathname);
   // Der Startschirm steht schon (HTML) und blendet nach dem ersten Rendern aus.

@@ -17,7 +17,8 @@ export default {
   loader: 'Fabric',
   requires: ['H&H Armors ≥ 0.6.0', 'Fabric API', 'Fabric Language Kotlin'],
   status: { de: 'In Entwicklung', en: 'In development' },
-  source: null,
+  source: 'https://github.com/vibec-studios/hha-blood',
+  series: 'HHA', role: 'addon', icon: 'item/blood_sword.png',
   hero: { kind: 'boss', model: 'minotaur' },
   intro: {
     de: 'HHA Blood ist ein Addon für H&H Armors. Es bringt <b>Blood’s Armor</b>, ein purpurnes Endgame-Set mit echter Blutung, Lebensraub und Unsichtbarkeit, dazu Blutschwert und Blutstreitkolben. Unter dem Lavameer des Nether liegen die <b>Aderngrotten</b>, ein eigenes Höhlenbiom mit lebenden Blöcken, und in ihrer Mitte die <b>Schlachtgrube</b>: ein Bosskampf in fünf Phasen gegen den Blood Cerberus und den Crimson Minotaur, mit Zwischensequenzen, eigener Musik und einem Labyrinth, in dem du dich im Blut versteckst.',

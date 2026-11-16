@@ -1,0 +1,258 @@
+{
+ "updated": "2026-11-16T20:51:50Z",
+ "mods": {
+  "hha": {
+   "repo": "vibec-studios/HHA",
+   "releases": [
+    {
+     "tag": "v0.6.2",
+     "version": "0.6.2",
+     "name": "H&H Armors 0.6.2",
+     "date": "2026-07-17T10:02:39Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.6.2",
+     "assets": [
+      {
+       "name": "HHA-0.6.2.jar",
+       "size": 415452,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.6.2/HHA-0.6.2.jar",
+       "sha256": "70db41f8e43ff78086296308dc1312d11abae6bac1b0dcaa7053013837f39c37"
+      }
+     ]
+    },
+    {
+     "tag": "v0.6.1",
+     "version": "0.6.1",
+     "name": "H&H Armors 0.6.1",
+     "date": "2026-07-17T09:33:49Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.6.1",
+     "assets": [
+      {
+       "name": "HHA-0.6.1.jar",
+       "size": 411658,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.6.1/HHA-0.6.1.jar",
+       "sha256": "9a31c2035baafc1bc4825f11c753d3989e7751f254319ac0dba011b62f1295c0"
+      }
+     ]
+    },
+    {
+     "tag": "v0.6.0",
+     "version": "0.6.0",
+     "name": "H&H Armors 0.6.0",
+     "date": "2026-07-16T11:40:43Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.6.0",
+     "assets": [
+      {
+       "name": "HHA-0.6.0.jar",
+       "size": 410991,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.6.0/HHA-0.6.0.jar",
+       "sha256": "8ece8e26298e7fb43394bc55723bc0e03178b13a14be3fb4b1cf4bb8a27d3af9"
+      }
+     ]
+    },
+    {
+     "tag": "v0.5.1",
+     "version": "0.5.1",
+     "name": "H&H Armors 0.5.1",
+     "date": "2026-07-16T11:09:36Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.5.1",
+     "assets": [
+      {
+       "name": "HHA-0.5.1.jar",
+       "size": 406784,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.5.1/HHA-0.5.1.jar",
+       "sha256": "ded131c20ece27374ed56834bbcc0753253e8cdd06e74a73889c5322dd87491f"
+      }
+     ]
+    },
+    {
+     "tag": "v0.5.0",
+     "version": "0.5.0",
+     "name": "H&H Armors 0.5.0",
+     "date": "2026-07-16T10:10:14Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.5.0",
+     "assets": [
+      {
+       "name": "HHA-0.5.0.jar",
+       "size": 406500,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.5.0/HHA-0.5.0.jar",
+       "sha256": "2d80371dae37e667d5cd8cb056ecdc716cb43ea6508451ceb25a0620d0e61da6"
+      }
+     ]
+    },
+    {
+     "tag": "v0.4.1",
+     "version": "0.4.1",
+     "name": "H&H Armors 0.4.1",
+     "date": "2026-07-16T09:38:36Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.4.1",
+     "assets": [
+      {
+       "name": "HHA-0.4.1.jar",
+       "size": 393951,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.4.1/HHA-0.4.1.jar",
+       "sha256": "6625700feff84c902f0844241141b93ff64676dab1e32a0fc8360719dcf221ab"
+      }
+     ]
+    },
+    {
+     "tag": "v0.4.0",
+     "version": "0.4.0",
+     "name": "H&H Armors 0.4.0",
+     "date": "2026-07-15T20:53:58Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.4.0",
+     "assets": [
+      {
+       "name": "HHA-0.4.0.jar",
+       "size": 392310,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.4.0/HHA-0.4.0.jar",
+       "sha256": "6fe9955872ca32ee4029864cbf50185c19f82d369c9f4481d86651e228ac963e"
+      }
+     ]
+    },
+    {
+     "tag": "v0.3.3",
+     "version": "0.3.3",
+     "name": "H&H Armors 0.3.3",
+     "date": "2026-07-15T20:12:13Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.3.3",
+     "assets": [
+      {
+       "name": "HHA-0.3.3.jar",
+       "size": 387411,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.3/HHA-0.3.3.jar",
+       "sha256": "e3c2b8a8e176c9cbe3d10cde95d5ba956e2141f4f14b52b85eca5cba3e922fa3"
+      }
+     ]
+    },
+    {
+     "tag": "v0.3.2",
+     "version": "0.3.2",
+     "name": "H&H Armors 0.3.2",
+     "date": "2026-07-15T20:01:47Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.3.2",
+     "assets": [
+      {
+       "name": "HHA-0.3.2.jar",
+       "size": 386173,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.2/HHA-0.3.2.jar",
+       "sha256": "5c1ff2092cfeb9818d05d9d4b12a89d0acdc9819b289d46153bb882080b40b2f"
+      }
+     ]
+    },
+    {
+     "tag": "v0.3.1",
+     "version": "0.3.1",
+     "name": "H&H Armors 0.3.1",
+     "date": "2026-07-15T19:42:50Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.3.1",
+     "assets": [
+      {
+       "name": "HHA-0.3.1.jar",
+       "size": 385003,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.1/HHA-0.3.1.jar",
+       "sha256": "edb3290858718888158a9153381ac3a2a88f6457653e1d2a270f5444f8726a1b"
+      }
+     ]
+    },
+    {
+     "tag": "v0.3.0",
+     "version": "0.3.0",
+     "name": "H&H Armors 0.3.0",
+     "date": "2026-07-15T19:36:39Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.3.0",
+     "assets": [
+      {
+       "name": "HHA-0.3.0.jar",
+       "size": 384952,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.0/HHA-0.3.0.jar",
+       "sha256": "d2718e56afbf4e9461de5175ff8845bd08909aeaf171617bcba55f80df84f02f"
+      }
+     ]
+    },
+    {
+     "tag": "v0.2.1",
+     "version": "0.2.1",
+     "name": "H&H Armors 0.2.1",
+     "date": "2026-07-15T19:20:36Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.2.1",
+     "assets": [
+      {
+       "name": "HHA-0.2.1.jar",
+       "size": 373501,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.2.1/HHA-0.2.1.jar",
+       "sha256": "e19342f27e34e409d5ed1a109252e7ca18945d1ff9a7c0451d9895fd73882af7"
+      }
+     ]
+    },
+    {
+     "tag": "v0.2.0",
+     "version": "0.2.0",
+     "name": "H&H Armors 0.2.0",
+     "date": "2026-07-15T18:56:44Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.2.0",
+     "assets": [
+      {
+       "name": "HHA-0.2.0.jar",
+       "size": 373227,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.2.0/HHA-0.2.0.jar",
+       "sha256": "f425f3ad886a1259aaedec450617716dfebe56a10aa43177ba1f77e9957c1ba3"
+      }
+     ]
+    },
+    {
+     "tag": "v0.1.0",
+     "version": "0.1.0",
+     "name": "H&H Armors 0.1.0",
+     "date": "2026-07-15T16:11:55Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.1.0",
+     "assets": [
+      {
+       "name": "HHA-0.1.0.jar",
+       "size": 371338,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.1.0/HHA-0.1.0.jar",
+       "sha256": "5fb549637a2b920b6bc90791ee1dab5fc241170eb091df2dcccf025e5fbed452"
+      }
+     ]
+    },
+    {
+     "tag": "v0.0.1",
+     "version": "0.0.1",
+     "name": "H&H Armors 0.0.1",
+     "date": "2026-07-14T19:16:54Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/HHA/releases/tag/v0.0.1",
+     "assets": [
+      {
+       "name": "HHA-0.0.1.jar",
+       "size": 323003,
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.0.1/HHA-0.0.1.jar",
+       "sha256": "eabab77a9f9a1a20ade7f149eacde318945ec34ab4179d49c5bcfccfb7f52bcf"
+      }
+     ]
+    }
+   ]
+  },
+  "blood": {
+   "repo": "vibec-studios/hha-blood",
+   "releases": []
+  },
+  "void": {
+   "repo": "vibec-studios/HHA_void",
+   "releases": []
+  }
+ }
+}

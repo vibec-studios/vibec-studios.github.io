@@ -1,0 +1,48 @@
+# Download-Center aktuell halten: liest die GitHub-Releases aller Mods, lässt neue Dateien von VirusTotal prüfen
+# und committet data/downloads.json. Läuft alle 6 Stunden, nach Änderungen am Skript und auf Knopfdruck
+# (Actions → Downloads aktualisieren → Run workflow). Den API-Key liefert das Repo-Secret VT_API_KEY.
+name: Downloads aktualisieren
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tools/downloads.py', 'js/content/**', '.github/workflows/downloads.yml']
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: downloads
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Releases und VirusTotal
+        env:
+          VT_API_KEY: ${{ secrets.VT_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 tools/downloads.py
+
+      - name: Committen und Seite neu bauen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- data/downloads.json && [ -z "$(git ls-files --others --exclude-standard data)" ]; then
+            echo "Keine Änderung"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/downloads.json
+          git commit -m "Update downloads"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true

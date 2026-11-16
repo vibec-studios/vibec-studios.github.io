@@ -4,7 +4,7 @@ Aufruf: python build.py   (nach jeder Änderung an HTML, CSS, JS oder neuen Mods
 
 - Jede JS-Datei bekommt über die Import-Map eine Prüfsumme (?v=…), CSS und app.js direkt im HTML. So lädt der
   Browser nach einem Update sofort die neuen Dateien statt bis zu 10 Minuten alte aus dem Cache.
-- index.html wird nach mods/<id>/index.html und 404.html kopiert (GitHub Pages kennt keine SPA-Fallbacks).
+- index.html wird nach mods/<id>/index.html, downloads/index.html und 404.html kopiert (GitHub Pages kennt keine SPA-Fallbacks).
 """
 import glob
 import hashlib
@@ -49,6 +49,11 @@ for mod in ids:
     with open(os.path.join(out, 'index.html'), 'w', encoding='utf8', newline='\n') as f:
         f.write(shell)
     built.append(mod)
+for page in ('downloads',):  # feste Seiten neben den Mods
+    os.makedirs(os.path.join(HERE, page), exist_ok=True)
+    with open(os.path.join(HERE, page, 'index.html'), 'w', encoding='utf8', newline='\n') as f:
+        f.write(shell)
+    built.append(page)
 with open(os.path.join(HERE, '404.html'), 'w', encoding='utf8', newline='\n') as f:
     f.write(shell)
 print('Routen:', ', '.join(built), '+ 404.html ·', len(imports) - 2, 'Module versioniert')

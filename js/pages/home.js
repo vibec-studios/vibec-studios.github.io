@@ -1,4 +1,5 @@
-// Startseite des Studios: Vorstellung der Mods im Stil einer Produktseite.
+// Startseite des Studios: das Studio und seine Projekte im Stil einer Produktseite. Die HHA-Reihe ist das erste
+// Projekt, nicht das einzige: Texte bleiben allgemein, Reihe und Rolle kommen aus den Inhaltsdateien (series, role).
 import { $, $$, t, esc, short, onColor } from '../core.js';
 import { stageScene } from '../views.js';
 import { heldItem } from '../items.js';
@@ -33,6 +34,12 @@ function armorsOf(m) {
   return sec.armor ? [{ set: sec.armor, name: m.name.replace(/^HHA\s+/, ''), color: m.accent2 || m.accent, weapon: weapon(sec) }] : [];
 }
 
+/** „HHA · Hauptmod“, „HHA · Addon“ oder einfach „Mod“ für eigenständige Projekte. */
+function role(m) {
+  const r = m.role === 'core' ? t(L('Hauptmod', 'Core mod')) : m.role === 'addon' ? 'Addon' : 'Mod';
+  return m.series ? `${esc(m.series)} · ${r}` : r;
+}
+
 function bossOf(m) {
   const model = m.card?.model || (m.hero?.kind === 'boss' ? m.hero.model : null);
   const sec = m.sections.find((s) => s.type === 'boss');
@@ -49,7 +56,7 @@ export function render(mods) {
     return `<section class="feature-sec" style="--accent:${m.accent};--accent2:${m.accent2 || m.accent};--on-accent:${onColor(m.accent)}" id="mod-${m.id}">
       <div class="wrap feature-grid ${i % 2 ? 'flip' : ''}">
         <div class="feature-copy" data-reveal>
-          <p class="eyebrow">${String(i + 1).padStart(2, '0')} · ${m.id === 'hha' ? t(L('Hauptmod', 'Core mod')) : 'Addon'} · ${t(m.status)}</p>
+          <p class="eyebrow">${String(i + 1).padStart(2, '0')} · ${role(m)} · ${t(m.status)}</p>
           <h2 class="display accent">${esc(m.name)}.</h2>
           <p class="lead">${t(m.short)}</p>
           <ul class="ticks">${(m.highlights || []).slice(0, 3).map((h) => `<li>${t(h)}</li>`).join('')}</ul>
@@ -68,12 +75,12 @@ export function render(mods) {
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <h1 class="display">${t(L('Mods, die sich wie ein eigenes Spiel anfühlen.', 'Mods that feel like a game of their own.'))}</h1>
-        <p class="lead">${t(L('Bosskämpfe mit Geschichte, eigene Welten und Rüstungen, die man sich verdienen muss. Für Minecraft mit Fabric.', 'Boss fights with a story, worlds of their own and armor you have to earn. For Minecraft on Fabric.'))}</p>
+        <p class="lead">${t(L('Vibe Craft Studios ist ein kleines Studio für Minecraft-Mods. Wir bauen Bosskämpfe mit Geschichte, eigene Welten und Ausrüstung, die man sich verdienen muss.', 'Vibe Craft Studios is a small studio for Minecraft mods. We build boss fights with a story, worlds of their own and gear you have to earn.'))}</p>
         <div class="cta">
           <a class="btn primary" href="#mod-${mods[0]?.id || 'hha'}" data-anchor>${t(L('Mods entdecken', 'Explore mods'))}</a>
-          <a class="btn ghost" href="${STUDIO.github}" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn ghost" href="/downloads/" data-link>${t(L('Downloads', 'Downloads'))}</a>
         </div>
-        <p class="note mono">└─ Minecraft 1.21.11 · Fabric · ${t(L('Deutsch & Englisch', 'German & English'))}</p>
+        <p class="note mono">└─ Fabric · ${t(L('Deutsch & Englisch', 'German & English'))} · ${t(L('alle Downloads geprüft', 'every download checked'))}</p>
       </div>
       <div class="hero-art">
         <canvas class="hero-canvas" aria-hidden="true"></canvas>
@@ -93,16 +100,27 @@ export function render(mods) {
   <section class="section universe">
     <div class="wrap">
       <header class="sec-head center" data-reveal>
-        <p class="eyebrow">${t(L('Ein Universum', 'One universe'))}</p>
-        <h2 class="display sm">${t(L('Alles passt zusammen.', 'Everything fits together.'))}</h2>
-        <p class="lead">${t(L('H&H Armors ist das Herz. Addons hängen sich über eine eigene API ein und fühlen sich an, als wären sie schon immer da gewesen.', 'H&H Armors is the heart. Addons plug in through their own API and feel like they have always been there.'))}</p>
+        <p class="eyebrow">${t(L('Projekte', 'Projects'))}</p>
+        <h2 class="display sm">${t(L('Die HHA-Reihe ist erst der Anfang.', 'The HHA series is just the start.'))}</h2>
+        <p class="lead">${t(L('Unser erstes Universum: H&H Armors ist das Herz, die Addons hängen sich über eine eigene API ein. Weitere Projekte, auch abseits von HHA, kommen dazu, sobald sie bereit sind.', 'Our first universe: H&H Armors is the heart, the addons plug in through their own API. More projects, beyond HHA too, will join once they are ready.'))}</p>
       </header>
       <div class="tiles four" data-reveal>
         ${mods.map((m) => `<a class="tile link" href="${m.path}" data-link style="--accent:${m.accent}">
-          <span class="tile-tag mono">${m.id === 'hha' ? 'Core · API' : 'Addon'}</span>
+          <span class="tile-tag mono">${role(m)}</span>
           <h3>${esc(m.name)}</h3><p>${t(short(m.tagline || m.short, 1))}</p><span class="tile-go">→</span></a>`).join('')}
-        <div class="tile ghost"><span class="tile-tag mono">API</span><h3>${t(L('Dein Addon?', 'Your addon?'))}</h3><p>${t(L('Sets, Fähigkeiten, Lore und die Cooldown-Leiste stehen offen.', 'Sets, abilities, lore and the cooldown bar are open to you.'))}</p></div>
+        <a class="tile ghost link" href="${STUDIO.github}" target="_blank" rel="noopener"><span class="tile-tag mono">${t(L('Demnächst', 'Coming up'))}</span><h3>${t(L('Was als Nächstes kommt', 'What comes next'))}</h3><p>${t(L('Neue Mods erscheinen zuerst hier und im Download-Center. Folge uns auf GitHub, dann verpasst du nichts.', 'New mods show up here and in the download center first. Follow us on GitHub so you miss nothing.'))}</p><span class="tile-go">↗</span></a>
       </div>
+    </div>
+  </section>
+
+  <section class="section dl-teaser">
+    <div class="wrap dl-teaser-grid" data-reveal>
+      <div>
+        <p class="eyebrow">${t(L('Download-Center', 'Download center'))}</p>
+        <h2 class="display sm">${t(L('Alle Mods an einem Ort.', 'Every mod in one place.'))}</h2>
+        <p class="lead">${t(L('Jede Version direkt aus GitHub, mit Prüfsumme und VirusTotal-Scan. Kein Umweg, keine fremden Spiegel.', 'Every version straight from GitHub, with checksum and VirusTotal scan. No detours, no third-party mirrors.'))}</p>
+      </div>
+      <div class="cta"><a class="btn primary" href="/downloads/" data-link>↓ ${t(L('Zum Download-Center', 'Open download center'))}</a></div>
     </div>
   </section>
 
@@ -111,8 +129,8 @@ export function render(mods) {
       <h2 class="display">${t(L('Fair.<br>Erzählt.<br>Handgemacht.', 'Fair.<br>Told.<br>Handmade.'))}</h2>
       <div class="values-list">
         <article><h3>${t(L('Fair statt frustrierend', 'Fair, not frustrating'))}</h3><p>${t(L('Jeder Angriff wird angesagt, jeder Boss hat einen Trick, und wer verliert, behält sein Inventar.', 'Every attack is announced, every boss has a trick, and losing never costs your inventory.'))}</p></article>
-        <article><h3>${t(L('Geschichten statt Gegner', 'Stories, not just enemies'))}</h3><p>${t(L('Bosse aus der Mythologie, vertonte Cutscenes und Orte, die erzählen, was dort passiert ist.', 'Bosses from mythology, voiced cutscenes and places that tell what happened there.'))}</p></article>
-        <article><h3>${t(L('Alles selbst gebaut', 'Built by hand'))}</h3><p>${t(L('Eigene Modelle, Animationen und Effekte. Welten nur aus Vanilla-Blöcken, damit alles nach Minecraft aussieht.', 'Our own models, animations and effects. Worlds use vanilla blocks only, so everything still looks like Minecraft.'))}</p></article>
+        <article><h3>${t(L('Geschichten statt Gegner', 'Stories, not just enemies'))}</h3><p>${t(L('Gegner mit Vorgeschichte, vertonte Cutscenes und Orte, die erzählen, was dort passiert ist.', 'Foes with a backstory, voiced cutscenes and places that tell what happened there.'))}</p></article>
+        <article><h3>${t(L('Alles selbst gebaut', 'Built by hand'))}</h3><p>${t(L('Eigene Modelle, Animationen und Effekte. Gebaut wird mit Vanilla-Blöcken, damit sich alles nach Minecraft anfühlt.', 'Our own models, animations and effects. We build with vanilla blocks, so everything still feels like Minecraft.'))}</p></article>
       </div>
     </div>
   </section>
