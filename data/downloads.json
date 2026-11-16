@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T21:24:08Z",
+ "updated": "2026-11-16T22:10:48Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -387,6 +387,10 @@
   },
   "void": {
    "repo": "vibec-studios/HHA_void",
+   "releases": []
+  },
+  "vibey": {
+   "repo": "Henny263462/vibey-multiplayer",
    "releases": []
   }
  }
