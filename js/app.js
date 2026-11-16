@@ -11,100 +11,33 @@ const SPLASH = {
   en: ['Now with Kronos!', 'Catch the messenger!', 'Blood flows!', 'Into the void!', 'Vanilla blocks only!', 'Please sign here.', 'Golden rune = strike!', '100% handmade!', 'Choose your side!'],
 };
 
-// ============================================================ Block-Wipe
+// ============================================================ Seitenwechsel
 
+// Ruhiger Übergang: der Inhalt unter der Navigation blendet kurz ab, oben läuft eine dünne Leiste in der Farbe des Ziels,
+// die neue Seite gleitet sanft herein. Beim ersten Laden steht ein schwarzer Schirm mit Schriftzug und blendet aus.
 const warp = (() => {
   const el = $('#warp');
-  const grid = $('.warp-grid', el);
-  const label = $('.warp-label', el);
   const bar = $('.warp-bar i', el);
-  let cells = [], cols = 0, rows = 0, size = 0;
-
-  function build() {
-    const w = innerWidth, h = innerHeight;
-    size = Math.ceil(Math.max(w, h) / (w < 700 ? 8 : 14));
-    cols = Math.ceil(w / size) + 1; rows = Math.ceil(h / size) + 1;
-    grid.innerHTML = '';
-    cells = [];
-    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
-      const c = document.createElement('i');
-      c.style.cssText = `left:${x * size}px;top:${y * size}px;width:${size + 1}px;height:${size + 1}px;background-size:${size}px`;
-      c.dataset.x = x; c.dataset.y = y;
-      grid.appendChild(c);
-      cells.push(c);
-    }
-  }
-
-  function paint(accent) {
-    const n = parseInt(accent.slice(1), 16);
-    const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
-    const tone = (f) => `rgb(${Math.round(r * f)},${Math.round(g * f)},${Math.round(b * f)})`;
-    const palettes = [0, 1, 2, 3].map((i) => pixelURL([tone(0.22), tone(0.18), tone(0.26 + i * 0.02), tone(0.15), tone(0.3)], 16, 101 + i * 13));
-    const edge = tone(0.55);
-    cells.forEach((c, i) => {
-      c.style.backgroundImage = palettes[(i * 7 + (i >> 3)) % 4];
-      c.style.boxShadow = `inset 2px 2px 0 ${edge}55, inset -2px -2px 0 #0008`;
-    });
-    el.style.setProperty('--accent', accent);
-  }
-
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  let barAnim = null;
 
-  async function cover(origin, accent, text) {
-    if (!cells.length || el.dataset.size !== `${innerWidth}x${innerHeight}`) { build(); el.dataset.size = `${innerWidth}x${innerHeight}`; }
-    paint(accent);
-    label.innerHTML = text || '';
+  async function cover(accent) {
+    el.style.setProperty('--accent', accent);
     el.hidden = false;
     el.classList.add('on');
-    if (reduceMotion) {
-      await el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, fill: 'forwards' }).finished;
-      cells.forEach((c) => { c.style.transform = 'none'; c.style.opacity = 1; });
-      return;
-    }
-    el.style.opacity = 1;
-    const ox = origin ? origin.x / size : cols / 2, oy = origin ? origin.y / size : rows / 2;
-    let maxEnd = 0;
-    cells.forEach((c) => {
-      const d = Math.hypot(+c.dataset.x + 0.5 - ox, +c.dataset.y + 0.5 - oy);
-      const delay = d * 26 + Math.random() * 50;
-      const rot = (Math.random() - 0.5) * 50;
-      maxEnd = Math.max(maxEnd, delay + 280);
-      c.animate([
-        { transform: `scale(0) rotate(${rot}deg)`, opacity: 0 },
-        { transform: 'scale(1.08) rotate(0deg)', opacity: 1, offset: 0.75 },
-        { transform: 'scale(1) rotate(0deg)', opacity: 1 },
-      ], { duration: 280, delay, easing: 'cubic-bezier(.2,.8,.3,1)', fill: 'forwards' });
-    });
-    $('.warp-center', el).animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 200, delay: maxEnd * 0.55, fill: 'forwards' });
-    bar.animate([{ width: '0%' }, { width: '70%' }], { duration: maxEnd, easing: 'ease-out', fill: 'forwards' });
-    await wait(maxEnd);
+    barAnim?.cancel();
+    barAnim = bar.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(.75)' }], { duration: 900, easing: 'cubic-bezier(.1,.7,.3,1)', fill: 'forwards' });
+    await el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: reduceMotion ? 80 : 200, easing: 'ease-out', fill: 'forwards' }).finished;
   }
 
   async function reveal() {
-    if (reduceMotion) {
-      await el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, fill: 'forwards' }).finished;
-      el.hidden = true; el.classList.remove('on');
-      return;
-    }
-    bar.animate([{ width: '70%' }, { width: '100%' }], { duration: 160, fill: 'forwards' });
-    await wait(170);
-    $('.warp-center', el).animate([{ opacity: 1 }, { opacity: 0, transform: 'scale(.96)' }], { duration: 160, fill: 'forwards' });
-    const cx = cols / 2, cy = rows / 2;
-    let maxEnd = 0;
-    cells.forEach((c) => {
-      const d = Math.hypot(+c.dataset.x + 0.5 - cx, +c.dataset.y + 0.5 - cy);
-      const delay = 60 + d * 30 + Math.random() * 70;
-      const rot = (Math.random() - 0.5) * 70;
-      const fall = 40 + Math.random() * 90;
-      maxEnd = Math.max(maxEnd, delay + 360);
-      c.animate([
-        { transform: 'translateY(0) scale(1) rotate(0deg)', opacity: 1 },
-        { transform: `translateY(${fall}px) scale(0.2) rotate(${rot}deg)`, opacity: 0 },
-      ], { duration: 360, delay, easing: 'cubic-bezier(.5,0,.9,.6)', fill: 'forwards' });
-    });
-    await wait(maxEnd);
+    barAnim?.cancel();
+    barAnim = bar.animate([{ transform: 'scaleX(.75)', opacity: 1 }, { transform: 'scaleX(1)', opacity: 1, offset: 0.6 }, { transform: 'scaleX(1)', opacity: 0 }], { duration: 380, easing: 'ease-out', fill: 'forwards' });
+    if (!reduceMotion) app.animate([{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 520, easing: 'cubic-bezier(.2,.8,.2,1)' });
+    await wait(60);
+    await el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: reduceMotion ? 80 : 280, easing: 'ease-in', fill: 'forwards' }).finished;
     el.hidden = true;
-    el.classList.remove('on');
+    el.classList.remove('on', 'boot');
   }
 
   return { cover, reveal };
@@ -168,11 +101,8 @@ async function navigate(url, { push = true, origin = null } = {}) {
   if (navigating) return;
   navigating = true;
   const route = routeOf(target.pathname);
-  const label = route.kind === 'mod'
-    ? `${esc(route.mod.name)}<small>${t({ de: 'Welt wird geladen …', en: 'Loading world …' })}</small>`
-    : `Vibe Craft Studios<small>${t({ de: 'Zurück zum Hauptmenü …', en: 'Back to the title screen …' })}</small>`;
   try {
-    await warp.cover(origin, route.accent, label);
+    await warp.cover(route.accent);
     if (push) history.pushState(null, '', route.path + (target.hash || ''));
     renderRoute(route);
     if (target.hash) scrollToHash(target.hash, true); else window.scrollTo({ top: 0, behavior: 'instant' });
@@ -265,11 +195,9 @@ onLang(() => { splash(); });
   mods = await loadMods();
   buildNav();
   const route = routeOf(location.pathname);
-  // Der Ladebildschirm steht schon (HTML), die Blöcke brechen nach dem ersten Rendern auf.
+  // Der Startschirm steht schon (HTML) und blendet nach dem ersten Rendern aus.
   renderRoute(route);
   if (location.hash) scrollToHash(location.hash, true);
-  await new Promise((r) => setTimeout(r, reduceMotion ? 0 : 450));
-  await warp.cover(null, route.accent, $('#warp .warp-label').innerHTML);
-  $('#warp').classList.toggle('boot', false);
+  await new Promise((r) => setTimeout(r, reduceMotion ? 0 : 250));
   await warp.reveal();
 })();

@@ -324,20 +324,17 @@ body[data-route="home"] .nav-cta { background: var(--brand); color: #fff; }
 
 /* ------------------------------------------------------------------ Seitenwechsel (Block-Wipe) */
 
-#warp { position: fixed; inset: 0; z-index: 90; pointer-events: none; }
+#warp { position: fixed; inset: var(--nav-h) 0 0; z-index: 55; background: #000; pointer-events: none; }
 #warp.on { pointer-events: all; }
 #warp[hidden] { display: none; }
-#warp.boot { background: #000; }
-.warp-grid { position: absolute; inset: 0; overflow: hidden; }
-.warp-grid i { position: absolute; display: block; transform: scale(0); opacity: 0; image-rendering: pixelated; will-change: transform, opacity; }
-.warp-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; width: min(380px, 82vw); text-align: center; opacity: 0; }
-#warp.boot .warp-center { opacity: 1; }
-.warp-label { font: 700 clamp(22px, 3.4vw, 32px)/1.1 var(--display); text-transform: uppercase; color: #fff; }
-.warp-label small { display: block; margin-top: 10px; font: 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.warp-bar { margin: 20px auto 0; height: 3px; background: rgba(255,255,255,.12); }
-.warp-bar i { display: block; height: 100%; width: 0; background: var(--accent, var(--brand)); }
-#warp.boot .warp-bar i { width: 40%; animation: bootbar 1.2s ease-out forwards; background: var(--brand); }
-@keyframes bootbar { from { width: 5%; } to { width: 70%; } }
+#warp.boot { inset: 0; z-index: 90; }
+.warp-bar { position: absolute; left: 0; right: 0; top: 0; height: 2px; }
+.warp-bar i { display: block; height: 100%; background: var(--accent, var(--brand)); box-shadow: 0 0 12px var(--accent, var(--brand)); transform: scaleX(0); transform-origin: left; }
+.warp-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none; align-items: center; gap: 12px; font: 700 18px var(--display); text-transform: uppercase; color: #fff; }
+#warp.boot .warp-center { display: flex; animation: warp-in .5s ease-out both; }
+#warp.boot .warp-bar i { animation: warp-boot 1.4s cubic-bezier(.1,.7,.3,1) forwards; }
+@keyframes warp-in { from { opacity: 0; transform: translate(-50%, calc(-50% + 6px)); } }
+@keyframes warp-boot { to { transform: scaleX(.7); } }
 
 .noscript { padding: 40px; text-align: center; }
 
