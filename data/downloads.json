@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T23:19:35Z",
+ "updated": "2026-11-16T23:23:58Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -511,8 +511,13 @@
        "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.1-1.0.0.jar",
        "sha256": "0dd6256c036307dd024c510201f90d5bfb4c8a8706686a4fef64da59d22e15f2",
        "vt": {
-        "status": "pending",
-        "checked": "2026-11-16T23:03:35Z"
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 58,
+        "total": 58,
+        "date": "2026-11-16T23:00:29Z",
+        "checked": "2026-11-16T23:23:58Z"
        }
       },
       {
