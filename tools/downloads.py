@@ -8,7 +8,7 @@ Aufruf (aus dem Repo-Ordner, nur Python-Standardbibliothek):
 - Je Release zählen die .jar-Dateien (ohne -sources/-dev). Die SHA-256 liefert GitHub mit (`digest`), sonst wird die
   Datei geladen und selbst gerechnet.
 - VirusTotal nur mit Umgebungsvariable VT_API_KEY (in der GitHub Action ein Repo-Secret, nie in Dateien schreiben):
-  Erst wird per Prüfsumme nachgesehen; kennt VirusTotal die Datei nicht, wird sie hochgeladen (nur für die neuesten
+  Erst wird per Prüfsumme nachgesehen; kennt VirusTotal die Datei nicht, wird sie hochgeladen (für die neuesten
   UPLOAD_LATEST Releases je Mod) und auf das Ergebnis gewartet. Fertige Ergebnisse werden nach REFRESH_DAYS neu
   abgefragt. Die kostenlose API erlaubt 4 Anfragen pro Minute, deshalb der Abstand zwischen den Aufrufen.
 - Optional GITHUB_TOKEN für ein höheres Anfragelimit bei GitHub.
@@ -29,7 +29,7 @@ import uuid
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(HERE, 'data', 'downloads.json')
 VT = 'https://www.virustotal.com/api/v3'
-UPLOAD_LATEST = 3
+UPLOAD_LATEST = 100  # praktisch alle; die freie API schafft 500 Anfragen am Tag
 REFRESH_DAYS = 14
 VT_GAP = 15.5  # Sekunden zwischen zwei VirusTotal-Aufrufen (4/min)
 POLL_TRIES = 12
