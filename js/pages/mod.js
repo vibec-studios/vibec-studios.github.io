@@ -70,7 +70,7 @@ const R = {
       <h3>${t(b.name)}</h3><p>${t(short(b.desc, 1))}</p></article>`).join('')}</div>`;
   },
   gallery(s, mod) {
-    return `<div class="gallery">${s.items.slice(0, 7).map((g, i) => `<figure class="shot${i === 0 ? ' wide' : ''}">
+    return `<div class="gallery">${s.items.slice(0, 9).map((g, i) => `<figure class="shot${i === 0 ? ' wide' : ''}">
       <button type="button" data-shot="${i}"><img src="${mod.base}/${g.img}" alt="${esc(tx(g.name))}" loading="lazy"></button>
       <figcaption>${t(g.name)}</figcaption></figure>`).join('')}</div>`;
   },
@@ -114,11 +114,11 @@ export function render(mod) {
     <div class="wrap highlight-row">${(mod.highlights || []).slice(0, 4).map((h, i) => `<div><span class="mono">0${i + 1}</span><p>${t(h)}</p></div>`).join('')}</div>
   </section>`;
 
-  const toc = sections.map((s) => `<a href="#${s.id}" data-anchor>${t(LABEL[s.type] || s.title)}</a>`).join('');
+  const toc = sections.map((s) => `<a href="#${s.id}" data-anchor>${t(s.toc || LABEL[s.type] || s.title)}</a>`).join('');
   const body = sections.map((s, i) => `<section class="section sec-${s.type}" id="${s.id}">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <p class="eyebrow">${String(i + 1).padStart(2, '0')} · ${t(LABEL[s.type] || s.title)}</p>
+        <p class="eyebrow">${String(i + 1).padStart(2, '0')} · ${t(s.toc || LABEL[s.type] || s.title)}</p>
         <h2 class="display sm">${t(s.title)}</h2>
         ${s.lead ? `<p class="lead">${t(short(s.lead, 2))}</p>` : ''}
       </header>
