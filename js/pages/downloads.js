@@ -1,5 +1,5 @@
 // Download-Center: alle Mods mit ihren GitHub-Releases, Prüfsumme und VirusTotal-Ergebnis (Daten: data/downloads.json).
-import { $$, t, tx, esc, animateIcons } from '../core.js';
+import { $, $$, t, tx, esc, animateIcons } from '../core.js';
 import { releasesOf, latestRelease, vtLink } from '../downloads.js';
 
 const L = (de, en) => ({ de, en });
@@ -111,31 +111,138 @@ function fileRow(x, label) {
     ${vtBadge(x, true)}<a class="mono dl-get" href="${x.url}" download>↓ .jar</a></div>`;
 }
 
+// ------------------------------------------------------------ Viele Dateien: Auswahl-Dialog (Loader → Minecraft-Version)
+
+const LOADERS = { fabric: 'Fabric', neoforge: 'NeoForge', forge: 'Forge', quilt: 'Quilt' };
+
+/** „vibey-multiplayer-neoforge-1.21-1.21.1-1.0.0.jar“ → { loader: 'neoforge', mc: '1.21-1.21.1' } (null, wenn das Muster nicht passt) */
+export function parseJar(name) {
+  const m = name.match(/^.+?-(fabric|neoforge|forge|quilt)-(.+)-(\d+\.\d+(?:\.\d+)?(?:[-+][0-9A-Za-z.]+)?)\.jar$/i);
+  return m ? { loader: m[1].toLowerCase(), mc: m[2] } : null;
+}
+const mcLabel = (mc) => mc.replace(/-/g, ' – ');
+/** Sortierschlüssel: höchste Version im Bereich, neueste zuerst. */
+function mcKey(mc) {
+  const top = mc.split('-').pop().split('.').map(Number);
+  return top[0] * 1e6 + (top[1] || 0) * 1e3 + (top[2] || 0);
+}
+/** Gruppiert die Jars eines Releases; null, wenn sie sich nicht nach Loader/Version zuordnen lassen. */
+function variants(rel) {
+  const files = rel.assets.map((a) => ({ ...a, ...parseJar(a.name) })).filter((a) => a.loader);
+  if (files.length < 2) return null;
+  const loaders = [...new Set(files.map((f) => f.loader))].sort((a, b) => (a === 'fabric' ? -1 : b === 'fabric' ? 1 : a.localeCompare(b)));
+  const versions = [...new Set(files.map((f) => f.mc))].sort((a, b) => mcKey(b) - mcKey(a));
+  return { files, loaders, versions };
+}
+
+function vtSummary(assets) {
+  const done = assets.filter((x) => x.vt?.status === 'done');
+  const hits = done.filter((x) => x.vt.malicious + x.vt.suspicious).length;
+  if (done.length === assets.length && !hits) {
+    return `<span class="vt ok"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 13.9 8 15c3.4-1.1 6-4 6-7.5v-4L8 1Z"/><path class="tick" d="m5 8 2 2 4-4"/></svg><span><b>${t(L('Alle Dateien sauber', 'All files clean'))}</b><i>${t(L(`${assets.length} von ${assets.length} gescannt`, `${assets.length} of ${assets.length} scanned`))}</i></span></span>`;
+  }
+  if (hits) return `<span class="vt warn"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 13.9 8 15c3.4-1.1 6-4 6-7.5v-4L8 1Z"/></svg><span><b>${t(L(`${hits} Dateien gemeldet`, `${hits} files flagged`))}</b><i>${t(L('Details im Dialog', 'Details in the dialog'))}</i></span></span>`;
+  return `<span class="vt wait"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 13.9 8 15c3.4-1.1 6-4 6-7.5v-4L8 1Z"/></svg><span><b>${t(L(`${done.length} von ${assets.length} gescannt`, `${done.length} of ${assets.length} scanned`))}</b><i>${t(L('der Rest folgt automatisch', 'the rest follows automatically'))}</i></span></span>`;
+}
+
 function multiCard(mod, rel, older, head) {
-  const clean = rel.assets.every((x) => x.vt?.status === 'done' && !(x.vt.malicious + x.vt.suspicious));
+  const v = variants(rel);
+  const loaderNames = v ? v.loaders.map((l) => LOADERS[l] || l).join(' & ') : esc(mod.loader || 'Fabric');
   return `<article class="dl-card multi" id="${mod.id}" style="--accent:${mod.accent}">
     ${head}
     <div class="dl-main">
       <div class="dl-file">
         <p class="dl-ver"><b>v${esc(rel.version)}</b><span class="pill">${rel.prerelease ? t(L('Vorabversion', 'Pre-release')) : t(L('Aktuell', 'Latest'))}</span></p>
-        <p class="mono small">${t(L(`${rel.assets.length} Dateien`, `${rel.assets.length} files`))} · ${date(rel.date)}</p>
-        <p class="mono small">Minecraft ${esc(mod.mc || '1.21.11')} · ${esc(mod.loader || 'Fabric')}</p>
+        <p class="mono small">${loaderNames} · Minecraft ${esc(mod.mc || '')} · ${date(rel.date)}</p>
+        <p class="mono small">${t(L(`${rel.assets.length} Dateien, eine je Loader und Minecraft-Version`, `${rel.assets.length} files, one per loader and Minecraft version`))}</p>
       </div>
       <div class="dl-actions">
+        ${v ? `<button type="button" class="btn accent" data-pick="${mod.id}">↓ ${t(L('Version wählen', 'Choose version'))}</button>` : ''}
         <a class="btn ghost" href="${rel.url}" target="_blank" rel="noopener">${t(L('Änderungen', 'Changelog'))} ↗</a>
       </div>
     </div>
     <div class="dl-facts">
-      <div><p class="k">VirusTotal</p>${clean ? `<span class="vt ok"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 13.9 8 15c3.4-1.1 6-4 6-7.5v-4L8 1Z"/><path class="tick" d="m5 8 2 2 4-4"/></svg><span><b>${t(L('Alle Dateien sauber', 'All files clean'))}</b></span></span>` : `<span class="small">${t(L('Ergebnis je Datei unten', 'Result per file below'))}</span>`}</div>
-      <div class="dl-sha"><p class="k">${t(L('Datei finden', 'Find your file'))}</p><input class="dl-filter mono" type="search" placeholder="${esc(tx(L('z. B. fabric 1.21.11', 'e.g. fabric 1.21.11')))}" aria-label="${esc(tx(L('Dateien filtern', 'Filter files')))}"></div>
+      <div><p class="k">VirusTotal</p>${vtSummary(rel.assets)}</div>
+      <div><p class="k">SHA-256</p><span class="small">${t(L('Für jede Datei im Dialog und in der Liste unten.', 'For every file in the dialog and in the list below.'))}</span></div>
       <div><p class="k">${t(L('Benötigt', 'Requires'))}</p><div class="req-links">${reqList(mod)}</div></div>
     </div>
-    <div class="dl-table dl-files" role="table">${rel.assets.map((x) => fileRow(x, x.name.replace(/\.jar$/i, ''))).join('')}</div>
+    <details class="dl-older">
+      <summary>${t(L(`Alle Dateien (${rel.assets.length})`, `All files (${rel.assets.length})`))}</summary>
+      <div class="dl-table" role="table">${rel.assets.map((x) => fileRow(x, x.name.replace(/\.jar$/i, ''))).join('')}</div>
+    </details>
     ${older.length ? `<details class="dl-older">
       <summary>${t(L(`Ältere Versionen (${older.length})`, `Older versions (${older.length})`))}</summary>
       <div class="dl-table" role="table">${older.flatMap((r) => r.assets.map((x) => fileRow(x, `v${r.version} · ${x.name.replace(/\.jar$/i, '')}`))).join('')}</div>
     </details>` : ''}
   </article>`;
+}
+
+const DIALOG = `<dialog class="dl-dialog" aria-labelledby="dlg-title">
+  <form method="dialog"><button class="icon-btn dlg-close" aria-label="${esc(tx(L('Schließen', 'Close')))}">✕</button></form>
+  <header class="dlg-head"><span class="px-icon dl-icon dlg-icon"></span><div><p class="eyebrow">${t(L('Download', 'Download'))}</p><h2 id="dlg-title"></h2><p class="mono small dlg-ver"></p></div></header>
+  <div class="dlg-step"><p class="k mono">1 · Loader</p><div class="dlg-seg" role="radiogroup" data-group="loader"></div></div>
+  <div class="dlg-step"><p class="k mono">2 · ${t(L('Minecraft-Version', 'Minecraft version'))}</p><div class="dlg-mc" role="radiogroup" data-group="mc"></div>
+    <p class="small dlg-hint">${t(L('Deine Version steht unten links im Hauptmenü von Minecraft.', 'Your version is shown bottom left in the Minecraft main menu.'))}</p></div>
+  <div class="dlg-result"></div>
+</dialog>`;
+
+const store = {
+  get(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* privat */ } },
+};
+
+function openPicker(dialog, mod, rel) {
+  const v = variants(rel);
+  if (!v) return;
+  const key = `vcs-dl-${mod.id}`;
+  const saved = store.get(key) || {};
+  const pick = { loader: v.loaders.includes(saved.loader) ? saved.loader : v.loaders[0], mc: v.versions.includes(saved.mc) ? saved.mc : v.versions[0] };
+  dialog.style.setProperty('--accent', mod.accent);
+  dialog.querySelector('#dlg-title').textContent = mod.name;
+  dialog.querySelector('.dlg-ver').innerHTML = `v${esc(rel.version)} · ${date(rel.date)}`;
+  const icon = dialog.querySelector('.dlg-icon');
+  icon.dataset.src = `${mod.base}/${mod.icon || 'icon.png'}`;
+  icon.style.backgroundImage = `url(${icon.dataset.src})`;
+
+  const fileFor = (loader, mc) => v.files.find((f) => f.loader === loader && f.mc === mc);
+  function paint() {
+    if (!fileFor(pick.loader, pick.mc)) pick.mc = v.versions.find((mc) => fileFor(pick.loader, mc)) || pick.mc;
+    dialog.querySelector('[data-group="loader"]').innerHTML = v.loaders.map((l) =>
+      `<button type="button" role="radio" aria-checked="${l === pick.loader}" data-loader="${l}">${LOADERS[l] || esc(l)}</button>`).join('');
+    dialog.querySelector('[data-group="mc"]').innerHTML = v.versions.map((mc) => {
+      const has = !!fileFor(pick.loader, mc);
+      return `<button type="button" role="radio" aria-checked="${mc === pick.mc}" data-mc="${esc(mc)}"${has ? '' : ' disabled'}>${esc(mcLabel(mc))}</button>`;
+    }).join('');
+    const f = fileFor(pick.loader, pick.mc);
+    const needs = pick.loader === 'fabric'
+      ? t(L('Braucht außerdem <a href="https://modrinth.com/mod/fabric-api" target="_blank" rel="noopener">Fabric API ↗</a>.', 'Also needs <a href="https://modrinth.com/mod/fabric-api" target="_blank" rel="noopener">Fabric API ↗</a>.'))
+      : t(L('Keine weiteren Mods nötig.', 'No other mods needed.'));
+    dialog.querySelector('.dlg-result').innerHTML = f ? `
+      <div class="dlg-file">
+        <p class="mono dlg-name">${esc(f.name)}</p>
+        <p class="small">${size(f.size)} · ${LOADERS[f.loader] || esc(f.loader)} · Minecraft ${esc(mcLabel(f.mc))} · ${needs}</p>
+      </div>
+      <div class="dlg-facts">
+        ${vtBadge(f)}
+        <button type="button" class="sha small" data-copy="${f.sha256}" title="SHA-256"><code>SHA-256 ${f.sha256.slice(0, 16)}…</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button>
+      </div>
+      <a class="btn accent dlg-get" href="${f.url}" download>↓ ${t(L('Herunterladen', 'Download'))}</a>` : '';
+    store.set(key, pick);
+  }
+  dialog.onclick = (e) => {
+    if (e.target === dialog) { dialog.close(); return; }
+    const l = e.target.closest('[data-loader]');
+    const mc = e.target.closest('[data-mc]');
+    const copy = e.target.closest('[data-copy]');
+    if (l) { pick.loader = l.dataset.loader; paint(); }
+    else if (mc && !mc.disabled) { pick.mc = mc.dataset.mc; paint(); }
+    else if (copy) {
+      navigator.clipboard?.writeText(copy.dataset.copy).then(() => { copy.classList.add('done'); setTimeout(() => copy.classList.remove('done'), 1400); }).catch(() => {});
+    }
+  };
+  paint();
+  if (!dialog.open) dialog.showModal();
+  dialog.querySelector('[aria-checked="true"]')?.focus();
 }
 
 export function title() { return 'Downloads · Vibe Craft Studios'; }
@@ -186,19 +293,27 @@ export function render(mods, dl) {
       </article>
     </div>
   </div></section>
+  ${DIALOG}
 </div>`;
 }
 
 export async function mount(root, mods, dl, signal) {
   animateIcons(root);
-  $$('.dl-filter', root).forEach((input) => input.addEventListener('input', () => {
-    const words = input.value.toLowerCase().split(/\s+/).filter(Boolean);
-    $$('.dl-files [role="row"]', input.closest('.dl-card')).forEach((row) => { row.hidden = !words.every((w) => row.dataset.name.includes(w)); });
-  }, { signal }));
-  $$('[data-copy]', root).forEach((b) => b.addEventListener('click', async () => {
+  $$('.dl-list [data-copy]', root).forEach((b) => b.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) { return; }
     b.classList.add('done');
     setTimeout(() => b.classList.remove('done'), 1400);
   }, { signal }));
-}
 
+  // Auswahl-Dialog für Releases mit vielen Jars; über #<mod> (z. B. vom Download-Knopf der Mod-Seite) öffnet er sich direkt
+  const dialog = $('.dl-dialog', root);
+  const open = (id) => {
+    const mod = mods.find((m) => m.id === id);
+    const rel = mod && latestRelease(dl, id);
+    if (rel && rel.assets.length > 1) openPicker(dialog, mod, rel);
+  };
+  $$('[data-pick]', root).forEach((b) => b.addEventListener('click', () => open(b.dataset.pick), { signal }));
+  signal.addEventListener('abort', () => { if (dialog.open) dialog.close(); });
+  const fromHash = location.hash.slice(1);
+  if (fromHash && $(`.dl-card.multi#${CSS.escape(fromHash)} [data-pick]`, root)) setTimeout(() => open(fromHash), 450);
+}

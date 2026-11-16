@@ -44,7 +44,8 @@ const R = {
     </div>`;
   },
   abilities(s, mod) {
-    return `<div class="tiles">${s.items.slice(0, 9).map((a) => `<article class="tile">
+    const n = Math.min(s.items.length, 9);
+    return `<div class="tiles${n === 4 ? ' four' : ''}">${s.items.slice(0, 9).map((a) => `<article class="tile">
       ${a.icon ? icon(mod.base, a.icon, 'tile-icon') : ''}
       <h3>${t(a.name)}</h3>
       <p>${t(short(a.desc, 1))}</p>
@@ -153,9 +154,9 @@ export function render(mod, dl) {
       <div class="hero-art">${mod.hero?.kind === 'shot' ? heroShot(mod) : '<canvas class="hero-canvas" aria-hidden="true"></canvas>'}</div>
     </div>
   </section>
-  <section class="band">
+  ${mod.band === false ? '' : `<section class="band">
     <div class="wrap highlight-row">${(mod.highlights || []).slice(0, 4).map((h, i) => `<div><span class="mono">0${i + 1}</span><p>${t(h)}</p></div>`).join('')}</div>
-  </section>`;
+  </section>`}`;
 
   const toc = sections.map((s) => `<a href="#${s.id}" data-anchor>${t(s.toc || LABEL[s.type] || s.title)}</a>`).join('');
   const body = sections.map((s, i) => `<section class="section sec-${s.type}" id="${s.id}">
