@@ -327,6 +327,20 @@ export async function bossViewer(root, base, bosses, signal) {
   controls.maxPolarAngle = Math.PI * 0.49;
   controls.enablePan = false;
   view.cleanup.push(() => controls.dispose());
+  // Mausrad scrollt die Seite; gezoomt wird nur mit Strg/Cmd. Senkrechtes Wischen auf dem Handy scrollt ebenfalls.
+  canvas.style.touchAction = 'pan-y';
+  const stage = canvas.parentElement;
+  const hint = $('.stage-hint', root);
+  let hintTimer = 0;
+  stage.addEventListener('wheel', (e) => {
+    if (e.ctrlKey || e.metaKey) return;
+    e.stopPropagation();
+    if (hint) {
+      hint.classList.add('flash');
+      clearTimeout(hintTimer);
+      hintTimer = setTimeout(() => hint.classList.remove('flash'), 1400);
+    }
+  }, { capture: true, passive: true, signal });
 
   const holder = new THREE.Group();
   scene.add(holder);

@@ -89,7 +89,7 @@ const R = {
           <button class="mc-btn small btn-rotate" aria-pressed="true">${t(L('Drehen', 'Spin'))}</button>
           <button class="mc-btn small btn-reset">${t(L('Ansicht', 'Reset view'))}</button>
         </div>
-        <div class="stage-hint">${t(L('Ziehen: drehen · Scrollen: zoomen', 'Drag: rotate · Scroll: zoom'))}</div>
+        <div class="stage-hint">${t(L('Ziehen: drehen · Strg + Mausrad: zoomen', 'Drag: rotate · Ctrl + wheel: zoom'))}</div>
       </div>
       <aside class="tooltip boss-info" aria-live="polite"></aside>
       <div class="hotbar" role="tablist"></div>

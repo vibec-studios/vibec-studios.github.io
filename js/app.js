@@ -213,7 +213,13 @@ function initToc(signal) {
       if (!e.isIntersecting) return;
       links.forEach((a) => a.classList.remove('on'));
       const a = map.get(e.target.id);
-      if (a) { a.classList.add('on'); a.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'auto' }); }
+      if (a) {
+        a.classList.add('on');
+        // Nur die Leiste seitlich verschieben: scrollIntoView würde bei der klebenden Leiste die ganze Seite nach oben ziehen.
+        const bar = a.parentElement;
+        const left = a.offsetLeft - (bar.clientWidth - a.offsetWidth) / 2;
+        bar.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+      }
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   $$('section[id]', app).forEach((s) => io.observe(s));
