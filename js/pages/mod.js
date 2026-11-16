@@ -70,8 +70,16 @@ const R = {
       <div class="world-tex" style="background-image:${pixelURL(b.colors, 16, 31 + i * 7)}"></div>
       <h3>${t(b.name)}</h3><p>${t(short(b.desc, 1))}</p></article>`).join('')}</div>`;
   },
+  flow(s) {
+    return `<ol class="flow">${s.items.map((f, i) => `<li class="flow-step">
+      <span class="flow-num">${String(i + 1).padStart(2, '0')}</span>
+      <h3>${t(f.title)}</h3><p>${t(f.desc)}</p></li>`).join('')}</ol>`;
+  },
   gallery(s, mod) {
-    return `<div class="gallery">${s.items.slice(0, 9).map((g, i) => `<figure class="shot${i === 0 ? ' wide' : ''}">
+    // Vier Bilder als 2 × 2, sonst ein großes Bild vorn
+    const items = s.items.slice(0, 9);
+    const even = items.length === 4 || items.length === 2;
+    return `<div class="gallery${even ? ' two' : ''}">${items.map((g, i) => `<figure class="shot${i === 0 && !even ? ' wide' : ''}">
       <button type="button" data-shot="${i}"><img src="${mod.base}/${g.img}" alt="${esc(tx(g.name))}" loading="lazy"></button>
       <figcaption>${t(g.name)}</figcaption></figure>`).join('')}</div>`;
   },
@@ -79,11 +87,20 @@ const R = {
 
 const SHOWN = new Set(Object.keys(R));
 const LABEL = {
-  versus: L('Rüstung', 'Armor'), armor: L('Rüstung', 'Armor'), abilities: L('Fähigkeiten', 'Abilities'),
+  versus: L('Rüstung', 'Armor'), armor: L('Rüstung', 'Armor'), abilities: L('Fähigkeiten', 'Abilities'), flow: L('So geht’s', 'How it works'),
   boss: L('Bosse', 'Bosses'), world: L('Welt', 'World'), gallery: L('Bauwerke', 'Structures'),
 };
 
 // ------------------------------------------------------------ Seite
+
+/** Hero für Mods ohne 3D-Modell: echter Screenshot im Rahmen, davor die Adresse als Karte. */
+function heroShot(mod) {
+  const h = mod.hero;
+  return `<figure class="hero-shot">
+    <img src="${mod.base}/${h.img}" alt="${esc(tx(mod.tagline))}" width="1280" height="800">
+    ${h.address ? `<figcaption class="addr-card"><span class="mono small">${t(L('Deine Adresse', 'Your address'))}</span><b class="mono">${esc(h.address)}</b><span class="addr-copy mono">${t(L('Kopieren', 'Copy'))}</span></figcaption>` : ''}
+  </figure>`;
+}
 
 export function title(mod) { return `${mod.name} · Vibe Craft Studios`; }
 
@@ -112,7 +129,7 @@ export function render(mod, dl) {
         <div class="cta">${cta}</div>
         <p class="note mono">${meta.join(' <i>·</i> ')}</p>
       </div>
-      <div class="hero-art"><canvas class="hero-canvas" aria-hidden="true"></canvas></div>
+      <div class="hero-art">${mod.hero?.kind === 'shot' ? heroShot(mod) : '<canvas class="hero-canvas" aria-hidden="true"></canvas>'}</div>
     </div>
   </section>
   <section class="band">
@@ -130,16 +147,16 @@ export function render(mod, dl) {
       <div data-reveal>${R[s.type](s, mod)}</div>
     </div></section>`).join('');
 
-  const reqs = [`Minecraft ${esc(mod.mc || '1.21.11')}`, `${esc(mod.loader || 'Fabric')} Loader`, ...(mod.requires || []).map(esc)];
+  const reqs = [`Minecraft ${esc(mod.mc || '1.21.11')}`, `${esc(mod.loader || 'Fabric')} Loader`, ...(mod.requires || []).map((r) => (typeof r === 'object' ? t(r) : esc(r)))];
   const outro = `<section class="section outro" id="${install?.id || 'download'}">
     <div class="wrap outro-grid" data-reveal>
       <div>
         <p class="eyebrow">${t(L('Los geht’s', 'Get started'))}</p>
-        <h2 class="display sm">${download ? t(L('Bereit für den Kampf?', 'Ready to fight?')) : t(L('Bald spielbar.', 'Coming soon.'))}</h2>
+        <h2 class="display sm">${download ? t(mod.outroTitle || L('Bereit für den Kampf?', 'Ready to fight?')) : t(L('Bald verfügbar.', 'Coming soon.'))}</h2>
         <p class="lead">${download
-          ? t(L('Mod herunterladen, in den <code>mods</code>-Ordner legen, Minecraft mit Fabric starten. Fertig.', 'Download the mod, drop it into your <code>mods</code> folder, start Minecraft with Fabric. Done.'))
-          : t(L('Noch kein öffentlicher Download. Folge dem Studio auf GitHub, dann verpasst du den Start nicht.', 'No public download yet. Follow the studio on GitHub so you don’t miss the launch.'))}</p>
-        <div class="cta">${download ? `${dlLink('primary')}<a class="btn ghost" href="/downloads/" data-link>${t(L('Download-Center', 'Download center'))}</a>` : `<a class="btn primary" href="https://github.com/vibec-studios" target="_blank" rel="noopener">${t(L('Studio auf GitHub', 'Studio on GitHub'))}</a>`}</div>
+          ? t(L(`Mod herunterladen, in den <code>mods</code>-Ordner legen, Minecraft mit ${esc(mod.loader || 'Fabric')} starten. Fertig.`, `Download the mod, drop it into your <code>mods</code> folder, start Minecraft with ${esc(mod.loader || 'Fabric')}. Done.`))
+          : `${mod.downloadNote ? `${t(mod.downloadNote)} ` : ''}${t(L('Folge dem Projekt auf GitHub, dann verpasst du den Start nicht.', 'Follow the project on GitHub so you don’t miss the launch.'))}`}</p>
+        <div class="cta">${download ? `${dlLink('primary')}<a class="btn ghost" href="/downloads/" data-link>${t(L('Download-Center', 'Download center'))}</a>` : `<a class="btn primary" href="${mod.source || 'https://github.com/vibec-studios'}" target="_blank" rel="noopener">${mod.source ? t(L('Zum Repository', 'View repository')) : t(L('Studio auf GitHub', 'Studio on GitHub'))} ↗</a>`}</div>
       </div>
       <ul class="req mono">${reqs.map((r) => `<li>${r}</li>`).join('')}</ul>
     </div>

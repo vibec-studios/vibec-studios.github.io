@@ -42,10 +42,11 @@ function vtBadge(asset, compact = false) {
 
 function reqList(mod) {
   return (mod.requires || []).map((r) => {
-    const key = r.toLowerCase().replace(/\s*[≥>].*$/, '').trim();
-    if (key === 'h&h armors') return `<a href="/downloads/#hha" data-anchor>${esc(r)}</a>`;
+    const label = typeof r === 'object' ? t(r) : esc(r);
+    const key = String(typeof r === 'object' ? r.en : r).toLowerCase().replace(/\s*([≥>]|\().*$/, '').trim();
+    if (key === 'h&h armors') return `<a href="/downloads/#hha" data-anchor>${label}</a>`;
     const href = REQ_LINKS[key];
-    return href ? `<a href="${href}" target="_blank" rel="noopener">${esc(r)} ↗</a>` : `<span>${esc(r)}</span>`;
+    return href ? `<a href="${href}" target="_blank" rel="noopener">${label} ↗</a>` : `<span>${label}</span>`;
   }).join('');
 }
 
@@ -53,7 +54,7 @@ function card(mod, dl) {
   const rel = latestRelease(dl, mod.id);
   const all = releasesOf(dl, mod.id).filter((r) => r.assets?.length);
   const icon = `<span class="px-icon dl-icon" data-src="${mod.base}/${mod.icon || 'icon.png'}"></span>`;
-  const tag = mod.series ? `${esc(mod.series)} · ${mod.role === 'core' ? t(L('Hauptmod', 'Core mod')) : mod.role === 'addon' ? 'Addon' : 'Mod'}` : 'Mod';
+  const tag = mod.series ? `${esc(mod.series)} · ${mod.role === 'core' ? t(L('Hauptmod', 'Core mod')) : mod.role === 'addon' ? 'Addon' : 'Mod'}` : t(L('Eigenständige Mod', 'Standalone mod'));
   const head = `<header class="dl-head">
       ${icon}
       <div><p class="eyebrow">${tag}</p><h2><a href="${mod.path}" data-link>${esc(mod.name)}</a></h2><p class="dl-tag">${t(mod.tagline)}</p></div>
@@ -63,7 +64,8 @@ function card(mod, dl) {
     return `<article class="dl-card soon" id="${mod.id}" style="--accent:${mod.accent}">
       ${head}
       <div class="dl-soon">
-        <p><b>${t(L('Noch kein Release.', 'No release yet.'))}</b> ${t(L('Sobald es eine Version gibt, steht sie hier mit Prüfsumme und Virenscan.', 'As soon as there is a version, it appears here with checksum and virus scan.'))}</p>
+        <p><b>${t(L('Bald verfügbar.', 'Coming soon.'))}</b> ${mod.downloadNote ? `${t(mod.downloadNote)} ` : ''}${t(L('Sobald es eine Version gibt, steht sie hier mit Prüfsumme und Virenscan.', 'As soon as there is a version, it appears here with checksum and virus scan.'))}</p>
+        <p class="mono small">Minecraft ${esc(mod.mc || '1.21.11')} · ${esc(mod.loader || 'Fabric')}</p>
         <div class="cta"><a class="btn ghost" href="${mod.path}" data-link>${t(L('Zur Mod', 'View mod'))}</a>${mod.source ? `<a class="btn ghost" href="${mod.source}" target="_blank" rel="noopener">GitHub ↗</a>` : ''}</div>
       </div>
     </article>`;
@@ -71,6 +73,7 @@ function card(mod, dl) {
 
   const a = rel.assets[0];
   const older = all.filter((r) => r !== rel);
+  if (rel.assets.length > 1) return multiCard(mod, rel, older, head);
   return `<article class="dl-card" id="${mod.id}" style="--accent:${mod.accent}">
     ${head}
     <div class="dl-main">
@@ -97,6 +100,40 @@ function card(mod, dl) {
           <button type="button" class="sha small" data-copy="${x.sha256}" title="SHA-256"><code>${x.sha256.slice(0, 12)}…</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button>
           ${vtBadge(x, true)}<a class="mono dl-get" href="${x.url}" download>↓ .jar</a></div>`;
       }).join('')}</div>
+    </details>` : ''}
+  </article>`;
+}
+
+/** Release mit vielen Dateien (Loader × Minecraft-Version): Suchfeld und eine Zeile je Jar. */
+function fileRow(x, label) {
+  return `<div role="row" data-name="${esc(x.name.toLowerCase())}"><b class="mono">${esc(label)}</b><span class="small mono">${size(x.size)}</span>
+    <button type="button" class="sha small" data-copy="${x.sha256}" title="SHA-256"><code>${x.sha256.slice(0, 12)}…</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button>
+    ${vtBadge(x, true)}<a class="mono dl-get" href="${x.url}" download>↓ .jar</a></div>`;
+}
+
+function multiCard(mod, rel, older, head) {
+  const clean = rel.assets.every((x) => x.vt?.status === 'done' && !(x.vt.malicious + x.vt.suspicious));
+  return `<article class="dl-card multi" id="${mod.id}" style="--accent:${mod.accent}">
+    ${head}
+    <div class="dl-main">
+      <div class="dl-file">
+        <p class="dl-ver"><b>v${esc(rel.version)}</b><span class="pill">${rel.prerelease ? t(L('Vorabversion', 'Pre-release')) : t(L('Aktuell', 'Latest'))}</span></p>
+        <p class="mono small">${t(L(`${rel.assets.length} Dateien`, `${rel.assets.length} files`))} · ${date(rel.date)}</p>
+        <p class="mono small">Minecraft ${esc(mod.mc || '1.21.11')} · ${esc(mod.loader || 'Fabric')}</p>
+      </div>
+      <div class="dl-actions">
+        <a class="btn ghost" href="${rel.url}" target="_blank" rel="noopener">${t(L('Änderungen', 'Changelog'))} ↗</a>
+      </div>
+    </div>
+    <div class="dl-facts">
+      <div><p class="k">VirusTotal</p>${clean ? `<span class="vt ok"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 13.9 8 15c3.4-1.1 6-4 6-7.5v-4L8 1Z"/><path class="tick" d="m5 8 2 2 4-4"/></svg><span><b>${t(L('Alle Dateien sauber', 'All files clean'))}</b></span></span>` : `<span class="small">${t(L('Ergebnis je Datei unten', 'Result per file below'))}</span>`}</div>
+      <div class="dl-sha"><p class="k">${t(L('Datei finden', 'Find your file'))}</p><input class="dl-filter mono" type="search" placeholder="${esc(tx(L('z. B. fabric 1.21.11', 'e.g. fabric 1.21.11')))}" aria-label="${esc(tx(L('Dateien filtern', 'Filter files')))}"></div>
+      <div><p class="k">${t(L('Benötigt', 'Requires'))}</p><div class="req-links">${reqList(mod)}</div></div>
+    </div>
+    <div class="dl-table dl-files" role="table">${rel.assets.map((x) => fileRow(x, x.name.replace(/\.jar$/i, ''))).join('')}</div>
+    ${older.length ? `<details class="dl-older">
+      <summary>${t(L(`Ältere Versionen (${older.length})`, `Older versions (${older.length})`))}</summary>
+      <div class="dl-table" role="table">${older.flatMap((r) => r.assets.map((x) => fileRow(x, `v${r.version} · ${x.name.replace(/\.jar$/i, '')}`))).join('')}</div>
     </details>` : ''}
   </article>`;
 }
@@ -154,6 +191,10 @@ export function render(mods, dl) {
 
 export async function mount(root, mods, dl, signal) {
   animateIcons(root);
+  $$('.dl-filter', root).forEach((input) => input.addEventListener('input', () => {
+    const words = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+    $$('.dl-files [role="row"]', input.closest('.dl-card')).forEach((row) => { row.hidden = !words.every((w) => row.dataset.name.includes(w)); });
+  }, { signal }));
   $$('[data-copy]', root).forEach((b) => b.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) { return; }
     b.classList.add('done');

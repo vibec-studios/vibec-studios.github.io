@@ -1,5 +1,5 @@
 // Alle Mods des Studios in Anzeigereihenfolge. Fehlt eine Inhaltsdatei, wird die Mod einfach ausgelassen.
-const IDS = ['hha', 'blood', 'void'];
+const IDS = ['hha', 'blood', 'void', 'vibey'];
 
 function normalize(m) {
   const used = new Set();
