@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T22:43:17Z",
+ "updated": "2026-11-16T23:19:35Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -391,7 +391,313 @@
   },
   "vibey": {
    "repo": "vibec-studios/vibey-multiplayer",
-   "releases": []
+   "releases": [
+    {
+     "tag": "v1.0.0",
+     "version": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0",
+     "date": "2026-11-16T22:50:40Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/tag/v1.0.0",
+     "assets": [
+      {
+       "name": "vibey-multiplayer-fabric-1.21-1.21.1-1.0.0.jar",
+       "size": 81295,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21-1.21.1-1.0.0.jar",
+       "sha256": "9edab1f01434b4f6e7bfdbf6665e5e3d2fef8231d91f35638cab9bfb85917c7e",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T22:51:11Z",
+        "checked": "2026-11-16T22:51:41Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-fabric-1.21.11-1.0.0.jar",
+       "size": 81633,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.11-1.0.0.jar",
+       "sha256": "3aac716c135dff6a65af7e66f498eb03995f6af2ac96b7bd7be33f38d40f95c4",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T22:52:13Z",
+        "checked": "2026-11-16T22:53:14Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-fabric-1.21.2-1.21.3-1.0.0.jar",
+       "size": 81296,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.2-1.21.3-1.0.0.jar",
+       "sha256": "72d1c7889331c9299b6e85593affefcb19ba4de75ca0bc2c2ba72f76f7c5cdc8",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T22:53:46Z",
+        "checked": "2026-11-16T22:54:16Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-fabric-1.21.4-1.0.0.jar",
+       "size": 81295,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.4-1.0.0.jar",
+       "sha256": "787e11a9fba76679856fde35f4bb9236f64b18c0c43927450d1e4003659c80e0",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T22:54:48Z",
+        "checked": "2026-11-16T22:55:18Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-fabric-1.21.5-1.0.0.jar",
+       "size": 81294,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.5-1.0.0.jar",
+       "sha256": "e2f38fe65b699b78bb8885c19f82fb2ee96159a3f2b59660305ece3e9d8f2e23",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T22:55:49Z",
+        "checked": "2026-11-16T22:56:20Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-fabric-1.21.6-1.21.8-1.0.0.jar",
+       "size": 81311,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.6-1.21.8-1.0.0.jar",
+       "sha256": "0ab28e4b2eae8793c0660c0f5b810310ebbdf3194c583f4f497a03fa34d1fbbb",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T22:56:51Z",
+        "checked": "2026-11-16T22:57:22Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-fabric-1.21.9-1.21.10-1.0.0.jar",
+       "size": 81634,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.9-1.21.10-1.0.0.jar",
+       "sha256": "ff19cbada64d645314b83598282ca2f27b46f7e1f91a88a6bd3a6bcf1d5cc180",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T22:57:54Z",
+        "checked": "2026-11-16T22:59:57Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-fabric-26.1-1.0.0.jar",
+       "size": 82611,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.1-1.0.0.jar",
+       "sha256": "0dd6256c036307dd024c510201f90d5bfb4c8a8706686a4fef64da59d22e15f2",
+       "vt": {
+        "status": "pending",
+        "checked": "2026-11-16T23:03:35Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-fabric-26.2-1.0.0.jar",
+       "size": 82695,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.2-1.0.0.jar",
+       "sha256": "814e132b1d31141af29e255708ec0c074827404cb1f59cd05ff1bf650a7612e4",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T23:04:06Z",
+        "checked": "2026-11-16T23:04:52Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-fabric-26.3-1.0.0.jar",
+       "size": 82693,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.3-1.0.0.jar",
+       "sha256": "3e377e99445ea84e092d5bba29d1ec9f682aa06198886311fb731fc9ef6a75f7",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T23:05:23Z",
+        "checked": "2026-11-16T23:06:09Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-1.21-1.21.1-1.0.0.jar",
+       "size": 80409,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21-1.21.1-1.0.0.jar",
+       "sha256": "1b382517dc2d845ea25212ca84bcf5bd0728b769f545e5a7556edb45d7d8d7f1",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T23:06:40Z",
+        "checked": "2026-11-16T23:07:11Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-1.21.11-1.0.0.jar",
+       "size": 80739,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.11-1.0.0.jar",
+       "sha256": "9feb7bdf24d8e6fea7e2fb81607ecea30674df4d6c0a0014eacea209bd21e1e8",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T23:07:42Z",
+        "checked": "2026-11-16T23:08:13Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-1.21.2-1.21.3-1.0.0.jar",
+       "size": 80413,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.2-1.21.3-1.0.0.jar",
+       "sha256": "0cfd315e175a54e300d0e18a6835ccf6a31b9a97b8945c7202e8402be7e7e724",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T23:08:44Z",
+        "checked": "2026-11-16T23:09:46Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-1.21.4-1.0.0.jar",
+       "size": 80406,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.4-1.0.0.jar",
+       "sha256": "d45a130b90f11bbb4ded9fce0d63a832de9e6b00dcbe0cf3a6f55d817aa5aac4",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T23:10:18Z",
+        "checked": "2026-11-16T23:10:48Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-1.21.5-1.0.0.jar",
+       "size": 80405,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.5-1.0.0.jar",
+       "sha256": "ca58c6a2d9020ee05dd27fe877d46c7341c3867f3ae97bf92535e3d5e3a97954",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T23:11:19Z",
+        "checked": "2026-11-16T23:12:06Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-1.21.6-1.21.8-1.0.0.jar",
+       "size": 80429,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.6-1.21.8-1.0.0.jar",
+       "sha256": "72ce5646ccd36d344a080df0cb5b040f0194ac8d1e04f4a320e922f2ad5339ac",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T23:12:37Z",
+        "checked": "2026-11-16T23:13:08Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-1.21.9-1.21.10-1.0.0.jar",
+       "size": 80749,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.9-1.21.10-1.0.0.jar",
+       "sha256": "dba2e4b82ecd75a5841451e8474d7241e6e28cf61f4bb97fd64fa5c38eb1264f",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-16T23:13:40Z",
+        "checked": "2026-11-16T23:14:10Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-26.1-1.0.0.jar",
+       "size": 80755,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-26.1-1.0.0.jar",
+       "sha256": "ed55a571e93fa1da44f14ff0d38c7a5a40365fbb7b90c719744da8347b83d368",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T23:14:41Z",
+        "checked": "2026-11-16T23:15:27Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-26.2-1.0.0.jar",
+       "size": 80846,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-26.2-1.0.0.jar",
+       "sha256": "59d23e6d0727ca160c53d3516b73819d58721a0fda823b9211be468dde25b9df",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 62,
+        "total": 62,
+        "date": "2026-11-16T23:15:58Z",
+        "checked": "2026-11-16T23:17:16Z"
+       }
+      },
+      {
+       "name": "vibey-multiplayer-neoforge-26.3-1.0.0.jar",
+       "size": 80846,
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-26.3-1.0.0.jar",
+       "sha256": "f4de4c8320d4aac65952b3b74cc53b2ed7f2e777256af0011974137793ed256f",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-16T23:17:47Z",
+        "checked": "2026-11-16T23:19:35Z"
+       }
+      }
+     ]
+    }
+   ]
   }
  }
 }
