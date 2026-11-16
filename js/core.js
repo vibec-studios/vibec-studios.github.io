@@ -24,6 +24,58 @@ export function tx(o) {
   return String(o[lang()] ?? o.de ?? '').replace(/<[^>]+>/g, '');
 }
 
+/** Lesbare Schriftfarbe auf einer Leitfarbe (schwarz auf hellen, weiß auf dunklen Farben). */
+export function onColor(hex) {
+  const n = parseInt(String(hex).slice(1), 16);
+  const lin = (c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
+  const l = 0.2126 * lin((n >> 16) & 255) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255);
+  return l > 0.22 ? '#000' : '#fff';
+}
+
+/**
+ * Vorstellungstext: die ersten n Sätze (je Sprache) ohne Detailsätze. Sätze mit Zahlen (Haltbarkeit, Schaden,
+ * Abklingzeiten, Koordinaten) oder Tastenbelegung fallen weg; die stehen im Spiel, nicht auf der Werbeseite.
+ */
+const DETAIL = /\d|Ability|\bTasten?\b|\bkeys?\b|Steuerung|controls|\bconfig/i;
+export function short(o, n = 1) {
+  if (o == null) return o;
+  const cut = (s) => {
+    if (typeof s !== 'string') return s;
+    const parts = s.replace(/<br\s*\/?>/g, ' ').split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ„"(<])/);
+    const merged = [];
+    for (const p of parts) {
+      if (merged.length && merged[merged.length - 1].replace(/<[^>]+>/g, '').length < 22) merged[merged.length - 1] += ' ' + p;
+      else merged.push(p);
+    }
+    return merged.filter((p) => !DETAIL.test(p.replace(/<[^>]+>/g, ''))).slice(0, n).join(' ');
+  };
+  if (typeof o !== 'object') return cut(String(o));
+  return { de: cut(o.de), en: cut(o.en ?? o.de) };
+}
+
+/** Pixel-Icons: animierte Streifen (Höhe > Breite) automatisch erkennen und abspielen, wie im Spiel. */
+const frameCache = new Map();
+export function animateIcons(root) {
+  $$('.px-icon[data-src]', root).forEach((el) => {
+    const src = el.dataset.src;
+    el.style.backgroundImage = `url(${src})`;
+    if (!frameCache.has(src)) {
+      frameCache.set(src, new Promise((res) => {
+        const img = new Image();
+        img.onload = () => res(Math.max(1, Math.round(img.height / img.width)));
+        img.onerror = () => res(1);
+        img.src = src;
+      }));
+    }
+    frameCache.get(src).then((n) => {
+      if (n < 2) return;
+      el.style.setProperty('--n', n);
+      el.style.backgroundSize = `100% ${n * 100}%`;
+      el.classList.add('anim');
+    });
+  });
+}
+
 const langListeners = new Set();
 export function onLang(fn) { langListeners.add(fn); return () => langListeners.delete(fn); }
 export function setLang(l) {

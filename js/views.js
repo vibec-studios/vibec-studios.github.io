@@ -5,8 +5,8 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { loadBoss, loadArmorStand, loadItem, noiseTexture } from './mc3d.js';
-import { $, $$, t, tx, reduceMotion, onLang } from './core.js';
+import { loadBoss, loadArmorStand, loadItem, loadBlockModel, handTransform, HANDHELD, noiseTexture } from './mc3d.js';
+import { $, $$, t, tx, short, reduceMotion, onLang } from './core.js';
 
 export { THREE };
 
@@ -103,169 +103,207 @@ export function particles(count, color, area, size) {
 
 function rand(seed) { let s = seed; return () => ((s = (s * 16807) % 2147483647) / 2147483647); }
 
-/** Schwebende Insel; `zones` teilt die Breite in Abschnitte mit eigenen Block-Paletten. */
-export function island(zones, { width = 8, depth = 4, seed = 3 } = {}) {
-  const group = new THREE.Group();
-  const r = rand(seed);
-  const tex = zones.map((z, i) => ({
-    side: noiseTexture(z.side, 16, 20 + i * 3),
-    top: noiseTexture(z.top || z.side, 16, 21 + i * 3, z.edge || null),
-  }));
-  const layers = [[width, depth, 0], [width - 2, depth - 1, -1], [Math.max(2, width - 4), Math.max(1, depth - 2), -2], [Math.max(1, width - 6), 1, -3]];
-  const box = new THREE.BoxGeometry(1, 1, 1);
-  for (const [w, d, y] of layers) {
-    for (let x = 0; x < w; x++) for (let z = 0; z < d; z++) {
-      if (y < 0 && r() < 0.18) continue;
-      const zi = Math.min(zones.length - 1, Math.floor(((x + 0.5) / w) * zones.length));
-      const m = new THREE.Mesh(box, new THREE.MeshLambertMaterial({ map: y === 0 ? tex[zi].top : tex[zi].side }));
-      m.position.set(x - w / 2 + 0.5, y - 0.5, z - d / 2 + 0.5);
-      m.receiveShadow = true;
-      m.castShadow = y === 0;
-      group.add(m);
-    }
-  }
-  return group;
+/** Weiches Leuchten am Boden (radialer Verlauf). */
+function glowDisc(color, radius) {
+  const c = document.createElement('canvas');
+  c.width = c.height = 128;
+  const g = c.getContext('2d');
+  const grd = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  grd.addColorStop(0, 'rgba(255,255,255,0.9)');
+  grd.addColorStop(0.35, 'rgba(255,255,255,0.35)');
+  grd.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = grd;
+  g.fillRect(0, 0, 128, 128);
+  const tex = new THREE.CanvasTexture(c);
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(radius * 2, radius * 2),
+    new THREE.MeshBasicMaterial({ map: tex, color, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false }));
+  m.rotation.x = -Math.PI / 2;
+  m.position.y = 0.002;
+  return m;
 }
 
-/** Rüstungspuppe mit Schwert in der rechten Hand. */
-export async function armorStand(base, armor, eye, swordURL) {
-  const [stand, sword] = await Promise.all([
-    loadArmorStand(base, armor, eye),
-    swordURL ? loadItem(swordURL).catch(() => null) : null,
-  ]);
-  if (sword) {
-    const hold = new THREE.Group();
-    hold.position.set(-1, 10, -1);
-    hold.scale.set(-16, -16, 16);
-    const inner = new THREE.Group();
-    inner.rotation.x = -0.9;
-    const tilt = new THREE.Group();
-    tilt.rotation.y = Math.PI / 2;
-    sword.mesh.position.set(0.28, 0.28, 0);
-    tilt.add(sword.mesh);
-    inner.add(tilt);
-    hold.add(inner);
-    stand.parts.arm_r.add(hold);
+/** Gegenstand für die Hand: { json, tex, frametime } = 3D-Handmodell der Mod, { url } = flaches Item (extrudiert). */
+async function loadHeld(held) {
+  if (!held) return null;
+  if (held.json) {
+    const m = await loadBlockModel(held.json, held.tex, held.frametime || 4).catch(() => null);
+    if (m) return { object: handTransform(m.group, m.display.thirdperson_righthand), tick: m.tick };
+    if (!held.url) return null;
   }
+  const s = await loadItem(held.url).catch(() => null);
+  return s ? { object: handTransform(s.mesh, HANDHELD, true), tick: s.tick } : null;
+}
+
+/** Rüstungspuppe mit Waffe in der rechten Hand (Haltung wie im Spiel). */
+export async function armorStand(base, armor, eye, held) {
+  const [stand, item] = await Promise.all([loadArmorStand(base, armor, eye), loadHeld(held)]);
+  if (item) stand.parts.arm_r.add(item.object);
   const holder = new THREE.Group();
   holder.add(stand.root);
-  return { holder, stand, sword };
+  return { holder, stand, item };
 }
 
-export function poseStand(stand, s, ph) {
+const STANCES = [
+  // [arm_r pitch, arm_r roll, arm_l pitch, arm_l roll, head yaw]; Schwerthaltung wie im Spiel, Arm angehoben, damit die Klinge zu sehen ist
+  [-0.85, 0.28, 0.1, -0.12, 0.1],
+  [-1.1, 0.38, -0.2, -0.2, -0.1],
+  [-0.7, 0.32, 0.15, -0.14, 0.2],
+  [-0.95, 0.24, 0.2, -0.2, -0.15],
+];
+
+export function poseStand(stand, s, ph, stance = 0) {
   const p = stand.parts;
-  p.arm_r.rotation.set(-0.55 + Math.sin(s * 1.3 + ph) * 0.05, 0.05, 0.08, 'ZYX');
-  p.arm_l.rotation.set(Math.sin(s * 1.1 + ph) * 0.06, 0, -0.08 - Math.sin(s * 1.1 + ph) * 0.04, 'ZYX');
-  p.head.rotation.set(Math.sin(s * 0.7 + ph) * 0.06, Math.sin(s * 0.45 + ph) * 0.25, 0, 'ZYX');
-  p.leg_r.rotation.x = 0.06; p.leg_l.rotation.x = -0.06;
+  const [ap, ar, lp, lr, hy] = STANCES[stance % STANCES.length];
+  p.arm_r.rotation.set(ap + Math.sin(s * 1.3 + ph) * 0.04, 0.05, ar, 'ZYX');
+  p.arm_l.rotation.set(lp + Math.sin(s * 1.1 + ph) * 0.05, 0, lr - Math.sin(s * 1.1 + ph) * 0.03, 'ZYX');
+  p.head.rotation.set(Math.sin(s * 0.7 + ph) * 0.05, hy + Math.sin(s * 0.45 + ph) * 0.12, 0, 'ZYX');
+  p.leg_r.rotation.set(0.1, 0, 0.03, 'ZYX');
+  p.leg_l.rotation.set(-0.1, 0, -0.03, 'ZYX');
 }
 
-/** Hero-Szene mit Puppen (und/oder einem Boss) auf einer Insel. figures: [{armor, eye, sword, base}] | boss: {base, model, texture} */
-export async function heroScene(canvas, { figures = [], boss = null, zones, glow = [0xffd36a, 0x3fd8ff], wide = false, signal } = {}) {
+/**
+ * Freigestellte Bühne wie auf Produktseiten: Figuren und/oder ein Boss auf unsichtbarem Boden mit Schatten und Leuchten.
+ * figures: [{ base, armor, eye, held, glow, stance }], boss: { base, model, texture, yaw }, glow: Farbe von Licht und Boden.
+ * spin: langsam drehen, yaw: Grundblick, zoom: Abstand (1 = passend), lift: Blickpunkt anheben (Anteil der Höhe).
+ */
+export async function stageScene(canvas, { figures = [], boss = null, glow = 0xffffff, spin = false, yaw = 0, zoom = 1, lift = 0, signal } = {}) {
   const view = makeView(canvas, { alpha: true, shadows: true });
   const { scene, camera } = view;
-  camera.fov = 30;
-  scene.add(new THREE.HemisphereLight(0xfff4e0, 0x241828, 1.1));
-  const sun = new THREE.DirectionalLight(0xfff0d0, 1.6);
-  sun.position.set(-3, 6, 5);
-  sun.castShadow = true;
-  sun.shadow.mapSize.set(1024, 1024);
-  Object.assign(sun.shadow.camera, { left: -7, right: 7, top: 6, bottom: -3 });
-  scene.add(sun);
-  const lights = glow.map((c, i) => {
-    const l = new THREE.PointLight(c, 7, 7, 1.6);
-    l.position.set(glow.length === 1 ? 0 : -2.6 + (5.2 * i) / (glow.length - 1), 2.2, 1.6);
-    scene.add(l);
-    return l;
-  });
-  const n = Math.max(1, figures.length);
-  const width = wide ? Math.max(8, n * 2.4 + 2) : 8;
-  const isl = island(zones, { width: Math.round(width), depth: 4 });
-  scene.add(isl);
+  camera.fov = 26;
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x1a1622, 1.25));
+  const key = new THREE.DirectionalLight(0xffffff, 1.9);
+  key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048);
+  key.shadow.bias = -0.0004;
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(glow, 2.2);
+  rim.position.set(4, 3, -6);
+  scene.add(rim);
 
-  const stands = await Promise.all(figures.map((f) => armorStand(f.base, f.armor, f.eye, f.sword).catch(() => null)));
-  const spacing = figures.length > 2 ? 2.2 : 2.4;
-  stands.forEach((s, i) => {
+  const content = new THREE.Group();
+  scene.add(content);
+  const tickers = [];
+  const stands = [];
+  const n = figures.length;
+  const spacing = 1.3;
+  const loaded = await Promise.all(figures.map((f) => armorStand(f.base, f.armor, f.eye, f.held).catch(() => null)));
+  loaded.forEach((s, i) => {
     if (!s) return;
-    const x = (i - (figures.length - 1) / 2) * spacing;
-    s.holder.position.set(x, 0, 0.3);
-    s.holder.rotation.y = figures.length === 1 ? 0.25 : -x * 0.18;
-    scene.add(s.holder);
+    const x = (i - (n - 1) / 2) * spacing;
+    s.holder.position.set(x, 0, -Math.abs(x) * 0.25);
+    s.holder.rotation.y = n === 1 ? -0.45 : -0.3 - x * 0.12;
+    content.add(s.holder);
+    stands.push({ s, ph: i * 1.7, stance: figures[i].stance ?? i });
+    if (s.item) tickers.push(s.item.tick);
+    if (figures[i].glow != null) {
+      const d = glowDisc(figures[i].glow, 0.85);
+      d.position.set(x, 0.002, s.holder.position.z);
+      scene.add(d);
+    }
   });
   let bossModel = null;
   if (boss) {
     bossModel = await loadBoss(boss.base, boss.model, boss.texture).catch(() => null);
     if (bossModel) {
       const g = new THREE.Group();
-      const k = Math.min(1, 2.6 / Math.max(bossModel.size.y, 0.1)) * (boss.scale || 1);
-      g.scale.setScalar(k);
       g.add(bossModel.root);
-      g.rotation.y = 0.35;
-      scene.add(g);
+      g.rotation.y = boss.yaw ?? 0.45;
+      if (bossModel.restName) bossModel.setPose(bossModel.restName);
+      content.add(g);
       bossModel.holder = g;
     }
   }
-  const pts = glow.map((c, i) => {
-    const span = width / glow.length;
-    const p = particles(60, c, { x: [-width / 2 - 1 + i * span, -width / 2 - 1 + (i + 1) * span + 1], y: [-1, 4.5], z: [-2, 2] }, 0.06);
-    scene.add(p);
-    return p;
-  });
+  if (signal?.aborted) return view;
+
+  // Rahmen aus der echten Größe
+  content.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(content);
+  if (box.isEmpty()) box.set(new THREE.Vector3(-1, 0, -1), new THREE.Vector3(1, 2, 1));
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  const span = Math.max(size.x, size.z * 0.6, size.y * 0.5, 0.5);
+  const floorR = Math.max(size.x, size.z) * 0.55 + 0.4;
+  if (!figures.some((f) => f.glow != null)) {
+    const d = glowDisc(glow, floorR);
+    d.position.set(center.x, 0.002, center.z);
+    scene.add(d);
+  }
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(floorR * 8, floorR * 8), new THREE.ShadowMaterial({ opacity: 0.5 }));
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.set(center.x, 0, center.z);
+  floor.receiveShadow = true;
+  scene.add(floor);
+  const reach = Math.max(size.x, size.y, size.z) * 0.9 + 1;
+  Object.assign(key.shadow.camera, { left: -reach, right: reach, top: reach, bottom: -reach, near: 0.5, far: reach * 6 });
+  key.position.set(center.x - reach * 0.7, center.y + reach * 2, center.z + reach * 1.4);
+  key.target.position.copy(center);
+  scene.add(key.target);
+  key.shadow.camera.updateProjectionMatrix();
+
+  const motes = particles(Math.round(26 + span * 4), glow,
+    { x: [center.x - size.x * 0.7 - 0.5, center.x + size.x * 0.7 + 0.5], y: [0, size.y * 1.05], z: [center.z - size.z * 0.6 - 0.4, center.z + size.z * 0.6 + 0.4] },
+    Math.max(0.03, Math.max(size.x, size.y) * 0.01));
+  motes.material.opacity = 0.65;
+  scene.add(motes);
 
   let mx = 0, my = 0;
   addEventListener('pointermove', (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; }, { passive: true, signal });
-  const target = new THREE.Vector3(0, wide ? 0.9 : 0.7, 0);
+  const target = new THREE.Vector3(center.x, size.y * (0.5 + lift), center.z);
+  const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
   view.frame = (now, dt) => {
     const s = reduceMotion ? 0 : now / 1000;
-    const yaw = Math.sin(s * 0.18) * (wide ? 0.12 : 0.22) + mx * (wide ? 0.2 : 0.35);
-    const base = wide ? width * 1.28 + 2.5 : 8.4;
-    const dist = view.w < 560 ? base * 1.12 : base;
-    camera.position.set(Math.sin(yaw) * dist, 2.3 - my * 0.6, Math.cos(yaw) * dist);
+    const a = yaw + (spin ? s * 0.22 : Math.sin(s * 0.2) * 0.14) + mx * 0.16;
+    const aspect = Math.max(0.3, view.w / Math.max(1, view.h));
+    const wide = Math.max(size.x, size.z) * 1.04;
+    const dist = Math.max((size.y * 1.12) / 2 / tan, wide / 2 / tan / aspect) * zoom + Math.min(size.x, size.z) * 0.5;
+    camera.position.set(target.x + Math.sin(a) * dist, target.y + dist * 0.14 + my * dist * 0.04, target.z + Math.cos(a) * dist);
     camera.lookAt(target);
-    isl.position.y = Math.sin(s * 0.8) * 0.04;
-    stands.forEach((st, i) => {
-      if (!st) return;
-      st.holder.position.y = isl.position.y;
-      poseStand(st.stand, s, i * 1.7);
-      st.sword?.tick(now);
-    });
-    if (bossModel) {
-      bossModel.holder.position.y = isl.position.y;
-      bossModel.update(now);
-    }
-    pts.forEach((p) => p.userData.tick(dt, now));
-    lights.forEach((l, i) => { l.intensity = 7 + Math.sin(s * (2 + i * 0.6) + i) * 1.4; });
+    stands.forEach(({ s: st, ph, stance }) => poseStand(st.stand, s, ph, stance));
+    tickers.forEach((f) => f(now));
+    if (bossModel) bossModel.update(now);
+    motes.userData.tick(dt, now);
   };
+  view.bossModel = bossModel;
   return view;
 }
 
-/** Drei schwebende, sich drehende Items. */
-export async function itemShowcase(canvas, urls, color) {
+/** Ein einzelnes Item (3D-Handmodell oder extrudiert), schwebend und drehend. */
+export async function itemSpin(canvas, held) {
   const view = makeView(canvas, { alpha: true });
   const { scene, camera } = view;
   camera.fov = 30;
-  camera.position.set(0, 0.15, 3.3);
+  camera.position.set(0, 0.1, 2.5);
   camera.lookAt(0, 0, 0);
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x302030, 1.3));
-  const key = new THREE.DirectionalLight(0xffffff, 1.6);
-  key.position.set(1, 2, 3);
-  scene.add(key);
-  const items = (await Promise.all(urls.map((u) => loadItem(u).catch(() => null)))).filter(Boolean);
-  const groups = items.map((it, i) => {
-    const g = new THREE.Group();
-    g.add(it.mesh);
-    g.position.x = (i - (items.length - 1) / 2) * 1.05;
-    g.scale.setScalar(items.length === 3 && i === 1 ? 0.62 : 0.9);
-    scene.add(g);
-    return g;
-  });
-  const pts = particles(40, color, { x: [-1.8, 1.8], y: [-0.9, 0.9], z: [-0.6, 0.4] }, 0.035);
-  scene.add(pts);
-  view.frame = (now, dt) => {
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x302030, 1.4));
+  const k = new THREE.DirectionalLight(0xffffff, 1.6);
+  k.position.set(1, 2, 3);
+  scene.add(k);
+  let obj = null, tick = () => {};
+  if (held.json) {
+    const m = await loadBlockModel(held.json, held.tex, held.frametime || 4).catch(() => null);
+    if (m) {
+      obj = new THREE.Group();
+      m.group.position.set(-0.5, -0.5, -0.5);
+      const box = new THREE.Box3().setFromObject(m.group);
+      const sz = box.getSize(new THREE.Vector3());
+      const c = box.getCenter(new THREE.Vector3());
+      m.group.position.sub(c);
+      const inner = new THREE.Group();
+      inner.add(m.group);
+      inner.scale.setScalar(1.15 / Math.max(sz.x, sz.y, sz.z, 0.2));
+      obj.add(inner);
+      tick = m.tick;
+    }
+  }
+  if (!obj && held.url) {
+    const s = await loadItem(held.url).catch(() => null);
+    if (s) { obj = new THREE.Group(); obj.add(s.mesh); tick = s.tick; }
+  }
+  if (obj) scene.add(obj);
+  view.frame = (now) => {
     const s = reduceMotion ? 0 : now / 1000;
-    groups.forEach((g, i) => { g.rotation.y = s * 1.1 + i * 1.3; g.position.y = Math.sin(s * 2 + i * 1.7) * 0.07; });
-    items.forEach((it) => it.tick(now));
-    pts.userData.tick(dt, now);
+    if (obj) { obj.rotation.y = s * 0.9; obj.position.y = Math.sin(s * 1.8) * 0.04; }
+    tick(now);
   };
   return view;
 }
@@ -287,14 +325,14 @@ export function bossModel(base, b) {
 export function clearModelCache() { modelCache.clear(); }
 
 /** Viewer mit Hotbar, Bossleiste und Infotafel. root = Container mit .stage/.boss-info/.hotbar. */
-export async function bossViewer(root, base, bosses, signal) {
+export async function bossViewer(root, base, bosses, signal, accent = 0xffc94a) {
   const canvas = $('canvas', root);
   const view = makeView(canvas, { bloom: true, alpha: false, shadows: true });
   const { scene, camera } = view;
-  scene.background = new THREE.Color(0x150d12);
-  scene.fog = new THREE.Fog(0x150d12, 14, 34);
+  scene.background = new THREE.Color(0x09090c);
+  scene.fog = new THREE.Fog(0x09090c, 16, 40);
   camera.fov = 32;
-  scene.add(new THREE.HemisphereLight(0xffeedd, 0x2a1820, 1.25));
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x1a1820, 1.25));
   const key = new THREE.DirectionalLight(0xfff2e0, 1.9);
   key.position.set(-4, 9, 7);
   key.castShadow = true;
@@ -302,21 +340,21 @@ export async function bossViewer(root, base, bosses, signal) {
   Object.assign(key.shadow.camera, { left: -8, right: 8, top: 10, bottom: -4, near: 1, far: 30 });
   key.shadow.bias = -0.0005;
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0x8f6cff, 1.4);
+  const rim = new THREE.DirectionalLight(accent, 1.6);
   rim.position.set(3, 4, -8);
   scene.add(rim);
-  const floorTex = noiseTexture(['#2a2228', '#30272e', '#241d22', '#2d252b', '#272026'], 16, 41, '#1d171c');
+  const floorTex = noiseTexture(['#141418', '#17171c', '#121216', '#16161a', '#131317'], 16, 41, '#0e0e11');
   floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping;
   floorTex.repeat.set(40, 40);
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.MeshLambertMaterial({ map: floorTex }));
   floor.rotation.x = -Math.PI / 2;
   floor.receiveShadow = true;
   scene.add(floor);
-  const rune = new THREE.Mesh(new THREE.RingGeometry(1.6, 1.75, 64), new THREE.MeshBasicMaterial({ color: 0xffc94a, transparent: true, opacity: 0.55, side: THREE.DoubleSide }));
+  const rune = new THREE.Mesh(new THREE.RingGeometry(1.6, 1.75, 64), new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.55, side: THREE.DoubleSide }));
   rune.rotation.x = -Math.PI / 2;
   rune.position.y = 0.01;
   scene.add(rune);
-  const motes = particles(60, 0xffb04a, { x: [-7, 7], y: [0, 9], z: [-7, 4] }, 0.05);
+  const motes = particles(60, accent, { x: [-7, 7], y: [0, 9], z: [-7, 4] }, 0.05);
   scene.add(motes);
 
   const controls = new OrbitControls(camera, canvas);
@@ -366,19 +404,13 @@ export async function bossViewer(root, base, bosses, signal) {
 
   function renderInfo() {
     const b = entry;
-    const phases = (b.phases || []).map((p, i) => `<li><b>${t(p.name)}</b> ${t(p.desc)}</li>`).join('');
     info.innerHTML = `
-      <h3 class="tt-name" style="color:${b.color}">${t(b.name)}</h3>
-      <p class="mc-gray sub">${t(b.sub)}</p>
-      <p class="desc">${t(b.desc)}</p>
-      ${b.trick ? `<h4 class="mc-yellow">${t({ de: 'Der Trick', en: 'The trick' })}</h4><p class="desc">${t(b.trick)}</p>` : ''}
-      ${phases ? `<h4 class="mc-yellow">${t({ de: 'Phasen', en: 'Phases' })}</h4><ol class="phases">${phases}</ol>` : ''}
-      <dl class="facts">
-        ${b.where ? `<dt class="mc-gray">${t({ de: 'Fundort', en: 'Found at' })}</dt><dd>${t(b.where)}</dd>` : ''}
-        ${b.loot ? `<dt class="mc-gray">${t({ de: 'Beute', en: 'Loot' })}</dt><dd>${t(b.loot)}</dd>` : ''}
-      </dl>
-      ${b.moves?.length ? `<h4 class="mc-yellow">${t({ de: 'Angriffe abspielen', en: 'Play attacks' })}</h4>
-      <div class="moves">${b.moves.map((mv, i) => `<button class="mc-btn small" data-move="${i}">${t(mv.n)}</button>`).join('')}</div>` : ''}`;
+      <p class="eyebrow" style="color:${b.color}">${t(b.sub)}</p>
+      <h3 class="boss-name">${t(b.name)}</h3>
+      <p class="desc">${t(short(b.desc, 2))}</p>
+      ${b.trick ? `<p class="trick"><span class="trick-label">${t({ de: 'Der Trick', en: 'The trick' })}</span> ${t(short(b.trick, 1))}</p>` : ''}
+      ${b.moves?.length ? `<p class="moves-label">${t({ de: 'Angriff ansehen', en: 'Watch an attack' })}</p>
+      <div class="moves">${b.moves.slice(0, 8).map((mv, i) => `<button class="chip" data-move="${i}">${t(mv.n)}</button>`).join('')}</div>` : ''}`;
     $$('[data-move]', info).forEach((btn) => btn.addEventListener('click', () => {
       lastUser = performance.now();
       playMove(b.moves[+btn.dataset.move], btn);

@@ -9,7 +9,7 @@
 <meta property="og:description" content="Minecraft-Mods mit Bosskämpfen, eigenen Welten und echten 3D-Effekten: H&H Armors, HHA Blood, HHA Void.">
 <meta property="og:image" content="https://vibec-studios.github.io/assets/mods/hha/img/palast.webp">
 <meta property="og:url" content="https://vibec-studios.github.io/">
-<meta name="theme-color" content="#0f0b14">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <script>
   (function () {
@@ -22,23 +22,24 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=d81c054788">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=9edf55dbde">
 <script type="importmap">
 {
  "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
   "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
-  "/js/app.js": "/js/app.js?v=50bb173d97",
+  "/js/app.js": "/js/app.js?v=d9f3ae41a5",
   "/js/content/blood.js": "/js/content/blood.js?v=5452553ac9",
   "/js/content/hha.js": "/js/content/hha.js?v=9273770c50",
   "/js/content/index.js": "/js/content/index.js?v=a96ce994ed",
-  "/js/content/void.js": "/js/content/void.js?v=cc282ca74a",
-  "/js/core.js": "/js/core.js?v=e11f90da27",
-  "/js/mc3d.js": "/js/mc3d.js?v=f695c9dc27",
-  "/js/pages/home.js": "/js/pages/home.js?v=e407fd953e",
-  "/js/pages/mod.js": "/js/pages/mod.js?v=619c04ccac",
-  "/js/views.js": "/js/views.js?v=22f0980470"
+  "/js/content/void.js": "/js/content/void.js?v=bda0614919",
+  "/js/core.js": "/js/core.js?v=74d015ae25",
+  "/js/items.js": "/js/items.js?v=fd7130f5b1",
+  "/js/mc3d.js": "/js/mc3d.js?v=15614ddcf5",
+  "/js/pages/home.js": "/js/pages/home.js?v=86fb1d5f9d",
+  "/js/pages/mod.js": "/js/pages/mod.js?v=56e74b742f",
+  "/js/views.js": "/js/views.js?v=a51ecdddcc"
  }
 }
 </script>
@@ -46,13 +47,17 @@
 <body>
 
 <header class="nav">
-  <a class="nav-logo" href="/" data-link aria-label="Vibe Craft Studios">
-    <img src="/favicon.svg" alt="" width="30" height="30"><span>Vibe Craft <b>Studios</b></span>
-  </a>
-  <nav class="nav-links" aria-label="Navigation"></nav>
-  <div class="lang" role="group" aria-label="Sprache / Language">
-    <button class="mc-btn small" data-set-lang="de">DE</button>
-    <button class="mc-btn small" data-set-lang="en">EN</button>
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" data-link aria-label="Vibe Craft Studios">
+      <img src="/favicon.svg" alt="" width="22" height="22"><span>Vibe Craft</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation"></nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Sprache / Language">
+        <button data-set-lang="de">DE</button><button data-set-lang="en">EN</button>
+      </div>
+      <a class="nav-cta" href="https://github.com/vibec-studios" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
   </div>
 </header>
 
@@ -60,24 +65,24 @@
 
 <footer class="footer">
   <div class="wrap foot-grid">
-    <div>
-      <p class="foot-brand"><img src="/favicon.svg" alt="" width="26" height="26"> <b>Vibe Craft Studios</b></p>
-      <p class="small"><span class="de">Minecraft-Mods mit Bossen, Geschichten und echten 3D-Effekten.</span><span class="en">Minecraft mods with bosses, stories and real 3D effects.</span></p>
+    <div class="foot-brand">
+      <p><img src="/favicon.svg" alt="" width="22" height="22"> <b>Vibe Craft Studios</b></p>
+      <p class="small"><span class="de">Minecraft-Mods mit Bossen, Geschichten und eigenen Welten.</span><span class="en">Minecraft mods with bosses, stories and worlds of their own.</span></p>
     </div>
-    <div class="foot-links">
-      <a href="/" data-link><span class="de">Start</span><span class="en">Home</span></a>
-      <a href="/mods/hha/" data-link>H&amp;H Armors</a>
+    <div class="foot-col"><h4>Mods</h4><div class="foot-mods"></div></div>
+    <div class="foot-col"><h4><span class="de">Studio</span><span class="en">Studio</span></h4>
       <a href="https://github.com/vibec-studios" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/vibec-studios/HHA/releases" target="_blank" rel="noopener"><span class="de">Downloads</span><span class="en">Downloads</span></a>
     </div>
   </div>
-  <div class="wrap">
-    <p class="small legal"><span class="de">Stimmen der Cutscenes: ElevenLabs. Kein offizielles Minecraft-Produkt. Nicht von Mojang oder Microsoft genehmigt oder mit ihnen verbunden.</span><span class="en">Cutscene voices: ElevenLabs. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span></p>
+  <div class="wrap foot-legal">
+    <p class="small"><span class="de">Stimmen der Cutscenes: ElevenLabs. Kein offizielles Minecraft-Produkt. Nicht von Mojang oder Microsoft genehmigt oder mit ihnen verbunden.</span><span class="en">Cutscene voices: ElevenLabs. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span></p>
   </div>
 </footer>
 
 <div class="mc-tooltip" id="mc-tooltip" hidden></div>
 <div class="lightbox" id="lightbox" hidden>
-  <button class="mc-btn small lb-close" aria-label="Schließen / Close">X</button>
+  <button class="icon-btn lb-close" aria-label="Schließen / Close">✕</button>
   <img alt="">
   <p class="lb-caption"></p>
 </div>
@@ -91,6 +96,6 @@
 </div>
 
 <noscript><p class="noscript">Diese Seite braucht JavaScript. / This site needs JavaScript.</p></noscript>
-<script type="module" src="/js/app.js?v=50bb173d97"></script>
+<script type="module" src="/js/app.js?v=d9f3ae41a5"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 // Router, Seitenübergänge (Block-Wipe) und gemeinsame Seitenlogik.
-import { $, $$, t, tx, esc, lang, setLang, onLang, initTooltip, initLightbox, hideTip, pixelURL, reduceMotion } from './core.js';
+import { $, $$, t, tx, esc, lang, setLang, onLang, onColor, initTooltip, initLightbox, hideTip, pixelURL, reduceMotion } from './core.js';
 import { disposeViews } from './views.js';
 import { loadMods } from './content/index.js';
 import * as Home from './pages/home.js';
@@ -152,6 +152,7 @@ function renderRoute(route) {
   initReveal(signal);
   document.body.dataset.route = route.kind;
   document.documentElement.style.setProperty('--route-accent', route.accent);
+  document.documentElement.style.setProperty('--route-on', onColor(route.accent));
 }
 
 function setMeta(text) { $('meta[name="description"]').setAttribute('content', text); }
@@ -229,8 +230,9 @@ function initToc(signal) {
 function buildNav() {
   const links = $('.nav-links');
   links.innerHTML = `<a href="/" data-link>${t({ de: 'Start', en: 'Home' })}</a>` +
-    mods.map((m) => `<a href="${m.path}" data-link style="--accent:${m.accent}">${esc(m.name)}</a>`).join('') +
-    `<a href="https://github.com/vibec-studios" target="_blank" rel="noopener">GitHub</a>`;
+    mods.map((m) => `<a href="${m.path}" data-link style="--accent:${m.accent}">${esc(m.name)}</a>`).join('');
+  const foot = $('.foot-mods');
+  if (foot) foot.innerHTML = mods.map((m) => `<a href="${m.path}" data-link>${esc(m.name)}</a>`).join('');
 }
 
 document.addEventListener('click', (e) => {

@@ -102,9 +102,10 @@ function geometryOf(out) {
 export async function loadBoss(base, name, texture) {
   const json = await (await fetch(`${base}/models/${name}.json`)).json();
   const tex = texture || json.texture;
+  const ext = json.texExt || 'png'; // große Atlanten liegen als verlustfreies WebP
   const [map, glow, fMap, fGlow] = await Promise.all([
-    loadTex(`${base}/tex/${tex}.png`),
-    loadGlow(`${base}/tex/${tex}_glow.png`),
+    loadTex(`${base}/tex/${tex}.${ext}`),
+    loadGlow(`${base}/tex/${tex}_glow.${ext}`),
     hasPlumes(json.parts) ? loadTex(`${base}/tex/feathers.png`, true) : null,
     hasPlumes(json.parts) ? loadGlow(`${base}/tex/feathers_glow.png`, true) : null,
   ]);
@@ -301,9 +302,18 @@ const BIPED = {
   leg_l: { pivot: [1.9, 12, 0], box: [-2, 0, -2, 4, 12, 4], uv: [0, 16], mirror: true },
 };
 
+/** Leuchtebene der Rüstung (equipment-Layer *_glow wie im Spiel): volle Helligkeit, nur wo Alpha > 0. */
+function glowLayer(tex) {
+  // Wie RenderLayers.eyes im Spiel: volle Helligkeit, additiv, Alpha = Leuchtstärke.
+  return new THREE.MeshBasicMaterial({ map: tex, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide,
+    polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1, toneMapped: false });
+}
+const optionalTex = (url) => loadTex(url).catch(() => null);
+
 export async function loadArmorStand(base, set, eye) {
-  const [outer, inner] = await Promise.all([
+  const [outer, inner, outerGlow, innerGlow] = await Promise.all([
     loadTex(`${base}/armor/${set}.png`), loadTex(`${base}/armor/${set}_legs.png`),
+    optionalTex(`${base}/armor/${set}_glow.png`), optionalTex(`${base}/armor/${set}_legs_glow.png`),
   ]);
   const skin = new THREE.MeshLambertMaterial({ map: eyeTexture(eye), emissive: 0xffffff, emissiveMap: eyeGlow(eye) });
   const outerMat = new THREE.MeshLambertMaterial({ map: outer, alphaTest: 0.1, side: THREE.DoubleSide });
@@ -313,6 +323,8 @@ export async function loadArmorStand(base, set, eye) {
     { mat: innerMat, dil: 0.5, tw: 64, th: 32, parts: ['body', 'leg_r', 'leg_l'] },
     { mat: outerMat, dil: 1.0, tw: 64, th: 32, parts: Object.keys(BIPED) },
   ];
+  if (innerGlow) layers.push({ mat: glowLayer(innerGlow), dil: 0.5, tw: 64, th: 32, parts: ['body', 'leg_r', 'leg_l'] });
+  if (outerGlow) layers.push({ mat: glowLayer(outerGlow), dil: 1.0, tw: 64, th: 32, parts: Object.keys(BIPED) });
   const parts = {};
   const inner3 = new THREE.Group();
   for (const [name, def] of Object.entries(BIPED)) {
@@ -401,6 +413,111 @@ export async function loadItem(url, { frametime = 4, interpolate = true } = {}) 
   };
   return { mesh, tick };
 }
+
+// ---------------------------------------------------------------- 3D-Handmodelle (Minecraft-Blockmodell-JSON, *_3d.json)
+
+/** Animierte Streifen-Textur (wie .mcmeta): Canvas mit einem Frame, tick(now) blendet weiter. */
+async function stripTexture(url, frametime = 4, interpolate = true) {
+  const img = await loadImage(url);
+  const w = img.width, frames = Math.max(1, Math.round(img.height / w));
+  const c = document.createElement('canvas');
+  c.width = w; c.height = w;
+  const g = c.getContext('2d');
+  g.imageSmoothingEnabled = false;
+  g.drawImage(img, 0, 0, w, w, 0, 0, w, w);
+  const tex = pixelTex(new THREE.CanvasTexture(c));
+  const tick = (now) => {
+    if (frames < 2) return;
+    const f = (now / 50) / frametime;
+    const a = Math.floor(f) % frames, b = (a + 1) % frames, k = interpolate ? f - Math.floor(f) : 0;
+    g.globalAlpha = 1;
+    g.clearRect(0, 0, w, w);
+    g.drawImage(img, 0, a * w, w, w, 0, 0, w, w);
+    if (k > 0.02) { g.globalAlpha = k; g.drawImage(img, 0, b * w, w, w, 0, 0, w, w); }
+    tex.needsUpdate = true;
+  };
+  return { tex, tick };
+}
+
+const FACE = {
+  // Ecken in Reihenfolge (u1,v1) (u2,v1) (u2,v2) (u1,v2); Koordinaten aus from=a, to=b. Wie FaceBakery ohne Face-Rotation.
+  north: (a, b) => [[b[0], b[1], a[2]], [a[0], b[1], a[2]], [a[0], a[1], a[2]], [b[0], a[1], a[2]]],
+  south: (a, b) => [[a[0], b[1], b[2]], [b[0], b[1], b[2]], [b[0], a[1], b[2]], [a[0], a[1], b[2]]],
+  east: (a, b) => [[b[0], b[1], b[2]], [b[0], b[1], a[2]], [b[0], a[1], a[2]], [b[0], a[1], b[2]]],
+  west: (a, b) => [[a[0], b[1], a[2]], [a[0], b[1], b[2]], [a[0], a[1], b[2]], [a[0], a[1], a[2]]],
+  up: (a, b) => [[a[0], b[1], a[2]], [b[0], b[1], a[2]], [b[0], b[1], b[2]], [a[0], b[1], b[2]]],
+  down: (a, b) => [[a[0], a[1], b[2]], [b[0], a[1], b[2]], [b[0], a[1], a[2]], [a[0], a[1], a[2]]],
+};
+
+/**
+ * Lädt ein Minecraft-Item-Modell aus Elementen (wie blood_sword_3d.json). Ergebnis in Blockeinheiten (0..1),
+ * dazu die display-Transformationen des Modells, damit es genauso in der Hand liegt wie im Spiel.
+ */
+export async function loadBlockModel(jsonURL, texURL, frametime = 4) {
+  const [data, strip] = await Promise.all([fetch(jsonURL).then((r) => { if (!r.ok) throw new Error(jsonURL); return r.json(); }), stripTexture(texURL, frametime)]);
+  const lit = { pos: [], uv: [] }, glow = { pos: [], uv: [] };
+  const v3 = new THREE.Vector3();
+  for (const el of data.elements || []) {
+    const a = el.from, b = el.to;
+    let m = null;
+    if (el.rotation && el.rotation.angle) {
+      const o = el.rotation.origin.map((x) => x / 16);
+      const axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] }[el.rotation.axis];
+      m = new THREE.Matrix4().makeTranslation(o[0], o[1], o[2])
+        .multiply(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(...axis), THREE.MathUtils.degToRad(el.rotation.angle)))
+        .multiply(new THREE.Matrix4().makeTranslation(-o[0], -o[1], -o[2]));
+    }
+    const out = el.light_emission ? glow : lit;
+    for (const [dir, f] of Object.entries(el.faces || {})) {
+      if (!FACE[dir] || !f.uv) continue;
+      const corners = FACE[dir](a, b).map((p) => {
+        v3.set(p[0] / 16, p[1] / 16, p[2] / 16);
+        if (m) v3.applyMatrix4(m);
+        return [v3.x, v3.y, v3.z];
+      });
+      const [u1, v1, u2, v2] = f.uv.map((x) => x / 16);
+      let uvs = [[u1, v1], [u2, v1], [u2, v2], [u1, v2]];
+      const rot = ((f.rotation || 0) / 90) & 3;
+      for (let i = 0; i < rot; i++) uvs = [uvs[3], uvs[0], uvs[1], uvs[2]];
+      for (const i of [0, 3, 2, 0, 2, 1]) { out.pos.push(...corners[i]); out.uv.push(...uvs[i]); }
+    }
+  }
+  const group = new THREE.Group();
+  if (lit.pos.length) {
+    const mesh = new THREE.Mesh(geometryOf(lit), new THREE.MeshLambertMaterial({ map: strip.tex, alphaTest: 0.1, side: THREE.DoubleSide }));
+    mesh.castShadow = true;
+    group.add(mesh);
+  }
+  if (glow.pos.length) {
+    group.add(new THREE.Mesh(geometryOf(glow), new THREE.MeshBasicMaterial({ map: strip.tex, alphaTest: 0.1, side: THREE.DoubleSide, toneMapped: false })));
+  }
+  return { group, display: data.display || {}, tick: strip.tick };
+}
+
+/** Kette der Spiel-Transformationen: ItemInHandLayer (rechte Hand) + display.thirdperson_righthand. Kind von arm_r (Pixeleinheiten). */
+export function handTransform(object, display, centered = false) {
+  const hand = new THREE.Group();
+  hand.scale.setScalar(16); // Arm-Gruppe rechnet in Pixeln, das Item in Blöcken
+  const r1 = new THREE.Group(); r1.rotation.x = -Math.PI / 2;
+  const r2 = new THREE.Group(); r2.rotation.y = Math.PI;
+  const t1 = new THREE.Group(); t1.position.set(1 / 16, 0.125, -0.625);
+  const d = display || {};
+  const dt = new THREE.Group();
+  const tr = (d.translation || [0, 0, 0]).map((x) => Math.max(-80, Math.min(80, x)) / 16);
+  dt.position.set(tr[0], tr[1], tr[2]);
+  const dr = new THREE.Group();
+  const rr = (d.rotation || [0, 0, 0]).map((x) => THREE.MathUtils.degToRad(x));
+  dr.rotation.set(rr[0], rr[1], rr[2], 'XYZ');
+  const ds = new THREE.Group();
+  ds.scale.set(...(d.scale || [1, 1, 1]));
+  const off = new THREE.Group();
+  if (!centered) off.position.set(-0.5, -0.5, -0.5);
+  hand.add(r1); r1.add(r2); r2.add(t1); t1.add(dt); dt.add(dr); dr.add(ds); ds.add(off); off.add(object);
+  return hand;
+}
+
+/** display für flache Handheld-Items (minecraft:item/handheld). */
+export const HANDHELD = { rotation: [0, -90, 55], translation: [0, 4, 0.5], scale: [0.85, 0.85, 0.85] };
 
 // ---------------------------------------------------------------- Prozedurale Pixeltexturen (eigene, keine Vanilla-Grafiken)
 
