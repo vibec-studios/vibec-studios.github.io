@@ -15,6 +15,7 @@ export default {
   outroTitle: S('Bereit zum Hosten?', 'Ready to host?'),
   source: 'https://github.com/Henny263462/vibey-multiplayer',
   icon: 'icon.png',
+  statusPage: '/status/',
   downloadNote: S('Der Download kommt, sobald der Relay-Server online ist.', 'The download arrives as soon as the relay server is online.'),
   hero: { kind: 'shot', img: 'img/host-online.webp', address: 'mossy-otter-27.vibey.henny.dev' },
   intro: S('Öffne deine Welt aus dem Pausenmenü, kopier deine Adresse und schick sie deinen Freunden. Sie verbinden sich mit ganz normalem Minecraft über „Direkt verbinden“, ohne Mod und ohne Portfreigabe.',

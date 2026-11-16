@@ -4,6 +4,7 @@ import { $, $$, t, tx, esc, short, onColor, pixelURL, openLightbox, animateIcons
 import { stageScene, bossViewer } from '../views.js';
 import { heldItem } from '../items.js';
 import { latestRelease } from '../downloads.js';
+import { fetchStatus, POLL_MS } from '../status-api.js';
 
 const L = (de, en) => ({ de, en });
 const hex = (c) => parseInt(String(c).slice(1), 16);
@@ -102,6 +103,25 @@ function heroShot(mod) {
   </figure>`;
 }
 
+/** Kleiner Live-Hinweis im Hero (Vibey): Relay-Zustand, Welten und Spieler, verlinkt auf die Statusseite. */
+function liveStrip(root, signal) {
+  const el = $('.live-strip', root);
+  if (!el) return;
+  let timer = null;
+  const poll = async () => {
+    let res;
+    try { res = await fetchStatus(signal); } catch (e) { return; }
+    const d = res.data || {};
+    el.dataset.state = res.state;
+    $('span', el).innerHTML = res.state === 'ok'
+      ? t(L(`Relay betriebsbereit · ${d.worlds ?? 0} ${d.worlds === 1 ? 'Welt' : 'Welten'} · ${d.players ?? 0} Spieler online`, `Relay operational · ${d.worlds ?? 0} ${d.worlds === 1 ? 'world' : 'worlds'} · ${d.players ?? 0} ${d.players === 1 ? 'player' : 'players'} online`))
+      : t(L('Relay gestört · Details auf der Statusseite', 'Relay outage · details on the status page'));
+    if (!signal.aborted) timer = setTimeout(poll, POLL_MS * 2);
+  };
+  signal.addEventListener('abort', () => clearTimeout(timer));
+  poll();
+}
+
 export function title(mod) { return `${mod.name} · Vibe Craft Studios`; }
 
 export function render(mod, dl) {
@@ -128,6 +148,7 @@ export function render(mod, dl) {
         <p class="lead">${t(short(mod.intro, 2))}</p>
         <div class="cta">${cta}</div>
         <p class="note mono">${meta.join(' <i>·</i> ')}</p>
+        ${mod.statusPage ? `<a class="live-strip mono" href="${mod.statusPage}" data-link data-state="wait"><i aria-hidden="true"></i><span>${t(L('Relay wird geprüft …', 'Checking relay …'))}</span><b>→</b></a>` : ''}
       </div>
       <div class="hero-art">${mod.hero?.kind === 'shot' ? heroShot(mod) : '<canvas class="hero-canvas" aria-hidden="true"></canvas>'}</div>
     </div>
@@ -163,7 +184,7 @@ export function render(mod, dl) {
   </section>`;
 
   return `<div class="mod-page" style="--accent:${accent};--accent2:${accent2};--on-accent:${onColor(accent)}">
-    ${hero}<nav class="toc" aria-label="${esc(tx(L('Inhalt', 'Contents')))}"><div class="wrap toc-inner">${toc}<a href="#${install?.id || 'download'}" data-anchor class="toc-cta">${download ? t(L('Download', 'Download')) : t(L('Status', 'Status'))}</a></div></nav>${body}${outro}</div>`;
+    ${hero}<nav class="toc" aria-label="${esc(tx(L('Inhalt', 'Contents')))}"><div class="wrap toc-inner">${toc}<a href="#${install?.id || 'download'}" data-anchor class="toc-cta">${download ? t(L('Download', 'Download')) : t(L('Verfügbarkeit', 'Availability'))}</a></div></nav>${body}${outro}</div>`;
 }
 
 function figureFor(mod, group, i, extra = {}) {
@@ -174,6 +195,7 @@ function figureFor(mod, group, i, extra = {}) {
 
 export async function mount(root, mod, signal) {
   const base = mod.base;
+  liveStrip(root, signal);
   animateIcons(root);
   const accent = hex(mod.accent2 || mod.accent);
 

@@ -5,6 +5,7 @@ import { loadMods } from './content/index.js';
 import * as Home from './pages/home.js';
 import * as Mod from './pages/mod.js';
 import * as Downloads from './pages/downloads.js';
+import * as Status from './pages/status.js';
 import { loadDownloads } from './downloads.js';
 
 const app = $('#app');
@@ -53,6 +54,7 @@ let pageAbort = null;
 let navigating = false;
 
 function routeOf(path) {
+  if (/^\/status\/?$/i.test(path)) return { kind: 'status', accent: Status.ACCENT, path: '/status/' };
   if (/^\/downloads\/?$/i.test(path)) return { kind: 'downloads', accent: Downloads.ACCENT, path: '/downloads/' };
   const m = path.match(/^\/mods\/([a-z0-9_-]+)\/?$/i);
   if (m) {
@@ -78,6 +80,11 @@ function renderRoute(route) {
     setMeta(tx(route.mod.short));
     Mod.mount(app, route.mod, signal).catch(console.error);
     initToc(signal);
+  } else if (route.kind === 'status') {
+    app.innerHTML = Status.render();
+    document.title = Status.title();
+    setMeta(tx({ de: 'Live-Status von Vibey Multiplayer: Relay, gehostete Welten und verbundene Spieler.', en: 'Live status of Vibey Multiplayer: relay, hosted worlds and connected players.' }));
+    Status.mount(app, mods, signal);
   } else if (route.kind === 'downloads') {
     app.innerHTML = Downloads.render(mods, dl);
     document.title = Downloads.title();
@@ -170,7 +177,7 @@ function buildNav() {
   const links = $('.nav-links');
   links.innerHTML = `<a href="/" data-link>${t({ de: 'Start', en: 'Home' })}</a>` +
     mods.map((m) => `<a href="${m.path}" data-link style="--accent:${m.accent}">${esc(m.name)}</a>`).join('') +
-    `<a href="/downloads/" data-link>Downloads</a>`;
+    `<a href="/downloads/" data-link>Downloads</a><a href="/status/" data-link>Status</a>`;
   const foot = $('.foot-mods');
   if (foot) foot.innerHTML = mods.map((m) => `<a href="${m.path}" data-link>${esc(m.name)}</a>`).join('');
 }
