@@ -282,53 +282,83 @@ function grassMaterials() {
   return [m(side), m(side), m(top), m(bottom), m(side), m(side)];
 }
 
-/** Songtext als Leinwand: aktuelle Zeile groß, Wort für Wort aufleuchtend (Karaoke), darunter die nächste Zeile. */
-function lyricsBoard(accent) {
-  const W = 1024, H = 384;
+// 3D-Flug wie in Vibey Lyrics 1.1: jedes Wort ein eigenes Objekt mit Tiefe (gestapelte, dunkler werdende Ebenen)
+const WORD_FONT = (px) => `700 ${px}px Inter, system-ui, sans-serif`;
+const WORD_DEPTH = 9;
+
+function wordMesh(text) {
+  const px = 120, pad = 14;
   const c = document.createElement('canvas');
-  c.width = W; c.height = H;
   const g = c.getContext('2d');
+  g.font = WORD_FONT(px);
+  const w = Math.ceil(g.measureText(text).width) + pad * 2;
+  const h = Math.ceil(px * 1.5);
+  c.width = w; c.height = h;
+  g.font = WORD_FONT(px);
+  g.textBaseline = 'middle';
+  g.fillStyle = '#fff';
+  g.fillText(text, pad, h * 0.52);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 4;
-  const font = (px) => `${px}px Silkscreen, "Courier New", monospace`;
-  let state = '';
-  const fit = (text, px, max) => { g.font = font(px); while (g.measureText(text).width > max && px > 20) { px -= 2; g.font = font(px); } return px; };
-  const draw = (line, next, sung) => {
-    const key = `${line}|${sung}`;
-    if (key === state) return false;
-    state = key;
-    g.clearRect(0, 0, W, H);
-    const words = line.toUpperCase().split(' ');
-    const px = fit(words.join(' '), 92, W - 80);
-    const total = g.measureText(words.join(' ')).width;
-    let x = (W - total) / 2;
-    const y = 170;
-    g.textBaseline = 'middle';
-    words.forEach((w, i) => {
-      const lit = i < sung;
-      g.font = font(px);
-      g.shadowColor = lit ? accent : 'rgba(139, 92, 246, 0.85)';
-      g.shadowBlur = lit ? 34 : 18;
-      g.fillStyle = lit ? accent : '#f4f1ff';
-      g.fillText(w, x, y);
-      g.shadowBlur = 0;
-      g.fillText(w, x, y);
-      x += g.measureText(`${w} `).width;
-    });
-    const npx = fit(next.toUpperCase(), 44, W - 200);
-    g.font = font(npx);
-    g.fillStyle = 'rgba(230, 226, 245, 0.55)';
-    g.shadowBlur = 0;
-    g.textAlign = 'center';
-    g.fillText(next.toUpperCase(), W / 2, 296);
-    g.textAlign = 'left';
-    tex.needsUpdate = true;
-    return true;
-  };
-  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(10, 3.75),
-    new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, toneMapped: false }));
-  return { mesh, draw };
+  const k = 0.0046;
+  const geo = new THREE.PlaneGeometry(w * k, h * k);
+  const group = new THREE.Group();
+  const mats = [];
+  for (let d = WORD_DEPTH; d >= 0; d--) {
+    const color = d ? new THREE.Color().setHSL(0.72, 0.1, 0.62 - d * 0.03) : new THREE.Color(0xffffff);
+    const m = new THREE.MeshBasicMaterial({ map: tex, color, transparent: true, depthWrite: false, toneMapped: false });
+    const mesh = new THREE.Mesh(geo, m);
+    mesh.position.set(0, -d * 0.011, -d * 0.02);
+    mesh.renderOrder = -d;
+    group.add(mesh);
+    mats.push(m);
+  }
+  group.userData = { width: w * k, front: mats[mats.length - 1], mats };
+  return group;
+}
+
+/** Eine Zeile als schräges Band: Wörter nebeneinander, leicht ansteigend und an den Enden nach hinten gebogen. */
+function flightLine(text) {
+  const group = new THREE.Group();
+  const words = text.split(' ').map(wordMesh);
+  const gap = 0.24;
+  const total = words.reduce((a, w) => a + w.userData.width, 0) + gap * (words.length - 1);
+  let x = -total / 2;
+  for (const w of words) {
+    const cx = x + w.userData.width / 2;
+    w.userData.base = new THREE.Vector3(cx, cx * 0.16, -cx * cx * 0.05);
+    w.rotation.set(0, -cx * 0.07, 0.16);
+    w.position.copy(w.userData.base);
+    group.add(w);
+    x += w.userData.width + gap;
+  }
+  group.userData.words = words;
+  group.visible = false;
+  return group;
+}
+
+function easeOutBack(t) {
+  const c1 = 1.70158, c3 = c1 + 1;
+  return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+}
+
+/** Warmer Abendrot-Schein hinter den Wörtern (Himmel wie in der Mod, aber zur dunklen Seite passend). */
+function sunsetGlow() {
+  const c = document.createElement('canvas');
+  c.width = 256; c.height = 128;
+  const g = c.getContext('2d');
+  g.setTransform(2, 0, 0, 1, 0, 0); // Ellipse, die überall vor dem Rand ausläuft
+  const grd = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  grd.addColorStop(0, 'rgba(255, 168, 96, 0.85)');
+  grd.addColorStop(0.35, 'rgba(236, 92, 160, 0.45)');
+  grd.addColorStop(0.7, 'rgba(139, 92, 246, 0.16)');
+  grd.addColorStop(1, 'rgba(139, 92, 246, 0)');
+  g.fillStyle = grd;
+  g.fillRect(0, 0, 128, 128);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return new THREE.Mesh(new THREE.PlaneGeometry(16, 9), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, opacity: 0.6, toneMapped: false }));
 }
 
 /** Hero von Vibey Lyrics: ein Spieler sitzt von hinten gesehen auf einem Grashügel und schaut zum Songtext am Himmel. */
@@ -388,15 +418,24 @@ export async function lyricsStage(canvas, { accent = '#d946ef', zoom = 1, signal
   };
   pose(0);
 
-  // Songtext am Himmel
-  const board = lyricsBoard(accent);
-  board.mesh.position.set(0, 5.6, -7.5);
-  board.mesh.rotation.x = 0.28;
-  scene.add(board.mesh);
-  try { await document.fonts.load('92px Silkscreen'); } catch (e) { /* Ersatzschrift */ }
+  // Songtext am Himmel als 3D-Flug: Zeilen bauen sich Wort für Wort auf, die alte fliegt auf dich zu und vorbei
+  try { await document.fonts.load(WORD_FONT(120)); } catch (e) { /* Ersatzschrift */ }
   if (signal?.aborted) return view;
+  const glowSky = sunsetGlow();
+  glowSky.position.set(0, 5.2, -13);
+  scene.add(glowSky);
+  const LINE_BASE = new THREE.Vector3(0, 4.7, -7);
+  const lines = PIXEL_SKIES.map((text) => {
+    const g = flightLine(text);
+    g.position.copy(LINE_BASE);
+    g.rotation.x = 0.26;
+    scene.add(g);
+    return g;
+  });
+  const HELD = new THREE.Color('#e4d8ff');
+  const WHITE = new THREE.Color(0xffffff);
 
-  const sparks = particles(46, new THREE.Color(accent), { x: [-5, 5], y: [3.6, 7.6], z: [-8.2, -6.6] }, 0.07);
+  const sparks = particles(40, new THREE.Color(accent), { x: [-5, 5], y: [3.4, 7.4], z: [-8.4, -6.6] }, 0.06);
   sparks.material.opacity = 0.8;
   scene.add(sparks);
   const stars = particles(90, 0xbfb6ff, { x: [-14, 14], y: [1, 13], z: [-16, -9] }, 0.06);
@@ -412,15 +451,40 @@ export async function lyricsStage(canvas, { accent = '#d946ef', zoom = 1, signal
     const tl = reduceMotion ? LINE_MS * 4 + LINE_MS * 0.9 : Math.max(0, performance.now() - t0);
     const i = Math.floor(tl / LINE_MS) % PIXEL_SKIES.length;
     const k = (tl % LINE_MS) / LINE_MS;
-    const line = PIXEL_SKIES[i];
-    const words = line.split(' ').length;
-    const sung = Math.min(words, Math.floor((k / 0.72) * (words + 0.001)) + (k > 0.04 ? 1 : 0));
-    board.draw(line, PIXEL_SKIES[(i + 1) % PIXEL_SKIES.length], sung);
-    const pop = Math.min(1, k / 0.08);
-    const sc = 0.92 + 0.08 * (1 - Math.pow(1 - pop, 3));
-    board.mesh.scale.setScalar(sc);
-    board.mesh.material.opacity = k > 0.94 ? (1 - k) / 0.06 : Math.min(1, k / 0.05);
-    board.mesh.position.y = 5.6 + Math.sin(s * 0.9) * 0.08;
+    const prev = (i + PIXEL_SKIES.length - 1) % PIXEL_SKIES.length;
+    const fly = reduceMotion ? 1 : Math.min(1, k / 0.34);
+    lines.forEach((g, li) => {
+      const words = g.userData.words;
+      const n = words.length;
+      if (li === i) {
+        // Aufbau: Wort für Wort mit kleinem Überschwingen, das zuletzt erschienene ist hervorgehoben, das letzte wächst beim Halten
+        g.visible = true;
+        g.position.set(LINE_BASE.x, LINE_BASE.y + Math.sin(s * 0.9) * 0.06, LINE_BASE.z);
+        let latest = -1;
+        words.forEach((w, j) => {
+          const tj = 0.04 + j * (0.6 / n);
+          const p = reduceMotion ? 1 : Math.max(0, Math.min(1, (k - tj) / 0.1));
+          if (p > 0) latest = j;
+          let sc = p > 0 ? easeOutBack(p) : 0.001;
+          if (j === n - 1 && !reduceMotion) sc *= 1 + 0.3 * Math.max(0, Math.min(1, (k - tj - 0.1) / 0.35));
+          w.scale.setScalar(Math.max(0.001, sc));
+          w.position.set(w.userData.base.x, w.userData.base.y + (1 - p) * 0.5, w.userData.base.z);
+          w.userData.mats.forEach((m) => { m.opacity = Math.min(1, p * 1.6); });
+        });
+        words.forEach((w, j) => w.userData.front.color.copy(j === latest ? HELD : WHITE));
+      } else if (li === prev && fly < 1) {
+        // Vorbeiflug: die alte Zeile kommt auf die Kamera zu, sinkt leicht und blendet am Ende aus
+        g.visible = true;
+        g.position.set(LINE_BASE.x, LINE_BASE.y - 1.4 * fly, LINE_BASE.z + 15 * fly * fly);
+        const fade = 1 - Math.max(0, (fly - 0.6) / 0.4);
+        words.forEach((w) => {
+          w.userData.front.color.copy(WHITE);
+          w.userData.mats.forEach((m) => { m.opacity = fade; });
+        });
+      } else {
+        g.visible = false;
+      }
+    });
     const aspect = Math.max(0.3, view.w / Math.max(1, view.h));
     const back = (aspect < 1.25 ? 5.9 * Math.min(1.6, 1.25 / aspect) : 5.9) * zoom;
     const a = 0.14 + Math.sin(s * 0.18) * 0.05 + mx * 0.1;

@@ -47,7 +47,8 @@ export function short(o, n = 1) {
       if (merged.length && merged[merged.length - 1].replace(/<[^>]+>/g, '').length < 22) merged[merged.length - 1] += ' ' + p;
       else merged.push(p);
     }
-    return merged.filter((p) => !DETAIL.test(p.replace(/<[^>]+>/g, ''))).slice(0, n).join(' ');
+    // „3D“ ist ein Wort, keine Zahl: Sätze mit „3D-Flug“ & Co. bleiben stehen
+    return merged.filter((p) => !DETAIL.test(p.replace(/<[^>]+>/g, '').replace(/\b3D\b/g, ''))).slice(0, n).join(' ');
   };
   if (typeof o !== 'object') return cut(String(o));
   return { de: cut(o.de), en: cut(o.en ?? o.de) };
