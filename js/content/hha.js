@@ -289,7 +289,7 @@ export default {
     'Two rival endgame armor sets, Olympus as a world of islands above the clouds, Tartarus below and twelve boss fights in between.'),
   tagline: S('Heaven & Hell: Wähle deine Seite.', 'Heaven & Hell: choose your side.'),
   accent: '#ffd75e', accent2: '#3fd8ff',
-  version: '0.8.0', mc: '1.21.11', loader: 'Fabric',
+  version: '0.8.5', mc: '1.21.11', loader: 'Fabric',
   requires: ['Fabric API', 'Fabric Language Kotlin'],
   status: S('Veröffentlicht', 'Released'),
   source: 'https://github.com/vibec-studios/HHA',

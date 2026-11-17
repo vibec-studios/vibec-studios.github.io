@@ -8,6 +8,14 @@ import { fetchStatus, POLL_MS } from '../status-api.js';
 
 const L = (de, en) => ({ de, en });
 const hex = (c) => parseInt(String(c).slice(1), 16);
+// Neuere der beiden Versionen: Inhaltsdatei (Stand der Seite) oder letztes GitHub-Release.
+const parts = (v) => String(v).split(/[.-]/).map((n) => parseInt(n, 10) || 0);
+function newer(a, b) {
+  if (!a || !b) return a || b;
+  const x = parts(a), y = parts(b);
+  for (let i = 0; i < Math.max(x.length, y.length); i++) if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0) ? a : b;
+  return a;
+}
 
 function icon(base, path, cls = '') {
   if (!path) return '';
@@ -143,7 +151,7 @@ export function render(mod, dl) {
   const sections = mod.sections.filter((s) => SHOWN.has(s.type));
   const install = mod.sections.find((s) => s.type === 'install');
   const accent = mod.accent, accent2 = mod.accent2 || mod.accent;
-  const meta = [mod.status && t(mod.status), (rel?.version || mod.version) && `v${esc(rel?.version || mod.version)}`, `Minecraft ${esc(mod.mc || '1.21.11')}`, esc(mod.loader || 'Fabric')].filter(Boolean);
+  const meta = [mod.status && t(mod.status), newer(rel?.version, mod.version) && `v${esc(newer(rel?.version, mod.version))}`, `Minecraft ${esc(mod.mc || '1.21.11')}`, esc(mod.loader || 'Fabric')].filter(Boolean);
   const cta = [
     download ? dlLink('primary') : '',
     `<a class="btn ${download ? 'ghost' : 'primary'}" href="#${sections[0]?.id || ''}" data-anchor>${t(L('Ansehen', 'Take a look'))}</a>`,
