@@ -18,7 +18,7 @@ export default {
   icon: 'icon.png',
   statusPage: '/status/',
   band: false,
-  hero: { kind: 'shot', img: 'img/host-online.webp' },
+  hero: { kind: 'link' }, // zwei Spieler, verbunden mit einem blauen Pixelkabel (views.js linkStage)
   intro: S('Welt im Pausenmenü öffnen, Adresse kopieren, Freunde einladen. Sie spielen mit ganz normalem Minecraft mit.',
     'Open your world from the pause menu, copy your address, invite your friends. They join with plain Minecraft.'),
   highlights: [

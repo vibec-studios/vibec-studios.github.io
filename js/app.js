@@ -1,5 +1,5 @@
 // Router, Seitenübergänge und gemeinsame Seitenlogik.
-import { $, $$, t, tx, esc, lang, setLang, onLang, onColor, initTooltip, initLightbox, hideTip, pixelURL, reduceMotion } from './core.js';
+import { $, $$, t, tx, esc, lang, setLang, onLang, onColor, initTooltip, initLightbox, hideTip, pixelURL, reduceMotion, animateIcons } from './core.js';
 import { disposeViews } from './views.js';
 import { loadMods } from './content/index.js';
 import * as Home from './pages/home.js';
@@ -65,7 +65,9 @@ function routeOf(path) {
 }
 
 function setActiveNav(route) {
-  $$('.nav-links a').forEach((a) => a.classList.toggle('active', a.getAttribute('href') === route.path));
+  $$('.nav-links a, .mods-panel a').forEach((a) => a.classList.toggle('active', a.getAttribute('href') === route.path));
+  $('.nav-menu-btn')?.classList.toggle('active', route.kind === 'mod');
+  closeModsMenu();
 }
 
 function renderRoute(route) {
@@ -173,14 +175,83 @@ function initToc(signal) {
   signal.addEventListener('abort', () => io.disconnect());
 }
 
+// Topbar: Start, ein Mods-Menü (Reihen und eigenständige Mods mit Icon) sowie Downloads und Status.
+// So bleibt die Leiste gleich lang, egal wie viele Mods dazukommen.
+const ROLE = { core: { de: 'Hauptmod', en: 'Core mod' }, addon: { de: 'Addon', en: 'Addon' } };
+
+function modsPanel() {
+  const groups = [];
+  for (const m of mods) {
+    const key = m.series || '';
+    let g = groups.find((x) => x.key === key);
+    if (!g) groups.push(g = { key, items: [] });
+    g.items.push(m);
+  }
+  groups.sort((a, b) => (a.key ? 0 : 1) - (b.key ? 0 : 1));
+  const item = (m) => `<a class="mp-item" href="${m.path}" data-link style="--accent:${m.accent}">
+      <span class="px-icon" data-src="${m.base}/${m.icon || 'icon.png'}"></span>
+      <span class="mp-text"><b>${esc(m.name)}</b><small>${t(ROLE[m.role] || { de: 'Mod', en: 'Mod' })} · ${t(m.status)}</small></span></a>`;
+  const head = (g) => g.key ? t({ de: `${g.key}-Reihe`, en: `${g.key} series` }) : t({ de: 'Eigenständig', en: 'Standalone' });
+  return `<div class="mods-panel-inner">${groups.map((g) => `<div class="mp-group${g.items.length > 2 ? ' wide' : ''}">
+      <p class="mp-head mono">${head(g)}</p><div class="mp-list">${g.items.map(item).join('')}</div></div>`).join('')}
+    <div class="mp-group mp-side"><p class="mp-head mono">${t({ de: 'Mehr', en: 'More' })}</p>
+      <a class="mp-link" href="/downloads/" data-link>${t({ de: 'Download-Center', en: 'Download center' })} <span>→</span></a>
+      <a class="mp-link" href="/status/" data-link>${t({ de: 'Vibey-Status', en: 'Vibey status' })} <span>→</span></a>
+      <a class="mp-link" href="https://github.com/vibec-studios" target="_blank" rel="noopener">GitHub <span>↗</span></a></div></div>`;
+}
+
+let menuHover = 0;
+function openModsMenu(open, focus = false) {
+  const btn = $('.nav-menu-btn');
+  const panel = $('.mods-panel');
+  if (!btn || !panel) return;
+  btn.setAttribute('aria-expanded', String(open));
+  panel.classList.toggle('open', open);
+  panel.toggleAttribute('inert', !open);
+  if (open && focus) $('.mp-item', panel)?.focus({ preventScroll: true });
+}
+function closeModsMenu() { openModsMenu(false); }
+
 function buildNav() {
   const links = $('.nav-links');
   links.innerHTML = `<a href="/" data-link>${t({ de: 'Start', en: 'Home' })}</a>` +
-    mods.map((m) => `<a href="${m.path}" data-link style="--accent:${m.accent}">${esc(m.name)}</a>`).join('') +
+    `<button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="mods-panel">Mods <span class="caret" aria-hidden="true"></span></button>` +
     `<a href="/downloads/" data-link>Downloads</a><a href="/status/" data-link>Status</a>`;
+  let panel = $('.mods-panel');
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.className = 'mods-panel';
+    panel.id = 'mods-panel';
+    $('header.nav').append(panel);
+  }
+  panel.innerHTML = modsPanel();
+  panel.setAttribute('inert', '');
+  animateIcons(panel);
+  const btn = $('.nav-menu-btn');
+  btn.addEventListener('click', (e) => {
+    if (performance.now() - menuHover < 450) return; // gerade per Maus geöffnet: der Klick schließt nicht gleich wieder
+    openModsMenu(btn.getAttribute('aria-expanded') !== 'true', e.detail === 0);
+  });
+  // Maus: öffnen beim Drüberfahren, schließen kurz nach dem Verlassen von Knopf und Menü
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let timer = 0;
+    const enter = () => {
+      clearTimeout(timer);
+      if (btn.getAttribute('aria-expanded') !== 'true') { menuHover = performance.now(); openModsMenu(true); }
+    };
+    const leave = () => { clearTimeout(timer); timer = setTimeout(closeModsMenu, 220); };
+    for (const el of [btn, panel]) { el.addEventListener('mouseenter', enter); el.addEventListener('mouseleave', leave); }
+  }
   const foot = $('.foot-mods');
   if (foot) foot.innerHTML = mods.map((m) => `<a href="${m.path}" data-link>${esc(m.name)}</a>`).join('');
 }
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && $('.mods-panel.open')) { closeModsMenu(); $('.nav-menu-btn')?.focus(); }
+});
+document.addEventListener('pointerdown', (e) => {
+  if ($('.mods-panel.open') && !e.target.closest('.mods-panel, .nav-menu-btn')) closeModsMenu();
+});
 
 document.addEventListener('click', (e) => {
   const a = e.target.closest('a');

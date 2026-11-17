@@ -167,6 +167,7 @@ export class BossModel {
     g.name = p.n;
     g.position.set(p.p[0], p.p[1], p.p[2]);
     g.rotation.set(p.r[0], p.r[1], p.r[2], 'ZYX');
+    if (p.s) g.scale.set(p.s[0], p.s[1], p.s[2]); // Verjüngung (Glieder des Schlangendrachen)
     g.userData.base = { p: p.p.slice(), r: p.r.slice() };
     if (p.c) {
       const out = { pos: [], uv: [] };
@@ -340,6 +341,113 @@ export async function loadArmorStand(base, set, eye) {
     }
     parts[name] = g;
     inner3.add(g);
+  }
+  inner3.scale.set(-1 / 16, -1 / 16, 1 / 16);
+  inner3.position.y = 24 / 16;
+  const root = new THREE.Group();
+  root.add(inner3);
+  root.rotation.y = Math.PI;
+  return { root, parts };
+}
+
+// ---------------------------------------------------------------- Spieler mit eigenem, gezeichnetem Skin (Vibey-Hero)
+
+function shadeHex(hex, k) {
+  const n = parseInt(hex.slice(1), 16);
+  const f = (v) => Math.max(0, Math.min(255, Math.round(v * k))).toString(16).padStart(2, '0');
+  return `#${f((n >> 16) & 255)}${f((n >> 8) & 255)}${f(n & 255)}`;
+}
+
+/** Zeichnet einen 64x64-Skin im Spiellayout: Haare, Gesicht, Hoodie, Hose, Schuhe (eigene Figuren, kein Standard-Skin). */
+export function playerSkin(look) {
+  const c = document.createElement('canvas');
+  c.width = c.height = 64;
+  const g = c.getContext('2d');
+  let seed = look.seed || 7;
+  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const box = (u, v, w, h, d, paint) => {
+    const faces = [['top', u + d, v, w, d], ['bottom', u + d + w, v, w, d], ['right', u, v + d, d, h],
+      ['front', u + d, v + d, w, h], ['left', u + d + w, v + d, d, h], ['back', u + d + w + d, v + d, w, h]];
+    for (const [f, fx, fy, fw, fh] of faces) {
+      for (let y = 0; y < fh; y++) {
+        for (let x = 0; x < fw; x++) {
+          const col = paint(f, x, y, fw, fh);
+          if (!col) continue;
+          g.fillStyle = shadeHex(col, 0.93 + rnd() * 0.12);
+          g.fillRect(fx + x, fy + y, 1, 1);
+        }
+      }
+    }
+  };
+  const { skin: S, hair: H, eyes: E, shirt: T, pants: P, shoes: B } = look;
+  const T2 = shadeHex(T, 0.72);
+  // Kopf: Haare oben und hinten, an den Seiten bis über die Ohren
+  box(0, 0, 8, 8, 8, (f, x, y) => {
+    if (f === 'top') return H;
+    if (f === 'bottom') return S;
+    if (f === 'back') return y < 7 ? H : S;
+    if (f === 'front') {
+      if (y < 2 || (y === 2 && (x === 0 || x === 7 || (look.fringe || []).includes(x)))) return H;
+      if (y === 4 && (x === 1 || x === 5)) return '#f4f4f5';
+      if (y === 4 && (x === 2 || x === 6)) return E;
+      if (y === 6 && (x === 3 || x === 4)) return shadeHex(S, 0.78);
+      return S;
+    }
+    const back = f === 'right' ? x < 4 : x >= 4;
+    return y < 3 || (back && y < 6) ? H : S;
+  });
+  // Rumpf: Hoodie mit Kordeln, Bauchtasche und dunklerem Saum
+  box(16, 16, 8, 12, 4, (f, x, y) => {
+    if (f === 'front') {
+      if (y < 4 && (x === 2 || x === 5) && y > 0) return '#e5e7eb';
+      if (y >= 7 && y <= 9 && x >= 1 && x <= 6) return shadeHex(T, 0.84);
+      if (y === 11) return T2;
+      return T;
+    }
+    if (f === 'back' && y < 3 && x > 0 && x < 7) return shadeHex(T, 0.82);
+    if (f === 'bottom' || (f !== 'top' && y === 11)) return T2;
+    return T;
+  });
+  // Arme: Ärmel mit Bündchen, darunter die Hand
+  box(40, 16, 4, 12, 4, (f, x, y) => {
+    if (f === 'top') return T;
+    if (f === 'bottom') return S;
+    if (y < 8) return T;
+    if (y === 8) return T2;
+    return S;
+  });
+  // Beine: Hose und Schuhe mit heller Sohle
+  box(0, 16, 4, 12, 4, (f, x, y) => {
+    if (f === 'top') return P;
+    if (f === 'bottom') return shadeHex(B, 0.8);
+    if (y < 9) return P;
+    if (y === 11) return shadeHex(B, 1.08);
+    return f === 'front' && y === 9 ? shadeHex(B, 0.9) : shadeHex(B, 0.82);
+  });
+  return c;
+}
+
+/** Spielerfigur wie die Rüstungspuppe, aber mit gezeichnetem Skin; hand_r/hand_l markieren die Handflächen. */
+export function loadPlayer(look) {
+  const mat = new THREE.MeshLambertMaterial({ map: pixelTex(new THREE.CanvasTexture(playerSkin(look))) });
+  const parts = {};
+  const inner3 = new THREE.Group();
+  for (const [name, def] of Object.entries(BIPED)) {
+    const g = new THREE.Group();
+    g.position.set(...def.pivot);
+    const out = { pos: [], uv: [] };
+    addCuboid(out, [...def.box, 0, def.uv[0], def.uv[1]], 64, 64, !!def.mirror);
+    const mesh = new THREE.Mesh(geometryOf(out), mat);
+    mesh.castShadow = true;
+    g.add(mesh);
+    parts[name] = g;
+    inner3.add(g);
+  }
+  for (const [side, x] of [['r', -1], ['l', 1]]) {
+    const hand = new THREE.Object3D();
+    hand.position.set(x, 10.5, 0);
+    parts[`arm_${side}`].add(hand);
+    parts[`hand_${side}`] = hand;
   }
   inner3.scale.set(-1 / 16, -1 / 16, 1 / 16);
   inner3.position.y = 24 / 16;

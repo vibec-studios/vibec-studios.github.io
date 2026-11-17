@@ -4,6 +4,7 @@ const MODELS = {
   hha: { heavens_sword: 3, hells_sword: 3, heavens_mace: 4, hells_mace: 4 },
   blood: { blood_sword: 4, blood_mace: 4 },
   void: { void_sword: 3, void_mace: 4 },
+  arius: { solvane: 4 },
 };
 
 /** Beschreibung für die Hand: 3D-Modell, falls vorhanden, sonst das flache Item (extrudiert wie im Spiel). */

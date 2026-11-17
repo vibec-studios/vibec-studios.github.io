@@ -5,7 +5,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { loadBoss, loadArmorStand, loadItem, loadBlockModel, handTransform, HANDHELD, noiseTexture } from './mc3d.js';
+import { loadBoss, loadArmorStand, loadPlayer, loadItem, loadBlockModel, handTransform, HANDHELD, noiseTexture } from './mc3d.js';
 import { $, $$, t, tx, short, reduceMotion, onLang } from './core.js';
 
 export { THREE };
@@ -161,12 +161,94 @@ export function poseStand(stand, s, ph, stance = 0) {
   p.leg_l.rotation.set(-0.1, 0, -0.03, 'ZYX');
 }
 
+/** Spieler hält mit einer Hand das Kabel zum anderen, die andere Hand pendelt locker. reach: 'r' oder 'l'. */
+export function posePlayer(stand, s, ph, reach) {
+  const p = stand.parts;
+  const side = reach === 'r' ? 1 : -1;
+  const hold = reach === 'r' ? p.arm_r : p.arm_l;
+  const free = reach === 'r' ? p.arm_l : p.arm_r;
+  hold.rotation.set(-0.9 + Math.sin(s * 1.2 + ph) * 0.05, 0, side * 0.1, 'ZYX');
+  free.rotation.set(Math.sin(s * 1.1 + ph) * 0.07, 0, -side * 0.06, 'ZYX');
+  p.head.rotation.set(0.08 + Math.sin(s * 0.7 + ph) * 0.04, side * 0.22 + Math.sin(s * 0.45 + ph) * 0.08, 0, 'ZYX');
+  p.leg_r.rotation.set(0.06, 0, 0.03, 'ZYX');
+  p.leg_l.rotation.set(-0.06, 0, -0.03, 'ZYX');
+}
+
+/** Blaues Pixelkabel zwischen zwei Punkten: Voxel auf dem 1/16-Raster, durchhängend, mit hin- und herlaufenden Datenpaketen. */
+function pixelCable(color) {
+  const G = 1 / 16;
+  const MAX = 320;
+  const mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(G * 2, G * 2, G * 2),
+    new THREE.MeshBasicMaterial({ color: 0xffffff, toneMapped: false }), MAX);
+  mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(MAX * 3), 3);
+  mesh.frustumCulled = false;
+  mesh.castShadow = true;
+  const plugMat = new THREE.MeshLambertMaterial({ color: 0x1e2533 });
+  const plugs = [0, 1].map(() => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(G * 3, G * 3, G * 3), plugMat);
+    m.castShadow = true;
+    return m;
+  });
+  const light = new THREE.PointLight(color, 1.6, 3.5, 2);
+  const group = new THREE.Group();
+  group.add(mesh, ...plugs, light);
+  const base = new THREE.Color(color);
+  const hi = new THREE.Color(0xe6f0ff);
+  const col = new THREE.Color();
+  const mat = new THREE.Matrix4();
+  const seen = new Set();
+  const update = (a, b, now) => {
+    const len = a.distanceTo(b);
+    const sag = 0.3 + len * 0.1;
+    const steps = Math.ceil((len / G) * 1.8);
+    const p1 = (now / 1600) % 1;
+    const p2 = 1 - ((now / 1600 + 0.5) % 1);
+    seen.clear();
+    let n = 0;
+    for (let k = 0; k <= steps && n < MAX; k++) {
+      const t = k / steps;
+      const x = Math.round((a.x + (b.x - a.x) * t) / G);
+      const y = Math.round((a.y + (b.y - a.y) * t - sag * 4 * t * (1 - t)) / G);
+      const z = Math.round((a.z + (b.z - a.z) * t) / G);
+      const key = `${x},${y},${z}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      mat.makeTranslation(x * G, y * G, z * G);
+      mesh.setMatrixAt(n, mat);
+      const d = Math.min(Math.abs(t - p1), Math.abs(t - p2));
+      mesh.setColorAt(n, col.copy(base).lerp(hi, Math.max(0, 1 - d * 16)));
+      n++;
+    }
+    mesh.count = n;
+    mesh.instanceMatrix.needsUpdate = true;
+    mesh.instanceColor.needsUpdate = true;
+    plugs[0].position.copy(a);
+    plugs[1].position.copy(b);
+    light.position.set((a.x + b.x) / 2, (a.y + b.y) / 2 - sag, (a.z + b.z) / 2);
+  };
+  return { group, update };
+}
+
+// Zwei eigene Figuren für Vibey Multiplayer (gezeichnet, keine Standard-Skins von Minecraft)
+const VIBEY_PLAYERS = [
+  { skin: '#e3b08a', hair: '#5a3a22', eyes: '#2f6fd6', shirt: '#3b82f6', pants: '#232a36', shoes: '#e7e9ee', fringe: [3, 4], seed: 11 },
+  { skin: '#b97c55', hair: '#18181b', eyes: '#3b2a1c', shirt: '#8b5cf6', pants: '#2c3444', shoes: '#f5f5f5', fringe: [1, 5, 6], seed: 23 },
+];
+
+/** Hero von Vibey: zwei Spieler, verbunden mit einem blauen Pixelkabel. */
+export function linkStage(canvas, { glow = 0x3b82f6, cable = 0x3b82f6, zoom = 1.25, signal } = {}) {
+  return stageScene(canvas, {
+    figures: [{ player: VIBEY_PLAYERS[0], reach: 'l', face: 0.55 }, { player: VIBEY_PLAYERS[1], reach: 'r', face: -0.55 }],
+    cable, glow, zoom, lift: -0.08, signal,
+  });
+}
+
 /**
  * Freigestellte Bühne wie auf Produktseiten: Figuren und/oder ein Boss auf unsichtbarem Boden mit Schatten und Leuchten.
  * figures: [{ base, armor, eye, held, glow, stance }], boss: { base, model, texture, yaw }, glow: Farbe von Licht und Boden.
  * spin: langsam drehen, yaw: Grundblick, zoom: Abstand (1 = passend), lift: Blickpunkt anheben (Anteil der Höhe).
  */
-export async function stageScene(canvas, { figures = [], boss = null, glow = 0xffffff, spin = false, yaw = 0, zoom = 1, lift = 0, signal } = {}) {
+export async function stageScene(canvas, { figures = [], boss = null, glow = 0xffffff, spin = false, yaw = 0, zoom = 1, lift = 0, cable = null, signal } = {}) {
   const view = makeView(canvas, { alpha: true, shadows: true });
   const { scene, camera } = view;
   camera.fov = 26;
@@ -185,15 +267,16 @@ export async function stageScene(canvas, { figures = [], boss = null, glow = 0xf
   const tickers = [];
   const stands = [];
   const n = figures.length;
-  const spacing = 1.3;
-  const loaded = await Promise.all(figures.map((f) => armorStand(f.base, f.armor, f.eye, f.held).catch(() => null)));
+  const spacing = cable != null ? 2.6 : 1.3;
+  const player = (look) => { const stand = loadPlayer(look); const holder = new THREE.Group(); holder.add(stand.root); return { holder, stand, item: null }; };
+  const loaded = await Promise.all(figures.map((f) => (f.player ? Promise.resolve(player(f.player)) : armorStand(f.base, f.armor, f.eye, f.held)).catch(() => null)));
   loaded.forEach((s, i) => {
     if (!s) return;
     const x = (i - (n - 1) / 2) * spacing;
-    s.holder.position.set(x, 0, -Math.abs(x) * 0.25);
-    s.holder.rotation.y = n === 1 ? -0.45 : -0.3 - x * 0.12;
+    s.holder.position.set(x, 0, cable != null ? 0 : -Math.abs(x) * 0.25);
+    s.holder.rotation.y = figures[i].face ?? (n === 1 ? -0.45 : -0.3 - x * 0.12);
     content.add(s.holder);
-    stands.push({ s, ph: i * 1.7, stance: figures[i].stance ?? i });
+    stands.push({ s, ph: i * 1.7, stance: figures[i].stance ?? i, reach: figures[i].reach });
     if (s.item) tickers.push(s.item.tick);
     if (figures[i].glow != null) {
       const d = glowDisc(figures[i].glow, 0.85);
@@ -246,6 +329,13 @@ export async function stageScene(canvas, { figures = [], boss = null, glow = 0xf
   motes.material.opacity = 0.65;
   scene.add(motes);
 
+  let wire = null;
+  const handA = new THREE.Vector3(), handB = new THREE.Vector3();
+  if (cable != null && stands.length === 2) {
+    wire = pixelCable(cable);
+    scene.add(wire.group);
+  }
+
   let mx = 0, my = 0;
   addEventListener('pointermove', (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; }, { passive: true, signal });
   const target = new THREE.Vector3(center.x, size.y * (0.5 + lift), center.z);
@@ -258,7 +348,14 @@ export async function stageScene(canvas, { figures = [], boss = null, glow = 0xf
     const dist = Math.max((size.y * 1.12) / 2 / tan, wide / 2 / tan / aspect) * zoom + Math.min(size.x, size.z) * 0.5;
     camera.position.set(target.x + Math.sin(a) * dist, target.y + dist * 0.14 + my * dist * 0.04, target.z + Math.cos(a) * dist);
     camera.lookAt(target);
-    stands.forEach(({ s: st, ph, stance }) => poseStand(st.stand, s, ph, stance));
+    stands.forEach(({ s: st, ph, stance, reach }) => (reach ? posePlayer(st.stand, s, ph, reach) : poseStand(st.stand, s, ph, stance)));
+    if (wire) {
+      content.updateMatrixWorld(true);
+      const [A, B] = stands;
+      A.s.stand.parts[`hand_${A.reach}`].getWorldPosition(handA);
+      B.s.stand.parts[`hand_${B.reach}`].getWorldPosition(handB);
+      wire.update(handA, handB, reduceMotion ? 0 : now);
+    }
     tickers.forEach((f) => f(now));
     if (bossModel) bossModel.update(now);
     motes.userData.tick(dt, now);

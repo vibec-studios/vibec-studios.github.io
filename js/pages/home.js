@@ -1,7 +1,7 @@
 // Startseite des Studios: das Studio und seine Projekte im Stil einer Produktseite. Die HHA-Reihe ist das erste
 // Projekt, nicht das einzige: Texte bleiben allgemein, Reihe und Rolle kommen aus den Inhaltsdateien (series, role).
 import { $, $$, t, esc, short, onColor } from '../core.js';
-import { stageScene } from '../views.js';
+import { stageScene, linkStage } from '../views.js';
 import { heldItem } from '../items.js';
 
 const L = (de, en) => ({ de, en });
@@ -168,6 +168,7 @@ export async function mount(root, mods, signal) {
   $$('canvas[data-boss]', root).forEach((c) => {
     const m = mods[+c.dataset.boss];
     const boss = bossOf(m);
+    if (!boss && m.hero?.kind === 'link') linkStage(c, { glow: hex(m.accent), cable: hex(m.accent), zoom: 1.1, signal }).catch(console.error);
     if (boss) stageScene(c, { boss: { base: m.base, model: boss.model, texture: boss.texture, yaw: boss.yaw ?? 0.5 }, glow: hex(m.accent2 || m.accent), zoom: 0.86, signal }).catch(console.error);
   });
 }
