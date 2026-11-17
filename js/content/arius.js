@@ -21,6 +21,7 @@ export default {
   status: S('Veröffentlicht', 'Released'),
   source: 'https://github.com/vibec-studios/hha-arius',
   series: 'HHA', role: 'addon', icon: 'icon.png',
+  categories: ['adventure', 'equipment', 'mobs'], // Modrinth-Kategorien für den Vibe Store (tools/store.py)
   card: { model: 'arius' },
   hero: { kind: 'boss', model: 'arius' },
   intro: S(

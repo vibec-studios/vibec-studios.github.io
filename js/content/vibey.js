@@ -16,6 +16,7 @@ export default {
   outroTitle: S('Bereit zum Hosten?', 'Ready to host?'),
   source: 'https://github.com/vibec-studios/vibey-multiplayer',
   icon: 'icon.png',
+  categories: ['utility', 'social'], // Modrinth-Kategorien für den Vibe Store (tools/store.py)
   statusPage: '/status/',
   band: false,
   hero: { kind: 'link' }, // zwei Spieler, verbunden mit einem blauen Pixelkabel (views.js linkStage)

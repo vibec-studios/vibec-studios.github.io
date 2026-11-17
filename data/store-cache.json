@@ -1,0 +1,2512 @@
+{
+ "schema": 1,
+ "assets": {
+  "477067615": {
+   "name": "HHA-0.0.1.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.0.1/HHA-0.0.1.jar",
+   "size": 323003,
+   "updated_at": "2026-07-14T19:16:53Z",
+   "sha1": "4215fbb11e94ca18e8854bdc49522465ca658206",
+   "sha256": "eabab77a9f9a1a20ade7f149eacde318945ec34ab4179d49c5bcfccfb7f52bcf",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.0.1"
+   }
+  },
+  "478121256": {
+   "name": "HHA-0.1.0.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.1.0/HHA-0.1.0.jar",
+   "size": 371338,
+   "updated_at": "2026-07-15T16:11:55Z",
+   "sha1": "14e6045a8561790e0c77ac5249eb4fee837f8d73",
+   "sha256": "5fb549637a2b920b6bc90791ee1dab5fc241170eb091df2dcccf025e5fbed452",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.1.0"
+   }
+  },
+  "478281970": {
+   "name": "HHA-0.2.0.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.2.0/HHA-0.2.0.jar",
+   "size": 373227,
+   "updated_at": "2026-07-15T19:08:17Z",
+   "sha1": "f6ee57ee38476e0007667f521fc77b5fa22dcb26",
+   "sha256": "f425f3ad886a1259aaedec450617716dfebe56a10aa43177ba1f77e9957c1ba3",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.2.0"
+   }
+  },
+  "478292720": {
+   "name": "HHA-0.2.1.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.2.1/HHA-0.2.1.jar",
+   "size": 373501,
+   "updated_at": "2026-07-15T19:20:35Z",
+   "sha1": "aac89cedebd95d875407857a584514d23148de8c",
+   "sha256": "e19342f27e34e409d5ed1a109252e7ca18945d1ff9a7c0451d9895fd73882af7",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.2.1"
+   }
+  },
+  "478305878": {
+   "name": "HHA-0.3.0.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.0/HHA-0.3.0.jar",
+   "size": 384952,
+   "updated_at": "2026-07-15T19:36:38Z",
+   "sha1": "53f68ae4f265ded8c14b80edd2593a20186458fe",
+   "sha256": "d2718e56afbf4e9461de5175ff8845bd08909aeaf171617bcba55f80df84f02f",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.3.0"
+   }
+  },
+  "478311160": {
+   "name": "HHA-0.3.1.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.1/HHA-0.3.1.jar",
+   "size": 385003,
+   "updated_at": "2026-07-15T19:42:50Z",
+   "sha1": "cf8c5846e28d81a660c8b245831a5410269a6edf",
+   "sha256": "edb3290858718888158a9153381ac3a2a88f6457653e1d2a270f5444f8726a1b",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.3.1"
+   }
+  },
+  "478327580": {
+   "name": "HHA-0.3.2.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.2/HHA-0.3.2.jar",
+   "size": 386173,
+   "updated_at": "2026-07-15T20:01:46Z",
+   "sha1": "83418dce96060025ca5b4f0bfeb86f5907c214f8",
+   "sha256": "5c1ff2092cfeb9818d05d9d4b12a89d0acdc9819b289d46153bb882080b40b2f",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.3.2"
+   }
+  },
+  "478339213": {
+   "name": "HHA-0.3.3.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.3/HHA-0.3.3.jar",
+   "size": 387411,
+   "updated_at": "2026-07-15T20:12:12Z",
+   "sha1": "5b0be35a23972227c37b02115b5d2fa2d2d92a07",
+   "sha256": "e3c2b8a8e176c9cbe3d10cde95d5ba956e2141f4f14b52b85eca5cba3e922fa3",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.3.3"
+   }
+  },
+  "478374853": {
+   "name": "HHA-0.4.0.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.4.0/HHA-0.4.0.jar",
+   "size": 392310,
+   "updated_at": "2026-07-15T20:53:58Z",
+   "sha1": "ad3301d331f836076af2ac3c6e634989fce98712",
+   "sha256": "6fe9955872ca32ee4029864cbf50185c19f82d369c9f4481d86651e228ac963e",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.4.0"
+   }
+  },
+  "479008018": {
+   "name": "HHA-0.4.1.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.4.1/HHA-0.4.1.jar",
+   "size": 393951,
+   "updated_at": "2026-07-16T09:38:36Z",
+   "sha1": "858bac68938c58ebd1ffdca28efbcbd3fc8ddbe5",
+   "sha256": "6625700feff84c902f0844241141b93ff64676dab1e32a0fc8360719dcf221ab",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.4.1"
+   }
+  },
+  "479034311": {
+   "name": "HHA-0.5.0.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.5.0/HHA-0.5.0.jar",
+   "size": 406500,
+   "updated_at": "2026-07-16T10:10:14Z",
+   "sha1": "e2b1f5456f2ac0500a4fb5d9a9e05edd6298d5be",
+   "sha256": "2d80371dae37e667d5cd8cb056ecdc716cb43ea6508451ceb25a0620d0e61da6",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.5.0"
+   }
+  },
+  "479082249": {
+   "name": "HHA-0.5.1.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.5.1/HHA-0.5.1.jar",
+   "size": 406784,
+   "updated_at": "2026-07-16T11:09:36Z",
+   "sha1": "a1d5010bff4b946ffab3e443bb8a78e59ca65ae4",
+   "sha256": "ded131c20ece27374ed56834bbcc0753253e8cdd06e74a73889c5322dd87491f",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.5.1"
+   }
+  },
+  "479110438": {
+   "name": "HHA-0.6.0.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.6.0/HHA-0.6.0.jar",
+   "size": 410991,
+   "updated_at": "2026-07-16T11:40:43Z",
+   "sha1": "378aed03dc650d1e220146d93292e77c65da2dfa",
+   "sha256": "8ece8e26298e7fb43394bc55723bc0e03178b13a14be3fb4b1cf4bb8a27d3af9",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.6.0"
+   }
+  },
+  "480207880": {
+   "name": "HHA-0.6.1.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.6.1/HHA-0.6.1.jar",
+   "size": 411658,
+   "updated_at": "2026-07-17T09:33:48Z",
+   "sha1": "97ff3b15413e0c12d83e561769c3efb1e91fbc75",
+   "sha256": "9a31c2035baafc1bc4825f11c753d3989e7751f254319ac0dba011b62f1295c0",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.6.1"
+   }
+  },
+  "480233689": {
+   "name": "HHA-0.6.2.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.6.2/HHA-0.6.2.jar",
+   "size": 415452,
+   "updated_at": "2026-07-17T10:02:38Z",
+   "sha1": "5163b4a695b323e2b9b94e62db821dbc73c45c9c",
+   "sha256": "70db41f8e43ff78086296308dc1312d11abae6bac1b0dcaa7053013837f39c37",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.6.2"
+   }
+  },
+  "755614339": {
+   "name": "HHA_Arius-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.0.0/HHA_Arius-1.0.0.jar",
+   "size": 7531647,
+   "updated_at": "2026-11-16T16:42:20Z",
+   "sha1": "354b7a3eabe85bf6f8b0253bfe1e812ba0e9c874",
+   "sha256": "cac0459dd37be30911e2c8bea3aeb0fc3d42b235fa7e7b902638ae9590aa3125",
+   "meta": {
+    "mod_id": "hha_arius",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "hha",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "755650318": {
+   "name": "HHA_Arius-1.0.1.jar",
+   "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.0.1/HHA_Arius-1.0.1.jar",
+   "size": 7532060,
+   "updated_at": "2026-11-16T16:53:14Z",
+   "sha1": "27d66bd08f34c6b924a4f1d2720812c3032aec84",
+   "sha256": "b9d65d788a6e393b893211dfbad0ff2a7b7d665b5865c5aba5bea549eebe491a",
+   "meta": {
+    "mod_id": "hha_arius",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "hha",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.1"
+   }
+  },
+  "756749119": {
+   "name": "vibey-multiplayer-fabric-1.21.2-1.21.3-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.2-1.21.3-1.0.0.jar",
+   "size": 81296,
+   "updated_at": "2026-11-16T22:50:36Z",
+   "sha1": "d74f6598a025c444407ba10a2e4821c7ac3487de",
+   "sha256": "72d1c7889331c9299b6e85593affefcb19ba4de75ca0bc2c2ba72f76f7c5cdc8",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.2 <1.21.4"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749123": {
+   "name": "vibey-multiplayer-fabric-1.21.4-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.4-1.0.0.jar",
+   "size": 81295,
+   "updated_at": "2026-11-16T22:50:37Z",
+   "sha1": "610df9c32585a1f50068b1ec77f60df5d3933683",
+   "sha256": "787e11a9fba76679856fde35f4bb9236f64b18c0c43927450d1e4003659c80e0",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.4 <1.21.5"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749126": {
+   "name": "vibey-multiplayer-fabric-1.21-1.21.1-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21-1.21.1-1.0.0.jar",
+   "size": 81295,
+   "updated_at": "2026-11-16T22:50:36Z",
+   "sha1": "4db43f54f77a4be9eb2ab62075a799bf28210426",
+   "sha256": "9edab1f01434b4f6e7bfdbf6665e5e3d2fef8231d91f35638cab9bfb85917c7e",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21 <1.21.2"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749131": {
+   "name": "vibey-multiplayer-fabric-1.21.11-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.11-1.0.0.jar",
+   "size": 81633,
+   "updated_at": "2026-11-16T22:50:37Z",
+   "sha1": "c6e1a754529978468fa1315c025791fdf1a783bc",
+   "sha256": "3aac716c135dff6a65af7e66f498eb03995f6af2ac96b7bd7be33f38d40f95c4",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.11 <1.22"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749134": {
+   "name": "vibey-multiplayer-fabric-1.21.5-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.5-1.0.0.jar",
+   "size": 81294,
+   "updated_at": "2026-11-16T22:50:37Z",
+   "sha1": "6cb8a712fa2a4bd3c079b42ccaf7de57bfe83e74",
+   "sha256": "e2f38fe65b699b78bb8885c19f82fb2ee96159a3f2b59660305ece3e9d8f2e23",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.5 <1.21.6"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749150": {
+   "name": "vibey-multiplayer-fabric-1.21.6-1.21.8-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.6-1.21.8-1.0.0.jar",
+   "size": 81311,
+   "updated_at": "2026-11-16T22:50:37Z",
+   "sha1": "7461739faa984d58207dcd7ef93a4154f4a3ab06",
+   "sha256": "0ab28e4b2eae8793c0660c0f5b810310ebbdf3194c583f4f497a03fa34d1fbbb",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.6 <1.21.9"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749154": {
+   "name": "vibey-multiplayer-fabric-1.21.9-1.21.10-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.9-1.21.10-1.0.0.jar",
+   "size": 81634,
+   "updated_at": "2026-11-16T22:50:37Z",
+   "sha1": "320da7efc6a578f157654bb77b0764af877c9a99",
+   "sha256": "ff19cbada64d645314b83598282ca2f27b46f7e1f91a88a6bd3a6bcf1d5cc180",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.9 <1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749159": {
+   "name": "vibey-multiplayer-fabric-26.1-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.1-1.0.0.jar",
+   "size": 82611,
+   "updated_at": "2026-11-16T22:50:37Z",
+   "sha1": "ded4dd32e0b9d633ba9a774bf492567f8f14a2c2",
+   "sha256": "0dd6256c036307dd024c510201f90d5bfb4c8a8706686a4fef64da59d22e15f2",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=26.1 <26.2"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749167": {
+   "name": "vibey-multiplayer-fabric-26.3-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.3-1.0.0.jar",
+   "size": 82693,
+   "updated_at": "2026-11-16T22:50:37Z",
+   "sha1": "2052980e48c0575a88fa0c27ca456d42d56a7d44",
+   "sha256": "3e377e99445ea84e092d5bba29d1ec9f682aa06198886311fb731fc9ef6a75f7",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=26.3 <26.4"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749173": {
+   "name": "vibey-multiplayer-fabric-26.2-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.2-1.0.0.jar",
+   "size": 82695,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "b4353574c4f11f564086c92a37b101a441716865",
+   "sha256": "814e132b1d31141af29e255708ec0c074827404cb1f59cd05ff1bf650a7612e4",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=26.2 <26.3"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749183": {
+   "name": "vibey-multiplayer-neoforge-1.21-1.21.1-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21-1.21.1-1.0.0.jar",
+   "size": 80409,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "ffa08490a272e42c589e01852f9f9b3a7cbc4cd5",
+   "sha256": "1b382517dc2d845ea25212ca84bcf5bd0728b769f545e5a7556edb45d7d8d7f1",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[1.21,1.21.2)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749188": {
+   "name": "vibey-multiplayer-neoforge-1.21.2-1.21.3-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.2-1.21.3-1.0.0.jar",
+   "size": 80413,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "e4d0ff638e1668c0f04c6c1410059e3b3b94d5f3",
+   "sha256": "0cfd315e175a54e300d0e18a6835ccf6a31b9a97b8945c7202e8402be7e7e724",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[1.21.2,1.21.4)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749189": {
+   "name": "vibey-multiplayer-neoforge-1.21.11-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.11-1.0.0.jar",
+   "size": 80739,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "5e5f08ac4d254286ab43d70bdfaea148922ac8e7",
+   "sha256": "9feb7bdf24d8e6fea7e2fb81607ecea30674df4d6c0a0014eacea209bd21e1e8",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[1.21.11,1.22)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749195": {
+   "name": "vibey-multiplayer-neoforge-1.21.4-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.4-1.0.0.jar",
+   "size": 80406,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "4828534ed30647df6523bc491ddf25ec9cf79668",
+   "sha256": "d45a130b90f11bbb4ded9fce0d63a832de9e6b00dcbe0cf3a6f55d817aa5aac4",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[1.21.4,1.21.5)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749215": {
+   "name": "vibey-multiplayer-neoforge-1.21.5-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.5-1.0.0.jar",
+   "size": 80405,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "f718d05f27552d1c68abda1e6451e085c1b1b7c4",
+   "sha256": "ca58c6a2d9020ee05dd27fe877d46c7341c3867f3ae97bf92535e3d5e3a97954",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[1.21.5,1.21.6)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749217": {
+   "name": "vibey-multiplayer-neoforge-1.21.6-1.21.8-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.6-1.21.8-1.0.0.jar",
+   "size": 80429,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "dd1b5d2f0b29de492032e609b2d6baa098732bfb",
+   "sha256": "72ce5646ccd36d344a080df0cb5b040f0194ac8d1e04f4a320e922f2ad5339ac",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[1.21.6,1.21.9)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749220": {
+   "name": "vibey-multiplayer-neoforge-1.21.9-1.21.10-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.9-1.21.10-1.0.0.jar",
+   "size": 80749,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "0647f16b7bea6ee984aa7e44accdf296c40fe6dc",
+   "sha256": "dba2e4b82ecd75a5841451e8474d7241e6e28cf61f4bb97fd64fa5c38eb1264f",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[1.21.9,1.21.11)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749221": {
+   "name": "vibey-multiplayer-neoforge-26.1-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-26.1-1.0.0.jar",
+   "size": 80755,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "eaf0ee391449bc83bef94aabe0cb1c85a4c8c9ee",
+   "sha256": "ed55a571e93fa1da44f14ff0d38c7a5a40365fbb7b90c719744da8347b83d368",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[26.1,26.2)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749222": {
+   "name": "vibey-multiplayer-neoforge-26.2-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-26.2-1.0.0.jar",
+   "size": 80846,
+   "updated_at": "2026-11-16T22:50:38Z",
+   "sha1": "6ff90facf65039044984be5aca36bb35c7fb583a",
+   "sha256": "59d23e6d0727ca160c53d3516b73819d58721a0fda823b9211be468dde25b9df",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[26.2,26.3)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756749235": {
+   "name": "vibey-multiplayer-neoforge-26.3-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-26.3-1.0.0.jar",
+   "size": 80846,
+   "updated_at": "2026-11-16T22:50:39Z",
+   "sha1": "af7b8b167a1293e674da454bc2330d677a52e3be",
+   "sha256": "f4de4c8320d4aac65952b3b74cc53b2ed7f2e777256af0011974137793ed256f",
+   "meta": {
+    "mod_id": "vibey",
+    "loaders": [
+     "neoforge"
+    ],
+    "mc": [
+     {
+      "kind": "maven",
+      "range": "[26.3,26.4)",
+      "loader": "neoforge"
+     }
+    ],
+    "deps": [
+     {
+      "id": "neoforge",
+      "kind": "required",
+      "loader": "neoforge"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "756809929": {
+   "name": "HHA_Arius-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.1.0/HHA_Arius-1.1.0.jar",
+   "size": 9115187,
+   "updated_at": "2026-11-16T23:13:13Z",
+   "sha1": "390a4c5d202486971de49fa897a249566c6b5ad2",
+   "sha256": "baf35e17eabdf3ff1f92c4fa8acef4af931a99cbe534dc88603569aeefbe69b5",
+   "meta": {
+    "mod_id": "hha_arius",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "hha",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "758428497": {
+   "name": "vibey-lyrics-fabric-1.21.2-1.21.3-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.2-1.21.3-1.0.0.jar",
+   "size": 974993,
+   "updated_at": "2026-11-17T09:30:32Z",
+   "sha1": "275675cc99dd3ba02d32defb40c5cc1719c9a8c2",
+   "sha256": "9c0580af7afb8c5e3d35f21e70988b88cf8fa84a92c06f205434e67b35cb86aa",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.2 <1.21.4"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758428499": {
+   "name": "vibey-lyrics-fabric-1.21.5-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.5-1.0.0.jar",
+   "size": 974994,
+   "updated_at": "2026-11-17T09:30:32Z",
+   "sha1": "78c9737692a78bac61d1f03e30b447ec34a14ab3",
+   "sha256": "b1a662ae54820efbcbc2f0f6d6b7b1b46b83d5bf702b449adea0f41ccf0eb5a7",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.5 <1.21.6"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758428500": {
+   "name": "vibey-lyrics-fabric-1.21-1.21.1-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21-1.21.1-1.0.0.jar",
+   "size": 974994,
+   "updated_at": "2026-11-17T09:30:32Z",
+   "sha1": "efc7e3e51a7dca2a82399cc5275d5f08dee6e772",
+   "sha256": "e0ea1808ab840aae1285cba7d35da731244e0ce26f65a33865a98fe41f41f564",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21 <1.21.2"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758428502": {
+   "name": "vibey-lyrics-fabric-1.21.11-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.11-1.0.0.jar",
+   "size": 975232,
+   "updated_at": "2026-11-17T09:30:32Z",
+   "sha1": "dee26d3ee9b3ff329dbb31167ff1b1d5f0f6eab2",
+   "sha256": "71e8319b30efc1deabe72626dfc9a3fd318687257538cf1b8bf841ca7fda75c0",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.11 <1.22"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758428503": {
+   "name": "vibey-lyrics-fabric-1.21.4-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.4-1.0.0.jar",
+   "size": 974993,
+   "updated_at": "2026-11-17T09:30:32Z",
+   "sha1": "eade4f3b52941d197825d9c77db93f3a5531343e",
+   "sha256": "50c39b257d93b55e9f63a293624af40f6d9ebbbfd7394fd6d08201232a621247",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.4 <1.21.5"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758428579": {
+   "name": "vibey-lyrics-fabric-1.21.6-1.21.8-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.6-1.21.8-1.0.0.jar",
+   "size": 975071,
+   "updated_at": "2026-11-17T09:30:33Z",
+   "sha1": "00229f327e535e7573cc282b419a6b1d4684eb23",
+   "sha256": "be683c03e4f50a29781f3f346b23ea88c1526ca607016d15e52323ab60e9bcbe",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.6 <1.21.9"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758428581": {
+   "name": "vibey-lyrics-fabric-1.21.9-1.21.10-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.9-1.21.10-1.0.0.jar",
+   "size": 976186,
+   "updated_at": "2026-11-17T09:30:33Z",
+   "sha1": "44406a13d8d0998d23d17d3a042454a8987017ba",
+   "sha256": "e2bea0885ad8b8c90d46140eecdf53319a43672b738224670317a67a20d25a5e",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.9 <1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758428591": {
+   "name": "vibey-lyrics-fabric-26.1-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-26.1-1.0.0.jar",
+   "size": 977287,
+   "updated_at": "2026-11-17T09:30:33Z",
+   "sha1": "23b45ce920d8874a561745035cbd78ace6e3bc58",
+   "sha256": "4f8dd4042cb07888432e8b1a09c4e7ec21f192dd88d09b3f9fdfa2ececd24717",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=26.1 <26.2"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758428600": {
+   "name": "vibey-lyrics-fabric-26.2-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-26.2-1.0.0.jar",
+   "size": 977311,
+   "updated_at": "2026-11-17T09:30:33Z",
+   "sha1": "682ee0acd4ae98d16995564481af43c9d69a30b6",
+   "sha256": "b194228aed90ea95770547fe1de3bd7a7c38e5770fa05dba2a04cc4420a6a873",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=26.2 <26.3"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758428605": {
+   "name": "vibey-lyrics-fabric-26.3-1.0.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-26.3-1.0.0.jar",
+   "size": 977316,
+   "updated_at": "2026-11-17T09:30:34Z",
+   "sha1": "e17de701464aa0ec292ed1cf04211de08ba3ba11",
+   "sha256": "e05be4da62d6a4cf7bef4fab561c72e00260a2787caa4d6aff606f470ef551bb",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=26.3 <26.4"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.0.0"
+   }
+  },
+  "758466689": {
+   "name": "HHA_Arius-1.2.0.jar",
+   "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.2.0/HHA_Arius-1.2.0.jar",
+   "size": 9271893,
+   "updated_at": "2026-11-17T09:42:36Z",
+   "sha1": "d2834b0f2bff4e7168323b87be35496ebb946fb9",
+   "sha256": "37b1ddb795c306aa39f22d70715210c2dba2d37f083eb31de10b9227779f42a5",
+   "meta": {
+    "mod_id": "hha_arius",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "hha",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.2.0"
+   }
+  },
+  "760082952": {
+   "name": "vibey-lyrics-fabric-1.21.2-1.21.3-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.2-1.21.3-1.1.0.jar",
+   "size": 10091092,
+   "updated_at": "2026-11-17T18:04:08Z",
+   "sha1": "f3531dfdc99b0beb16466eb447fdd09d7eb67249",
+   "sha256": "80b7b29d3a3f17130a447b0a8f36fc7c02bb7b4f126a28680c6447f58b58f4a2",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.2 <1.21.4"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760082953": {
+   "name": "vibey-lyrics-fabric-1.21.5-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.5-1.1.0.jar",
+   "size": 10091096,
+   "updated_at": "2026-11-17T18:04:08Z",
+   "sha1": "5c7e5e144912688fc2de22cb1d0c7de8e42c939e",
+   "sha256": "795e915138497d075473b5cb893e9255e0a7212c6e1d62e97b59401d7918510a",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.5 <1.21.6"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760082957": {
+   "name": "vibey-lyrics-fabric-1.21-1.21.1-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21-1.21.1-1.1.0.jar",
+   "size": 10091034,
+   "updated_at": "2026-11-17T18:04:04Z",
+   "sha1": "d2f9fd202d316e2e51ed0ad72db3d839f6358b79",
+   "sha256": "e68ba9d55a191ccdc541b2a2e168df8b96af4b815b68ce647ffcff7ae8d14d02",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21 <1.21.2"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760082961": {
+   "name": "vibey-lyrics-fabric-1.21.4-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.4-1.1.0.jar",
+   "size": 10091092,
+   "updated_at": "2026-11-17T18:04:08Z",
+   "sha1": "5ccef94fe74f0cc57bffb5c71e08ed9f0827626c",
+   "sha256": "ac4cb08cbd94f3c5552fe6554c9f427488f87b29d1fd175cb21c2ef01aa51b5b",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.4 <1.21.5"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760082962": {
+   "name": "vibey-lyrics-fabric-1.21.11-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.11-1.1.0.jar",
+   "size": 10091579,
+   "updated_at": "2026-11-17T18:04:05Z",
+   "sha1": "51198b2e137ff6d0b8bc4c39bc1abfe54aead852",
+   "sha256": "40401676a7bd90b7b15e0c48c5cbb179bfc46e76afa3fa2ad44c4b4d0b54bb05",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.11 <1.22"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760083099": {
+   "name": "vibey-lyrics-fabric-1.21.6-1.21.8-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.6-1.21.8-1.1.0.jar",
+   "size": 10091112,
+   "updated_at": "2026-11-17T18:04:07Z",
+   "sha1": "0aad8246ad49b1d3954efb4243124b5d3910e83b",
+   "sha256": "6e1b2879c959909bd60f740ade8c7b13cb66858f13a9c7408fb45da682e8fed9",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.6 <1.21.9"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760083114": {
+   "name": "vibey-lyrics-fabric-1.21.9-1.21.10-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.9-1.21.10-1.1.0.jar",
+   "size": 10092080,
+   "updated_at": "2026-11-17T18:04:08Z",
+   "sha1": "c095ba4428a18c1bce0db7bfb086a877fed8282d",
+   "sha256": "b9d6fe6aa8f6ac6a2f1f406eadd63fadcc3afb39e5a148cf71b0e5a24e967bca",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=1.21.9 <1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760083238": {
+   "name": "vibey-lyrics-fabric-26.1-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-26.1-1.1.0.jar",
+   "size": 10094643,
+   "updated_at": "2026-11-17T18:04:10Z",
+   "sha1": "c7e265668252ba3813d74be54365ea44a00403ba",
+   "sha256": "a5b74ed5afc69cd0f99677f9f79913f78153560b207efc27e512372c537370bc",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=26.1 <26.2"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760083243": {
+   "name": "vibey-lyrics-fabric-26.2-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-26.2-1.1.0.jar",
+   "size": 10094670,
+   "updated_at": "2026-11-17T18:04:12Z",
+   "sha1": "f0759b6c240dd1267d48d94c9aa13a88a069d61d",
+   "sha256": "3e8d7fe977e75c045f2e377f5769321218b988485d75456109fe0bbd93ae6339",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=26.2 <26.3"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760083250": {
+   "name": "vibey-lyrics-fabric-26.3-1.1.0.jar",
+   "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-26.3-1.1.0.jar",
+   "size": 10094684,
+   "updated_at": "2026-11-17T18:04:12Z",
+   "sha1": "6ef179e678e2cefb966c32ded2d9c3d24ec10baa",
+   "sha256": "146da07862599ad30feaf29a0a667862800b58bf790c7f4116f06b0c16dd5e5b",
+   "meta": {
+    "mod_id": "vibeylyrics",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": ">=26.3 <26.4"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "java",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.1.0"
+   }
+  },
+  "760239307": {
+   "name": "HHA_Arius-1.2.1.jar",
+   "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.2.1/HHA_Arius-1.2.1.jar",
+   "size": 9279938,
+   "updated_at": "2026-11-17T18:53:33Z",
+   "sha1": "87f2f48c28e6445085ab3de14493ff7bc5cb2bef",
+   "sha256": "2f1b4500b11242c2740864377a5e50f777b2accb063724f2f7324de320db68e0",
+   "meta": {
+    "mod_id": "hha_arius",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "hha",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.2.1"
+   }
+  },
+  "760348204": {
+   "name": "HHA-0.8.5.jar",
+   "url": "https://github.com/vibec-studios/HHA/releases/download/v0.8.5/HHA-0.8.5.jar",
+   "size": 28120404,
+   "updated_at": "2026-11-17T19:29:57Z",
+   "sha1": "0833f5e942342d12734ca5f7edfe7faa4b2e0992",
+   "sha256": "b44d23c4192b3ca522f49619321cd91cf85c840cf833f9335489fabd4821ccd4",
+   "meta": {
+    "mod_id": "hha",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "0.8.5"
+   }
+  },
+  "760381060": {
+   "name": "HHA_Arius-1.2.2.jar",
+   "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.2.2/HHA_Arius-1.2.2.jar",
+   "size": 9255187,
+   "updated_at": "2026-11-17T19:40:58Z",
+   "sha1": "6dbfd18a0ef05a7c84834b58d38ff0d0e5e82b97",
+   "sha256": "fce4e7fa4c39397a8c67ead445037e1d629c027ef52cb466b6376ab8ab1a3e0d",
+   "meta": {
+    "mod_id": "hha_arius",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "hha",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.2.2"
+   }
+  },
+  "760470763": {
+   "name": "HHA_Arius-1.3.0.jar",
+   "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.3.0/HHA_Arius-1.3.0.jar",
+   "size": 9320269,
+   "updated_at": "2026-11-17T20:10:03Z",
+   "sha1": "4bb2ff0a3bfbbf1c333074202a53746102a65e1d",
+   "sha256": "7adce01241396d22bcdb22ae112304df65dd1cde08cd384d5f1b9e706bc04dbf",
+   "meta": {
+    "mod_id": "hha_arius",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "hha",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.3.0"
+   }
+  }
+ },
+ "mc_releases": [
+  "26.3",
+  "26.2",
+  "26.1.2",
+  "26.1.1",
+  "26.1",
+  "1.21.11",
+  "1.21.10",
+  "1.21.9",
+  "1.21.8",
+  "1.21.7",
+  "1.21.6",
+  "1.21.5",
+  "1.21.4",
+  "1.21.3",
+  "1.21.2",
+  "1.21.1",
+  "1.21",
+  "1.20.6",
+  "1.20.5",
+  "1.20.4",
+  "1.20.3",
+  "1.20.2",
+  "1.20.1",
+  "1.20",
+  "1.19.4",
+  "1.19.3",
+  "1.19.2",
+  "1.19.1",
+  "1.19",
+  "1.18.2",
+  "1.18.1",
+  "1.18",
+  "1.17.1",
+  "1.17",
+  "1.16.5",
+  "1.16.4",
+  "1.16.3",
+  "1.16.2",
+  "1.16.1",
+  "1.16",
+  "1.15.2",
+  "1.15.1",
+  "1.15",
+  "1.14.4",
+  "1.14.3",
+  "1.14.2",
+  "1.14.1",
+  "1.14",
+  "1.13.2",
+  "1.13.1",
+  "1.13",
+  "1.12.2",
+  "1.12.1",
+  "1.12",
+  "1.11.2",
+  "1.11.1",
+  "1.11",
+  "1.10.2",
+  "1.10.1",
+  "1.10",
+  "1.9.4",
+  "1.9.3",
+  "1.9.2",
+  "1.9.1",
+  "1.9",
+  "1.8.9",
+  "1.8.8",
+  "1.8.7",
+  "1.8.6",
+  "1.8.5",
+  "1.8.4",
+  "1.8.3",
+  "1.8.2",
+  "1.8.1",
+  "1.8",
+  "1.7.10",
+  "1.7.9",
+  "1.7.8",
+  "1.7.7",
+  "1.7.6",
+  "1.7.5",
+  "1.7.4",
+  "1.7.3",
+  "1.7.2",
+  "1.6.4",
+  "1.6.2",
+  "1.6.1",
+  "1.5.2",
+  "1.5.1",
+  "1.4.7",
+  "1.4.5",
+  "1.4.6",
+  "1.4.4",
+  "1.4.2",
+  "1.3.2",
+  "1.3.1",
+  "1.2.5",
+  "1.2.4",
+  "1.2.3",
+  "1.2.2",
+  "1.2.1",
+  "1.1",
+  "1.0"
+ ]
+}
