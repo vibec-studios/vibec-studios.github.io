@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T18:21:46Z",
+ "updated": "2026-11-17T18:55:49Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -392,6 +392,31 @@
   "arius": {
    "repo": "vibec-studios/hha-arius",
    "releases": [
+    {
+     "tag": "v1.2.1",
+     "version": "1.2.1",
+     "name": "HHA Arius 1.2.1 – spells, resonance and test mode",
+     "date": "2026-11-17T18:53:34Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/hha-arius/releases/tag/v1.2.1",
+     "assets": [
+      {
+       "name": "HHA_Arius-1.2.1.jar",
+       "size": 9279938,
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.2.1/HHA_Arius-1.2.1.jar",
+       "sha256": "2f1b4500b11242c2740864377a5e50f777b2accb063724f2f7324de320db68e0",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-17T18:54:49Z",
+        "checked": "2026-11-17T18:55:49Z"
+       }
+      }
+     ]
+    },
     {
      "tag": "v1.2.0",
      "version": "1.2.0",
