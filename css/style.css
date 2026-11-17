@@ -664,3 +664,6 @@ body[data-route="home"] .nav-cta { background: var(--brand); color: #fff; }
   .stat-row b { font-size: 24px; }
 }
 .dlg-body > .dlg-result:first-child { margin-top: 0; border-top: 0; }
+.dlg-step[hidden] { display: none; }
+.dl-dialog [data-group="rel"] { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+.dl-dialog [data-group="rel"] small { font: 500 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; opacity: .75; margin-left: 4px; }
