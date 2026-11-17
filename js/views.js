@@ -7,6 +7,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { loadBoss, loadArmorStand, loadPlayer, loadItem, loadBlockModel, handTransform, HANDHELD, noiseTexture } from './mc3d.js';
 import { $, $$, t, tx, short, reduceMotion, onLang } from './core.js';
+import { buildSeal, poseSeal } from './seal3d.js';
 
 export { THREE };
 
@@ -495,6 +496,68 @@ export async function lyricsStage(canvas, { accent = '#d946ef', zoom = 1, signal
     stars.userData.tick(dt * 0.15, now);
   };
   return view;
+}
+
+// ------------------------------------------------------------ Vibe Launcher: die Robbe (Studio-Logo) als 3D-Hero
+
+/** Robbe auf ihrer Eisscholle: blinzelt ab und zu; beim Drüberfahren (oder Antippen) dreht sie sich zu dir und freut sich. */
+export function sealStage(canvas, { glow = 0x8b6cff, hoverEl = canvas.parentElement, signal } = {}) {
+  const view = makeView(canvas, { alpha: true, shadows: true });
+  const { scene, camera } = view;
+  camera.fov = 30;
+  scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+  const key = new THREE.DirectionalLight(0xffffff, 2.0);
+  key.position.set(2, 5, 3);
+  key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024);
+  Object.assign(key.shadow.camera, { left: -2, right: 2, top: 2, bottom: -2, near: 0.5, far: 20 });
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0xb48cff, 1.0);
+  rim.position.set(-3, 2, -3);
+  scene.add(rim);
+
+  const parts = buildSeal();
+  parts.group.scale.setScalar(1 / 16);
+  const pivot = new THREE.Group();
+  pivot.add(parts.group);
+  pivot.position.y = 3 / 16; // Unterseite der Scholle auf y = 0
+  scene.add(pivot);
+  const disc = glowDisc(glow, 1.7);
+  scene.add(disc);
+  const motes = particles(40, 0xd9ecff, { x: [-2.2, 2.2], y: [0, 2.2], z: [-1.6, 1.6] }, 0.025);
+  motes.material.opacity = 0.7;
+  scene.add(motes);
+
+  const LOGO_YAW = -1.05, HOVER_YAW = -1.4;
+  let hovered = false, joy = 0, yaw = LOGO_YAW, tt = 0, tapUntil = 0;
+  let blinkUntil = 0, nextBlink = performance.now() + 1800 + Math.random() * 2500;
+  let mx = 0, my = 0;
+  if (hoverEl) {
+    hoverEl.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovered = true; }, { signal });
+    hoverEl.addEventListener('pointerleave', () => { hovered = false; }, { signal });
+    hoverEl.addEventListener('pointerdown', () => { tapUntil = performance.now() + 1600; }, { signal });
+  }
+  addEventListener('pointermove', (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; }, { passive: true, signal });
+  const target = new THREE.Vector3(0, 0.45, 0);
+  view.frame = (now, dt) => {
+    const happy = hovered || now < tapUntil;
+    if (!reduceMotion) {
+      const k = 1 - Math.pow(0.004, Math.min(0.05, dt));
+      joy += ((happy ? 1 : 0) - joy) * k;
+      yaw += ((happy ? HOVER_YAW : LOGO_YAW) - yaw) * k;
+      tt += dt;
+      if (now >= nextBlink) { blinkUntil = now + 150; nextBlink = now + 2600 + Math.random() * 4000; }
+    }
+    poseSeal(parts, tt, joy, now < blinkUntil);
+    pivot.rotation.y = yaw;
+    const aspect = Math.max(0.3, view.w / Math.max(1, view.h));
+    const dist = (aspect < 1 ? 5.2 / aspect : 5.2);
+    const a = (reduceMotion ? 0 : Math.sin(tt * 0.25) * 0.08) + mx * 0.15;
+    camera.position.set(Math.sin(a) * dist, 2.2 + my * 0.4, Math.cos(a) * dist);
+    camera.lookAt(target);
+    motes.userData.tick(dt * 0.4, now);
+  };
+  return Promise.resolve(view);
 }
 
 /**

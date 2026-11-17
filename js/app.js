@@ -6,6 +6,7 @@ import * as Home from './pages/home.js';
 import * as Mod from './pages/mod.js';
 import * as Downloads from './pages/downloads.js';
 import * as Status from './pages/status.js';
+import * as Launcher from './pages/launcher.js';
 import { loadDownloads } from './downloads.js';
 
 const app = $('#app');
@@ -56,6 +57,7 @@ let navigating = false;
 function routeOf(path) {
   if (/^\/status\/?$/i.test(path)) return { kind: 'status', accent: Status.ACCENT, path: '/status/' };
   if (/^\/downloads\/?$/i.test(path)) return { kind: 'downloads', accent: Downloads.ACCENT, path: '/downloads/' };
+  if (/^\/launcher\/?$/i.test(path)) return { kind: 'launcher', accent: Launcher.ACCENT, path: '/launcher/' };
   const m = path.match(/^\/mods\/([a-z0-9_-]+)\/?$/i);
   if (m) {
     const mod = mods.find((x) => x.id === m[1].toLowerCase());
@@ -87,6 +89,11 @@ function renderRoute(route) {
     document.title = Status.title();
     setMeta(tx({ de: 'Live-Status von Vibey Multiplayer: Relay, gehostete Welten und verbundene Spieler.', en: 'Live status of Vibey Multiplayer: relay, hosted worlds and connected players.' }));
     Status.mount(app, mods, signal);
+  } else if (route.kind === 'launcher') {
+    app.innerHTML = Launcher.render(mods);
+    document.title = Launcher.title();
+    setMeta(tx({ de: 'Vibe Launcher: der Minecraft-Launcher von Vibe Craft Studios für Windows, mit Instanzen, Mods, Modpacks und Skins.', en: 'Vibe Launcher: the Minecraft launcher for Windows by Vibe Craft Studios, with instances, mods, modpacks and skins.' }));
+    Launcher.mount(app, mods, signal).catch(console.error);
   } else if (route.kind === 'downloads') {
     app.innerHTML = Downloads.render(mods, dl);
     document.title = Downloads.title();
@@ -195,6 +202,7 @@ function modsPanel() {
   return `<div class="mods-panel-inner">${groups.map((g) => `<div class="mp-group${g.items.length > 2 ? ' wide' : ''}">
       <p class="mp-head mono">${head(g)}</p><div class="mp-list">${g.items.map(item).join('')}</div></div>`).join('')}
     <div class="mp-group mp-side"><p class="mp-head mono">${t({ de: 'Mehr', en: 'More' })}</p>
+      <a class="mp-link" href="/launcher/" data-link>Vibe Launcher <span>→</span></a>
       <a class="mp-link" href="/downloads/" data-link>${t({ de: 'Download-Center', en: 'Download center' })} <span>→</span></a>
       <a class="mp-link" href="/status/" data-link>${t({ de: 'Vibey-Status', en: 'Vibey status' })} <span>→</span></a>
       <a class="mp-link" href="https://github.com/vibec-studios" target="_blank" rel="noopener">GitHub <span>↗</span></a></div></div>`;
@@ -216,7 +224,7 @@ function buildNav() {
   const links = $('.nav-links');
   links.innerHTML = `<a href="/" data-link>${t({ de: 'Start', en: 'Home' })}</a>` +
     `<button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="mods-panel">Mods <span class="caret" aria-hidden="true"></span></button>` +
-    `<a href="/downloads/" data-link>Downloads</a><a href="/status/" data-link>Status</a>`;
+    `<a href="/launcher/" data-link>Launcher</a><a href="/downloads/" data-link>Downloads</a><a href="/status/" data-link>Status</a>`;
   let panel = $('.mods-panel');
   if (!panel) {
     panel = document.createElement('div');

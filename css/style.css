@@ -670,3 +670,29 @@ body[data-route="home"] .nav-cta { background: var(--brand); color: #fff; }
 .video-credit { margin: 12px 0 0; font: 12px/1.5 var(--mono); color: var(--dim); }
 .video-credit a { color: var(--muted); text-underline-offset: 3px; }
 .video-credit a:hover { color: var(--accent); }
+
+/* Vibe Launcher */
+.lp-hero { background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 22%, #000) 0%, #000 80%); }
+.lp-hero .hero-art { cursor: pointer; }
+.lp-meta b { color: #fff; font-weight: 600; }
+.lp-shot-sec { padding-top: 0; }
+.lp-main-shot { margin: 0; border: 1px solid var(--line2); background: #000; box-shadow: 0 40px 100px -40px color-mix(in srgb, var(--accent) 55%, transparent); }
+.lp-main-shot button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.lp-main-shot img { display: block; width: 100%; height: auto; }
+.lp-store { background: linear-gradient(180deg, #000, color-mix(in srgb, var(--accent) 9%, #000)); }
+.lp-store-grid, .lp-install-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.lp-store-mods { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.lp-store-mods a { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); background: var(--surface); color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600; transition: border-color .15s, box-shadow .15s; }
+.lp-store-mods a:hover { border-color: var(--line2); box-shadow: inset 3px 0 0 var(--accent); }
+.lp-store-mods .px-icon { width: 28px; height: 28px; }
+.lp-install-grid { align-items: start; }
+.lp-install .steps { margin-top: 20px; font-size: 16px; gap: 12px; }
+.lp-note { padding: 24px 26px; border: 1px solid var(--line2); border-left: 3px solid #ffb547; background: var(--surface); }
+.lp-note h3 { margin: 0 0 10px; font: 600 17px var(--sans); color: #fff; }
+.lp-note p { margin: 0 0 10px; color: var(--muted); font-size: 15px; }
+.lp-note b { color: #fff; }
+.lp-note a { color: var(--accent); }
+@media (max-width: 860px) { .lp-store-grid, .lp-install-grid { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 420px) { .lp-store-mods { grid-template-columns: 1fr; } }
+.nav-logo img, .foot-brand img, .warp-center img { image-rendering: auto; object-fit: contain; }
+@media (max-width: 520px) { .nav-links > a[href="/"] { display: none; } }
