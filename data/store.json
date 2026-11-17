@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-17T20:54:04Z",
+ "updated": "2026-11-17T21:10:11Z",
  "projects": [
   {
    "id": "hha",
@@ -670,7 +670,7 @@
     "equipment",
     "mobs"
    ],
-   "body": "HHA Arius ist ein Endgame-Addon für H&H Armors. Arius ist der Held unserer eigenen Light Novel „The White Blade“, die Mod ist eine freie Umsetzung davon. Brich das Siegel der Weißen Klinge in der Kälte, und der Schnee fällt nach oben: Du stehst im Heiligtum der Weißen Klinge, vor einem Schwertkämpfer, der jeden Fehler sieht. Sein Schwert Solvane wurde aus dem Herzen eines uralten weißen Drachen geschmiedet, und wenn er es loslässt, wird es wieder zu ihr.\n\n- Ein Duell in fünf Akten im Schneesturm, vom Tempel bis zum Himmelsbalkon\n- Solvane: Das Schwert wird zur Drachin und windet sich um eine Nadel aus Eis\n- Der Schnitt: eine Linie durch den Tempel, dann gleitet er auseinander\n- Die Drachenherz-Wacht, Solvane und Kampfhandschuhe mit Zauberrad\n\n## Die Drachenherz-Wacht\n\nArius’ Rüstung in Netherite-Form, perlweiß mit Altgold und eisblauen Fugen, dazu eine Krone aus Eishörnern, Schwingenplatten an den Schultern und ein Herz-Juwel, das pulsiert. Dazu Solvane und die Kampfhandschuhe von Arius.\n\n- **Arius’ Helm**\n- **Arius’ Brustpanzer**\n- **Arius’ Beinschienen**\n- **Arius’ Stiefel**\n- **Solvane**\n- **Arius’ Kampfhandschuhe**\n- **Herzfrost**\n- **Schuppe des weißen Drachen**\n\n## Fähigkeiten\n\n- **Weißer Kern**: Ein Kern aus weißem Licht schlägt mit voller Wucht alles von dir weg und zerschlägt anfliegende Geschosse.\n- **Frostschritt**: Ein Satz durch den Frost mit splitterndem Eis, kurz unberührbar im Nahkampf, über Wasser bleibt Eis zurück.\n- **Weißes Loch**: Mit vollem Set öffnest du ein weißes Loch, einen Kern, der drückt statt zieht.\n- **Klare Schneide**: Solvane laden, die Schnittebene ausrichten, loslassen: ein sauberer Schnitt, der sogar Holz und Stein teilt.\n- **Nahkampf**: Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle.\n- **Wind**: Windklingen, Sturmstöße und Sprünge, die dich hoch und weit tragen.\n- **Eis**: Frostsplitter, Eiswände und ein Panzer aus Eis, der Treffer abfängt.\n- **Yang**: Licht als Werkzeug: Plattformen, Brücken, ein Schild und ein Gleiter.\n- **Frostresonanz**: Rüstung, Handschuhe und Solvane teilen sich eine Kraft, die nur durch gutes Kämpfen wächst.\n\n## Das Duell im Heiligtum\n\nJeder Angriff wird am Boden angekündigt, und Gold heißt immer sicher. Vanilla-Bewegung, Schild und Bogen reichen zum Sieg. Wer fällt, verliert nichts und steigt im nächsten Teil wieder ein.\n\n- **Arius**: Ein Schwertkämpfer mit lesbaren Haltungen, Windschritten und einer Parade, die gierige Angriffe bestraft. Lässt er die Klinge los, wirbelt sie allein durch die Luft und jagt dich, während er mit Tritten nachsetzt.\n- **Solvane**: Arius lässt sein Schwert los, und es wird zu dem, was es einmal war: eine uralte weiße Drachin, gewunden um eine Nadel aus Eis. Im Kampf fließt ihr langer Körper in weiten Bögen durch die Luft, und Arius sieht ohne Klinge zu.\n- **Arius, Erbe des Weißen Drachen**: Er legt die dunkle Rüstung ab und kämpft in Weiß, Seite an Seite mit Solvane. Die beiden kämpfen im Takt: einer führt, der andere stützt.\n\n## Das Heiligtum der Weißen Klinge\n\nEine eigene Dimension, für jeden Versuch neu aus Vanilla-Blöcken gebaut und von einem Schneesturm umtost, der nie aufhört: Böen bis zum Whiteout, treibender Schnee und Frost am Bildrand.\n\n- **Der Tempel**: Eine stille Halle aus Eis und altem Stein, bis eine Linie sie in zwei Hälften teilt.\n- **Das Plateau**: Eis-Obelisken am Rand, halb eingestürzte Ruinenbögen und Dornenkristalle, darüber die Eisnadel mit Solvane.\n- **Der Himmelsbalkon**: Ein zerklüftetes Eisschelf hoch über der Schlucht, mit Kristallsäulen und Eiszapfen. Hier fällt die Entscheidung.\n\n## Installation\n\n1. Fabric Loader für Minecraft 1.21.11 mit Fabric API, Fabric Language Kotlin und H&H Armors installieren.\n2. Die HHA-Arius-Jar aus dem Download-Center in den `mods`-Ordner legen, auf Servern auch bei jedem Spieler.\n\n## Voraussetzungen\n\n- H&H Armors 0.8.0\n- Fabric API\n- Fabric Language Kotlin",
+   "body": "HHA Arius ist ein Endgame-Addon für H&H Armors. Arius ist der Held unserer eigenen Light Novel „The White Blade“, die Mod ist eine freie Umsetzung davon. Brich das Siegel der Weißen Klinge in der Kälte, und der Schnee fällt nach oben: Du stehst im Heiligtum der Weißen Klinge, vor einem Schwertkämpfer, der jeden Fehler sieht. Sein Schwert Solvane wurde aus dem Herzen eines uralten weißen Drachen geschmiedet, und wenn er es loslässt, wird es wieder zu ihr.\n\n- Ein Duell in fünf Akten im Schneesturm, filmisch inszeniert vom Tempel bis zum Himmelsbalkon\n- Solvane: Das Schwert wird zur Drachin und windet sich um den Gipfel eines Felshorns\n- Der Schnitt: eine Linie durch den Tempel, dann gleitet er auseinander\n- Die Drachenherz-Wacht, Solvane und Kampfhandschuhe mit Zauberrad\n\n## Die Drachenherz-Wacht\n\nArius’ Rüstung in Netherite-Form, perlweiß mit Altgold und eisblauen Fugen, dazu eine Krone aus Eishörnern, Schwingenplatten an den Schultern und ein Herz-Juwel, das pulsiert. Dazu Solvane und die Kampfhandschuhe von Arius.\n\n- **Arius’ Helm**\n- **Arius’ Brustpanzer**\n- **Arius’ Beinschienen**\n- **Arius’ Stiefel**\n- **Solvane**\n- **Arius’ Kampfhandschuhe**\n- **Herzfrost**\n- **Schuppe des weißen Drachen**\n\n## Fähigkeiten\n\n- **Drachenatem**: Die Rüstung atmet einen Kegel aus Frost, genau wie Solvane.\n- **Schwingensprung**: Ein weiter Sprung auf Lichtschwingen, und bei der Landung rollt eine Frost-Schockwelle über den Boden.\n- **Weißes Loch**: Mit vollem Set öffnest du ein weißes Loch: Es reißt Blöcke aus dem Boden, lässt sie kreisen und schleudert sie beim Kollaps davon.\n- **Klare Schneide**: Solvane laden, die Schnittebene ausrichten, loslassen: ein sauberer Schnitt, der sogar Holz und Stein teilt.\n- **Nahkampf**: Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle.\n- **Wind**: Windklingen, Sturmstöße, ein wandernder Wirbelsturm und Sprünge, die dich hoch und weit tragen.\n- **Eis**: Frostsplitter, Eiswände, eine Gletscherlanze und ein Panzer aus Eis, der Treffer abfängt.\n- **Yang**: Licht als Werkzeug: Plattformen, eine echte Brücke aus Licht mit Geländer, ein Schild und ein Gleiter.\n- **Frostresonanz**: Rüstung, Handschuhe und Solvane teilen sich eine Kraft, die nur durch gutes Kämpfen wächst.\n\n## Das Duell im Heiligtum\n\nJeder Angriff wird am Boden angekündigt, und Gold heißt immer sicher. Vanilla-Bewegung, Schild und Bogen reichen zum Sieg. Wer fällt, verliert nichts und steigt im nächsten Teil wieder ein.\n\n- **Arius**: Ein Schwertkämpfer mit lesbaren Haltungen, Windschritten und einer Parade, die gierige Angriffe bestraft. Lässt er die Klinge los, wirbelt sie allein durch die Luft und jagt dich, während er mit Tritten nachsetzt.\n- **Solvane**: Arius lässt sein Schwert los, und es wird zu dem, was es einmal war: eine uralte weiße Drachin, gewunden um den Gipfel eines Felshorns. Im Kampf fließt ihr langer Körper in weiten Bögen durch die Luft, und Arius sieht ohne Klinge zu.\n- **Arius, Erbe des Weißen Drachen**: Er legt die dunkle Rüstung ab und kämpft in Weiß, Seite an Seite mit Solvane. Die beiden kämpfen im Takt: einer führt, der andere stützt.\n\n## Das Heiligtum der Weißen Klinge\n\nEine eigene Dimension, für jeden Versuch neu aus Vanilla-Blöcken gebaut und von einem Schneesturm umtost, der nie aufhört, auch mit Shaderpacks: Böen bis zum Whiteout, treibender Schnee und Frost am Bildrand.\n\n- **Der Tempel**: Eine stille Halle aus Eis und altem Stein, bis eine Linie sie in zwei Hälften teilt.\n- **Das Felshorn**: Ein alpines Horn aus Fels mit Graten, Schneebändern und Eisrinnen, darunter ein weites, offenes Hochland mit Obelisken und Ruinenbögen.\n- **Der Himmelsbalkon**: Ein weites Felsschelf hoch über der Schlucht, mit Kristallsäulen und Eiszapfen. Hier fällt die Entscheidung.\n\n## Installation\n\n1. Fabric Loader für Minecraft 1.21.11 mit Fabric API, Fabric Language Kotlin und H&H Armors installieren.\n2. Die HHA-Arius-Jar aus dem Download-Center in den `mods`-Ordner legen, auf Servern auch bei jedem Spieler.\n\n## Voraussetzungen\n\n- H&H Armors 0.8.0\n- Fabric API\n- Fabric Language Kotlin",
    "links": {
     "website": "https://vibec-studios.github.io/mods/arius/",
     "source": "https://github.com/vibec-studios/hha-arius",
@@ -678,8 +678,49 @@
    },
    "license": "MIT",
    "published": "2026-11-16T16:42:21Z",
-   "updated": "2026-11-17T20:10:03Z",
+   "updated": "2026-11-17T21:02:42Z",
    "versions": [
+    {
+     "id": "1.4.0-HHA_Arius-1.4.0",
+     "version_number": "1.4.0",
+     "name": "HHA Arius 1.4.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-17T21:02:42Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "**HHA Arius 1.4.0 – alps, open arena and a QTE action scene.**\n\n### Landscape\n- The ice needle is now an **alpine rock horn** with four ridges, rock strata, snow bands and ice couloirs.\n- The terrain is rock and snow instead of ice.\n- **Open arena from the dragon fight on:** the glacier walls around the plateau are gone (except behind the temple), leaving a wide highland.\n- The Sky Balcony is larger and made of rock.\n\n### Finale QTE\nThe last exchange is a three-beat slow-motion action scene, each beat with its own camera and a closing-ring prompt:\n1. Dodge (jump).\n2. Blade lock (mash attack).\n3. Counter (use). Success disarms Arius.\n\n### Snowstorm with shader packs\n- A screen-space snow layer switches on automatically when an Iris shader pack is active.\n- `/ariusc snow auto|world|screen|both`\n\n### Abilities\n- **White Hole:** reworked after Void's black hole, reversed.\n  - It rips up real blocks, which circle the core and are hurled away on collapse.\n  - Ice crystals orbit, spiral light arms stream out, and light jets and tethers appear.\n- **Chestplate – Dragon Breath:** a 1.5 s frost cone that slows and freezes.\n- **Leggings – Wing Leap:** a long leap on wings of light with a frost shockwave on landing.\n- **Gauntlets:**\n  - **Tornado** (Wind): a travelling whirlwind.\n  - **Glacier Lance** (Ice): a charged giant ice spear.\n- **Yang Bridge:** now a real bridge with three lanes, railing posts, a glowing arch and light railings.\n\n### Cutscenes\n- A handheld camera feel and a film grade (vignette, grain) in all of Arius' scenes.\n\n### Balance\n- Arius' new attacks hit a little softer.\n- Axe kick ×1.7 on up to 3 targets.\n- Dragon Breath 1.8 per tick.\n- White Hole 16 damage.\n\n### Icons\n- New Solvane and gauntlet item icons.\n\n### Status\nBuilt and checked statically. **Not play-tested in the running game.** See `docs/TESTEN.md`. The far landscape is rebuilt once per instance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.4.0/HHA_Arius-1.4.0.jar",
+       "filename": "HHA_Arius-1.4.0.jar",
+       "size": 9355027,
+       "sha1": "064493bc755c9ade7004b58b49cede2c3933c683",
+       "sha256": "d4a61054f247d9bdfb9ad80cb85c10a8de422783b9a46be21f21b58433db3ee2",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
     {
      "id": "1.3.0-HHA_Arius-1.3.0",
      "version_number": "1.3.0",
