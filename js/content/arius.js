@@ -1,4 +1,4 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.2.0, Stand 17.11.2026).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.2.1, Stand 17.11.2026).
 // Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
 // Drachenherz-Wacht als eigenes 3D-Modell (armor/eirholm_armor.json, armor3d).
 // Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
@@ -14,7 +14,7 @@ export default {
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.2.0',
+  version: '1.2.1',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -42,8 +42,8 @@ export default {
       webm: 'video/trailer.webm', mp4: 'video/trailer.mp4', poster: 'video/trailer-poster.webp',
       label: S('Gameplay-Trailer von HHA Arius', 'HHA Arius gameplay trailer'),
       // Musik ist CC0 (keine Namensnennung nötig), die Zeile ist eine freiwillige Geste
-      credit: S('Musik: „Fall of Nightmares“ von nene (Stimmen: Helena Kesti, Matias Lindgren), CC0, via <a href="https://opengameart.org/content/fall-of-nightmares-epic-orchestral" target="_blank" rel="noopener">OpenGameArt</a>',
-        'Music: “Fall of Nightmares” by nene (vocals: Helena Kesti, Matias Lindgren), CC0, via <a href="https://opengameart.org/content/fall-of-nightmares-epic-orchestral" target="_blank" rel="noopener">OpenGameArt</a>'),
+      credit: S('Musik: „Fall of Nightmares“ und „Production Theme Intro“ von nene (Stimmen: Helena Kesti, Matias Lindgren), „Cinematic percussion loop“ von Marwan Antonios, alle CC0 via <a href="https://opengameart.org/content/fall-of-nightmares-epic-orchestral" target="_blank" rel="noopener">OpenGameArt</a>',
+        'Music: “Fall of Nightmares” and “Production Theme Intro” by nene (vocals: Helena Kesti, Matias Lindgren), “Cinematic percussion loop” by Marwan Antonios, all CC0 via <a href="https://opengameart.org/content/fall-of-nightmares-epic-orchestral" target="_blank" rel="noopener">OpenGameArt</a>'),
     },
 
     // ------------------------------------------------------------------ Rüstung und Waffen
