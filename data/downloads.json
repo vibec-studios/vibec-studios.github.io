@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T09:50:27Z",
+ "updated": "2026-11-17T09:53:26Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -392,6 +392,31 @@
   "arius": {
    "repo": "vibec-studios/hha-arius",
    "releases": [
+    {
+     "tag": "v1.2.0",
+     "version": "1.2.0",
+     "name": "HHA Arius 1.2.0 – Solvane, the blade that was a dragon",
+     "date": "2026-11-17T09:42:36Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/hha-arius/releases/tag/v1.2.0",
+     "assets": [
+      {
+       "name": "HHA_Arius-1.2.0.jar",
+       "size": 9271893,
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.2.0/HHA_Arius-1.2.0.jar",
+       "sha256": "37b1ddb795c306aa39f22d70715210c2dba2d37f083eb31de10b9227779f42a5",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-17T09:52:42Z",
+        "checked": "2026-11-17T09:53:26Z"
+       }
+      }
+     ]
+    },
     {
      "tag": "v1.1.0",
      "version": "1.1.0",
