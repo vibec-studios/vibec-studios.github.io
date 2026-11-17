@@ -1,4 +1,4 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.2.2, Stand 17.11.2026).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.3.0, Stand 17.11.2026).
 // Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
 // Rüstung seit 1.2.2: Netherite-Form (armor/eirholm_armor_base*.png) plus 3D-Akzente (armor/eirholm_armor.json, armor3d).
 // Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
@@ -14,7 +14,7 @@ export default {
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.2.2',
+  version: '1.3.0',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -28,7 +28,7 @@ export default {
     'HHA Arius is an endgame addon for H&H Armors. Arius is the hero of our own light novel “The White Blade”, and the mod is a free adaptation of it. Break the Seal of the White Blade somewhere cold and the snow starts falling upward: you stand in the Sanctum of the White Blade, facing a swordsman who sees every mistake. His sword Solvane was forged from the heart of an ancient white dragon, and when he lets go, it becomes her again.',
   ),
   highlights: [
-    S('Ein Duell in fünf Akten, vom Tempel bis zum letzten klaren Moment', 'A duel in five acts, from the temple to the last clear moment'),
+    S('Ein Duell in fünf Akten im Schneesturm, vom Tempel bis zum Himmelsbalkon', 'A duel in five acts in a snowstorm, from the temple to the Sky Balcony'),
     S('Solvane: Das Schwert wird zur Drachin und windet sich um eine Nadel aus Eis', 'Solvane: the sword becomes a dragon and coils around a needle of ice'),
     S('Der Schnitt: eine Linie durch den Tempel, dann gleitet er auseinander', 'The Cut: one line through the temple, then it slides apart'),
     S('Die Drachenherz-Wacht, Solvane und Kampfhandschuhe mit Zauberrad', 'The Dragonheart Watch, Solvane and gauntlets with a spell wheel'),
@@ -75,11 +75,11 @@ export default {
       items: [
         {
           name: S('Weißer Kern', 'White Core'), icon: 'hud/white_core.png',
-          desc: S('Ein Kern aus weißem Licht stößt alles von dir weg und zerschlägt anfliegende Geschosse.', 'A core of white light pushes everything away from you and shatters incoming projectiles.'),
+          desc: S('Ein Kern aus weißem Licht schlägt mit voller Wucht alles von dir weg und zerschlägt anfliegende Geschosse.', 'A core of white light blasts everything away from you and shatters incoming projectiles.'),
         },
         {
           name: S('Frostschritt', 'Frost Step'), icon: 'hud/frost_step.png',
-          desc: S('Ein Schritt durch den Frost, kurz unberührbar im Nahkampf, über Wasser bleibt Eis zurück.', 'A step through the frost, briefly untouchable in melee, leaving ice on the water behind you.'),
+          desc: S('Ein Satz durch den Frost mit splitterndem Eis, kurz unberührbar im Nahkampf, über Wasser bleibt Eis zurück.', 'A dash through the frost with shattering ice, briefly untouchable in melee, leaving ice on the water behind you.'),
         },
         {
           name: S('Weißes Loch', 'White Hole'), icon: 'hud/art_white_hole.png',
@@ -91,7 +91,7 @@ export default {
         },
         {
           name: S('Nahkampf', 'Melee'), icon: 'hud/art_mode_melee.png',
-          desc: S('Mit den Kampfhandschuhen kämpfst du mit Fäusten und Tritten, vom Aufwärtshaken bis zum Axttritt mit Frostwelle.', 'The gauntlets let you fight with fists and kicks, from an uppercut to an axe kick with a frost wave.'),
+          desc: S('Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle.', 'Gauntlets with dragon wings, spikes and a glowing ice band: fists and kicks, from an uppercut to an axe kick with a frost wave.'),
         },
         {
           name: S('Wind', 'Wind'), icon: 'hud/art_school_wind.png',
@@ -130,8 +130,8 @@ export default {
           color: '#6cc4ff',
           segments: 2,
           desc: S(
-            'Ein Schwertkämpfer mit lesbaren Haltungen, Windschritten und einer Parade, die gierige Angriffe bestraft. Je länger der Kampf dauert, desto ernster nimmt er dich.',
-            'A swordsman with readable stances, wind steps and a parry that punishes greedy attacks. The longer the fight lasts, the more seriously he takes you.',
+            'Ein Schwertkämpfer mit lesbaren Haltungen, Windschritten und einer Parade, die gierige Angriffe bestraft. Lässt er die Klinge los, wirbelt sie allein durch die Luft und jagt dich, während er mit Tritten nachsetzt.',
+            'A swordsman with readable stances, wind steps and a parry that punishes greedy attacks. When he lets go of his blade, it whirls through the air on its own and hunts you while he follows up with kicks.',
           ),
           trick: S(
             'Nicht immer dasselbe tun: Er passt sich an wiederholte Taktiken an. Und wenn eine Linie durch den Tempel läuft, nicht darauf stehen.',
@@ -143,7 +143,7 @@ export default {
           ),
           loot: S('Am Ende des Duells: Solvane, die Kampfhandschuhe, Herzfrost und die Schmiedevorlage Drachenherz.', 'At the end of the duel: Solvane, the gauntlets, Heartfrost and the Dragonheart smithing template.'),
           phases: [
-            { name: S('I · Der Tempel', 'I · The Temple'), desc: S('Arius allein: Schwertkombos, Windschritte, Frostwände, die Fluchtwege schließen.', 'Arius alone: sword combos, wind steps, frost walls that close escape routes.') },
+            { name: S('I · Der Tempel', 'I · The Temple'), desc: S('Arius allein im Schneesturm: Schwertkombos, Klingenflug, Frostdornen aus dem Boden und Frostwände, die Fluchtwege schließen.', 'Arius alone in the snowstorm: sword combos, the flying blade, frost thorns from the ground and frost walls that close escape routes.') },
             { name: S('II · Der Schnitt', 'II · The Cut'), desc: S('Der Wind dreht, die Halle wird still, eine einzige Linie kreuzt den Tempel. Dann tritt er dich durch das brechende Tor.', 'The wind turns, the hall goes silent, a single line crosses the temple. Then he kicks you through the breaking gate.') },
           ],
           moves: [
@@ -190,7 +190,7 @@ export default {
           model: 'arius_white',
           texture: null,
           name: S('Arius, Erbe des Weißen Drachen', 'Arius, Heir of the White Dragon'),
-          sub: S('Das Herz des Gletschers', 'The Heart of the Glacier'),
+          sub: S('Der Himmelsbalkon', 'The Sky Balcony'),
           color: '#ffffff',
           segments: 2,
           desc: S(
@@ -201,11 +201,11 @@ export default {
             'Brich den Takt, dann steht der Partner offen. Resonanzangriffe haben immer einen klaren sicheren Weg.',
             'Break the rhythm and the partner is open. Resonance attacks always have a clear safe path.',
           ),
-          where: S('Im Herzen des Gletschers, nachdem Solvane durch das Eis gebrochen ist.', 'In the heart of the glacier, after Solvane has crashed through the ice.'),
+          where: S('Auf dem Himmelsbalkon, einem Eisschelf hoch an der Nadel. Beim Gletschersturz trägt Solvanes Lichtstrom alle hinauf.', 'On the Sky Balcony, an ice shelf high on the needle. When the glacier collapses, Solvane’s stream of light carries everyone up.'),
           loot: S('Wer ohne K. o. gewinnt, bekommt die Schmiedevorlage „Weiße Klinge“.', 'Win without anyone getting knocked out and you get the “White Blade” smithing template.'),
           phases: [
-            { name: S('IV · Im Takt', 'IV · In Rhythm'), desc: S('Arius mit einer Klinge aus Eislicht und Solvane gemeinsam, und einmal im Kampf: das weiße Loch.', 'Arius with a blade of ice light and Solvane together, and once per fight: the white hole.') },
-            { name: S('V · Der letzte klare Moment', 'V · The Last Clear Moment'), desc: S('Kein Sturm mehr: Die Drachin kehrt in die Scheide zurück. Drei Wechsel gegen seinen Schnitt aus der Scheide.', 'No more storm: the dragon returns to the scabbard. Three exchanges against his cut from the sheath.') },
+            { name: S('IV · Im Takt', 'IV · In Rhythm'), desc: S('Arius mit einer Klinge aus Eislicht und Solvane gemeinsam, dazu ein Kranz aus Frostdornen und einmal im Kampf das weiße Loch.', 'Arius with a blade of ice light and Solvane together, plus a ring of frost thorns and, once per fight, the white hole.') },
+            { name: S('V · Der letzte klare Moment', 'V · The Last Clear Moment'), desc: S('Die Drachin kehrt als Licht in die Scheide zurück. Am Ende binden sich die Klingen, und du musst seine Deckung brechen.', 'The dragon returns to the scabbard as light. In the end the blades bind, and you have to break his guard.') },
           ],
           moves: [
             { n: S('White Null', 'White Null'), p: ['null_wind', 'null_hit', 'null_follow'] },
@@ -224,8 +224,8 @@ export default {
       type: 'world',
       title: S('Das Heiligtum der Weißen Klinge', 'The Sanctum of the White Blade'),
       lead: S(
-        'Eine eigene Dimension, für jeden Versuch neu aus Vanilla-Blöcken gebaut. In deiner Welt geht nie etwas kaputt.',
-        'A dimension of its own, rebuilt from vanilla blocks for every attempt. Nothing in your world ever breaks.',
+        'Eine eigene Dimension, für jeden Versuch neu aus Vanilla-Blöcken gebaut und von einem Schneesturm umtost, der nie aufhört: Böen bis zum Whiteout, treibender Schnee und Frost am Bildrand.',
+        'A dimension of its own, rebuilt from vanilla blocks for every attempt and lashed by a snowstorm that never stops: gusts up to a whiteout, drifting snow and frost at the edge of the screen.',
       ),
       cards: [
         {
@@ -234,13 +234,13 @@ export default {
           colors: ['#2b3446', '#5d6b82', '#a9bad0', '#e6eef7', '#c9a24e'],
         },
         {
-          name: S('Die Nadel', 'The Needle'),
-          desc: S('Eine gewaltige Eisspitze über einer tiefen Schlucht, Solvane um sie gewunden.', 'A huge spire of ice above a deep canyon, with Solvane coiled around it.'),
+          name: S('Das Plateau', 'The Plateau'),
+          desc: S('Eis-Obelisken am Rand, halb eingestürzte Ruinenbögen und Dornenkristalle, darüber die Eisnadel mit Solvane.', 'Ice obelisks at the edge, half-collapsed ruined arches and thorn crystals, above them the needle of ice with Solvane.'),
           colors: ['#7fa3c8', '#a9c9e6', '#d2e4f4', '#f8f9fb', '#4f5663'],
         },
         {
-          name: S('Das Herz des Gletschers', 'The Heart of the Glacier'),
-          desc: S('Tief im Eis, wo weißes Licht und blaue Resonanz den Takt vorgeben.', 'Deep in the ice, where white light and blue resonance set the rhythm.'),
+          name: S('Der Himmelsbalkon', 'The Sky Balcony'),
+          desc: S('Ein zerklüftetes Eisschelf hoch über der Schlucht, mit Kristallsäulen und Eiszapfen. Hier fällt die Entscheidung.', 'A jagged ice shelf high above the canyon, with crystal pillars and icicles. This is where it ends.'),
           colors: ['#0e1a2e', '#24497a', '#4ee0f5', '#c4fbff', '#ffffff'],
         },
       ],
