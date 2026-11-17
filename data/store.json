@@ -1,0 +1,2313 @@
+{
+ "format": "vibe-store",
+ "version": 1,
+ "id": "vibe-craft-studios",
+ "name": "Vibe Craft Studios",
+ "icon": "https://vibec-studios.github.io/favicon.svg",
+ "homepage": "https://vibec-studios.github.io/",
+ "description": "Mods von Vibe Craft Studios",
+ "updated": "2026-11-17T20:54:04Z",
+ "projects": [
+  {
+   "id": "hha",
+   "slug": "hha",
+   "title": "H&H Armors",
+   "description": "Zwei rivalisierende Endgame-Rüstungen, der Olymp als Inselwelt über den Wolken, der Tartaros darunter und zwölf Bosskämpfe dazwischen.",
+   "author": "Vibe Craft Studios",
+   "icon": "https://vibec-studios.github.io/assets/mods/hha/icon.png",
+   "project_type": "mod",
+   "categories": [
+    "adventure",
+    "equipment",
+    "mobs",
+    "worldgen"
+   ],
+   "body": "Die Grundlage des Studios: zwei vollwertige Endgame-Sets mit eigenen Fähigkeiten, Schwert und Streitkolben. Die Heaven-Rüstung erkämpfst du dir auf dem Olymp bis hinauf zu Zeus, die Hell-Rüstung im Tartaros bei Hades und Kronos.\n\n- Heaven- und Hell-Set mit Schwert und Mace als echte 3D-Modelle\n- Der Olymp: schwebende Inseln, Hermes, Hekate, Brontes, Kratos und Zeus\n- Der Tartaros: fünf Wächter, Hades und Kronos\n- RPG-Modus als eigenes Spiel: Lobby per Code, Lichttunnel, Kapitel und Abspann\n\n## Wähle deine Seite\n\nJedes Teil hat ein eigenes Passiv, das volle Set schaltet weitere frei. Jedes Teil ist eine Reliquie und fällt in jeder Welt genau einmal, bei seinem Boss.\n\n- **Heaven**: Weißes Netherite mit Goldverzierung. Licht, Heilung und Höhe.\n- **Hell**: Dunkles Netherite mit blauem Seelenfeuer. Wut, Lava und Ketten.\n\n## Aktive Fähigkeiten\n\nStrahlen, Wurfwaffen, Ketten und ein Ultra-Modus ohne Abklingzeit. Eine Leiste über der Hotbar zeigt, was bereit ist.\n\n- **Lichtstrahl**: Volles Heaven-Set. Ein Strahl, der Gegner schädigt, Teammitglieder aber heilt und entgiftet.\n- **Lavastrahl**: Volles Hell-Set. Der Strahl der Hölle.\n- **Fire Camp**: Hell-Beinschutz. Beschwört Piglin-Brute-Leibwächter und ein Seelenlager, das wieder verschwindet, sobald die Brutes tot sind.\n- **Ultra-Modus**: Volles Set. Eine Minute lang setzen deine Fähigkeiten keinen Cooldown.\n- **Lichtwelle**: Heaven's Sword. Schleudert Gegner in einer Linie weg.\n- **Höllenrausch**: Hell's Sword. Schnellere Schläge, jeder Treffer crittet, und Crits geben Goldapfel-Absorption.\n- **Mace-Wurf**: Heaven's Mace. Fliegt weit, trifft alles auf dem Weg mit Blitzen und kommt zurück.\n- **Kette & Enterhaken**: Hell's Mace. Zieht Gegner heran oder wird zum Enterhaken. Der Kopf hängt an einer echten, schwingenden Kette.\n\n## Bestiarium\n\nJeder Boss hat ein eigenes Modell, eigene Animationen und einen Trick, der Können belohnt. Das hier sind die echten Modelle aus der Mod: wähle in der Hotbar, dreh mit der Maus und spiel die Angriffe ab.\n\n## Der Olymp\n\nSchwebende Inseln über einem Wolkenmeer, erreichbar durch ein Wolkentor aus Glowstone. Ein fester Pfad aus Inseln und Brücken führt hinauf zum Thron des Zeus.\n\n- **Tempel des Boten**: Ein Tempel unter Zypressen und Kirschblüten. Hier wartet Hermes.\n- **Dreiweg der Hekate**: Drei Wege treffen sich am Altar. Im Nordwesten liegt das vermauerte Höllentor.\n- **Schmiede der Kyklopen**: Amboss, glühende Roste und eine Esse mit Rauchsäule. Das Reich von Brontes.\n- **Stufen der Macht**: Ein Platz vor einer Freitreppe, zwei Sockel. Kratos kommt die Treppe herab.\n- **Thron des Zeus**: Ein Hof mit Kupferpfeilern unter einer Gewitterwolke. Das Ziel des Pfads.\n- **Himmelsinseln**: Wiesen, Ruinen mit Beutetruhen, Wolkenbänke und Posten der Kureten.\n\n## Der Tartaros\n\nHinter Hekates Höllentor: ein ödes Land aus Schwarzstein unter blutrotem Himmel. Fünf Wächter halten die Kette am Palast des Hades, und erst wenn alle fallen, öffnet sich das Siegel.\n\n- **Aschenöde**: Schwarzstein mit grauen Ascheverwehungen unter rotem Dunst, tote Bäume, selten das Gerippe eines Riesen.\n- **Asphodeloswiesen**: Bleiche Geisterwiese aus Tuff, Blassmoos und Kalk, weiße Blüten, tote Blasseichen.\n- **Phlegethon**: Verbrannter Basalt mit schmalen Glutadern und niedrigen Basaltschloten.\n- **Kokytos**: Tiefenschiefer mit Eisschollen, Blaueis-Rissen und Reif, Gestalten im Eis.\n- **Erebos**: Fast schwarz: Obsidian und Sculk unter dichtem Nebel, niedrige Obsidian-Stelen.\n- **Sümpfe des Styx**: Ausgetrockneter Sumpf: Lehm mit Trockenrissen, Seelenerde, Wurzelstümpfe.\n\n## Mehr als ein Kampf\n\nJeder Boss hat seinen Auftritt: eigene Effekte, eine geführte Kamera und Musik, die mit dem Kampf wächst.\n\n- **Inszenierte Cutscenes**: Auftritt, Phasenwechsel und Niederlage jedes Bosses mit geführter Kamera, alles überspringbar.\n- **Musik je Phase**: Jeder Boss bekommt eigene Musik für jede Phase, mit weichen Übergängen und einem Siegesmotiv.\n- **Effekte mit Wucht**: Lichtspuren, Risse, Flammen und Wasserwände, fliegende Bodenblöcke und glühende Risse im Boden.\n- **RPG als eigenes Spiel**: Kapitel mit Zielen und Richtungspfeil, Tagebuch, eigenes HUD und ein Ende mit Abspann.\n- **Tunnel-Lobby**: Die Gruppe schwebt gemeinsam durch einen Tunnel aus Licht, bis alle angekommen sind.\n- **Ruhig, wenn du willst**: Kamerawackeln, Bildschirmeffekte und Handkamera lassen sich einzeln abschalten.\n\n## Installation\n\n1. Fabric Loader für Minecraft 1.21.11 installieren\n2. Fabric API und Fabric Language Kotlin in den mods-Ordner legen\n3. Die HHA-Jar dazu, auf Client und Server\n\n## Voraussetzungen\n\n- Fabric API\n- Fabric Language Kotlin",
+   "gallery": [
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/hha/img/olymp_thron.webp",
+     "title": "Thron des Zeus",
+     "description": "Ein Säulenhof mit Kupferpfeilern, der Thron im Norden, die Gewitterwolke darüber."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/hha/img/olymp_tempel.webp",
+     "title": "Tempel des Boten",
+     "description": "Hermes' Tempel mit den vier Opfersteinen."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/hha/img/olymp_dreiweg.webp",
+     "title": "Dreiweg der Hekate",
+     "description": "Der Platz mit drei Wegen und dem Höllentor."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/hha/img/olymp_schmiede.webp",
+     "title": "Schmiede der Kyklopen",
+     "description": "Amboss, Roste über Glut und die Esse."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/hha/img/olymp_stufen.webp",
+     "title": "Stufen der Macht",
+     "description": "Der Platz der Thronwache vor der Freitreppe."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/hha/img/palast.webp",
+     "title": "Palast des Hades",
+     "description": "Rippenkuppel, Ecktürme mit Feuerschalen, ein Propylon mit Obelisken, der Styx als Graben."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/hha/img/feste.webp",
+     "title": "Bronzefeste",
+     "description": "Hesiods eherne Mauer mit gestuftem Bergfried."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/hha/img/kerker.webp",
+     "title": "Titanenkerker",
+     "description": "Geneigte Kettenpylone über der Grube eines angeketteten Titanen."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/hha/img/sisyphos.webp",
+     "title": "Stätte des Sisyphos",
+     "description": "Flacher Hügel mit Spiralbahn und glühendem Felsen."
+    }
+   ],
+   "links": {
+    "website": "https://vibec-studios.github.io/mods/hha/",
+    "source": "https://github.com/vibec-studios/HHA",
+    "issues": "https://github.com/vibec-studios/HHA/issues"
+   },
+   "license": "MIT",
+   "published": "2026-07-14T19:16:54Z",
+   "updated": "2026-11-17T19:29:58Z",
+   "versions": [
+    {
+     "id": "0.8.5-HHA-0.8.5",
+     "version_number": "0.8.5",
+     "name": "H&H Armors 0.8.5 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-17T19:29:58Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "The big one: Olympus, the RPG mode and a complete rework of how every boss looks, moves and sounds.\n\n**Bosses**\n- New effect system for every boss, warden and Olympus enemy: smooth shader effects (light trails, rifts, flames, water walls, runes), real floor blocks that fly and land, glowing ground cracks\n- Screen passes at key moments: shock ripple, heat haze, Hekate's lunar eclipse, Kronos' time stop and gravity lens\n- Staged cutscenes for intros, phase changes and defeats with a guided camera, all skippable\n- Music per phase with smooth crossfades and victory stingers; capes, beards, wings and chains swing with springs\n\n**RPG mode**\n- New **HHA RPG** button in the main menu: pick Heaven or Hell, open a lobby and play with friends via a six-letter code\n- Tunnel lobby: your group floats in the armor of its path through a tunnel of light and flies straight into the arrival cutscene, no loading screens\n- Plays like its own game: chapters with goals and a direction arrow, island scenes, act end, an ending with credits, own HUD, journal (J), pause menu, death screen and rests\n\n**Also new since 0.6.2**\n- Olympus as a world of islands above the clouds with the path to Zeus, Hekate, Brontes, Kratos and Bia, plus the Tartarus wardens\n- New weapon models, physically simulated chains on the Hells Mace\n- Bosses are tougher and hit harder\n\nFull list in the [changelog](https://github.com/vibec-studios/HHA/blob/new/CHANGELOG.md). For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.8.5/HHA-0.8.5.jar",
+       "filename": "HHA-0.8.5.jar",
+       "size": 28120404,
+       "sha1": "0833f5e942342d12734ca5f7edfe7faa4b2e0992",
+       "sha256": "b44d23c4192b3ca522f49619321cd91cf85c840cf833f9335489fabd4821ccd4",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.6.2-HHA-0.6.2",
+     "version_number": "0.6.2",
+     "name": "H&H Armors 0.6.2 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-17T10:02:39Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "New: sneaking during a grapple lets go of the chain — your momentum is cut and you drop. Works mid-flight on block grapples and while riding a projectile grapple; letting go also disarms the pending bounce dash. Sneaking while firing doesn't cancel — the release only arms once you release sneak. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.6.2/HHA-0.6.2.jar",
+       "filename": "HHA-0.6.2.jar",
+       "size": 415452,
+       "sha1": "5163b4a695b323e2b9b94e62db821dbc73c45c9c",
+       "sha256": "70db41f8e43ff78086296308dc1312d11abae6bac1b0dcaa7053013837f39c37",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.6.1-HHA-0.6.1",
+     "version_number": "0.6.1",
+     "name": "H&H Armors 0.6.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-17T09:33:49Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Fixed: the 2-quick-uses-then-20s charge system now covers ALL Hell's Mace chain uses — block grapple, projectile grapple and enemy pull share one pool (previously only the pull was charged, so quick double-grapples never worked). New config keys chain_charges/chain_cooldown/chain_recharge replace the old pull_*/grapple_cooldown keys, so stale saved configs no longer interfere. Heaven's Sword texture: the gold energy groove now runs up to just below the tip and connects properly across the guard, in all three animation frames. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.6.1/HHA-0.6.1.jar",
+       "filename": "HHA-0.6.1.jar",
+       "size": 411658,
+       "sha1": "97ff3b15413e0c12d83e561769c3efb1e91fbc75",
+       "sha256": "9a31c2035baafc1bc4825f11c753d3989e7751f254319ac0dba011b62f1295c0",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.6.0-HHA-0.6.0",
+     "version_number": "0.6.0",
+     "name": "H&H Armors 0.6.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-16T11:40:43Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Kits are now auto-generated from every registered armor set — including addon sets: /hha kit <set> (tab completion; addon sets as <addonid>.<path>) equips fully enchanted armor, the set weapons by role convention (first = sword enchants, second = mace enchants) and the standard SMP loadout. New /hha addons command lists loaded addons with everything they registered. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.6.0/HHA-0.6.0.jar",
+       "filename": "HHA-0.6.0.jar",
+       "size": 410991,
+       "sha1": "378aed03dc650d1e220146d93292e77c65da2dfa",
+       "sha256": "8ece8e26298e7fb43394bc55723bc0e03178b13a14be3fb4b1cf4bb8a27d3af9",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.5.1-HHA-0.5.1",
+     "version_number": "0.5.1",
+     "name": "H&H Armors 0.5.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-16T11:09:36Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Fixed: Fire Camp no longer vanishes while Brutes are alive — camp and Brutes now last 10 minutes, and the camp only reverts when all its Brutes are dead (unloaded chunks no longer count as dead). Hell's Mace chain charges now refill fully 20s after the last use, so single pulls don't eat into the next fight's charges. New ability-matched HUD icons: expanding light wave for Heaven's Sword, redrawn Heaven's Mace and lava beam. Allied Brutes' Sharpness V axe shows its glint again. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.5.1/HHA-0.5.1.jar",
+       "filename": "HHA-0.5.1.jar",
+       "size": 406784,
+       "sha1": "a1d5010bff4b946ffab3e443bb8a78e59ca65ae4",
+       "sha256": "ded131c20ece27374ed56834bbcc0753253e8cdd06e74a73889c5322dd87491f",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.5.0-HHA-0.5.0",
+     "version_number": "0.5.0",
+     "name": "H&H Armors 0.5.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-16T10:10:14Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Complete addon API: six generic ability keybinds (Ability 1-6 — 1-3 keep G/H/U for beam, Fire Camp and Ultra; 4-6 start unbound and are free for addons), the ability model is now explicitly 'ability key -> equipment check -> function' with per-ability faction gates, and a new lore API lets addons register dynamic tooltips showing live config values just like the built-in items. /hha list groups addon settings per addon. Note: keybind IDs were renamed, so custom G/H/U rebinds reset once. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.5.0/HHA-0.5.0.jar",
+       "filename": "HHA-0.5.0.jar",
+       "size": 406500,
+       "sha1": "e2b1f5456f2ac0500a4fb5d9a9e05edd6298d5be",
+       "sha256": "2d80371dae37e667d5cd8cb056ecdc716cb43ea6508451ceb25a0620d0e61da6",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.4.1-HHA-0.4.1",
+     "version_number": "0.4.1",
+     "name": "H&H Armors 0.4.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-16T09:38:36Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Config cleanup: all HHA config files now live under config/hha/ — config/hha/hha.json (settings), config/hha/factions.json and config/hha/trust.json, next to the custom recipes already in config/hha/datapack/. Existing files (config/hha.json etc.) are migrated automatically on first launch, so no settings are lost. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.4.1/HHA-0.4.1.jar",
+       "filename": "HHA-0.4.1.jar",
+       "size": 393951,
+       "sha1": "858bac68938c58ebd1ffdca28efbcbd3fc8ddbe5",
+       "sha256": "6625700feff84c902f0844241141b93ff64676dab1e32a0fc8360719dcf221ab",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.4.0-HHA-0.4.0",
+     "version_number": "0.4.0",
+     "name": "H&H Armors 0.4.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-15T20:53:58Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Hell's Mace chain-pull is now a charge system: 2 quick chains (2s apart), then a 20s recharge (all configurable). Each beam gets its own new HUD cooldown icon — a radiant light pillar for Heaven, a molten lance for Hell — plus a brand-new lightning-struck Heaven's Mace icon. Allied Piglin Brutes are much tankier: 250 HP, Sharpness V axe, permanent Strength II and invisible Protection-II-tier armor. Light Wave now follows your full look direction instead of always firing flat. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.4.0/HHA-0.4.0.jar",
+       "filename": "HHA-0.4.0.jar",
+       "size": 392310,
+       "sha1": "ad3301d331f836076af2ac3c6e634989fce98712",
+       "sha256": "6fe9955872ca32ee4029864cbf50185c19f82d369c9f4481d86651e228ac963e",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.3.3-HHA-0.3.3",
+     "version_number": "0.3.3",
+     "name": "H&H Armors 0.3.3 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-15T20:12:13Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "HUD cooldown icons sharpened (deeper shadows, brighter highlights, theme-tinted outlines). Allied Piglin Brutes now have 100 HP and wield a Sharpness IV diamond axe in the Hell's Sword soul-fire look — no glint, soul flames from the axe hand. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.3/HHA-0.3.3.jar",
+       "filename": "HHA-0.3.3.jar",
+       "size": 387411,
+       "sha1": "5b0be35a23972227c37b02115b5d2fa2d2d92a07",
+       "sha256": "e3c2b8a8e176c9cbe3d10cde95d5ba956e2141f4f14b52b85eca5cba3e922fa3",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.3.2-HHA-0.3.2",
+     "version_number": "0.3.2",
+     "name": "H&H Armors 0.3.2 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-15T20:01:47Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Particle settings reworked: `particle_player` scales only the idle particles on the player (orbit glow, armor/hand flames, halo ring, ...), `particle_effects` scales ability and impact effects — functional visuals like the grapple/fire chain are never thinned. New menu: /hha settings particles player|effects <0..1>. Replaces particle_multiplier from 0.3.0. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.2/HHA-0.3.2.jar",
+       "filename": "HHA-0.3.2.jar",
+       "size": 386173,
+       "sha1": "83418dce96060025ca5b4f0bfeb86f5907c214f8",
+       "sha256": "5c1ff2092cfeb9818d05d9d4b12a89d0acdc9819b289d46153bb882080b40b2f",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.3.1-HHA-0.3.1",
+     "version_number": "0.3.1",
+     "name": "H&H Armors 0.3.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-15T19:42:50Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Fixed: Magma Stomp lava pools really do remove themselves now — the cleanup used removeBlock(), which in vanilla re-places the fluid at that position, so removing lava was a no-op and the pool stayed forever. New: `stomp_lava_lifetime` config value (ticks, default 40 = 2s) controls how long the pool lasts. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.1/HHA-0.3.1.jar",
+       "filename": "HHA-0.3.1.jar",
+       "size": 385003,
+       "sha1": "cf8c5846e28d81a660c8b245831a5410269a6edf",
+       "sha256": "edb3290858718888158a9153381ac3a2a88f6457653e1d2a270f5444f8726a1b",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.3.0-HHA-0.3.0",
+     "version_number": "0.3.0",
+     "name": "H&H Armors 0.3.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-15T19:36:39Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "New: `particle_multiplier` config value scales all HHA particle effects (e.g. /hha set particle_multiplier 0.3; 0 = off). Item lore now shows the real config values — damage, cooldowns and thresholds are synced from the server and update live when admins change the config. New admin commands: /hha save, /hha load, /hha reload. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.3.0/HHA-0.3.0.jar",
+       "filename": "HHA-0.3.0.jar",
+       "size": 384952,
+       "sha1": "53f68ae4f265ded8c14b80edd2593a20186458fe",
+       "sha256": "d2718e56afbf4e9461de5175ff8845bd08909aeaf171617bcba55f80df84f02f",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.2.1-HHA-0.2.1",
+     "version_number": "0.2.1",
+     "name": "H&H Armors 0.2.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-15T19:20:36Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Fixed: Heaven's Step (light trail) now triggers from actual movement — it previously only appeared while another player was pushing you. Changed: rebalanced default config (kit mode on, higher ability damage, longer cooldowns, Magma Stomp from 10+ blocks). Existing config/hha.json files keep their saved values — run /hha reset to adopt the new defaults. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.2.1/HHA-0.2.1.jar",
+       "filename": "HHA-0.2.1.jar",
+       "size": 373501,
+       "sha1": "aac89cedebd95d875407857a584514d23148de8c",
+       "sha256": "e19342f27e34e409d5ed1a109252e7ca18945d1ff9a7c0451d9895fd73882af7",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.2.0-HHA-0.2.0",
+     "version_number": "0.2.0",
+     "name": "H&H Armors 0.2.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-15T18:56:44Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Keybinds are now listed as Ability 1-3 in the controls menu (lore and /info updated to match). Heaven's Mace throw damage is now configurable via `mace_throw_damage` (default 5) — the lightning strikes are purely visual. Halo now heals only trusted players in range. Fixed: Magma Stomp lava pools clean themselves up reliably. For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.2.0/HHA-0.2.0.jar",
+       "filename": "HHA-0.2.0.jar",
+       "size": 373227,
+       "sha1": "f6ee57ee38476e0007667f521fc77b5fa22dcb26",
+       "sha256": "f425f3ad886a1259aaedec450617716dfebe56a10aa43177ba1f77e9957c1ba3",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.1.0-HHA-0.1.0",
+     "version_number": "0.1.0",
+     "name": "H&H Armors 0.1.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-15T16:11:55Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Addon system: other mods can now hook into HHA via the `hha` / `hha_client` entrypoints and register armor sets, abilities on the existing keybinds, config keys and cooldown HUD slots. See ADDONS.md (quickstart) and docs/ (reference). For Minecraft 1.21.11 (Fabric); requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.1.0/HHA-0.1.0.jar",
+       "filename": "HHA-0.1.0.jar",
+       "size": 371338,
+       "sha1": "14e6045a8561790e0c77ac5249eb4fee837f8d73",
+       "sha256": "5fb549637a2b920b6bc90791ee1dab5fc241170eb091df2dcccf025e5fbed452",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "0.0.1-HHA-0.0.1",
+     "version_number": "0.0.1",
+     "name": "H&H Armors 0.0.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-07-14T19:16:54Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Initial release for Minecraft 1.21.11 (Fabric). See CHANGELOG.md for the full feature list. Requires Fabric API and Fabric Language Kotlin.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/HHA/releases/download/v0.0.1/HHA-0.0.1.jar",
+       "filename": "HHA-0.0.1.jar",
+       "size": 323003,
+       "sha1": "4215fbb11e94ca18e8854bdc49522465ca658206",
+       "sha256": "eabab77a9f9a1a20ade7f149eacde318945ec34ab4179d49c5bcfccfb7f52bcf",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "arius",
+   "slug": "arius",
+   "title": "HHA Arius",
+   "description": "Die weiße Klinge: ein Duell gegen Arius und Solvane, die weiße Drachin, die in seinem Schwert lebt, dazu die Drachenherz-Wacht.",
+   "author": "Vibe Craft Studios",
+   "icon": "https://vibec-studios.github.io/assets/mods/arius/icon.png",
+   "project_type": "mod",
+   "categories": [
+    "adventure",
+    "equipment",
+    "mobs"
+   ],
+   "body": "HHA Arius ist ein Endgame-Addon für H&H Armors. Arius ist der Held unserer eigenen Light Novel „The White Blade“, die Mod ist eine freie Umsetzung davon. Brich das Siegel der Weißen Klinge in der Kälte, und der Schnee fällt nach oben: Du stehst im Heiligtum der Weißen Klinge, vor einem Schwertkämpfer, der jeden Fehler sieht. Sein Schwert Solvane wurde aus dem Herzen eines uralten weißen Drachen geschmiedet, und wenn er es loslässt, wird es wieder zu ihr.\n\n- Ein Duell in fünf Akten im Schneesturm, vom Tempel bis zum Himmelsbalkon\n- Solvane: Das Schwert wird zur Drachin und windet sich um eine Nadel aus Eis\n- Der Schnitt: eine Linie durch den Tempel, dann gleitet er auseinander\n- Die Drachenherz-Wacht, Solvane und Kampfhandschuhe mit Zauberrad\n\n## Die Drachenherz-Wacht\n\nArius’ Rüstung in Netherite-Form, perlweiß mit Altgold und eisblauen Fugen, dazu eine Krone aus Eishörnern, Schwingenplatten an den Schultern und ein Herz-Juwel, das pulsiert. Dazu Solvane und die Kampfhandschuhe von Arius.\n\n- **Arius’ Helm**\n- **Arius’ Brustpanzer**\n- **Arius’ Beinschienen**\n- **Arius’ Stiefel**\n- **Solvane**\n- **Arius’ Kampfhandschuhe**\n- **Herzfrost**\n- **Schuppe des weißen Drachen**\n\n## Fähigkeiten\n\n- **Weißer Kern**: Ein Kern aus weißem Licht schlägt mit voller Wucht alles von dir weg und zerschlägt anfliegende Geschosse.\n- **Frostschritt**: Ein Satz durch den Frost mit splitterndem Eis, kurz unberührbar im Nahkampf, über Wasser bleibt Eis zurück.\n- **Weißes Loch**: Mit vollem Set öffnest du ein weißes Loch, einen Kern, der drückt statt zieht.\n- **Klare Schneide**: Solvane laden, die Schnittebene ausrichten, loslassen: ein sauberer Schnitt, der sogar Holz und Stein teilt.\n- **Nahkampf**: Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle.\n- **Wind**: Windklingen, Sturmstöße und Sprünge, die dich hoch und weit tragen.\n- **Eis**: Frostsplitter, Eiswände und ein Panzer aus Eis, der Treffer abfängt.\n- **Yang**: Licht als Werkzeug: Plattformen, Brücken, ein Schild und ein Gleiter.\n- **Frostresonanz**: Rüstung, Handschuhe und Solvane teilen sich eine Kraft, die nur durch gutes Kämpfen wächst.\n\n## Das Duell im Heiligtum\n\nJeder Angriff wird am Boden angekündigt, und Gold heißt immer sicher. Vanilla-Bewegung, Schild und Bogen reichen zum Sieg. Wer fällt, verliert nichts und steigt im nächsten Teil wieder ein.\n\n- **Arius**: Ein Schwertkämpfer mit lesbaren Haltungen, Windschritten und einer Parade, die gierige Angriffe bestraft. Lässt er die Klinge los, wirbelt sie allein durch die Luft und jagt dich, während er mit Tritten nachsetzt.\n- **Solvane**: Arius lässt sein Schwert los, und es wird zu dem, was es einmal war: eine uralte weiße Drachin, gewunden um eine Nadel aus Eis. Im Kampf fließt ihr langer Körper in weiten Bögen durch die Luft, und Arius sieht ohne Klinge zu.\n- **Arius, Erbe des Weißen Drachen**: Er legt die dunkle Rüstung ab und kämpft in Weiß, Seite an Seite mit Solvane. Die beiden kämpfen im Takt: einer führt, der andere stützt.\n\n## Das Heiligtum der Weißen Klinge\n\nEine eigene Dimension, für jeden Versuch neu aus Vanilla-Blöcken gebaut und von einem Schneesturm umtost, der nie aufhört: Böen bis zum Whiteout, treibender Schnee und Frost am Bildrand.\n\n- **Der Tempel**: Eine stille Halle aus Eis und altem Stein, bis eine Linie sie in zwei Hälften teilt.\n- **Das Plateau**: Eis-Obelisken am Rand, halb eingestürzte Ruinenbögen und Dornenkristalle, darüber die Eisnadel mit Solvane.\n- **Der Himmelsbalkon**: Ein zerklüftetes Eisschelf hoch über der Schlucht, mit Kristallsäulen und Eiszapfen. Hier fällt die Entscheidung.\n\n## Installation\n\n1. Fabric Loader für Minecraft 1.21.11 mit Fabric API, Fabric Language Kotlin und H&H Armors installieren.\n2. Die HHA-Arius-Jar aus dem Download-Center in den `mods`-Ordner legen, auf Servern auch bei jedem Spieler.\n\n## Voraussetzungen\n\n- H&H Armors 0.8.0\n- Fabric API\n- Fabric Language Kotlin",
+   "links": {
+    "website": "https://vibec-studios.github.io/mods/arius/",
+    "source": "https://github.com/vibec-studios/hha-arius",
+    "issues": "https://github.com/vibec-studios/hha-arius/issues"
+   },
+   "license": "MIT",
+   "published": "2026-11-16T16:42:21Z",
+   "updated": "2026-11-17T20:10:03Z",
+   "versions": [
+    {
+     "id": "1.3.0-HHA_Arius-1.3.0",
+     "version_number": "1.3.0",
+     "name": "HHA Arius 1.3.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-17T20:10:03Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "**HHA Arius 1.3.0 – storm, sky balcony and a new finale.**\n\n### Cinematic snowstorm\n- A permanent snowstorm blows in the Sanctum, built from its own flake field in two depths.\n- Every flake is a motion-blurred streak with its own turbulence.\n- Storm gusts bring a short whiteout, snow drifts along the ground and a frost vignette sits at the screen edges.\n- Under roofs almost no snow falls. Scales with `/ariusc fx`.\n\n### New final stage: the Sky Balcony\n- Section III and the finale no longer take place down in the glacier. They are on a jagged ice shelf high above the canyon, on the north face of the spire, with crystal pillars, icicles and a spectator ledge.\n- When the glacier collapses, Solvane's light stream carries everyone up.\n\n### Plateau redesign\n- Ice obelisks around the rim, half-collapsed ruin arches and thorn crystals.\n- The view to the spire stays open.\n\n### Arius\n- **Flying blade:** He lets go of Solvane, and the blade whirls through the air on announced passes. Meanwhile he closes in with a spin kick and a front kick.\n- **Frost thorns:** A row of ice thorns erupts towards you. In the white form a thorn ring around him follows.\n- **Slash trails:** Layered trails with frost sparks.\n\n### Quick-time event\n- The last finale exchange is a blade-lock scene.\n- Mash attack to break his guard. If you fail, he throws you back.\n\n### Gear\n- **Gauntlets:** A slimmer model with dragon-wing fins, spikes and a glowing ice band.\n- **Item icons:** All redone (armour, Solvane, gauntlets, dragon scale).\n- **Ability effects:**\n  - White Core: eight ice crescents and an echo shockwave.\n  - Frost Step: a shattering afterimage and an ice burst on landing.\n- **Descriptions:** Precise ability and spell descriptions (keys, damage, range, duration, cooldown).\n\n### Status\nBuilt and checked statically. **Not play-tested in the running game.** See `docs/TESTEN.md`.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.3.0/HHA_Arius-1.3.0.jar",
+       "filename": "HHA_Arius-1.3.0.jar",
+       "size": 9320269,
+       "sha1": "4bb2ff0a3bfbbf1c333074202a53746102a65e1d",
+       "sha256": "7adce01241396d22bcdb22ae112304df65dd1cde08cd384d5f1b9e706bc04dbf",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.2.2-HHA_Arius-1.2.2",
+     "version_number": "1.2.2",
+     "name": "HHA Arius 1.2.2 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-17T19:40:59Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "**HHA Arius 1.2.2 – dragon, keys, gauntlets and armour.**\n\n### Solvane in the fight\n- **Body:** The body now flows along the path she flies, like the dragons in Black Myth: Wukong. On the ground it settles into loose curves. The rigid ground spiral and the square bridges and vertical columns are gone.\n- **Flight:** She steers in wide curves instead of straight lines. Takeoff climbs forward and landings come in on a gliding arc. The tail sweep swings the rear of the body.\n- **Hitboxes:** Every visible body segment can be hit, with swords, Solvane and the gauntlets. Tail segments count as tail hits.\n\n### Keys\n- Arius now uses the **HHA addon ability keys**:\n  - **Ability 4:** technique. Hold for the spell wheel with the gauntlets, or for Clear Cut with Solvane.\n  - **Ability 5:** gauntlet mode.\n- On first start they are bound once to R/V if they are still free. A chat hint appears if a key is unbound or bound twice.\n\n### Gauntlets\n- The guard now sits at chest height, so your face and skin stay visible.\n- New in the chain:\n  - an **uppercut** as the 4th strike, which launches;\n  - an **axe kick** finisher after it: a jump and heel slam with a frost shockwave.\n- Strikes step in towards the target and each strike has its own wind or frost effect.\n\n### Solvane (item)\n- Held like a vanilla netherite sword in first person.\n\n### Armour\n- The armour is back on the **netherite shape**, recoloured in pearl white, ice blue and old gold.\n- On top sit the 3D accents of the Dragonheart Watch: horn crown, heart gem and wing plates.\n- Trims work again, and the item icons are new.\n\n### HUD\n- Animated cooldown icons for White Core, Frost Step, Clear Cut, White Hole, Counter and Wingscale.\n\n### Names\n- The arena is now the **Sanctum of the White Blade**. Eirholm is Arius' home village.\n- Phase III is **\"Arius, Heir of the White Dragon\"**, with its own title card.\n\n### Status\nBuilt and checked statically. The dragon body was checked in an offline simulation (`tools/assets/dragon_body_sim.py`). **Not play-tested in the running game.** See `docs/TESTEN.md`.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.2.2/HHA_Arius-1.2.2.jar",
+       "filename": "HHA_Arius-1.2.2.jar",
+       "size": 9255187,
+       "sha1": "6dbfd18a0ef05a7c84834b58d38ff0d0e5e82b97",
+       "sha256": "fce4e7fa4c39397a8c67ead445037e1d629c027ef52cb466b6376ab8ab1a3e0d",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.2.1-HHA_Arius-1.2.1",
+     "version_number": "1.2.1",
+     "name": "HHA Arius 1.2.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-17T18:53:34Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "**HHA Arius 1.2.1 – fixes for spells, abilities and the temple fight.**\n\n### Fixes\n- **Spells fire again:** Wind Blade, Frost Shards and Yang Orb threw an error and never launched. A fully charged Yang Orb could crash the server.\n- **Arius leaves his seat:** In section I he stayed on the altar steps. Now he leaps down to the hall floor after rising and fights.\n\n### Frost resonance recharges passively\n- Resonance now refills on its own: always 2/s, plus 6/s after 6 s out of combat (9/s with the full set), up to 100.\n- Clear Cut and the White Hole therefore also work outside fights. Before, resonance rested at 30 or 50 out of combat.\n\n### Test mode\n- `/hhaarius test [on|off]` (OP) gives infinite resonance and 0.5 s cooldowns, with no reverb and constructs allowed everywhere.\n- Use it to try every technique without enemies.\n\n### Keys\n- Drawing the gauntlets or Solvane shows your actual key bindings in the action bar.\n- If R or V is also bound to something else (e.g. V in voice-chat mods), a one-time chat hint tells you to rebind it.\n\n### Requirements\n- Minecraft 1.21.11\n- Fabric Loader ≥ 0.19.3\n- Fabric API\n- Fabric Language Kotlin\n- H&H Armors 0.8.0\n\n### Status\nBuilt and checked statically. **Not play-tested in the running game.** See `docs/TESTEN.md`.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.2.1/HHA_Arius-1.2.1.jar",
+       "filename": "HHA_Arius-1.2.1.jar",
+       "size": 9279938,
+       "sha1": "87f2f48c28e6445085ab3de14493ff7bc5cb2bef",
+       "sha256": "2f1b4500b11242c2740864377a5e50f777b2accb063724f2f7324de320db68e0",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.2.0-HHA_Arius-1.2.0",
+     "version_number": "1.2.0",
+     "name": "HHA Arius 1.2.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-17T09:42:36Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "**HHA Arius 1.2.0 – Solvane, the blade that was a dragon.**\n\n### Lore: Solvane\nArius' sword **Solvane** was forged from the heart of an ancient white dragon, and it can imitate that dragon form. The white dragon you fight in Eirholm *is* Solvane.\n\n- **Gate kick:** Arius releases the blade (\"Solvane. Show them what you were.\"). It flies as a stream of light to the spire, where the dragon forms segment by segment.\n- **Section II:** Arius watches without a sword.\n- **Section III:** he fights with a blade of ice light.\n- **Finale:** \"Come back.\" The dragon dissolves into light and returns to the scabbard.\n- **Texts:** all texts, the boss bar and item names now say Solvane. Internal IDs are unchanged, so existing worlds keep their items.\n\n### Dragonheart Watch (new armour look)\nThe Arius armour now has its own 3D design instead of a recoloured netherite silhouette:\n- pearl-white dragon scales with gold edging;\n- a crown of ice horns, one of them broken;\n- wing-plate pauldrons;\n- a pulsing heart gem;\n- swinging tassets and claw knees.\n\nIt is shown on players, mannequins, armour stands and mobs. The \"White Blade\" trim is no longer visible on this armour, but still works on others.\n\n### Solvane (item)\nA noticeably longer blade with:\n- light flowing up the fuller;\n- a scale engraving at the root;\n- an ice sheen on the edges;\n- a heart gem in the crossguard.\n\n### Requirements\nMinecraft 1.21.11, Fabric Loader ≥ 0.19.3, Fabric API, Fabric Language Kotlin, and **H&H Armors 0.8.0 with the boss overhaul** (the jar is in `libs/`).\n\n### Status\nBuilt and checked statically, shaders compiled in a WebGL2 check. **Not yet play-tested in the running game.** See `docs/TESTEN.md`.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.2.0/HHA_Arius-1.2.0.jar",
+       "filename": "HHA_Arius-1.2.0.jar",
+       "size": 9271893,
+       "sha1": "d2834b0f2bff4e7168323b87be35496ebb946fb9",
+       "sha256": "37b1ddb795c306aa39f22d70715210c2dba2d37f083eb31de10b9227779f42a5",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-HHA_Arius-1.1.0",
+     "version_number": "1.1.0",
+     "name": "HHA Arius 1.1.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-16T23:13:14Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "**HHA Arius 1.1.0 – Gauntlets, Clear Cut and a visual overhaul.**\n\n### Arius' Gauntlets (new weapon)\nOne main-hand item that shows both hands, in first and third person. Switch between two modes with the mode key (default V).\n\n- **Melee mode:** a real animated fighting style:\n  - jab, cross and body hook;\n  - side kick;\n  - spin kick finisher with a full 360° turn;\n  - palm parry with counter.\n\n  No click spam advantage, no stun chains, and bosses are never thrown around.\n- **Magic mode:** a two-step spell wheel on the technique key (default R) with 13 techniques of **Wind, Ice and Yang**:\n  - attacks and defence;\n  - movement;\n  - constructs: ice wall, light platform, light bridge;\n  - a light glider.\n\n  Placeable constructs show a preview. Constructs are self-expiring blocks that never drop anything.\n\n### Solvane\n- **Redesign:** now a medium-length bastard sword.\n- **Weapon art \"Clear Cut\":** hold to charge with a visible cutting plane, then release a limited, planar cut. It can also split wood and stone: whole blocks, at most 24, never containers, protected areas or the arena, and configurable.\n\n### Armour, redistributed like the other HHA sets\n| Piece | Ability |\n|---|---|\n| Chestplate | *White Core* (Ability 1) |\n| Leggings | *Frost Step* (Ability 2) |\n| Full set | **White Hole** (Ability 3, replaces Ultra) |\n\nThere are also passives on helmet, chestplate and boots. Armour, gauntlets and Solvane share one resource, **frost resonance**. It rests at 30 (50 with the full set) and grows through skill.\n\n### Visual overhaul\n- A monumental polar landscape: a 225-block ice spire, a deep canyon and glacier ranges.\n- Weather and light moods per section.\n- **Nivaris is now a 96-block serpent dragon**, with an entrance coiled around the spire.\n- The **white hole** is a new gravitational-lens shader.\n- Upgraded magic effects.\n- Hit-stop and sword trails.\n- Camera work for all cutscenes, and more weight in Arius' animations.\n- Two new soundtracks.\n\nEffects scale with `/ariusc fx`; flashes and camera shake can be switched off. A view distance of at least 10 chunks is recommended.\n\n### Requirements\nMinecraft 1.21.11, Fabric Loader ≥ 0.19.3, Fabric API, Fabric Language Kotlin, and **H&H Armors 0.8.0 with the boss overhaul**. The matching jar is in `libs/`.\n\n### Status\nBuilt and checked statically, with both shaders compiled in a WebGL2 check. **Not yet play-tested in the running game.** See `docs/TESTEN.md`. The design is in `docs/AUSRUESTUNG.md` and `docs/VISUELL.md`.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.1.0/HHA_Arius-1.1.0.jar",
+       "filename": "HHA_Arius-1.1.0.jar",
+       "size": 9115187,
+       "sha1": "390a4c5d202486971de49fa897a249566c6b5ad2",
+       "sha256": "baf35e17eabdf3ff1f92c4fa8acef4af931a99cbe534dc88603569aeefbe69b5",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.1-HHA_Arius-1.0.1",
+     "version_number": "1.0.1",
+     "name": "HHA Arius 1.0.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-16T16:53:15Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Fixes the Minecraft startup crash (`IllegalAccessException` / private constructor in `HhaArius`). Both Kotlin singleton entrypoints now use Fabric's Kotlin language adapter.\n\nValidation: `gradlew build runClientGameTest` passed. The real client initializes and loads a singleplayer world with HHA 0.8.0 on Minecraft 1.21.11 (Fabric Loader 0.19.3, Java 25). This startup regression test does not cover the full boss fight or a full modpack.\n\nRequirements are unchanged: Minecraft 1.21.11, Fabric Loader >= 0.19.3, Fabric API, Fabric Language Kotlin, and HHA 0.8.0 with the boss overhaul.\n\nReplace HHA_Arius-1.0.0.jar with HHA_Arius-1.0.1.jar; keep only one Arius JAR enabled.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.0.1/HHA_Arius-1.0.1.jar",
+       "filename": "HHA_Arius-1.0.1.jar",
+       "size": 7532060,
+       "sha1": "27d66bd08f34c6b924a4f1d2720812c3032aec84",
+       "sha256": "b9d65d788a6e393b893211dfbad0ff2a7b7d665b5865c5aba5bea549eebe491a",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-HHA_Arius-1.0.0",
+     "version_number": "1.0.0",
+     "name": "HHA Arius 1.0.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-16T16:42:21Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "First release of **HHA Arius – The White Blade**, an endgame addon for H&H Armors.\n\n### The encounter\n- **The Temple of Eirholm**: a duel against Arius: stances, combos, wind steps, a parry that punishes greed, frost walls, and, below 40 %, limited adaptation to repeated tactics\n- **The Cut**: one line across the temple, a moment of silence, then the temple splits and slides apart. Arius kicks you through the breaking gate\n- **The Glacier Threshold**: the old white dragon **Nivaris** alone. Her breath leaves ice ridges; lure her dive into one to bring her down, choke her breath with hits to the throat\n- **The Heart of the Glacier**: Arius in white and Nivaris fight **in rhythm**: one leads, the other supports, resonance attacks with clear golden safe paths, and once per fight **the white hole**\n- **The last clear moment**: three exchanges against his draw from the sheath\n\nEvery attack is announced through HHA's telegraph system; gold always means safe or open. Vanilla movement, shield and bow are enough. The sanctum is its own dimension, rebuilt from vanilla blocks, so your world is never damaged. Being knocked out keeps your items.\n\n### Rewards\nSolvane (counter-stance sword), **Eirholm armour** (netherite silhouette, frost resonance, abilities on HHA keys 1/2/4), Nivaris' Wingscale, Echo of Eirholm (train single parts), the \"White Blade\" armour trim. Unclaimed rewards wait in a per-player Eirholm inbox and are never dropped or lost.\n\n### Requirements\n- Minecraft 1.21.11, Fabric Loader ≥ 0.19.3, Fabric API, Fabric Language Kotlin\n- **H&H Armors 0.8.0 with the boss overhaul** (uses HHA's `Telegraph`). The matching build is in `libs/` of this repository; older 0.8.0 jars stop at start-up with a clear message.\n\n### Status\nBuilt and statically reviewed in six review rounds (reports in `docs/review/`). **Not yet play-tested in the running game.** See `docs/TESTEN.md` for the checklist. Voice lines are not included (subtitles only).\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.0.0/HHA_Arius-1.0.0.jar",
+       "filename": "HHA_Arius-1.0.0.jar",
+       "size": 7531647,
+       "sha1": "354b7a3eabe85bf6f8b0253bfe1e812ba0e9c874",
+       "sha256": "cac0459dd37be30911e2c8bea3aeb0fc3d42b235fa7e7b902638ae9590aa3125",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vibey",
+   "slug": "vibey",
+   "title": "Vibey Multiplayer",
+   "description": "Hoste deine Singleplayer-Welt für Freunde, von überall. Eine feste Adresse, keine Portfreigabe, kein Server.",
+   "author": "Vibe Craft Studios",
+   "icon": "https://vibec-studios.github.io/assets/mods/vibey/icon.png",
+   "project_type": "mod",
+   "categories": [
+    "utility",
+    "social"
+   ],
+   "body": "Welt im Pausenmenü öffnen, Adresse kopieren, Freunde einladen. Sie spielen mit ganz normalem Minecraft mit.\n\n- Eine feste Adresse, die bei jedem Hosting gleich bleibt\n- Keine Portfreigabe, kein eigener Server\n- Fabric und NeoForge, von 1.21 bis 26.3\n\n## Drei Klicks bis zum Multiplayer\n\n- **Welt hosten**: Im Pausenmenü steht „Welt hosten“, wo sonst „Im LAN öffnen“ steht.\n- **Adresse kopieren**: Deine eigene Adresse wie `giant-fox-65.vibey.henny.dev`. Sie bleibt bei jedem Hosting gleich.\n- **Freunde verbinden sich**: Mehrspieler, Direkt verbinden, Adresse einfügen. Ohne Mod, ohne Portfreigabe.\n\n## Du hast alles im Griff\n\nDas Hauptfenster bleibt minimal, alles Weitere liegt im Menü „Verwalten“. Verbindungen sind Ende-zu-Ende verschlüsselt.\n\n- **Feste Adresse**: Bleibt gleich, bis du sie erneuerst; dann ist die alte sofort tot.\n- **Spieler verwalten**: OP geben, rauswerfen, bannen und Abgewiesene mit einem Klick reinlassen.\n- **Sperren im Netz**: Whitelist und Bannliste nach Name oder IP: Der Relay blockt Gesperrte, bevor sie deinen Rechner erreichen.\n- **Mods erzwingen**: Wem eine Mod fehlt, bekommt eine klare Liste statt einer kryptischen Fehlermeldung.\n\n## Voraussetzungen\n\n- Fabric API (nur Fabric)\n- Nur im Client, Gäste brauchen nichts",
+   "gallery": [
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey/img/admin-access.webp",
+     "title": "Zugang",
+     "description": "Whitelist und Bannliste nach Name oder IP."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey/img/host-online.webp",
+     "title": "Welt gehostet",
+     "description": "Adresse, Status, Verwalten und Hosting beenden."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey/img/admin-players.webp",
+     "title": "Spieler",
+     "description": "Wer online ist und wer zuletzt abgewiesen wurde."
+    }
+   ],
+   "links": {
+    "website": "https://vibec-studios.github.io/mods/vibey/",
+    "source": "https://github.com/vibec-studios/vibey-multiplayer",
+    "issues": "https://github.com/vibec-studios/vibey-multiplayer/issues"
+   },
+   "license": "MIT",
+   "published": "2026-11-16T22:50:40Z",
+   "updated": "2026-11-16T22:50:40Z",
+   "versions": [
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-26.3-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 26.3)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "26.3"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.3-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-26.3-1.0.0.jar",
+       "size": 82693,
+       "sha1": "2052980e48c0575a88fa0c27ca456d42d56a7d44",
+       "sha256": "3e377e99445ea84e092d5bba29d1ec9f682aa06198886311fb731fc9ef6a75f7",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-26.3-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 26.3)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "26.3"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-26.3-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-26.3-1.0.0.jar",
+       "size": 80846,
+       "sha1": "af7b8b167a1293e674da454bc2330d677a52e3be",
+       "sha256": "f4de4c8320d4aac65952b3b74cc53b2ed7f2e777256af0011974137793ed256f",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-26.2-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 26.2)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "26.2"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.2-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-26.2-1.0.0.jar",
+       "size": 82695,
+       "sha1": "b4353574c4f11f564086c92a37b101a441716865",
+       "sha256": "814e132b1d31141af29e255708ec0c074827404cb1f59cd05ff1bf650a7612e4",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-26.2-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 26.2)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "26.2"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-26.2-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-26.2-1.0.0.jar",
+       "size": 80846,
+       "sha1": "6ff90facf65039044984be5aca36bb35c7fb583a",
+       "sha256": "59d23e6d0727ca160c53d3516b73819d58721a0fda823b9211be468dde25b9df",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-26.1-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 26.1–26.1.2)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "26.1",
+      "26.1.1",
+      "26.1.2"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-26.1-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-26.1-1.0.0.jar",
+       "size": 82611,
+       "sha1": "ded4dd32e0b9d633ba9a774bf492567f8f14a2c2",
+       "sha256": "0dd6256c036307dd024c510201f90d5bfb4c8a8706686a4fef64da59d22e15f2",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-26.1-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 26.1–26.1.2)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "26.1",
+      "26.1.1",
+      "26.1.2"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-26.1-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-26.1-1.0.0.jar",
+       "size": 80755,
+       "sha1": "eaf0ee391449bc83bef94aabe0cb1c85a4c8c9ee",
+       "sha256": "ed55a571e93fa1da44f14ff0d38c7a5a40365fbb7b90c719744da8347b83d368",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-1.21.11-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.11-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-1.21.11-1.0.0.jar",
+       "size": 81633,
+       "sha1": "c6e1a754529978468fa1315c025791fdf1a783bc",
+       "sha256": "3aac716c135dff6a65af7e66f498eb03995f6af2ac96b7bd7be33f38d40f95c4",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-1.21.11-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.11-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-1.21.11-1.0.0.jar",
+       "size": 80739,
+       "sha1": "5e5f08ac4d254286ab43d70bdfaea148922ac8e7",
+       "sha256": "9feb7bdf24d8e6fea7e2fb81607ecea30674df4d6c0a0014eacea209bd21e1e8",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-1.21.9-1.21.10-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 1.21.9–1.21.10)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.9",
+      "1.21.10"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.9-1.21.10-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-1.21.9-1.21.10-1.0.0.jar",
+       "size": 81634,
+       "sha1": "320da7efc6a578f157654bb77b0764af877c9a99",
+       "sha256": "ff19cbada64d645314b83598282ca2f27b46f7e1f91a88a6bd3a6bcf1d5cc180",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-1.21.9-1.21.10-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 1.21.9–1.21.10)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.9",
+      "1.21.10"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.9-1.21.10-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-1.21.9-1.21.10-1.0.0.jar",
+       "size": 80749,
+       "sha1": "0647f16b7bea6ee984aa7e44accdf296c40fe6dc",
+       "sha256": "dba2e4b82ecd75a5841451e8474d7241e6e28cf61f4bb97fd64fa5c38eb1264f",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-1.21.6-1.21.8-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 1.21.6–1.21.8)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.6-1.21.8-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-1.21.6-1.21.8-1.0.0.jar",
+       "size": 81311,
+       "sha1": "7461739faa984d58207dcd7ef93a4154f4a3ab06",
+       "sha256": "0ab28e4b2eae8793c0660c0f5b810310ebbdf3194c583f4f497a03fa34d1fbbb",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-1.21.6-1.21.8-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 1.21.6–1.21.8)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.6-1.21.8-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-1.21.6-1.21.8-1.0.0.jar",
+       "size": 80429,
+       "sha1": "dd1b5d2f0b29de492032e609b2d6baa098732bfb",
+       "sha256": "72ce5646ccd36d344a080df0cb5b040f0194ac8d1e04f4a320e922f2ad5339ac",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-1.21.5-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 1.21.5)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.5"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.5-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-1.21.5-1.0.0.jar",
+       "size": 81294,
+       "sha1": "6cb8a712fa2a4bd3c079b42ccaf7de57bfe83e74",
+       "sha256": "e2f38fe65b699b78bb8885c19f82fb2ee96159a3f2b59660305ece3e9d8f2e23",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-1.21.5-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 1.21.5)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.5"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.5-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-1.21.5-1.0.0.jar",
+       "size": 80405,
+       "sha1": "f718d05f27552d1c68abda1e6451e085c1b1b7c4",
+       "sha256": "ca58c6a2d9020ee05dd27fe877d46c7341c3867f3ae97bf92535e3d5e3a97954",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-1.21.4-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 1.21.4)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.4"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.4-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-1.21.4-1.0.0.jar",
+       "size": 81295,
+       "sha1": "610df9c32585a1f50068b1ec77f60df5d3933683",
+       "sha256": "787e11a9fba76679856fde35f4bb9236f64b18c0c43927450d1e4003659c80e0",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-1.21.4-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 1.21.4)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.4"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.4-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-1.21.4-1.0.0.jar",
+       "size": 80406,
+       "sha1": "4828534ed30647df6523bc491ddf25ec9cf79668",
+       "sha256": "d45a130b90f11bbb4ded9fce0d63a832de9e6b00dcbe0cf3a6f55d817aa5aac4",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-1.21.2-1.21.3-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 1.21.2–1.21.3)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.2",
+      "1.21.3"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21.2-1.21.3-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-1.21.2-1.21.3-1.0.0.jar",
+       "size": 81296,
+       "sha1": "d74f6598a025c444407ba10a2e4821c7ac3487de",
+       "sha256": "72d1c7889331c9299b6e85593affefcb19ba4de75ca0bc2c2ba72f76f7c5cdc8",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-1.21.2-1.21.3-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 1.21.2–1.21.3)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21.2",
+      "1.21.3"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21.2-1.21.3-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-1.21.2-1.21.3-1.0.0.jar",
+       "size": 80413,
+       "sha1": "e4d0ff638e1668c0f04c6c1410059e3b3b94d5f3",
+       "sha256": "0cfd315e175a54e300d0e18a6835ccf6a31b9a97b8945c7202e8402be7e7e724",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-fabric-1.21-1.21.1-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (Fabric 1.21–1.21.1)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21",
+      "1.21.1"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-fabric-1.21-1.21.1-1.0.0.jar",
+       "filename": "vibey-multiplayer-fabric-1.21-1.21.1-1.0.0.jar",
+       "size": 81295,
+       "sha1": "4db43f54f77a4be9eb2ab62075a799bf28210426",
+       "sha256": "9edab1f01434b4f6e7bfdbf6665e5e3d2fef8231d91f35638cab9bfb85917c7e",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-multiplayer-neoforge-1.21-1.21.1-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Multiplayer 1.0.0 (NeoForge 1.21–1.21.1)",
+     "release_type": "release",
+     "date": "2026-11-16T22:50:40Z",
+     "game_versions": [
+      "1.21",
+      "1.21.1"
+     ],
+     "loaders": [
+      "neoforge"
+     ],
+     "changelog": "Host your singleplayer world for friends anywhere: one fixed address, no port forwarding, no server.\n\n## Highlights\n\n- **Your own address** like `mossy-otter-27.vibey.henny.dev`. It stays the same every time you host, until you renew it.\n- **Host World** in the pause menu: address, status, start/stop. Nothing else.\n- **Manage** menu:\n  - **Players:** OP, kick, ban, and \"recently turned away\" with one-click \"Let in\"\n  - **Access:** whitelist and ban list (name or IP), enforced by the relay on network level\n  - **World:** game mode, cheats, PvP, max players, force mods\n  - **Advanced:** exact mod versions, new address, own relay server\n- **Friends don't need the mod.** They join through *Multiplayer → Direct Connection* (unless *Force mods* is on).\n- English and German.\n\n## Which file?\n\nPick the jar for your loader and Minecraft version. Fabric also needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | Fabric | NeoForge |\n|---|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` | `neoforge-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` | `neoforge-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` | `neoforge-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` | `neoforge-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` | `neoforge-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` | `neoforge-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` | `neoforge-1.21.11` |\n| 26.1 | `fabric-26.1` | `neoforge-26.1` |\n| 26.2 | `fabric-26.2` | `neoforge-26.2` |\n| 26.3 | `fabric-26.3` | `neoforge-26.3` |\n\nRelay status: https://vibey-status.henny.dev/status",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-multiplayer/releases/download/v1.0.0/vibey-multiplayer-neoforge-1.21-1.21.1-1.0.0.jar",
+       "filename": "vibey-multiplayer-neoforge-1.21-1.21.1-1.0.0.jar",
+       "size": 80409,
+       "sha1": "ffa08490a272e42c589e01852f9f9b3a7cbc4cd5",
+       "sha256": "1b382517dc2d845ea25212ca84bcf5bd0728b769f545e5a7556edb45d7d8d7f1",
+       "primary": true
+      }
+     ],
+     "dependencies": []
+    }
+   ]
+  },
+  {
+   "id": "vibey-lyrics",
+   "slug": "vibey-lyrics",
+   "title": "Vibey Lyrics",
+   "description": "Synchrone Songtexte im TikTok-Stil: als 3D-Wörter durch den Himmel fliegend, schwebend vor dir, fest in der Welt oder im HUD.",
+   "author": "Vibe Craft Studios",
+   "icon": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/icon.png",
+   "project_type": "mod",
+   "categories": [
+    "social",
+    "utility"
+   ],
+   "body": "Drück K, wähl einen Song und sing mit. Jedes Wort ist ein eigenes 3D-Objekt: Die Zeile baut sich im Himmel auf, und wenn die nächste beginnt, fliegt die alte an dir vorbei.\n\n- 3D-Flug: Wörter mit Tiefe, die an dir vorbeifliegen\n- Eigene Himmel von Abendrot bis Saturn, nur für dich\n- Folgt der Musik auf deinem PC, Lyrics kommen automatisch\n\n## Songtexte, die fliegen\n\nZeilen bauen sich Wort für Wort als schräges Band im Himmel auf und fliegen dann auf dich zu. Dazu ein Himmel, der zum Song passt.\n\n- **3D-Flug**: Jedes Wort ist ein eigenes 3D-Objekt, lang gehaltene Wörter wachsen, und die alte Zeile fliegt an dir vorbei.\n- **3D-Schweben**: Die ruhige Variante: Die Wörter schweben sanft im Raum statt zu fliegen.\n- **Eigene Himmel**: Von Abendrot und Zuckerwatte bis Polarlicht, Saturn und Blutmond. Nachthimmel drehen sich langsam und haben Sternschnuppen.\n- **Buchstaben mit Tiefe**: Echte 3D-Buchstaben, deren Farben sich auf Wunsch nach dem Himmel richten.\n- **Läuft gerade**: Eine schmale Leiste oben im Bild mit der aktuellen Zeile, kleinem Equalizer und Fortschritt.\n- **Mehr Looks und Fonts**: Neue Looks wie Lavendel, Feuer, Eis, Comic und Royal, dazu neue Schriften von Poppins bis Unbounded.\n\n## Drei Schritte zum Mitsingen\n\n- **Menü öffnen**: Taste `K` drücken oder „♪ Lyrics“ im Pausenmenü wählen.\n- **Song wählen**: Musik vom PC einschalten oder einen eigenen Song aus deinem Ordner starten.\n- **Platz, Look und Himmel**: 3D-Flug, Himmel, vor dir, in der Welt oder im HUD, dazu Look und Himmel mit einem Klick.\n\n## Alles für die perfekte Zeile\n\n- **Musik vom PC**: Folgt Spotify, YouTube im Browser oder deinem Player und lädt die passenden Lyrics von LRCLIB, immer im Takt.\n- **Eigene Songs**: Lieder mit LRC-Datei in den Ordner legen, und fehlt der Text, sucht die Mod ihn für dich.\n- **Karaoke-Look**: Wörter leuchten auf, sobald sie gesungen werden, mit Glühen, Funkeln und einer Vorschau der nächsten Zeile.\n- **Animationen**: Pop, Blende, Gleiten, Zoom, Welle, Hüpfen, Schreibmaschine, Glitch und Regenbogen.\n- **Schriften und Looks**: Von Minecraft über Poppins bis Pacifico, dazu fertige Looks wie Neon, Sunset oder Eis mit einem Klick.\n- **Fair zu deinen Daten**: Es werden nur Künstler, Titel, Album und Länge an LRCLIB geschickt, nichts über dich oder dein Spiel.\n\n## Voraussetzungen\n\n- Fabric API\n- Nur im Client",
+   "gallery": [
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/flight-sunset.webp",
+     "title": "3D-Flug im Abendrot",
+     "description": "Die Zeile baut sich Wort für Wort als Band im Himmel auf."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/flight-flyby.webp",
+     "title": "Vorbeiflug",
+     "description": "Die alte Zeile fliegt auf dich zu, während die neue beginnt."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/saturn.webp",
+     "title": "Saturn",
+     "description": "Ein Ringplanet über der Landschaft."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/galaxy.webp",
+     "title": "Galaxie",
+     "description": "Die Milchstraße dreht sich langsam über dir."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/aurora.webp",
+     "title": "Polarlicht",
+     "description": "Grüne Lichtvorhänge über dem Meer."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/synthwave.webp",
+     "title": "Synthwave",
+     "description": "Pinker Himmel mit Retro-Sonne."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/drift-nebula.webp",
+     "title": "Sternennebel",
+     "description": "Ruhiges Schweben in violetten Wolken."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/bar.webp",
+     "title": "Läuft gerade",
+     "description": "Die Leiste oben zeigt Zeile, Equalizer und Fortschritt."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/menu-skies.webp",
+     "title": "Himmel wählen",
+     "description": "Look und Himmel mit einem Klick im Menü."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/sky-ocean.webp",
+     "title": "Himmel",
+     "description": "Riesig hoch oben, und Berge verdecken die Zeilen wie einen echten Himmel."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/front.webp",
+     "title": "Vor dir",
+     "description": "Schwebt vor dir und folgt deinem Blick."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/world.webp",
+     "title": "In der Welt",
+     "description": "Fest an einem Ort, dreht sich zu dir oder steht wie ein Schild."
+    },
+    {
+     "url": "https://vibec-studios.github.io/assets/mods/vibey-lyrics/img/hud.webp",
+     "title": "HUD",
+     "description": "Als Untertitel direkt auf dem Bildschirm."
+    }
+   ],
+   "links": {
+    "website": "https://vibec-studios.github.io/mods/vibey-lyrics/",
+    "source": "https://github.com/vibec-studios/vibey-lyrics",
+    "issues": "https://github.com/vibec-studios/vibey-lyrics/issues"
+   },
+   "license": "MIT",
+   "published": "2026-11-17T09:30:36Z",
+   "updated": "2026-11-17T18:04:13Z",
+   "versions": [
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-26.3-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 26.3)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "26.3"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-26.3-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-26.3-1.1.0.jar",
+       "size": 10094684,
+       "sha1": "6ef179e678e2cefb966c32ded2d9c3d24ec10baa",
+       "sha256": "146da07862599ad30feaf29a0a667862800b58bf790c7f4116f06b0c16dd5e5b",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-26.2-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 26.2)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "26.2"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-26.2-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-26.2-1.1.0.jar",
+       "size": 10094670,
+       "sha1": "f0759b6c240dd1267d48d94c9aa13a88a069d61d",
+       "sha256": "3e8d7fe977e75c045f2e377f5769321218b988485d75456109fe0bbd93ae6339",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-26.1-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 26.1–26.1.2)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "26.1",
+      "26.1.1",
+      "26.1.2"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-26.1-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-26.1-1.1.0.jar",
+       "size": 10094643,
+       "sha1": "c7e265668252ba3813d74be54365ea44a00403ba",
+       "sha256": "a5b74ed5afc69cd0f99677f9f79913f78153560b207efc27e512372c537370bc",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-1.21.11-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.11-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.11-1.1.0.jar",
+       "size": 10091579,
+       "sha1": "51198b2e137ff6d0b8bc4c39bc1abfe54aead852",
+       "sha256": "40401676a7bd90b7b15e0c48c5cbb179bfc46e76afa3fa2ad44c4b4d0b54bb05",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-1.21.9-1.21.10-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 1.21.9–1.21.10)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "1.21.9",
+      "1.21.10"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.9-1.21.10-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.9-1.21.10-1.1.0.jar",
+       "size": 10092080,
+       "sha1": "c095ba4428a18c1bce0db7bfb086a877fed8282d",
+       "sha256": "b9d6fe6aa8f6ac6a2f1f406eadd63fadcc3afb39e5a148cf71b0e5a24e967bca",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-1.21.6-1.21.8-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 1.21.6–1.21.8)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.6-1.21.8-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.6-1.21.8-1.1.0.jar",
+       "size": 10091112,
+       "sha1": "0aad8246ad49b1d3954efb4243124b5d3910e83b",
+       "sha256": "6e1b2879c959909bd60f740ade8c7b13cb66858f13a9c7408fb45da682e8fed9",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-1.21.5-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 1.21.5)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "1.21.5"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.5-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.5-1.1.0.jar",
+       "size": 10091096,
+       "sha1": "5c7e5e144912688fc2de22cb1d0c7de8e42c939e",
+       "sha256": "795e915138497d075473b5cb893e9255e0a7212c6e1d62e97b59401d7918510a",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-1.21.4-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 1.21.4)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "1.21.4"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.4-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.4-1.1.0.jar",
+       "size": 10091092,
+       "sha1": "5ccef94fe74f0cc57bffb5c71e08ed9f0827626c",
+       "sha256": "ac4cb08cbd94f3c5552fe6554c9f427488f87b29d1fd175cb21c2ef01aa51b5b",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-1.21.2-1.21.3-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 1.21.2–1.21.3)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "1.21.2",
+      "1.21.3"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21.2-1.21.3-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.2-1.21.3-1.1.0.jar",
+       "size": 10091092,
+       "sha1": "f3531dfdc99b0beb16466eb447fdd09d7eb67249",
+       "sha256": "80b7b29d3a3f17130a447b0a8f36fc7c02bb7b4f126a28680c6447f58b58f4a2",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.1.0-vibey-lyrics-fabric-1.21-1.21.1-1.1.0",
+     "version_number": "1.1.0",
+     "name": "Vibey Lyrics 1.1.0 (Fabric 1.21–1.21.1)",
+     "release_type": "release",
+     "date": "2026-11-17T18:04:13Z",
+     "game_versions": [
+      "1.21",
+      "1.21.1"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Words that fly through the sky in 3D, and skies to go with them.\n\n## New in 1.1\n\n- **3D flight:** every word is its own 3D object. A line builds up word by word as a tilted ribbon in the sky, held notes get bigger, and when the next line starts the old one flies towards you and past. **3D drift** is the calm version.\n- **11 custom skies:** Sunset, Golden hour, Cotton candy, Dreamy, Galaxy, Nebula, Aurora, Saturn, Moonlight, Synthwave, Blood moon. The land fades into them like into the real sky; night skies turn slowly and have shooting stars. Pick one at the bottom of the menu (only you see it).\n- **3D letters** with depth, and **colors from the sky** (custom sky, or day / sunset / night of the normal one).\n- **Now playing bar** at the top of the screen: the line being sung, a small equalizer, the progress.\n- **6 new fonts:** Poppins, Montserrat, Kanit, Fredoka, Unbounded, Caveat.\n- **7 new looks:** Lavender, Dreamy, Fire, Ice, Comic, Script, Royal (15 in total). New installs start with Lavender (3D flight).\n\nEverything from 1.0 is still there: music from your PC (Spotify, browser, any player) with lyrics from [LRCLIB](https://lrclib.net), your own `.ogg` / `.mp3` / `.wav` + `.lrc`, positions Sky / In front / In world / HUD, karaoke, DE + EN. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the new trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.1.0/vibey-lyrics-fabric-1.21-1.21.1-1.1.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21-1.21.1-1.1.0.jar",
+       "size": 10091034,
+       "sha1": "d2f9fd202d316e2e51ed0ad72db3d839f6358b79",
+       "sha256": "e68ba9d55a191ccdc541b2a2e168df8b96af4b815b68ce647ffcff7ae8d14d02",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-26.3-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 26.3)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "26.3"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-26.3-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-26.3-1.0.0.jar",
+       "size": 977316,
+       "sha1": "e17de701464aa0ec292ed1cf04211de08ba3ba11",
+       "sha256": "e05be4da62d6a4cf7bef4fab561c72e00260a2787caa4d6aff606f470ef551bb",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-26.2-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 26.2)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "26.2"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-26.2-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-26.2-1.0.0.jar",
+       "size": 977311,
+       "sha1": "682ee0acd4ae98d16995564481af43c9d69a30b6",
+       "sha256": "b194228aed90ea95770547fe1de3bd7a7c38e5770fa05dba2a04cc4420a6a873",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-26.1-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 26.1–26.1.2)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "26.1",
+      "26.1.1",
+      "26.1.2"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-26.1-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-26.1-1.0.0.jar",
+       "size": 977287,
+       "sha1": "23b45ce920d8874a561745035cbd78ace6e3bc58",
+       "sha256": "4f8dd4042cb07888432e8b1a09c4e7ec21f192dd88d09b3f9fdfa2ececd24717",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-1.21.11-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.11-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.11-1.0.0.jar",
+       "size": 975232,
+       "sha1": "dee26d3ee9b3ff329dbb31167ff1b1d5f0f6eab2",
+       "sha256": "71e8319b30efc1deabe72626dfc9a3fd318687257538cf1b8bf841ca7fda75c0",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-1.21.9-1.21.10-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 1.21.9–1.21.10)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "1.21.9",
+      "1.21.10"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.9-1.21.10-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.9-1.21.10-1.0.0.jar",
+       "size": 976186,
+       "sha1": "44406a13d8d0998d23d17d3a042454a8987017ba",
+       "sha256": "e2bea0885ad8b8c90d46140eecdf53319a43672b738224670317a67a20d25a5e",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-1.21.6-1.21.8-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 1.21.6–1.21.8)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.6-1.21.8-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.6-1.21.8-1.0.0.jar",
+       "size": 975071,
+       "sha1": "00229f327e535e7573cc282b419a6b1d4684eb23",
+       "sha256": "be683c03e4f50a29781f3f346b23ea88c1526ca607016d15e52323ab60e9bcbe",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-1.21.5-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 1.21.5)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "1.21.5"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.5-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.5-1.0.0.jar",
+       "size": 974994,
+       "sha1": "78c9737692a78bac61d1f03e30b447ec34a14ab3",
+       "sha256": "b1a662ae54820efbcbc2f0f6d6b7b1b46b83d5bf702b449adea0f41ccf0eb5a7",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-1.21.4-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 1.21.4)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "1.21.4"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.4-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.4-1.0.0.jar",
+       "size": 974993,
+       "sha1": "eade4f3b52941d197825d9c77db93f3a5531343e",
+       "sha256": "50c39b257d93b55e9f63a293624af40f6d9ebbbfd7394fd6d08201232a621247",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-1.21.2-1.21.3-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 1.21.2–1.21.3)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "1.21.2",
+      "1.21.3"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.2-1.21.3-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21.2-1.21.3-1.0.0.jar",
+       "size": 974993,
+       "sha1": "275675cc99dd3ba02d32defb40c5cc1719c9a8c2",
+       "sha256": "9c0580af7afb8c5e3d35f21e70988b88cf8fa84a92c06f205434e67b35cb86aa",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    },
+    {
+     "id": "1.0.0-vibey-lyrics-fabric-1.21-1.21.1-1.0.0",
+     "version_number": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0 (Fabric 1.21–1.21.1)",
+     "release_type": "release",
+     "date": "2026-11-17T09:30:36Z",
+     "game_versions": [
+      "1.21",
+      "1.21.1"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "Synced lyrics for your music, TikTok-style: huge in the sky, floating in front of you, pinned in the world or on the HUD.\n\n## Highlights\n\n- **Music from your PC:** follows what plays on your computer (Spotify, YouTube in a browser, any player), downloads the synced lyrics from [LRCLIB](https://lrclib.net) and keeps them in time. Windows media controls, Spotify/Apple Music on macOS, `playerctl` on Linux.\n- **Your own songs:** `.ogg`, `.mp3`, `.wav` plus `.lrc` in `.minecraft/vibey-lyrics/`. No `.lrc`? *Find lyrics* fetches one from LRCLIB.\n- **Four positions:** Sky (hidden behind mountains like a real sky), In front, In world, HUD.\n- **Karaoke look:** word-by-word highlighting, glow, sparkles, next-line preview, caption boxes.\n- **Animations:** Pop, Fade, Slide, Zoom, Wave, Bounce, Typewriter, Glitch, Rainbow.\n- **Fonts:** Minecraft, Unicode, Bebas Neue, Bungee, Marker, Pacifico, Arcade, Monoton. Eight looks in one click.\n- Demo song *Pixel Skies* (made for this mod) included. English and German. Open the menu with **K**.\n\n## Which file?\n\nFabric only, needs [Fabric API](https://modrinth.com/mod/fabric-api). Client only.\n\n| Minecraft | File |\n|---|---|\n| 1.21, 1.21.1 | `fabric-1.21-1.21.1` |\n| 1.21.2, 1.21.3 | `fabric-1.21.2-1.21.3` |\n| 1.21.4 | `fabric-1.21.4` |\n| 1.21.5 | `fabric-1.21.5` |\n| 1.21.6 – 1.21.8 | `fabric-1.21.6-1.21.8` |\n| 1.21.9, 1.21.10 | `fabric-1.21.9-1.21.10` |\n| 1.21.11 | `fabric-1.21.11` |\n| 26.1 | `fabric-26.1` |\n| 26.2 | `fabric-26.2` |\n| 26.3 | `fabric-26.3` |\n\n`trailer.mp4` is the mod trailer.",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21-1.21.1-1.0.0.jar",
+       "filename": "vibey-lyrics-fabric-1.21-1.21.1-1.0.0.jar",
+       "size": 974994,
+       "sha1": "efc7e3e51a7dca2a82399cc5275d5f08dee6e772",
+       "sha256": "e0ea1808ab840aae1285cba7d35da731244e0ce26f65a33865a98fe41f41f564",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

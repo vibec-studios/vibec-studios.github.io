@@ -1,5 +1,7 @@
 # Download-Center aktuell halten: liest die GitHub-Releases aller Mods, lässt neue Dateien von VirusTotal prüfen
-# und committet data/downloads.json. Läuft alle 6 Stunden, nach Änderungen am Skript und auf Knopfdruck
+# und committet data/downloads.json. Dazu der Vibe Store für den Vibe Launcher: data/store.json (eine Version je Jar,
+# Minecraft-Versionen/Loader aus den Jar-Metadaten) samt data/store-cache.json, damit jede Jar nur einmal geladen wird.
+# Läuft alle 6 Stunden, nach Änderungen an den Skripten und auf Knopfdruck
 # (Actions → Downloads aktualisieren → Run workflow). Den API-Key liefert das Repo-Secret VT_API_KEY.
 name: Downloads aktualisieren
 
@@ -9,7 +11,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['tools/downloads.py', 'js/content/**', '.github/workflows/downloads.yml']
+    paths: ['tools/downloads.py', 'tools/store.py', 'js/content/**', '.github/workflows/downloads.yml']
 
 permissions:
   contents: write
@@ -36,18 +38,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 tools/downloads.py
 
+      # Ein Fehler hier hält die Downloads nicht auf; der Store bleibt dann auf dem letzten Stand
+      - name: Vibe Store
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 tools/store.py
+
       - name: Committen und Seite neu bauen
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --quiet -- data/downloads.json && [ -z "$(git ls-files --others --exclude-standard data)" ]; then
+          if git diff --quiet -- data/downloads.json data/store.json data/store-cache.json && [ -z "$(git ls-files --others --exclude-standard data)" ]; then
             echo "Keine Änderung"; exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/downloads.json
+          git add data/downloads.json $(ls data/store.json data/store-cache.json 2>/dev/null)
           git commit -m "Update downloads"
-          # Hat jemand dazwischen gepusht: die frisch erzeugte downloads.json gewinnt (beim Rebase ist das „theirs“)
+          # Hat jemand dazwischen gepusht: die frisch erzeugten Dateien gewinnen (beim Rebase ist das „theirs“)
           git pull --rebase -X theirs origin main
           git push origin HEAD:main
           gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true

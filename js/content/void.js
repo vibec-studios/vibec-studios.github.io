@@ -20,6 +20,7 @@ export default {
   status: { de: 'In Entwicklung', en: 'In development' },
   source: 'https://github.com/vibec-studios/HHA_void',
   series: 'HHA', role: 'addon', icon: 'item/void_sword.png',
+  categories: ['adventure', 'equipment', 'mobs'], // Modrinth-Kategorien für den Vibe Store (tools/store.py)
   card: { model: 'oruun' },
   hero: { kind: 'boss', model: 'oruun' },
   intro: {

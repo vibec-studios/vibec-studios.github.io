@@ -294,6 +294,7 @@ export default {
   status: S('Veröffentlicht', 'Released'),
   source: 'https://github.com/vibec-studios/HHA',
   series: 'HHA', role: 'core', icon: 'icon.png',
+  categories: ['adventure', 'equipment', 'mobs', 'worldgen'], // Modrinth-Kategorien für den Vibe Store (tools/store.py)
   card: { model: 'zeus' },
   hero: { kind: 'duo' },
   intro: S('Die Grundlage des Studios: zwei vollwertige Endgame-Sets mit eigenen Fähigkeiten, Schwert und Streitkolben. Die Heaven-Rüstung erkämpfst du dir auf dem Olymp bis hinauf zu Zeus, die Hell-Rüstung im Tartaros bei Hades und Kronos.',
