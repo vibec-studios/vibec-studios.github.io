@@ -27,6 +27,7 @@ function armorsOf(m) {
   const sec = m.sections.find((s) => s.type === 'versus' || s.type === 'armor');
   if (!sec) return [];
   const weapon = (g) => {
+    if (g.weapon) return g.weapon;
     const names = [...(g.showcase || []), ...(g.items || []).map((i) => i.tex)];
     return names.find((n) => /sword|blade|scythe|klinge/.test(n)) || names.find((n) => /mace/.test(n)) || null;
   };
@@ -71,9 +72,34 @@ function bossOf(m) {
   return entry ? { model: entry.model, texture: entry.texture, name: entry.name, yaw: m.card?.yaw } : (model ? { model, name: null } : null);
 }
 
+// Hero der Startseite: bei jedem Laden eine zufällige Mod, nie zweimal hintereinander dieselbe.
+let heroMod = null;
+function pickHeroMod(mods) {
+  const usable = mods.filter((m) => m.hero?.kind === 'link' || armorsOf(m).length || bossOf(m));
+  let last = null;
+  try { last = localStorage.getItem('vcs-hero'); } catch (e) { /* privat */ }
+  const pool = usable.length > 1 ? usable.filter((m) => m.id !== last) : usable;
+  const m = pool[Math.floor(Math.random() * pool.length)] || mods[0];
+  try { localStorage.setItem('vcs-hero', m.id); } catch (e) { /* privat */ }
+  return m;
+}
+
+function heroScene(canvas, m, signal) {
+  if (m.hero?.kind === 'link') return linkStage(canvas, { glow: hex(m.accent), cable: hex(m.accent), zoom: 1.2, signal });
+  const armors = armorsOf(m);
+  if (armors.length) {
+    const figures = armors.map((a, i) => ({ base: m.base, armor: a.set, eye: a.color, held: a.weapon ? heldItem(m, a.weapon) : null,
+      glow: armors.length > 1 ? hex(a.color) : undefined, stance: armors.length > 1 ? (i ? 1 : 0) : 1 }));
+    return stageScene(canvas, { figures, glow: hex(m.accent2 || m.accent), yaw: figures.length > 1 ? 0 : 0.3, zoom: figures.length > 1 ? 1.25 : 1.4, signal });
+  }
+  const boss = bossOf(m);
+  return stageScene(canvas, { boss: { base: m.base, model: boss.model, texture: boss.texture, yaw: boss.yaw ?? 0.5 }, glow: hex(m.accent2 || m.accent), zoom: 0.9, signal });
+}
+
 export function render(mods) {
   const c = count(mods);
-  const lineup = mods.flatMap((m) => armorsOf(m).map((a) => ({ ...a, mod: m })));
+  heroMod = pickHeroMod(mods);
+  const hm = heroMod;
 
   const features = mods.map((m, i) => {
     const boss = bossOf(m);
@@ -95,7 +121,7 @@ export function render(mods) {
   }).join('');
 
   return `<div class="home">
-  <section class="hero home-hero">
+  <section class="hero home-hero" style="--hero-tint:${hm.accent}">
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <h1 class="display">${t(L('Mods, die sich wie ein eigenes Spiel anfühlen.', 'Mods that feel like a game of their own.'))}</h1>
@@ -108,7 +134,7 @@ export function render(mods) {
       </div>
       <div class="hero-art">
         <canvas class="hero-canvas" aria-hidden="true"></canvas>
-        <div class="lineup-labels mono" aria-hidden="true">${lineup.map((a) => `<span style="--c:${a.color}">${esc(a.name)}</span>`).join('')}</div>
+        <a class="hero-pick mono" href="${hm.path}" data-link style="--c:${hm.accent}">└─ ${esc(hm.name)} <span>→</span></a>
       </div>
     </div>
     <div class="wrap stat-row">
@@ -157,13 +183,7 @@ export function render(mods) {
 }
 
 export async function mount(root, mods, signal) {
-  const figures = [];
-  for (const m of mods) {
-    for (const a of armorsOf(m)) {
-      figures.push({ base: m.base, armor: a.set, eye: a.color, held: a.weapon ? heldItem(m, a.weapon) : null, glow: hex(a.color), stance: figures.length });
-    }
-  }
-  stageScene($('.hero-canvas', root), { figures, glow: hex(STUDIO.accent), zoom: 1.0, signal }).catch(console.error);
+  heroScene($('.hero-canvas', root), heroMod || mods[0], signal).catch(console.error);
 
   $$('canvas[data-boss]', root).forEach((c) => {
     const m = mods[+c.dataset.boss];
