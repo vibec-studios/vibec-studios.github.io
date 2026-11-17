@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T08:49:51Z",
+ "updated": "2026-11-17T09:50:27Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -778,6 +778,171 @@
         "total": 65,
         "date": "2026-11-16T23:17:47Z",
         "checked": "2026-11-16T23:19:35Z"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "vibey-lyrics": {
+   "repo": "vibec-studios/vibey-lyrics",
+   "releases": [
+    {
+     "tag": "v1.0.0",
+     "version": "1.0.0",
+     "name": "Vibey Lyrics 1.0.0",
+     "date": "2026-11-17T09:30:36Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/vibey-lyrics/releases/tag/v1.0.0",
+     "assets": [
+      {
+       "name": "vibey-lyrics-fabric-1.21-1.21.1-1.0.0.jar",
+       "size": 974994,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21-1.21.1-1.0.0.jar",
+       "sha256": "e0ea1808ab840aae1285cba7d35da731244e0ce26f65a33865a98fe41f41f564",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-17T09:35:44Z",
+        "checked": "2026-11-17T09:36:15Z"
+       }
+      },
+      {
+       "name": "vibey-lyrics-fabric-1.21.11-1.0.0.jar",
+       "size": 975232,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.11-1.0.0.jar",
+       "sha256": "71e8319b30efc1deabe72626dfc9a3fd318687257538cf1b8bf841ca7fda75c0",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-17T09:36:46Z",
+        "checked": "2026-11-17T09:37:17Z"
+       }
+      },
+      {
+       "name": "vibey-lyrics-fabric-1.21.2-1.21.3-1.0.0.jar",
+       "size": 974993,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.2-1.21.3-1.0.0.jar",
+       "sha256": "9c0580af7afb8c5e3d35f21e70988b88cf8fa84a92c06f205434e67b35cb86aa",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-17T09:37:48Z",
+        "checked": "2026-11-17T09:39:06Z"
+       }
+      },
+      {
+       "name": "vibey-lyrics-fabric-1.21.4-1.0.0.jar",
+       "size": 974993,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.4-1.0.0.jar",
+       "sha256": "50c39b257d93b55e9f63a293624af40f6d9ebbbfd7394fd6d08201232a621247",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-17T09:39:37Z",
+        "checked": "2026-11-17T09:40:24Z"
+       }
+      },
+      {
+       "name": "vibey-lyrics-fabric-1.21.5-1.0.0.jar",
+       "size": 974994,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.5-1.0.0.jar",
+       "sha256": "b1a662ae54820efbcbc2f0f6d6b7b1b46b83d5bf702b449adea0f41ccf0eb5a7",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-17T09:40:54Z",
+        "checked": "2026-11-17T09:43:14Z"
+       }
+      },
+      {
+       "name": "vibey-lyrics-fabric-1.21.6-1.21.8-1.0.0.jar",
+       "size": 975071,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.6-1.21.8-1.0.0.jar",
+       "sha256": "be683c03e4f50a29781f3f346b23ea88c1526ca607016d15e52323ab60e9bcbe",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-17T09:43:45Z",
+        "checked": "2026-11-17T09:45:49Z"
+       }
+      },
+      {
+       "name": "vibey-lyrics-fabric-1.21.9-1.21.10-1.0.0.jar",
+       "size": 976186,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-1.21.9-1.21.10-1.0.0.jar",
+       "sha256": "e2bea0885ad8b8c90d46140eecdf53319a43672b738224670317a67a20d25a5e",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-17T09:46:20Z",
+        "checked": "2026-11-17T09:47:06Z"
+       }
+      },
+      {
+       "name": "vibey-lyrics-fabric-26.1-1.0.0.jar",
+       "size": 977287,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-26.1-1.0.0.jar",
+       "sha256": "4f8dd4042cb07888432e8b1a09c4e7ec21f192dd88d09b3f9fdfa2ececd24717",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 64,
+        "total": 64,
+        "date": "2026-11-17T09:47:38Z",
+        "checked": "2026-11-17T09:48:24Z"
+       }
+      },
+      {
+       "name": "vibey-lyrics-fabric-26.2-1.0.0.jar",
+       "size": 977311,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-26.2-1.0.0.jar",
+       "sha256": "b194228aed90ea95770547fe1de3bd7a7c38e5770fa05dba2a04cc4420a6a873",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-17T09:48:55Z",
+        "checked": "2026-11-17T09:49:25Z"
+       }
+      },
+      {
+       "name": "vibey-lyrics-fabric-26.3-1.0.0.jar",
+       "size": 977316,
+       "url": "https://github.com/vibec-studios/vibey-lyrics/releases/download/v1.0.0/vibey-lyrics-fabric-26.3-1.0.0.jar",
+       "sha256": "e05be4da62d6a4cf7bef4fab561c72e00260a2787caa4d6aff606f470ef551bb",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-17T09:49:57Z",
+        "checked": "2026-11-17T09:50:27Z"
        }
       }
      ]
