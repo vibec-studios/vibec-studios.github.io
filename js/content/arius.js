@@ -1,6 +1,6 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.2.1, Stand 17.11.2026).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.2.2, Stand 17.11.2026).
 // Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
-// Drachenherz-Wacht als eigenes 3D-Modell (armor/eirholm_armor.json, armor3d).
+// Rüstung seit 1.2.2: Netherite-Form (armor/eirholm_armor_base*.png) plus 3D-Akzente (armor/eirholm_armor.json, armor3d).
 // Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
 const S = (de, en) => ({ de, en });
 
@@ -14,7 +14,7 @@ export default {
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.2.1',
+  version: '1.2.2',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -24,8 +24,8 @@ export default {
   card: { model: 'arius' },
   hero: { kind: 'boss', model: 'arius' },
   intro: S(
-    'HHA Arius ist ein Endgame-Addon für H&H Armors. Arius ist der Held unserer eigenen Light Novel „The White Blade“, die Mod ist eine freie Umsetzung davon. Brich das Siegel von Eirholm in der Kälte, und der Schnee fällt nach oben: Du stehst im Heiligtum von Eirholm, vor einem Schwertkämpfer, der jeden Fehler sieht. Sein Schwert Solvane wurde aus dem Herzen eines uralten weißen Drachen geschmiedet, und wenn er es loslässt, wird es wieder zu ihr.',
-    'HHA Arius is an endgame addon for H&H Armors. Arius is the hero of our own light novel “The White Blade”, and the mod is a free adaptation of it. Break the Seal of Eirholm somewhere cold and the snow starts falling upward: you stand in the Sanctum of Eirholm, facing a swordsman who sees every mistake. His sword Solvane was forged from the heart of an ancient white dragon, and when he lets go, it becomes her again.',
+    'HHA Arius ist ein Endgame-Addon für H&H Armors. Arius ist der Held unserer eigenen Light Novel „The White Blade“, die Mod ist eine freie Umsetzung davon. Brich das Siegel der Weißen Klinge in der Kälte, und der Schnee fällt nach oben: Du stehst im Heiligtum der Weißen Klinge, vor einem Schwertkämpfer, der jeden Fehler sieht. Sein Schwert Solvane wurde aus dem Herzen eines uralten weißen Drachen geschmiedet, und wenn er es loslässt, wird es wieder zu ihr.',
+    'HHA Arius is an endgame addon for H&H Armors. Arius is the hero of our own light novel “The White Blade”, and the mod is a free adaptation of it. Break the Seal of the White Blade somewhere cold and the snow starts falling upward: you stand in the Sanctum of the White Blade, facing a swordsman who sees every mistake. His sword Solvane was forged from the heart of an ancient white dragon, and when he lets go, it becomes her again.',
   ),
   highlights: [
     S('Ein Duell in fünf Akten, vom Tempel bis zum letzten klaren Moment', 'A duel in five acts, from the temple to the last clear moment'),
@@ -51,8 +51,8 @@ export default {
       type: 'armor',
       title: S('Die Drachenherz-Wacht', 'The Dragonheart Watch'),
       lead: S(
-        'Die Rüstung von Eirholm als eigenes Modell: perlweiße Drachenschuppen mit Goldkante, eine Krone aus Eishörnern, Schwingenplatten an den Schultern und ein Herz-Juwel, das pulsiert. Dazu Solvane und die Kampfhandschuhe von Arius.',
-        'The Eirholm armor as a model of its own: pearl-white dragon scales with gold edging, a crown of ice horns, wing plates on the shoulders and a pulsing heart gem. Plus Solvane and Arius’ gauntlets.',
+        'Arius’ Rüstung in Netherite-Form, perlweiß mit Altgold und eisblauen Fugen, dazu eine Krone aus Eishörnern, Schwingenplatten an den Schultern und ein Herz-Juwel, das pulsiert. Dazu Solvane und die Kampfhandschuhe von Arius.',
+        'Arius’ armor in netherite form, pearl white with old gold and ice-blue seams, plus a crown of ice horns, wing plates on the shoulders and a pulsing heart gem. Plus Solvane and Arius’ gauntlets.',
       ),
       armor: 'eirholm_armor', armor3d: true,
       weapon: 'solvane',
@@ -91,7 +91,7 @@ export default {
         },
         {
           name: S('Nahkampf', 'Melee'), icon: 'hud/art_mode_melee.png',
-          desc: S('Mit den Kampfhandschuhen kämpfst du mit Fäusten und Tritten, inklusive Parade mit Konter.', 'The gauntlets let you fight with fists and kicks, including a parry with a counter.'),
+          desc: S('Mit den Kampfhandschuhen kämpfst du mit Fäusten und Tritten, vom Aufwärtshaken bis zum Axttritt mit Frostwelle.', 'The gauntlets let you fight with fists and kicks, from an uppercut to an axe kick with a frost wave.'),
         },
         {
           name: S('Wind', 'Wind'), icon: 'hud/art_school_wind.png',
@@ -115,7 +115,7 @@ export default {
     // ------------------------------------------------------------------ Bosskampf
     {
       type: 'boss',
-      title: S('Das Duell von Eirholm', 'The duel of Eirholm'),
+      title: S('Das Duell im Heiligtum', 'The duel in the Sanctum'),
       lead: S(
         'Jeder Angriff wird am Boden angekündigt, und Gold heißt immer sicher. Vanilla-Bewegung, Schild und Bogen reichen zum Sieg. Wer fällt, verliert nichts und steigt im nächsten Teil wieder ein.',
         'Every attack is announced on the ground, and gold always means safe. Vanilla movement, shield and bow are enough to win. Whoever falls loses nothing and rejoins in the next part.',
@@ -126,7 +126,7 @@ export default {
           model: 'arius',
           texture: null,
           name: S('Arius', 'Arius'),
-          sub: S('Der Tempel von Eirholm', 'The Temple of Eirholm'),
+          sub: S('Der Tempel der Weißen Klinge', 'The Temple of the White Blade'),
           color: '#6cc4ff',
           segments: 2,
           desc: S(
@@ -138,10 +138,10 @@ export default {
             'Don’t repeat yourself: he adapts to tactics you use again and again. And when a line runs through the temple, don’t stand on it.',
           ),
           where: S(
-            'Im Heiligtum von Eirholm, gerufen mit dem Siegel von Eirholm in einem kalten Biom.',
-            'In the Sanctum of Eirholm, called with the Seal of Eirholm in a cold biome.',
+            'Im Heiligtum der Weißen Klinge, gerufen mit dem Siegel der Weißen Klinge in einem kalten Biom.',
+            'In the Sanctum of the White Blade, called with the Seal of the White Blade in a cold biome.',
           ),
-          loot: S('Am Ende des Duells: Solvane, die Kampfhandschuhe, Herzfrost und die Schmiedevorlage von Eirholm.', 'At the end of the duel: Solvane, the gauntlets, Heartfrost and the Eirholm smithing template.'),
+          loot: S('Am Ende des Duells: Solvane, die Kampfhandschuhe, Herzfrost und die Schmiedevorlage Drachenherz.', 'At the end of the duel: Solvane, the gauntlets, Heartfrost and the Dragonheart smithing template.'),
           phases: [
             { name: S('I · Der Tempel', 'I · The Temple'), desc: S('Arius allein: Schwertkombos, Windschritte, Frostwände, die Fluchtwege schließen.', 'Arius alone: sword combos, wind steps, frost walls that close escape routes.') },
             { name: S('II · Der Schnitt', 'II · The Cut'), desc: S('Der Wind dreht, die Halle wird still, eine einzige Linie kreuzt den Tempel. Dann tritt er dich durch das brechende Tor.', 'The wind turns, the hall goes silent, a single line crosses the temple. Then he kicks you through the breaking gate.') },
@@ -166,8 +166,8 @@ export default {
           color: '#bfe6ff',
           segments: 1,
           desc: S(
-            'Arius lässt sein Schwert los, und es wird zu dem, was es einmal war: eine uralte weiße Drachin, gewunden um eine Nadel aus Eis. Ihr Atem lässt Eisgrate zurück, und Arius sieht ohne Klinge zu.',
-            'Arius lets go of his sword, and it becomes what it once was: an ancient white dragon coiled around a needle of ice. Her breath leaves ridges of ice behind, and Arius watches without a blade.',
+            'Arius lässt sein Schwert los, und es wird zu dem, was es einmal war: eine uralte weiße Drachin, gewunden um eine Nadel aus Eis. Im Kampf fließt ihr langer Körper in weiten Bögen durch die Luft, und Arius sieht ohne Klinge zu.',
+            'Arius lets go of his sword, and it becomes what it once was: an ancient white dragon coiled around a needle of ice. In the fight her long body flows through the air in wide arcs, and Arius watches without a blade.',
           ),
           trick: S(
             'Lock ihren Sturzflug in einen Eisgrat, dann liegt sie am Boden. Treffer an die Kehle ersticken ihren Atem.',
@@ -189,7 +189,7 @@ export default {
           id: 'arius_white',
           model: 'arius_white',
           texture: null,
-          name: S('Arius in Weiß', 'Arius in White'),
+          name: S('Arius, Erbe des Weißen Drachen', 'Arius, Heir of the White Dragon'),
           sub: S('Das Herz des Gletschers', 'The Heart of the Glacier'),
           color: '#ffffff',
           segments: 2,
@@ -222,7 +222,7 @@ export default {
     // ------------------------------------------------------------------ Welt
     {
       type: 'world',
-      title: S('Das Heiligtum von Eirholm', 'The Sanctum of Eirholm'),
+      title: S('Das Heiligtum der Weißen Klinge', 'The Sanctum of the White Blade'),
       lead: S(
         'Eine eigene Dimension, für jeden Versuch neu aus Vanilla-Blöcken gebaut. In deiner Welt geht nie etwas kaputt.',
         'A dimension of its own, rebuilt from vanilla blocks for every attempt. Nothing in your world ever breaks.',

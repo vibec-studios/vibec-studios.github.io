@@ -333,10 +333,15 @@ function modelParts(p, mat, tw, th) {
  * Biped-Knochen gehören (`bone`), Drehpunkt 0 im Knochenraum wie im Spiel. Dazu <set>.png und optional <set>_glow.png.
  */
 async function loadArmorStand3d(base, set, eye) {
-  const [json, map, glow] = await Promise.all([
+  // Optionale Grundschicht wie Vanilla-Rüstung (z. B. Arius seit 1.2.2: Netherite-Form, darüber nur 3D-Akzente).
+  const [json, map, glow, baseOuter, baseInner] = await Promise.all([
     fetch(`${base}/armor/${set}.json`).then((r) => { if (!r.ok) throw new Error(set); return r.json(); }),
     loadTex(`${base}/armor/${set}.png`), loadGlow(`${base}/armor/${set}_glow.png`),
+    optionalTex(`${base}/armor/${set}_base.png`), optionalTex(`${base}/armor/${set}_base_legs.png`),
   ]);
+  const baseLayers = [];
+  if (baseInner) baseLayers.push({ mat: new THREE.MeshLambertMaterial({ map: baseInner, alphaTest: 0.1, side: THREE.DoubleSide }), dil: 0.5, parts: ['body', 'leg_r', 'leg_l'] });
+  if (baseOuter) baseLayers.push({ mat: new THREE.MeshLambertMaterial({ map: baseOuter, alphaTest: 0.1, side: THREE.DoubleSide }), dil: 1.0, parts: Object.keys(BIPED) });
   const skin = new THREE.MeshLambertMaterial({ map: eyeTexture(eye), emissive: 0xffffff, emissiveMap: eyeGlow(eye) });
   const mat = new THREE.MeshLambertMaterial({
     map, alphaTest: 0.1, side: THREE.DoubleSide,
@@ -352,6 +357,14 @@ async function loadArmorStand3d(base, set, eye) {
     const mesh = new THREE.Mesh(geometryOf(out), skin);
     mesh.castShadow = true;
     g.add(mesh);
+    for (const layer of baseLayers) {
+      if (!layer.parts.includes(name)) continue;
+      const lo = { pos: [], uv: [] };
+      addCuboid(lo, [...def.box, layer.dil, def.uv[0], def.uv[1]], 64, 32, !!def.mirror);
+      const lm = new THREE.Mesh(geometryOf(lo), layer.mat);
+      lm.castShadow = true;
+      g.add(lm);
+    }
     parts[name] = g;
     inner3.add(g);
   }
