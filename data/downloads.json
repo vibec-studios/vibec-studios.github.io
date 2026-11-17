@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T19:32:43Z",
+ "updated": "2026-11-17T19:50:22Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -417,6 +417,31 @@
   "arius": {
    "repo": "vibec-studios/hha-arius",
    "releases": [
+    {
+     "tag": "v1.2.2",
+     "version": "1.2.2",
+     "name": "HHA Arius 1.2.2 – dragon, keys, gauntlets and armour",
+     "date": "2026-11-17T19:40:59Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/hha-arius/releases/tag/v1.2.2",
+     "assets": [
+      {
+       "name": "HHA_Arius-1.2.2.jar",
+       "size": 9255187,
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.2.2/HHA_Arius-1.2.2.jar",
+       "sha256": "fce4e7fa4c39397a8c67ead445037e1d629c027ef52cb466b6376ab8ab1a3e0d",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-17T19:47:19Z",
+        "checked": "2026-11-17T19:50:22Z"
+       }
+      }
+     ]
+    },
     {
      "tag": "v1.2.1",
      "version": "1.2.1",
