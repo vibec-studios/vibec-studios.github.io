@@ -86,12 +86,20 @@ const R = {
       <button type="button" data-shot="${i}"><img src="${mod.base}/${g.img}" alt="${esc(tx(g.name))}" loading="lazy"></button>
       <figcaption>${t(g.name)}</figcaption></figure>`).join('')}</div>`;
   },
+  video(s, mod) {
+    // Trailer: lädt erst beim Abspielen (preload none), WebM zuerst, MP4 als Ausweichquelle
+    return `<figure class="video-frame">
+      <video controls playsinline preload="none" poster="${mod.base}/${s.poster}" aria-label="${esc(tx(s.label || s.title))}">
+        ${s.webm ? `<source src="${mod.base}/${s.webm}" type="video/webm">` : ''}
+        ${s.mp4 ? `<source src="${mod.base}/${s.mp4}" type="video/mp4">` : ''}
+      </video></figure>`;
+  },
 };
 
 const SHOWN = new Set(Object.keys(R));
 const LABEL = {
   versus: L('Rüstung', 'Armor'), armor: L('Rüstung', 'Armor'), abilities: L('Fähigkeiten', 'Abilities'), flow: L('So geht’s', 'How it works'),
-  boss: L('Bosse', 'Bosses'), world: L('Welt', 'World'), gallery: L('Bauwerke', 'Structures'),
+  boss: L('Bosse', 'Bosses'), world: L('Welt', 'World'), gallery: L('Bauwerke', 'Structures'), video: L('Trailer', 'Trailer'),
 };
 
 // ------------------------------------------------------------ Seite
@@ -100,7 +108,8 @@ const LABEL = {
 function heroShot(mod) {
   const h = mod.hero;
   return `<figure class="hero-shot">
-    <img src="${mod.base}/${h.img}" alt="${esc(tx(mod.tagline))}" width="1280" height="800">
+    <div class="hero-shot-frame"><img src="${mod.base}/${h.img}" alt="${esc(tx(mod.tagline))}" width="1280" height="${h.play ? 720 : 800}">
+    ${h.play ? `<a class="hero-play mono" href="#${h.play}" data-anchor data-play="${h.play}"><i aria-hidden="true"></i>${t(L('Trailer ansehen', 'Watch the trailer'))}</a>` : ''}</div>
     ${h.address ? `<figcaption class="addr-card"><span class="mono small">${t(L('Deine Adresse', 'Your address'))}</span><b class="mono">${esc(h.address)}</b><span class="addr-copy mono">${t(L('Kopieren', 'Copy'))}</span></figcaption>` : ''}
   </figure>`;
 }
@@ -216,6 +225,12 @@ export async function mount(root, mod, signal) {
     const c = $('canvas[data-figure]', secEl);
     if (c && s.armor) stageScene(c, { figures: [figureFor(mod, s, 0, { stance: 3 })], glow: accent, yaw: 0.4, signal }).catch(console.error);
   });
+
+  // Hero-Knopf „Trailer ansehen“: springt zum Trailer und startet ihn (der Klick zählt als Nutzergeste)
+  $$('[data-play]', root).forEach((a) => a.addEventListener('click', () => {
+    const v = $(`#${a.dataset.play} video`, root);
+    if (v) setTimeout(() => v.play().catch(() => {}), 350);
+  }, { signal }));
 
   // Galerie
   $$('.sec-gallery', root).forEach((secEl) => {

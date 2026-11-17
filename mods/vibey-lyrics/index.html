@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="de" data-lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibe Craft Studios · Minecraft Mods</title>
+<meta name="description" content="Vibe Craft Studios ist ein kleines Studio für Minecraft-Mods mit eigenen Modellen, Welten und Bosskämpfen.">
+<meta property="og:title" content="Vibe Craft Studios">
+<meta property="og:description" content="Ein kleines Studio für Minecraft-Mods: eigene Modelle, eigene Welten, Bosskämpfe mit Geschichte. Alle Downloads geprüft.">
+<meta property="og:image" content="https://vibec-studios.github.io/assets/mods/hha/img/palast.webp">
+<meta property="og:url" content="https://vibec-studios.github.io/">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script>
+  (function () {
+    var l = '';
+    try { l = localStorage.getItem('vcs-lang') || ''; } catch (e) { l = ''; }
+    if (l !== 'de' && l !== 'en') l = /^de\b/i.test(navigator.language || '') ? 'de' : 'en';
+    document.documentElement.dataset.lang = l;
+    document.documentElement.lang = l;
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=f8fa600eaf">
+<script type="importmap">
+{
+ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+  "/js/app.js": "/js/app.js?v=70736187d0",
+  "/js/content/arius.js": "/js/content/arius.js?v=0a72be9aab",
+  "/js/content/blood.js": "/js/content/blood.js?v=0e41ef5fdb",
+  "/js/content/hha.js": "/js/content/hha.js?v=f66c3f4034",
+  "/js/content/index.js": "/js/content/index.js?v=2e632b3d98",
+  "/js/content/vibey-lyrics.js": "/js/content/vibey-lyrics.js?v=796c67ea1d",
+  "/js/content/vibey.js": "/js/content/vibey.js?v=0d6b7e2d6f",
+  "/js/content/void.js": "/js/content/void.js?v=bf336e5601",
+  "/js/core.js": "/js/core.js?v=74d015ae25",
+  "/js/downloads.js": "/js/downloads.js?v=85cba31fb5",
+  "/js/items.js": "/js/items.js?v=1d8a741d58",
+  "/js/mc3d.js": "/js/mc3d.js?v=36f4036598",
+  "/js/pages/downloads.js": "/js/pages/downloads.js?v=91c5a6efb2",
+  "/js/pages/home.js": "/js/pages/home.js?v=d47da99f1f",
+  "/js/pages/mod.js": "/js/pages/mod.js?v=428705f2ca",
+  "/js/pages/status.js": "/js/pages/status.js?v=fdaa779da7",
+  "/js/status-api.js": "/js/status-api.js?v=345c4c8e01",
+  "/js/views.js": "/js/views.js?v=2855986181"
+ }
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" data-link aria-label="Vibe Craft Studios">
+      <img src="/favicon.svg" alt="" width="22" height="22"><span>Vibe Craft</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation"></nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Sprache / Language">
+        <button data-set-lang="de">DE</button><button data-set-lang="en">EN</button>
+      </div>
+      <a class="nav-cta" href="https://github.com/vibec-studios" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer class="footer">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <p><img src="/favicon.svg" alt="" width="22" height="22"> <b>Vibe Craft Studios</b></p>
+      <p class="small"><span class="de">Ein kleines Studio für Minecraft-Mods. Eigene Modelle, eigene Welten, Kämpfe mit Geschichte.</span><span class="en">A small studio for Minecraft mods. Our own models, our own worlds, fights with a story.</span></p>
+    </div>
+    <div class="foot-col"><h4>Mods</h4><div class="foot-mods"></div></div>
+    <div class="foot-col"><h4><span class="de">Studio</span><span class="en">Studio</span></h4>
+      <a href="https://github.com/vibec-studios" target="_blank" rel="noopener">GitHub</a>
+      <a href="/downloads/" data-link>Download-Center</a>
+      <a href="/status/" data-link><span class="de">Vibey-Status</span><span class="en">Vibey status</span></a>
+    </div>
+  </div>
+  <div class="wrap foot-legal">
+    <p class="small"><span class="de">Stimmen der HHA-Cutscenes: ElevenLabs. Kein offizielles Minecraft-Produkt. Nicht von Mojang oder Microsoft genehmigt oder mit ihnen verbunden.</span><span class="en">HHA cutscene voices: ElevenLabs. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span></p>
+  </div>
+</footer>
+
+<div class="mc-tooltip" id="mc-tooltip" hidden></div>
+<div class="lightbox" id="lightbox" hidden>
+  <button class="icon-btn lb-close" aria-label="Schließen / Close">✕</button>
+  <img alt="">
+  <p class="lb-caption"></p>
+</div>
+
+<div id="warp" class="boot on" aria-hidden="true">
+  <div class="warp-bar"><i></i></div>
+  <div class="warp-center"><img src="/favicon.svg" alt="" width="28" height="28"><span>Vibe Craft</span></div>
+</div>
+
+<noscript><p class="noscript">Diese Seite braucht JavaScript. / This site needs JavaScript.</p></noscript>
+<script type="module" src="/js/app.js?v=70736187d0"></script>
+</body>
+</html>
