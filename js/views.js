@@ -243,6 +243,196 @@ export function linkStage(canvas, { glow = 0x3b82f6, cable = 0x3b82f6, zoom = 1.
   });
 }
 
+// ------------------------------------------------------------ Vibey Lyrics: Spieler von hinten, Songtext am Himmel
+
+// Zeilen aus dem eigenen Demo-Song „Pixel Skies“ der Mod (MIT, liegt der Mod bei). Keine fremden Songtexte.
+const PIXEL_SKIES = [
+  'Up above the blocky hills', 'Every chunk is glowing still', 'Build it high and let it shine', 'Write the sky in neon lines',
+  'Pixel skies, pixel skies', 'Sing it loud and watch it rise', 'Every word lights up the night', 'Pixel skies, we\'re shining bright',
+];
+const LINE_MS = 4800;
+
+function pixelCanvasTex(draw, size = 16) {
+  const c = document.createElement('canvas');
+  c.width = c.height = size;
+  draw(c.getContext('2d'), size);
+  const tex = new THREE.CanvasTexture(c);
+  tex.magFilter = THREE.NearestFilter;
+  tex.minFilter = THREE.NearestFilter;
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+/** Grasblock-Texturen (eigene Pixel, Vanilla-Optik): oben Gras, Seiten Erde mit Grasrand, unten Erde. */
+function grassMaterials() {
+  const rnd = rand(42);
+  const speck = (g, s, cols) => { for (let y = 0; y < s; y++) for (let x = 0; x < s; x++) { g.fillStyle = cols[Math.floor(rnd() * cols.length)]; g.fillRect(x, y, 1, 1); } };
+  const GRASS = ['#5d9c3a', '#67a843', '#548f33', '#73b34c', '#5fa03c'];
+  const DIRT = ['#7a5536', '#6b4a2f', '#85603d', '#5e4029', '#8b6a47'];
+  const top = pixelCanvasTex((g, s) => speck(g, s, GRASS));
+  const bottom = pixelCanvasTex((g, s) => speck(g, s, DIRT));
+  const side = pixelCanvasTex((g, s) => {
+    speck(g, s, DIRT);
+    for (let x = 0; x < s; x++) {
+      const h = 3 + Math.floor(rnd() * 2);
+      for (let y = 0; y < h; y++) { g.fillStyle = GRASS[Math.floor(rnd() * GRASS.length)]; g.fillRect(x, y, 1, 1); }
+    }
+  });
+  const m = (map) => new THREE.MeshLambertMaterial({ map });
+  return [m(side), m(side), m(top), m(bottom), m(side), m(side)];
+}
+
+/** Songtext als Leinwand: aktuelle Zeile groß, Wort für Wort aufleuchtend (Karaoke), darunter die nächste Zeile. */
+function lyricsBoard(accent) {
+  const W = 1024, H = 384;
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const g = c.getContext('2d');
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 4;
+  const font = (px) => `${px}px Silkscreen, "Courier New", monospace`;
+  let state = '';
+  const fit = (text, px, max) => { g.font = font(px); while (g.measureText(text).width > max && px > 20) { px -= 2; g.font = font(px); } return px; };
+  const draw = (line, next, sung) => {
+    const key = `${line}|${sung}`;
+    if (key === state) return false;
+    state = key;
+    g.clearRect(0, 0, W, H);
+    const words = line.toUpperCase().split(' ');
+    const px = fit(words.join(' '), 92, W - 80);
+    const total = g.measureText(words.join(' ')).width;
+    let x = (W - total) / 2;
+    const y = 170;
+    g.textBaseline = 'middle';
+    words.forEach((w, i) => {
+      const lit = i < sung;
+      g.font = font(px);
+      g.shadowColor = lit ? accent : 'rgba(139, 92, 246, 0.85)';
+      g.shadowBlur = lit ? 34 : 18;
+      g.fillStyle = lit ? accent : '#f4f1ff';
+      g.fillText(w, x, y);
+      g.shadowBlur = 0;
+      g.fillText(w, x, y);
+      x += g.measureText(`${w} `).width;
+    });
+    const npx = fit(next.toUpperCase(), 44, W - 200);
+    g.font = font(npx);
+    g.fillStyle = 'rgba(230, 226, 245, 0.55)';
+    g.shadowBlur = 0;
+    g.textAlign = 'center';
+    g.fillText(next.toUpperCase(), W / 2, 296);
+    g.textAlign = 'left';
+    tex.needsUpdate = true;
+    return true;
+  };
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(10, 3.75),
+    new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, toneMapped: false }));
+  return { mesh, draw };
+}
+
+/** Hero von Vibey Lyrics: ein Spieler sitzt von hinten gesehen auf einem Grashügel und schaut zum Songtext am Himmel. */
+export async function lyricsStage(canvas, { accent = '#d946ef', zoom = 1, signal } = {}) {
+  const view = makeView(canvas, { alpha: true, shadows: true });
+  const { scene, camera } = view;
+  camera.fov = 40;
+  scene.add(new THREE.HemisphereLight(0xd6d0ff, 0x2a2436, 1.5));
+  const key = new THREE.DirectionalLight(0xffffff, 2.1);
+  key.position.set(-4, 8, 6);
+  key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024);
+  Object.assign(key.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4, near: 1, far: 30 });
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(new THREE.Color(accent), 1.6);
+  rim.position.set(0, 6, -10);
+  scene.add(rim);
+
+  // Grashügel aus Blöcken
+  const mats = grassMaterials();
+  const box = new THREE.BoxGeometry(1, 1, 1);
+  const hill = new THREE.Group();
+  const blocks = [];
+  for (let x = -2; x <= 2; x++) for (let z = -2; z <= 1; z++) {
+    const edge = Math.abs(x) === 2 || z === -2 || z === 1;
+    if (edge && (x + z) % 2 === 0) continue;
+    blocks.push([x, edge ? -1 : 0, z]);
+    blocks.push([x, edge ? -2 : -1, z]);
+  }
+  for (const [x, y, z] of blocks) {
+    const b = new THREE.Mesh(box, mats);
+    b.position.set(x, y - 0.5, z);
+    b.castShadow = true;
+    b.receiveShadow = true;
+    hill.add(b);
+  }
+  scene.add(hill);
+  const disc = glowDisc(new THREE.Color(accent), 2.2);
+  disc.position.y = 0.004;
+  disc.material.opacity = 0.35;
+  scene.add(disc);
+
+  // Spieler: sitzt auf der Oberkante, Blick nach -z (vom Betrachter weg) und nach oben
+  const stand = loadPlayer({ skin: '#e3b08a', hair: '#3b2416', eyes: '#2f6fd6', shirt: '#8b5cf6', pants: '#232a36', shoes: '#e7e9ee', fringe: [2, 5], seed: 31 });
+  const holder = new THREE.Group();
+  holder.add(stand.root);
+  holder.rotation.y = Math.PI;
+  holder.position.set(0, -10 / 16, 0.1);
+  scene.add(holder);
+  const p = stand.parts;
+  const pose = (s) => {
+    p.leg_r.rotation.set(-1.42, 0.3, 0.06, 'ZYX');
+    p.leg_l.rotation.set(-1.42, -0.3, -0.06, 'ZYX');
+    p.arm_r.rotation.set(0.55, 0, 0.32, 'ZYX');
+    p.arm_l.rotation.set(0.55, 0, -0.32, 'ZYX');
+    p.head.rotation.set(-0.62 + Math.sin(s * 0.8) * 0.03, Math.sin(s * 0.35) * 0.18, 0, 'ZYX');
+  };
+  pose(0);
+
+  // Songtext am Himmel
+  const board = lyricsBoard(accent);
+  board.mesh.position.set(0, 5.6, -7.5);
+  board.mesh.rotation.x = 0.28;
+  scene.add(board.mesh);
+  try { await document.fonts.load('92px Silkscreen'); } catch (e) { /* Ersatzschrift */ }
+  if (signal?.aborted) return view;
+
+  const sparks = particles(46, new THREE.Color(accent), { x: [-5, 5], y: [3.6, 7.6], z: [-8.2, -6.6] }, 0.07);
+  sparks.material.opacity = 0.8;
+  scene.add(sparks);
+  const stars = particles(90, 0xbfb6ff, { x: [-14, 14], y: [1, 13], z: [-16, -9] }, 0.06);
+  stars.material.opacity = 0.5;
+  scene.add(stars);
+
+  let mx = 0, my = 0;
+  addEventListener('pointermove', (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; }, { passive: true, signal });
+  const target = new THREE.Vector3(0, 1.95, -3);
+  const t0 = performance.now();
+  view.frame = (now, dt) => {
+    const s = reduceMotion ? 0 : now / 1000;
+    const tl = reduceMotion ? LINE_MS * 4 + LINE_MS * 0.9 : Math.max(0, performance.now() - t0);
+    const i = Math.floor(tl / LINE_MS) % PIXEL_SKIES.length;
+    const k = (tl % LINE_MS) / LINE_MS;
+    const line = PIXEL_SKIES[i];
+    const words = line.split(' ').length;
+    const sung = Math.min(words, Math.floor((k / 0.72) * (words + 0.001)) + (k > 0.04 ? 1 : 0));
+    board.draw(line, PIXEL_SKIES[(i + 1) % PIXEL_SKIES.length], sung);
+    const pop = Math.min(1, k / 0.08);
+    const sc = 0.92 + 0.08 * (1 - Math.pow(1 - pop, 3));
+    board.mesh.scale.setScalar(sc);
+    board.mesh.material.opacity = k > 0.94 ? (1 - k) / 0.06 : Math.min(1, k / 0.05);
+    board.mesh.position.y = 5.6 + Math.sin(s * 0.9) * 0.08;
+    const aspect = Math.max(0.3, view.w / Math.max(1, view.h));
+    const back = (aspect < 1.25 ? 5.9 * Math.min(1.6, 1.25 / aspect) : 5.9) * zoom;
+    const a = 0.14 + Math.sin(s * 0.18) * 0.05 + mx * 0.1;
+    camera.position.set(Math.sin(a) * back, 1.9 + my * 0.3, Math.cos(a) * back);
+    camera.lookAt(target);
+    pose(s);
+    sparks.userData.tick(dt, now);
+    stars.userData.tick(dt * 0.15, now);
+  };
+  return view;
+}
+
 /**
  * Freigestellte Bühne wie auf Produktseiten: Figuren und/oder ein Boss auf unsichtbarem Boden mit Schatten und Leuchten.
  * figures: [{ base, armor, eye, held, glow, stance }], boss: { base, model, texture, yaw }, glow: Farbe von Licht und Boden.

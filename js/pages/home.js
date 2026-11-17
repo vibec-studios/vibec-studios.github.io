@@ -1,7 +1,7 @@
 // Startseite des Studios: das Studio und seine Projekte im Stil einer Produktseite. Die HHA-Reihe ist das erste
 // Projekt, nicht das einzige: Texte bleiben allgemein, Reihe und Rolle kommen aus den Inhaltsdateien (series, role).
 import { $, $$, t, esc, short, onColor } from '../core.js';
-import { stageScene, linkStage } from '../views.js';
+import { stageScene, linkStage, lyricsStage } from '../views.js';
 import { heldItem } from '../items.js';
 
 const L = (de, en) => ({ de, en });
@@ -75,7 +75,7 @@ function bossOf(m) {
 // Hero der Startseite: bei jedem Laden eine zufällige Mod, nie zweimal hintereinander dieselbe.
 let heroMod = null;
 function pickHeroMod(mods) {
-  const usable = mods.filter((m) => m.hero?.kind === 'link' || armorsOf(m).length || bossOf(m));
+  const usable = mods.filter((m) => m.hero?.kind === 'link' || m.hero?.kind === 'lyrics' || armorsOf(m).length || bossOf(m));
   let last = null;
   try { last = localStorage.getItem('vcs-hero'); } catch (e) { /* privat */ }
   const pool = usable.length > 1 ? usable.filter((m) => m.id !== last) : usable;
@@ -85,6 +85,7 @@ function pickHeroMod(mods) {
 }
 
 function heroScene(canvas, m, signal) {
+  if (m.hero?.kind === 'lyrics') return lyricsStage(canvas, { accent: m.accent, signal });
   if (m.hero?.kind === 'link') return linkStage(canvas, { glow: hex(m.accent), cable: hex(m.accent), zoom: 1.2, signal });
   const armors = armorsOf(m);
   if (armors.length) {
@@ -188,6 +189,7 @@ export async function mount(root, mods, signal) {
   $$('canvas[data-boss]', root).forEach((c) => {
     const m = mods[+c.dataset.boss];
     const boss = bossOf(m);
+    if (!boss && m.hero?.kind === 'lyrics') lyricsStage(c, { accent: m.accent, signal }).catch(console.error);
     if (!boss && m.hero?.kind === 'link') linkStage(c, { glow: hex(m.accent), cable: hex(m.accent), zoom: 1.1, signal }).catch(console.error);
     if (boss) stageScene(c, { boss: { base: m.base, model: boss.model, texture: boss.texture, yaw: boss.yaw ?? 0.5 }, glow: hex(m.accent2 || m.accent), zoom: 0.86, signal }).catch(console.error);
   });

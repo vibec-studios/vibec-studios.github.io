@@ -1,7 +1,7 @@
 // Mod-Seite: kurze Vorstellungsseite aus der Inhaltsdatei (js/content/<id>.js). Details wie Werte, Befehle und
 // Einstellungen bleiben bewusst draußen; gezeigt wird, was die Mod ausmacht.
 import { $, $$, t, tx, esc, short, onColor, pixelURL, openLightbox, animateIcons } from '../core.js';
-import { stageScene, bossViewer, linkStage } from '../views.js';
+import { stageScene, bossViewer, linkStage, lyricsStage } from '../views.js';
 import { heldItem } from '../items.js';
 import { latestRelease } from '../downloads.js';
 import { fetchStatus, POLL_MS } from '../status-api.js';
@@ -248,6 +248,7 @@ export async function mount(root, mod, signal) {
   if (armorSec?.type === 'versus') figures = armorSec.sides.map((side, i) => figureFor(mod, side, i, { armor: side.armor || side.name.toLowerCase(), glow: hex(side.color), stance: i ? 1 : 0 }));
   else if (armorSec?.armor) figures = [figureFor(mod, armorSec, 0, { stance: 1 })];
   if (figures.length) stageScene(heroCanvas, { figures, glow: accent, yaw: figures.length > 1 ? 0 : 0.3, zoom: figures.length > 1 ? 1.3 : 1.45, signal }).catch(console.error);
+  else if (mod.hero?.kind === 'lyrics') lyricsStage(heroCanvas, { accent: mod.accent, signal }).catch(console.error);
   else if (mod.hero?.kind === 'link') linkStage(heroCanvas, { glow: hex(mod.accent), cable: hex(mod.accent), signal }).catch(console.error);
   else if (mod.hero?.kind === 'boss') stageScene(heroCanvas, { boss: { base, model: mod.hero.model, texture: mod.hero.texture }, glow: accent, signal }).catch(console.error);
 

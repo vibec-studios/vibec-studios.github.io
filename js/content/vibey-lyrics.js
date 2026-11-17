@@ -18,7 +18,7 @@ export default {
   source: 'https://github.com/vibec-studios/vibey-lyrics',
   icon: 'icon.png',
   band: false,
-  hero: { kind: 'shot', img: 'img/sky-neon.webp', play: 'trailer' },
+  hero: { kind: 'lyrics' }, // Spieler von hinten, Songtext des Demo-Songs am Himmel (views.js lyricsStage)
   intro: S('Drück K, wähl einen Song und sing mit. Die Zeilen erscheinen Wort für Wort im Takt, mit Glühen, Funkeln und Animationen.',
     'Press K, pick a song and sing along. The lines show up word by word in time, with glow, sparkles and animations.'),
   highlights: [

@@ -1,5 +1,5 @@
 // Download-Center: alle Mods mit ihren GitHub-Releases, Prüfsumme und VirusTotal-Ergebnis (Daten: data/downloads.json).
-import { $, $$, t, tx, esc, animateIcons } from '../core.js';
+import { $, $$, t, tx, esc, animateIcons, onColor } from '../core.js';
 import { releasesOf, latestRelease, vtLink } from '../downloads.js';
 
 const L = (de, en) => ({ de, en });
@@ -44,71 +44,70 @@ function reqList(mod) {
   return (mod.requires || []).map((r) => {
     const label = typeof r === 'object' ? t(r) : esc(r);
     const key = String(typeof r === 'object' ? r.en : r).toLowerCase().replace(/\s*([≥>]|\().*$/, '').trim();
-    if (key === 'h&h armors') return `<a href="/downloads/#hha" data-anchor>${label}</a>`;
+    if (key === 'h&h armors') return `<a href="/downloads/#hha" data-open="hha">${label}</a>`;
     const href = REQ_LINKS[key];
     return href ? `<a href="${href}" target="_blank" rel="noopener">${label} ↗</a>` : `<span>${label}</span>`;
   }).join('');
 }
 
-function card(mod, dl) {
+function tagOf(mod) {
+  return mod.series ? `${esc(mod.series)} · ${mod.role === 'core' ? t(L('Hauptmod', 'Core mod')) : mod.role === 'addon' ? 'Addon' : 'Mod'}` : t(L('Eigenständige Mod', 'Standalone mod'));
+}
+const iconOf = (mod, cls = '') => `<span class="px-icon dl-icon ${cls}" data-src="${mod.base}/${mod.icon || 'icon.png'}"></span>`;
+
+/** Kompakte Kachel je Mod: alles Wichtige auf einen Blick, die Details stehen im Dialog. */
+function tile(mod, dl) {
   const rel = latestRelease(dl, mod.id);
-  const all = releasesOf(dl, mod.id).filter((r) => r.assets?.length);
-  const icon = `<span class="px-icon dl-icon" data-src="${mod.base}/${mod.icon || 'icon.png'}"></span>`;
-  const tag = mod.series ? `${esc(mod.series)} · ${mod.role === 'core' ? t(L('Hauptmod', 'Core mod')) : mod.role === 'addon' ? 'Addon' : 'Mod'}` : t(L('Eigenständige Mod', 'Standalone mod'));
-  const head = `<header class="dl-head">
-      ${icon}
-      <div><p class="eyebrow">${tag}</p><h2><a href="${mod.path}" data-link>${esc(mod.name)}</a></h2><p class="dl-tag">${t(mod.tagline)}</p></div>
-    </header>`;
-
+  const head = `<header class="dl-tile-head">${iconOf(mod)}<div><p class="eyebrow">${tagOf(mod)}</p>
+      <h2><a href="${mod.path}" data-link>${esc(mod.name)}</a></h2></div></header>
+    <p class="dl-tag">${t(mod.tagline)}</p>`;
   if (!rel) {
-    return `<article class="dl-card soon" id="${mod.id}" style="--accent:${mod.accent}">
-      ${head}
-      <div class="dl-soon">
-        <p><b>${t(L('Bald verfügbar.', 'Coming soon.'))}</b> ${mod.downloadNote ? `${t(mod.downloadNote)} ` : ''}${t(L('Sobald es eine Version gibt, steht sie hier mit Prüfsumme und Virenscan.', 'As soon as there is a version, it appears here with checksum and virus scan.'))}</p>
-        <p class="mono small">Minecraft ${esc(mod.mc || '1.21.11')} · ${esc(mod.loader || 'Fabric')}</p>
-        <div class="cta"><a class="btn ghost" href="${mod.path}" data-link>${t(L('Zur Mod', 'View mod'))}</a>${mod.source ? `<a class="btn ghost" href="${mod.source}" target="_blank" rel="noopener">GitHub ↗</a>` : ''}</div>
-      </div>
-    </article>`;
+    return `<article class="dl-tile soon" id="${mod.id}" style="--accent:${mod.accent}">${head}
+      <p class="mono small dl-meta">Minecraft ${esc(mod.mc || '1.21.11')} · ${esc(mod.loader || 'Fabric')}</p>
+      <div class="dl-tile-foot"><span class="mono small dl-soon-label">${t(L('Bald verfügbar', 'Coming soon'))}</span>
+        <a class="btn ghost" href="${mod.path}" data-link>${t(L('Zur Mod', 'View mod'))}</a></div></article>`;
   }
-
-  const a = rel.assets[0];
-  const older = all.filter((r) => r !== rel);
-  if (rel.assets.length > 1) return multiCard(mod, rel, older, head);
-  return `<article class="dl-card" id="${mod.id}" style="--accent:${mod.accent}">
-    ${head}
-    <div class="dl-main">
-      <div class="dl-file">
-        <p class="dl-ver"><b>v${esc(rel.version)}</b>${rel.prerelease ? `<span class="pill">${t(L('Vorabversion', 'Pre-release'))}</span>` : `<span class="pill">${t(L('Aktuell', 'Latest'))}</span>`}</p>
-        <p class="mono small">${esc(a.name)} · ${size(a.size)} · ${date(rel.date)}</p>
-        <p class="mono small">Minecraft ${esc(mod.mc || '1.21.11')} · ${esc(mod.loader || 'Fabric')}</p>
-      </div>
-      <div class="dl-actions">
-        <a class="btn accent" href="${a.url}" download>↓ ${t(L('Herunterladen', 'Download'))}</a>
-        <a class="btn ghost" href="${rel.url}" target="_blank" rel="noopener">${t(L('Änderungen', 'Changelog'))} ↗</a>
-      </div>
-    </div>
-    <div class="dl-facts">
-      <div><p class="k">VirusTotal</p>${vtBadge(a)}</div>
-      <div class="dl-sha"><p class="k">SHA-256</p><button type="button" class="sha" data-copy="${a.sha256}" title="${esc(tx(L('Kopieren', 'Copy')))}"><code>${a.sha256}</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button></div>
-      <div><p class="k">${t(L('Benötigt', 'Requires'))}</p><div class="req-links">${reqList(mod)}</div></div>
-    </div>
-    ${older.length ? `<details class="dl-older">
-      <summary>${t(L(`Ältere Versionen (${older.length})`, `Older versions (${older.length})`))}</summary>
-      <div class="dl-table" role="table">${older.map((r) => {
-        const x = r.assets[0];
-        return `<div role="row"><b class="mono">v${esc(r.version)}</b><span class="small">${date(r.date)}</span><span class="small mono">${size(x.size)}</span>
-          <button type="button" class="sha small" data-copy="${x.sha256}" title="SHA-256"><code>${x.sha256.slice(0, 12)}…</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button>
-          ${vtBadge(x, true)}<a class="mono dl-get" href="${x.url}" download>↓ .jar</a></div>`;
-      }).join('')}</div>
-    </details>` : ''}
+  const v = rel.assets.length > 1 ? variants(rel) : null;
+  const loaders = v ? v.loaders.map((l) => LOADERS[l] || l).join(' & ') : esc(mod.loader || 'Fabric');
+  const files = v ? t(L(`${rel.assets.length} Dateien`, `${rel.assets.length} files`)) : size(rel.assets[0].size);
+  return `<article class="dl-tile" id="${mod.id}" style="--accent:${mod.accent};--on-accent:${onColor(mod.accent)}">${head}
+    <p class="mono small dl-meta"><b>v${esc(rel.version)}</b> · ${date(rel.date)}<br>${loaders} · Minecraft ${esc(mod.mc || '1.21.11')} · ${files}</p>
+    <div class="dl-tile-foot">${v ? vtSummary(rel.assets, true) : vtBadge(rel.assets[0], true)}
+      <button type="button" class="btn accent" data-open="${mod.id}">↓ ${t(L('Herunterladen', 'Download'))}</button></div>
   </article>`;
 }
 
-/** Release mit vielen Dateien (Loader × Minecraft-Version): Suchfeld und eine Zeile je Jar. */
+/** Zeile in den Dateilisten des Dialogs. */
 function fileRow(x, label) {
-  return `<div role="row" data-name="${esc(x.name.toLowerCase())}"><b class="mono">${esc(label)}</b><span class="small mono">${size(x.size)}</span>
-    <button type="button" class="sha small" data-copy="${x.sha256}" title="SHA-256"><code>${x.sha256.slice(0, 12)}…</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button>
-    ${vtBadge(x, true)}<a class="mono dl-get" href="${x.url}" download>↓ .jar</a></div>`;
+  return `<div role="row"><b class="mono" title="${esc(x.name)}">${esc(label)}</b><span class="small mono">${size(x.size)}</span>
+    ${vtBadge(x, true)}<a class="mono dl-get" href="${x.url}" download>↓ .jar</a>
+    <button type="button" class="sha small" data-copy="${x.sha256}" title="SHA-256"><code>SHA-256 ${x.sha256}</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button></div>`;
+}
+
+function olderList(older, summary) {
+  if (!older.length) return '';
+  return `<details class="dl-older"><summary>${summary}</summary>
+    <div class="dl-table" role="table">${older.flatMap((r) => r.assets.map((x) => fileRow(x, r.assets.length > 1 ? `v${r.version} · ${x.name.replace(/\.jar$/i, '')}` : `v${r.version} · ${date(r.date)}`))).join('')}</div>
+  </details>`;
+}
+
+/** Dialog-Inhalt für Releases mit einer Datei. */
+function singleBody(mod, rel, older) {
+  const a = rel.assets[0];
+  return `<div class="dlg-result">
+      <div class="dlg-file">
+        <p class="mono dlg-name">${esc(a.name)}</p>
+        <p class="small">${size(a.size)} · ${esc(mod.loader || 'Fabric')} · Minecraft ${esc(mod.mc || '1.21.11')}</p>
+      </div>
+      <div class="dlg-facts">
+        ${vtBadge(a)}
+        <button type="button" class="sha small" data-copy="${a.sha256}" title="SHA-256"><code>SHA-256 ${a.sha256.slice(0, 16)}…</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button>
+      </div>
+      <div class="dlg-req"><p class="k mono">${t(L('Benötigt', 'Requires'))}</p><div class="req-links">${reqList(mod)}</div></div>
+      <div class="dlg-actions"><a class="btn accent dlg-get" href="${a.url}" download>↓ ${t(L('Herunterladen', 'Download'))}</a>
+        <a class="btn ghost" href="${rel.url}" target="_blank" rel="noopener">${t(L('Änderungen', 'Changelog'))} ↗</a></div>
+    </div>
+    ${olderList(older, t(L(`Ältere Versionen (${older.length})`, `Older versions (${older.length})`)))}`;
 }
 
 // ------------------------------------------------------------ Viele Dateien: Auswahl-Dialog (Loader → Minecraft-Version)
@@ -135,74 +134,70 @@ function variants(rel) {
   return { files, loaders, versions };
 }
 
-function vtSummary(assets) {
+function vtSummary(assets, compact = false) {
   const done = assets.filter((x) => x.vt?.status === 'done');
   const hits = done.filter((x) => x.vt.malicious + x.vt.suspicious).length;
   if (done.length === assets.length && !hits) {
+    if (compact) return `<span class="vt ok compact"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 13.9 8 15c3.4-1.1 6-4 6-7.5v-4L8 1Z"/><path class="tick" d="m5 8 2 2 4-4"/></svg><span><b>${t(L('Alle sauber', 'All clean'))}</b></span></span>`;
     return `<span class="vt ok"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 13.9 8 15c3.4-1.1 6-4 6-7.5v-4L8 1Z"/><path class="tick" d="m5 8 2 2 4-4"/></svg><span><b>${t(L('Alle Dateien sauber', 'All files clean'))}</b><i>${t(L(`${assets.length} von ${assets.length} gescannt`, `${assets.length} of ${assets.length} scanned`))}</i></span></span>`;
   }
   if (hits) return `<span class="vt warn"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 13.9 8 15c3.4-1.1 6-4 6-7.5v-4L8 1Z"/></svg><span><b>${t(L(`${hits} Dateien gemeldet`, `${hits} files flagged`))}</b><i>${t(L('Details im Dialog', 'Details in the dialog'))}</i></span></span>`;
   return `<span class="vt wait"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 13.9 8 15c3.4-1.1 6-4 6-7.5v-4L8 1Z"/></svg><span><b>${t(L(`${done.length} von ${assets.length} gescannt`, `${done.length} of ${assets.length} scanned`))}</b><i>${t(L('der Rest folgt automatisch', 'the rest follows automatically'))}</i></span></span>`;
 }
 
-function multiCard(mod, rel, older, head) {
-  const v = variants(rel);
-  const loaderNames = v ? v.loaders.map((l) => LOADERS[l] || l).join(' & ') : esc(mod.loader || 'Fabric');
-  return `<article class="dl-card multi" id="${mod.id}" style="--accent:${mod.accent}">
-    ${head}
-    <div class="dl-main">
-      <div class="dl-file">
-        <p class="dl-ver"><b>v${esc(rel.version)}</b><span class="pill">${rel.prerelease ? t(L('Vorabversion', 'Pre-release')) : t(L('Aktuell', 'Latest'))}</span></p>
-        <p class="mono small">${loaderNames} · Minecraft ${esc(mod.mc || '')} · ${date(rel.date)}</p>
-        <p class="mono small">${t(L(`${rel.assets.length} Dateien, eine je Loader und Minecraft-Version`, `${rel.assets.length} files, one per loader and Minecraft version`))}</p>
-      </div>
-      <div class="dl-actions">
-        ${v ? `<button type="button" class="btn accent" data-pick="${mod.id}">↓ ${t(L('Version wählen', 'Choose version'))}</button>` : ''}
-        <a class="btn ghost" href="${rel.url}" target="_blank" rel="noopener">${t(L('Änderungen', 'Changelog'))} ↗</a>
-      </div>
-    </div>
-    <div class="dl-facts">
-      <div><p class="k">VirusTotal</p>${vtSummary(rel.assets)}</div>
-      <div><p class="k">SHA-256</p><span class="small">${t(L('Für jede Datei im Dialog und in der Liste unten.', 'For every file in the dialog and in the list below.'))}</span></div>
-      <div><p class="k">${t(L('Benötigt', 'Requires'))}</p><div class="req-links">${reqList(mod)}</div></div>
-    </div>
-    <details class="dl-older">
-      <summary>${t(L(`Alle Dateien (${rel.assets.length})`, `All files (${rel.assets.length})`))}</summary>
-      <div class="dl-table" role="table">${rel.assets.map((x) => fileRow(x, x.name.replace(/\.jar$/i, ''))).join('')}</div>
-    </details>
-    ${older.length ? `<details class="dl-older">
-      <summary>${t(L(`Ältere Versionen (${older.length})`, `Older versions (${older.length})`))}</summary>
-      <div class="dl-table" role="table">${older.flatMap((r) => r.assets.map((x) => fileRow(x, `v${r.version} · ${x.name.replace(/\.jar$/i, '')}`))).join('')}</div>
-    </details>` : ''}
-  </article>`;
-}
-
 const DIALOG = `<dialog class="dl-dialog" aria-labelledby="dlg-title">
   <form method="dialog"><button class="icon-btn dlg-close" aria-label="${esc(tx(L('Schließen', 'Close')))}">✕</button></form>
-  <header class="dlg-head"><span class="px-icon dl-icon dlg-icon"></span><div><p class="eyebrow">${t(L('Download', 'Download'))}</p><h2 id="dlg-title"></h2><p class="mono small dlg-ver"></p></div></header>
-  <div class="dlg-step"><p class="k mono">1 · Loader</p><div class="dlg-seg" role="radiogroup" data-group="loader"></div></div>
-  <div class="dlg-step"><p class="k mono">2 · ${t(L('Minecraft-Version', 'Minecraft version'))}</p><div class="dlg-mc" role="radiogroup" data-group="mc"></div>
-    <p class="small dlg-hint">${t(L('Deine Version steht unten links im Hauptmenü von Minecraft.', 'Your version is shown bottom left in the Minecraft main menu.'))}</p></div>
-  <div class="dlg-result"></div>
-</dialog>`;
+  <header class="dlg-head"><span class="px-icon dl-icon dlg-icon"></span><div><p class="eyebrow dlg-tag"></p><h2 id="dlg-title"></h2><p class="mono small dlg-ver"></p></div></header>
+  <div class="dlg-body"></div></dialog>`;
 
 const store = {
   get(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* privat */ } },
 };
 
-function openPicker(dialog, mod, rel) {
-  const v = variants(rel);
-  if (!v) return;
-  const key = `vcs-dl-${mod.id}`;
-  const saved = store.get(key) || {};
-  const pick = { loader: v.loaders.includes(saved.loader) ? saved.loader : v.loaders[0], mc: v.versions.includes(saved.mc) ? saved.mc : v.versions[0] };
+const PICKER = `<div class="dlg-step"><p class="k mono">1 · Loader</p><div class="dlg-seg" role="radiogroup" data-group="loader"></div></div>
+  <div class="dlg-step"><p class="k mono">2 · ${t(L('Minecraft-Version', 'Minecraft version'))}</p><div class="dlg-mc" role="radiogroup" data-group="mc"></div>
+    <p class="small dlg-hint">${t(L('Deine Version steht unten links im Hauptmenü von Minecraft.', 'Your version is shown bottom left in the Minecraft main menu.'))}</p></div>
+  <div class="dlg-result"></div>`;
+
+/** Dialog einer Mod: eine Datei direkt, viele Dateien mit Auswahl (Loader → Minecraft-Version). */
+function openDialog(dialog, mod, dl, onOpen) {
+  const rel = latestRelease(dl, mod.id);
+  if (!rel) return;
+  const older = releasesOf(dl, mod.id).filter((r) => r.assets?.length && r !== rel);
+  const v = rel.assets.length > 1 ? variants(rel) : null;
   dialog.style.setProperty('--accent', mod.accent);
+  dialog.style.setProperty('--on-accent', onColor(mod.accent));
+  dialog.querySelector('.dlg-tag').innerHTML = tagOf(mod);
   dialog.querySelector('#dlg-title').textContent = mod.name;
-  dialog.querySelector('.dlg-ver').innerHTML = `v${esc(rel.version)} · ${date(rel.date)}`;
+  dialog.querySelector('.dlg-ver').innerHTML = `v${esc(rel.version)} · ${date(rel.date)}${rel.prerelease ? ` · ${t(L('Vorabversion', 'Pre-release'))}` : ''}`;
   const icon = dialog.querySelector('.dlg-icon');
   icon.dataset.src = `${mod.base}/${mod.icon || 'icon.png'}`;
   icon.style.backgroundImage = `url(${icon.dataset.src})`;
+  animateIcons(dialog);
+  dialog.onclick = (e) => {
+    if (e.target === dialog) { dialog.close(); return; }
+    const other = e.target.closest('[data-open]');
+    const copy = e.target.closest('[data-copy]');
+    if (other) { e.preventDefault(); onOpen(other.dataset.open); }
+    else if (copy) {
+      navigator.clipboard?.writeText(copy.dataset.copy).then(() => { copy.classList.add('done'); setTimeout(() => copy.classList.remove('done'), 1400); }).catch(() => {});
+    }
+  };
+  const body = dialog.querySelector('.dlg-body');
+  if (!v) {
+    body.innerHTML = singleBody(mod, rel, older);
+    if (!dialog.open) dialog.showModal();
+    dialog.querySelector('.dlg-get')?.focus();
+    dialog.scrollTop = 0;
+    return;
+  }
+  body.innerHTML = PICKER + `<details class="dl-older"><summary>${t(L(`Alle Dateien (${rel.assets.length})`, `All files (${rel.assets.length})`))}</summary>
+      <div class="dl-table" role="table">${rel.assets.map((x) => fileRow(x, x.name.replace(/\.jar$/i, ''))).join('')}</div></details>
+    ${olderList(older, t(L(`Ältere Versionen (${older.length})`, `Older versions (${older.length})`)))}`;
+  const key = `vcs-dl-${mod.id}`;
+  const saved = store.get(key) || {};
+  const pick = { loader: v.loaders.includes(saved.loader) ? saved.loader : v.loaders[0], mc: v.versions.includes(saved.mc) ? saved.mc : v.versions[0] };
 
   const fileFor = (loader, mc) => v.files.find((f) => f.loader === loader && f.mc === mc);
   function paint() {
@@ -226,22 +221,21 @@ function openPicker(dialog, mod, rel) {
         ${vtBadge(f)}
         <button type="button" class="sha small" data-copy="${f.sha256}" title="SHA-256"><code>SHA-256 ${f.sha256.slice(0, 16)}…</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button>
       </div>
-      <a class="btn accent dlg-get" href="${f.url}" download>↓ ${t(L('Herunterladen', 'Download'))}</a>` : '';
+      <div class="dlg-actions"><a class="btn accent dlg-get" href="${f.url}" download>↓ ${t(L('Herunterladen', 'Download'))}</a>
+        <a class="btn ghost" href="${rel.url}" target="_blank" rel="noopener">${t(L('Änderungen', 'Changelog'))} ↗</a></div>` : '';
     store.set(key, pick);
   }
+  const base = dialog.onclick;
   dialog.onclick = (e) => {
-    if (e.target === dialog) { dialog.close(); return; }
     const l = e.target.closest('[data-loader]');
     const mc = e.target.closest('[data-mc]');
-    const copy = e.target.closest('[data-copy]');
     if (l) { pick.loader = l.dataset.loader; paint(); }
     else if (mc && !mc.disabled) { pick.mc = mc.dataset.mc; paint(); }
-    else if (copy) {
-      navigator.clipboard?.writeText(copy.dataset.copy).then(() => { copy.classList.add('done'); setTimeout(() => copy.classList.remove('done'), 1400); }).catch(() => {});
-    }
+    else base(e);
   };
   paint();
   if (!dialog.open) dialog.showModal();
+  dialog.scrollTop = 0;
   dialog.querySelector('[aria-checked="true"]')?.focus();
 }
 
@@ -266,7 +260,7 @@ export function render(mods, dl) {
     </div>
   </section>
   <section class="section dl-list"><div class="wrap">
-    ${mods.map((m) => card(m, dl)).join('')}
+    <div class="dl-grid">${mods.map((m) => tile(m, dl)).join('')}</div>
     ${files ? '' : `<p class="small">${t(L('Gerade sind keine Download-Daten erreichbar.', 'Download data is not available right now.'))}</p>`}
   </div></section>
   <section class="section dl-info"><div class="wrap">
@@ -299,21 +293,15 @@ export function render(mods, dl) {
 
 export async function mount(root, mods, dl, signal) {
   animateIcons(root);
-  $$('.dl-list [data-copy]', root).forEach((b) => b.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) { return; }
-    b.classList.add('done');
-    setTimeout(() => b.classList.remove('done'), 1400);
-  }, { signal }));
-
-  // Auswahl-Dialog für Releases mit vielen Jars; über #<mod> (z. B. vom Download-Knopf der Mod-Seite) öffnet er sich direkt
+  // Ein Dialog für alle Mods; über #<mod> (z. B. vom Download-Knopf der Mod-Seite) öffnet er sich direkt
   const dialog = $('.dl-dialog', root);
   const open = (id) => {
     const mod = mods.find((m) => m.id === id);
-    const rel = mod && latestRelease(dl, id);
-    if (rel && rel.assets.length > 1) openPicker(dialog, mod, rel);
+    if (mod && latestRelease(dl, id)) openDialog(dialog, mod, dl, open);
   };
-  $$('[data-pick]', root).forEach((b) => b.addEventListener('click', () => open(b.dataset.pick), { signal }));
+  $$('[data-open]', root).forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); open(b.dataset.open); }, { signal }));
+  dialog.addEventListener('close', () => { if (location.hash) history.replaceState(null, '', location.pathname); }, { signal });
   signal.addEventListener('abort', () => { if (dialog.open) dialog.close(); });
   const fromHash = location.hash.slice(1);
-  if (fromHash && $(`.dl-card.multi#${CSS.escape(fromHash)} [data-pick]`, root)) setTimeout(() => open(fromHash), 450);
+  if (fromHash && mods.some((m) => m.id === fromHash)) setTimeout(() => open(fromHash), 450);
 }
