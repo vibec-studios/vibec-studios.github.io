@@ -92,7 +92,7 @@ const R = {
       <video controls playsinline preload="none" poster="${mod.base}/${s.poster}" aria-label="${esc(tx(s.label || s.title))}">
         ${s.webm ? `<source src="${mod.base}/${s.webm}" type="video/webm">` : ''}
         ${s.mp4 ? `<source src="${mod.base}/${s.mp4}" type="video/mp4">` : ''}
-      </video></figure>`;
+      </video></figure>${s.credit ? `<p class="video-credit">${t(s.credit)}</p>` : ''}`;
   },
 };
 

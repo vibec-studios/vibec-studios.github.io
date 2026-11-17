@@ -667,3 +667,6 @@ body[data-route="home"] .nav-cta { background: var(--brand); color: #fff; }
 .dlg-step[hidden] { display: none; }
 .dl-dialog [data-group="rel"] { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
 .dl-dialog [data-group="rel"] small { font: 500 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; opacity: .75; margin-left: 4px; }
+.video-credit { margin: 12px 0 0; font: 12px/1.5 var(--mono); color: var(--dim); }
+.video-credit a { color: var(--muted); text-underline-offset: 3px; }
+.video-credit a:hover { color: var(--accent); }

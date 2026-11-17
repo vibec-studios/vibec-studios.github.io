@@ -34,6 +34,18 @@ export default {
     S('Die Drachenherz-Wacht, Solvane und Kampfhandschuhe mit Zauberrad', 'The Dragonheart Watch, Solvane and gauntlets with a spell wheel'),
   ],
   sections: [
+    // ------------------------------------------------------------------ Trailer (Gameplay, HHA_Arius/tmp/trailer/out)
+    {
+      type: 'video', id: 'trailer', toc: S('Trailer', 'Trailer'), title: S('Das Duell in Bewegung', 'The duel in motion'),
+      lead: S('Vom Gletscher bis zur Eisnadel: Arius im Tempel, deine Ausrüstung im Einsatz und Solvane, die sich als weißer Drache um die Nadel windet.',
+        'From the glacier to the needle of ice: Arius in the temple, your gear in action and Solvane coiling around the needle as a white dragon.'),
+      webm: 'video/trailer.webm', mp4: 'video/trailer.mp4', poster: 'video/trailer-poster.webp',
+      label: S('Gameplay-Trailer von HHA Arius', 'HHA Arius gameplay trailer'),
+      // Musik ist CC0 (keine Namensnennung nötig), die Zeile ist eine freiwillige Geste
+      credit: S('Musik: „Fall of Nightmares“ von nene (Stimmen: Helena Kesti, Matias Lindgren), CC0, via <a href="https://opengameart.org/content/fall-of-nightmares-epic-orchestral" target="_blank" rel="noopener">OpenGameArt</a>',
+        'Music: “Fall of Nightmares” by nene (vocals: Helena Kesti, Matias Lindgren), CC0, via <a href="https://opengameart.org/content/fall-of-nightmares-epic-orchestral" target="_blank" rel="noopener">OpenGameArt</a>'),
+    },
+
     // ------------------------------------------------------------------ Rüstung und Waffen
     {
       type: 'armor',
