@@ -7,10 +7,17 @@ const MODELS = {
   arius: { solvane: 4 },
 };
 
+// Zusätzliche Texturen eines 3D-Handmodells (Schlüssel wie im Modell, "#1" -> '1'), z. B. Solvanes leuchtende Hohlkehle
+const EXTRA = {
+  arius: { solvane: { 1: { name: 'solvane_fuller', frametime: 4 } } },
+};
+
 /** Beschreibung für die Hand: 3D-Modell, falls vorhanden, sonst das flache Item (extrudiert wie im Spiel). */
 export function heldItem(mod, name) {
   const url = `${mod.base}/item/${name}.png`;
   const ft = MODELS[mod.id]?.[name];
   if (ft == null) return { url };
-  return { json: `${mod.base}/item3d/${name}_3d.json`, tex: `${mod.base}/item3d/${name}_3d.png`, frametime: ft, url };
+  const more = EXTRA[mod.id]?.[name];
+  const extra = more ? Object.fromEntries(Object.entries(more).map(([k, v]) => [k, { url: `${mod.base}/item3d/${v.name}.png`, frametime: v.frametime }])) : undefined;
+  return { json: `${mod.base}/item3d/${name}_3d.json`, tex: `${mod.base}/item3d/${name}_3d.png`, frametime: ft, extra, url };
 }

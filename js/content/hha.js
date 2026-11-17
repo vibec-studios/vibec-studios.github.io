@@ -1,5 +1,5 @@
 // H&H Armors: Inhalte der Mod-Seite. Die Seite ist eine Vorstellung; Werte, Befehle und Einstellungen stehen in der Mod
-// selbst (docs/ im HHA-Repo). Stand: Zweite Überarbeitung mit Olymp-Pfad und RPG-Modus.
+// selbst (docs/ im HHA-Repo). Stand: Dritte Überarbeitung (Effekte, Cutscenes, Musik je Phase, RPG als eigenes Spiel, Tunnel-Lobby).
 const S = (de, en) => ({ de, en });
 const seq = (s) => s.trim().split(/\s+/);
 
@@ -302,7 +302,7 @@ export default {
     S('Heaven- und Hell-Set mit Schwert und Mace als echte 3D-Modelle', 'Heaven and Hell sets with sword and mace as real 3D models'),
     S('Der Olymp: schwebende Inseln, Hermes, Hekate, Brontes, Kratos und Zeus', 'Olympus: floating islands, Hermes, Hecate, Brontes, Kratos and Zeus'),
     S('Der Tartaros: fünf Wächter, Hades und Kronos', 'Tartarus: five guardians, Hades and Kronos'),
-    S('RPG-Modus: Lobby im Hauptmenü, Freunde per Code einladen', 'RPG mode: a main menu lobby, invite friends with a code'),
+    S('RPG-Modus als eigenes Spiel: Lobby per Code, Lichttunnel, Kapitel und Abspann', 'RPG mode as a game of its own: code lobby, tunnel of light, chapters and credits'),
   ],
   sections: [
     {
@@ -361,6 +361,19 @@ export default {
         { name: S('Kokytos', 'Cocytus'), colors: ['#4a4a4f', '#3d3d42', '#8eb4f5', '#a7c6fb', '#6f9ff6', '#d7e7ff'], desc: S('Tiefenschiefer mit Eisschollen, Blaueis-Rissen und Reif, Gestalten im Eis.', 'Deepslate with ice floes, blue ice cracks and frost, figures frozen in the ice.') },
         { name: S('Erebos', 'Erebus'), colors: ['#15101f', '#1e1630', '#0e0a16', '#0f3a45', '#15101f', '#34e0e0'], desc: S('Fast schwarz: Obsidian und Sculk unter dichtem Nebel, niedrige Obsidian-Stelen.', 'Almost black: obsidian and sculk under thick fog, low obsidian steles.') },
         { name: S('Sümpfe des Styx', 'Styx Marshes'), colors: ['#3b3533', '#46403d', '#6b5a4a', '#7a6956', '#4b3a2e', '#5a4636'], desc: S('Ausgetrockneter Sumpf: Lehm mit Trockenrissen, Seelenerde, Wurzelstümpfe.', 'A dried-out marsh: cracked mud, soul soil and root stumps.') },
+      ],
+    },
+    {
+      type: 'abilities', id: 'erlebnis', toc: S('Erlebnis', 'Experience'), title: S('Mehr als ein Kampf', 'More than a fight'),
+      lead: S('Jeder Boss hat seinen Auftritt: eigene Effekte, eine geführte Kamera und Musik, die mit dem Kampf wächst.',
+        'Every boss gets an entrance: its own effects, a guided camera and music that grows with the fight.'),
+      items: [
+        { name: S('Inszenierte Cutscenes', 'Staged cutscenes'), desc: S('Auftritt, Phasenwechsel und Niederlage jedes Bosses mit geführter Kamera, alles überspringbar.', 'Entrance, phase changes and defeat of every boss with a guided camera, all skippable.') },
+        { name: S('Musik je Phase', 'Music per phase'), desc: S('Jeder Boss bekommt eigene Musik für jede Phase, mit weichen Übergängen und einem Siegesmotiv.', 'Every boss gets its own music for each phase, with smooth transitions and a victory sting.') },
+        { name: S('Effekte mit Wucht', 'Effects with impact'), desc: S('Lichtspuren, Risse, Flammen und Wasserwände, fliegende Bodenblöcke und glühende Risse im Boden.', 'Light trails, rifts, flames and water walls, flying floor blocks and glowing cracks in the ground.') },
+        { name: S('RPG als eigenes Spiel', 'RPG as its own game'), desc: S('Kapitel mit Zielen und Richtungspfeil, Tagebuch, eigenes HUD und ein Ende mit Abspann.', 'Chapters with goals and a direction arrow, a journal, its own HUD and an ending with credits.') },
+        { name: S('Tunnel-Lobby', 'Tunnel lobby'), desc: S('Die Gruppe schwebt gemeinsam durch einen Tunnel aus Licht, bis alle angekommen sind.', 'The group floats together through a tunnel of light until everyone has arrived.') },
+        { name: S('Ruhig, wenn du willst', 'Calm if you like'), desc: S('Kamerawackeln, Bildschirmeffekte und Handkamera lassen sich einzeln abschalten.', 'Camera shake, screen effects and the handheld camera can each be turned off.') },
       ],
     },
     {

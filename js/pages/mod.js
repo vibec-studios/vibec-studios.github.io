@@ -201,7 +201,7 @@ export function render(mod, dl) {
 function figureFor(mod, group, i, extra = {}) {
   const set = group.armor || extra.armor;
   const weapon = weaponOf(group);
-  return { base: mod.base, armor: set, eye: group.color || mod.accent2 || mod.accent, held: weapon ? heldItem(mod, weapon) : null, stance: i, ...extra };
+  return { base: mod.base, armor: set, armor3d: !!group.armor3d, eye: group.color || mod.accent2 || mod.accent, held: weapon ? heldItem(mod, weapon) : null, stance: i, ...extra };
 }
 
 export async function mount(root, mod, signal) {

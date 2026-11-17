@@ -32,7 +32,7 @@ function armorsOf(m) {
     return names.find((n) => /sword|blade|scythe|klinge/.test(n)) || names.find((n) => /mace/.test(n)) || null;
   };
   if (sec.type === 'versus') return sec.sides.map((s) => ({ set: s.armor || s.name.toLowerCase(), name: s.name, color: s.color, weapon: weapon(s) }));
-  return sec.armor ? [{ set: sec.armor, name: m.name.replace(/^HHA\s+/, ''), color: m.accent2 || m.accent, weapon: weapon(sec) }] : [];
+  return sec.armor ? [{ set: sec.armor, armor3d: !!sec.armor3d, name: m.name.replace(/^HHA\s+/, ''), color: m.accent2 || m.accent, weapon: weapon(sec) }] : [];
 }
 
 /** „HHA · Hauptmod“, „HHA · Addon“ oder einfach „Mod“ für eigenständige Projekte. */
@@ -88,7 +88,7 @@ function heroScene(canvas, m, signal) {
   if (m.hero?.kind === 'link') return linkStage(canvas, { glow: hex(m.accent), cable: hex(m.accent), zoom: 1.2, signal });
   const armors = armorsOf(m);
   if (armors.length) {
-    const figures = armors.map((a, i) => ({ base: m.base, armor: a.set, eye: a.color, held: a.weapon ? heldItem(m, a.weapon) : null,
+    const figures = armors.map((a, i) => ({ base: m.base, armor: a.set, armor3d: a.armor3d, eye: a.color, held: a.weapon ? heldItem(m, a.weapon) : null,
       glow: armors.length > 1 ? hex(a.color) : undefined, stance: armors.length > 1 ? (i ? 1 : 0) : 1 }));
     return stageScene(canvas, { figures, glow: hex(m.accent2 || m.accent), yaw: figures.length > 1 ? 0 : 0.3, zoom: figures.length > 1 ? 1.25 : 1.4, signal });
   }

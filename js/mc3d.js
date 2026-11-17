@@ -311,7 +311,61 @@ function glowLayer(tex) {
 }
 const optionalTex = (url) => loadTex(url).catch(() => null);
 
-export async function loadArmorStand(base, set, eye) {
+/** Teilbaum eines exportierten Modells (n, p, r, c, k) als Gruppen, ohne Posen. */
+function modelParts(p, mat, tw, th) {
+  const g = new THREE.Group();
+  g.name = p.n;
+  g.position.set(p.p[0], p.p[1], p.p[2]);
+  g.rotation.set(p.r[0], p.r[1], p.r[2], 'ZYX');
+  if (p.c) {
+    const out = { pos: [], uv: [] };
+    for (const c of p.c) addCuboid(out, c, tw, th, !!c[9]);
+    const mesh = new THREE.Mesh(geometryOf(out), mat);
+    mesh.castShadow = true;
+    g.add(mesh);
+  }
+  if (p.k) for (const k of p.k) g.add(modelParts(k, mat, tw, th));
+  return g;
+}
+
+/**
+ * Rüstung als eigenes 3D-Modell (z. B. Drachenherz-Wacht aus HHA Arius): armor/<set>.json mit Teilen, die je einem
+ * Biped-Knochen gehören (`bone`), Drehpunkt 0 im Knochenraum wie im Spiel. Dazu <set>.png und optional <set>_glow.png.
+ */
+async function loadArmorStand3d(base, set, eye) {
+  const [json, map, glow] = await Promise.all([
+    fetch(`${base}/armor/${set}.json`).then((r) => { if (!r.ok) throw new Error(set); return r.json(); }),
+    loadTex(`${base}/armor/${set}.png`), loadGlow(`${base}/armor/${set}_glow.png`),
+  ]);
+  const skin = new THREE.MeshLambertMaterial({ map: eyeTexture(eye), emissive: 0xffffff, emissiveMap: eyeGlow(eye) });
+  const mat = new THREE.MeshLambertMaterial({
+    map, alphaTest: 0.1, side: THREE.DoubleSide,
+    emissive: glow ? 0xffffff : 0x000000, emissiveMap: glow || null, emissiveIntensity: 1.3,
+  });
+  const parts = {};
+  const inner3 = new THREE.Group();
+  for (const [name, def] of Object.entries(BIPED)) {
+    const g = new THREE.Group();
+    g.position.set(...def.pivot);
+    const out = { pos: [], uv: [] };
+    addCuboid(out, [...def.box, 0, def.uv[0], def.uv[1]], 64, 64, !!def.mirror);
+    const mesh = new THREE.Mesh(geometryOf(out), skin);
+    mesh.castShadow = true;
+    g.add(mesh);
+    parts[name] = g;
+    inner3.add(g);
+  }
+  for (const p of json.parts) parts[p.bone]?.add(modelParts(p, mat, json.texW, json.texH));
+  inner3.scale.set(-1 / 16, -1 / 16, 1 / 16);
+  inner3.position.y = 24 / 16;
+  const root = new THREE.Group();
+  root.add(inner3);
+  root.rotation.y = Math.PI;
+  return { root, parts };
+}
+
+export async function loadArmorStand(base, set, eye, model3d = false) {
+  if (model3d) return loadArmorStand3d(base, set, eye);
   const [outer, inner, outerGlow, innerGlow] = await Promise.all([
     loadTex(`${base}/armor/${set}.png`), loadTex(`${base}/armor/${set}_legs.png`),
     optionalTex(`${base}/armor/${set}_glow.png`), optionalTex(`${base}/armor/${set}_legs_glow.png`),
@@ -561,9 +615,22 @@ const FACE = {
  * Lädt ein Minecraft-Item-Modell aus Elementen (wie blood_sword_3d.json). Ergebnis in Blockeinheiten (0..1),
  * dazu die display-Transformationen des Modells, damit es genauso in der Hand liegt wie im Spiel.
  */
-export async function loadBlockModel(jsonURL, texURL, frametime = 4) {
-  const [data, strip] = await Promise.all([fetch(jsonURL).then((r) => { if (!r.ok) throw new Error(jsonURL); return r.json(); }), stripTexture(texURL, frametime)]);
-  const lit = { pos: [], uv: [] }, glow = { pos: [], uv: [] };
+export async function loadBlockModel(jsonURL, texURL, frametime = 4, extra = {}) {
+  // extra: weitere Texturen des Modells nach Schlüssel ('1' für "#1"), je { url, frametime }
+  const keys = Object.keys(extra);
+  const [data, strip, ...more] = await Promise.all([
+    fetch(jsonURL).then((r) => { if (!r.ok) throw new Error(jsonURL); return r.json(); }),
+    stripTexture(texURL, frametime),
+    ...keys.map((k) => stripTexture(extra[k].url, extra[k].frametime || 4)),
+  ]);
+  const strips = { '': strip };
+  keys.forEach((k, i) => { strips[k] = more[i]; });
+  const buckets = new Map(); // Textur + leuchtend -> Geometrie
+  const bucket = (key, lightEmit) => {
+    const id = `${key}|${lightEmit ? 1 : 0}`;
+    if (!buckets.has(id)) buckets.set(id, { key, glow: lightEmit, pos: [], uv: [] });
+    return buckets.get(id);
+  };
   const v3 = new THREE.Vector3();
   for (const el of data.elements || []) {
     const a = el.from, b = el.to;
@@ -575,9 +642,10 @@ export async function loadBlockModel(jsonURL, texURL, frametime = 4) {
         .multiply(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(...axis), THREE.MathUtils.degToRad(el.rotation.angle)))
         .multiply(new THREE.Matrix4().makeTranslation(-o[0], -o[1], -o[2]));
     }
-    const out = el.light_emission ? glow : lit;
     for (const [dir, f] of Object.entries(el.faces || {})) {
       if (!FACE[dir] || !f.uv) continue;
+      const tk = String(f.texture || '').replace('#', '');
+      const out = bucket(strips[tk] && tk ? tk : '', !!el.light_emission);
       const corners = FACE[dir](a, b).map((p) => {
         v3.set(p[0] / 16, p[1] / 16, p[2] / 16);
         if (m) v3.applyMatrix4(m);
@@ -591,15 +659,16 @@ export async function loadBlockModel(jsonURL, texURL, frametime = 4) {
     }
   }
   const group = new THREE.Group();
-  if (lit.pos.length) {
-    const mesh = new THREE.Mesh(geometryOf(lit), new THREE.MeshLambertMaterial({ map: strip.tex, alphaTest: 0.1, side: THREE.DoubleSide }));
-    mesh.castShadow = true;
+  for (const b of buckets.values()) {
+    const map = strips[b.key].tex;
+    const mesh = b.glow
+      ? new THREE.Mesh(geometryOf(b), new THREE.MeshBasicMaterial({ map, alphaTest: 0.1, side: THREE.DoubleSide, toneMapped: false }))
+      : new THREE.Mesh(geometryOf(b), new THREE.MeshLambertMaterial({ map, alphaTest: 0.1, side: THREE.DoubleSide }));
+    mesh.castShadow = !b.glow;
     group.add(mesh);
   }
-  if (glow.pos.length) {
-    group.add(new THREE.Mesh(geometryOf(glow), new THREE.MeshBasicMaterial({ map: strip.tex, alphaTest: 0.1, side: THREE.DoubleSide, toneMapped: false })));
-  }
-  return { group, display: data.display || {}, tick: strip.tick };
+  const ticks = Object.values(strips).map((s) => s.tick);
+  return { group, display: data.display || {}, tick: (now) => ticks.forEach((f) => f(now)) };
 }
 
 /** Kette der Spiel-Transformationen: ItemInHandLayer (rechte Hand) + display.thirdperson_righthand. Kind von arm_r (Pixeleinheiten). */

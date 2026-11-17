@@ -126,7 +126,7 @@ function glowDisc(color, radius) {
 async function loadHeld(held) {
   if (!held) return null;
   if (held.json) {
-    const m = await loadBlockModel(held.json, held.tex, held.frametime || 4).catch(() => null);
+    const m = await loadBlockModel(held.json, held.tex, held.frametime || 4, held.extra).catch(() => null);
     if (m) return { object: handTransform(m.group, m.display.thirdperson_righthand), tick: m.tick };
     if (!held.url) return null;
   }
@@ -135,8 +135,8 @@ async function loadHeld(held) {
 }
 
 /** Rüstungspuppe mit Waffe in der rechten Hand (Haltung wie im Spiel). */
-export async function armorStand(base, armor, eye, held) {
-  const [stand, item] = await Promise.all([loadArmorStand(base, armor, eye), loadHeld(held)]);
+export async function armorStand(base, armor, eye, held, model3d = false) {
+  const [stand, item] = await Promise.all([loadArmorStand(base, armor, eye, model3d), loadHeld(held)]);
   if (item) stand.parts.arm_r.add(item.object);
   const holder = new THREE.Group();
   holder.add(stand.root);
@@ -269,7 +269,7 @@ export async function stageScene(canvas, { figures = [], boss = null, glow = 0xf
   const n = figures.length;
   const spacing = cable != null ? 2.6 : 1.3;
   const player = (look) => { const stand = loadPlayer(look); const holder = new THREE.Group(); holder.add(stand.root); return { holder, stand, item: null }; };
-  const loaded = await Promise.all(figures.map((f) => (f.player ? Promise.resolve(player(f.player)) : armorStand(f.base, f.armor, f.eye, f.held)).catch(() => null)));
+  const loaded = await Promise.all(figures.map((f) => (f.player ? Promise.resolve(player(f.player)) : armorStand(f.base, f.armor, f.eye, f.held, f.armor3d)).catch(() => null)));
   loaded.forEach((s, i) => {
     if (!s) return;
     const x = (i - (n - 1) / 2) * spacing;
@@ -377,7 +377,7 @@ export async function itemSpin(canvas, held) {
   scene.add(k);
   let obj = null, tick = () => {};
   if (held.json) {
-    const m = await loadBlockModel(held.json, held.tex, held.frametime || 4).catch(() => null);
+    const m = await loadBlockModel(held.json, held.tex, held.frametime || 4, held.extra).catch(() => null);
     if (m) {
       obj = new THREE.Group();
       m.group.position.set(-0.5, -0.5, -0.5);

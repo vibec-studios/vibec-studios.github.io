@@ -1,18 +1,20 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.1.0, Stand 17.11.2026).
-// Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.2.0, Stand 17.11.2026).
+// Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
+// Drachenherz-Wacht als eigenes 3D-Modell (armor/eirholm_armor.json, armor3d).
+// Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
 const S = (de, en) => ({ de, en });
 
 export default {
   id: 'arius',
   name: 'HHA Arius',
   short: S(
-    'Die weiße Klinge: ein Duell gegen Arius und die alte weiße Drachin Nivaris, dazu die Frostrüstung von Eirholm.',
-    'The White Blade: a duel against Arius and the old white dragon Nivaris, plus the Eirholm frost armor.',
+    'Die weiße Klinge: ein Duell gegen Arius und Solvane, die weiße Drachin, die in seinem Schwert lebt, dazu die Drachenherz-Wacht.',
+    'The White Blade: a duel against Arius and Solvane, the white dragon that lives in his sword, plus the Dragonheart Watch.',
   ),
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.1.0',
+  version: '1.2.0',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -22,25 +24,25 @@ export default {
   card: { model: 'arius' },
   hero: { kind: 'boss', model: 'arius' },
   intro: S(
-    'HHA Arius ist ein Endgame-Addon für H&H Armors. Arius ist der Held unserer eigenen Light Novel „The White Blade“, die Mod ist eine freie Umsetzung davon. Brich das Siegel von Eirholm in der Kälte, und der Schnee fällt nach oben: Du stehst im Heiligtum von Eirholm, vor einem Schwertkämpfer, der jeden Fehler sieht, und einer Drachin, die älter ist als das Eis.',
-    'HHA Arius is an endgame addon for H&H Armors. Arius is the hero of our own light novel “The White Blade”, and the mod is a free adaptation of it. Break the Seal of Eirholm somewhere cold and the snow starts falling upward: you stand in the Sanctum of Eirholm, facing a swordsman who sees every mistake and a dragon older than the ice.',
+    'HHA Arius ist ein Endgame-Addon für H&H Armors. Arius ist der Held unserer eigenen Light Novel „The White Blade“, die Mod ist eine freie Umsetzung davon. Brich das Siegel von Eirholm in der Kälte, und der Schnee fällt nach oben: Du stehst im Heiligtum von Eirholm, vor einem Schwertkämpfer, der jeden Fehler sieht. Sein Schwert Solvane wurde aus dem Herzen eines uralten weißen Drachen geschmiedet, und wenn er es loslässt, wird es wieder zu ihr.',
+    'HHA Arius is an endgame addon for H&H Armors. Arius is the hero of our own light novel “The White Blade”, and the mod is a free adaptation of it. Break the Seal of Eirholm somewhere cold and the snow starts falling upward: you stand in the Sanctum of Eirholm, facing a swordsman who sees every mistake. His sword Solvane was forged from the heart of an ancient white dragon, and when he lets go, it becomes her again.',
   ),
   highlights: [
     S('Ein Duell in fünf Akten, vom Tempel bis zum letzten klaren Moment', 'A duel in five acts, from the temple to the last clear moment'),
-    S('Nivaris: eine riesige Schlangendrachin, gewunden um eine Nadel aus Eis', 'Nivaris: a giant serpent dragon coiled around a needle of ice'),
+    S('Solvane: Das Schwert wird zur Drachin und windet sich um eine Nadel aus Eis', 'Solvane: the sword becomes a dragon and coils around a needle of ice'),
     S('Der Schnitt: eine Linie durch den Tempel, dann gleitet er auseinander', 'The Cut: one line through the temple, then it slides apart'),
-    S('Solvane, Kampfhandschuhe mit Zauberrad und die Rüstung von Eirholm', 'Solvane, gauntlets with a spell wheel and the Eirholm armor'),
+    S('Die Drachenherz-Wacht, Solvane und Kampfhandschuhe mit Zauberrad', 'The Dragonheart Watch, Solvane and gauntlets with a spell wheel'),
   ],
   sections: [
     // ------------------------------------------------------------------ Rüstung und Waffen
     {
       type: 'armor',
-      title: S('Die Rüstung von Eirholm', 'The Eirholm armor'),
+      title: S('Die Drachenherz-Wacht', 'The Dragonheart Watch'),
       lead: S(
-        'Netherit in Anthrazit und Stahlblau, mit altgoldenen Sternen und Nähten, die eisblau leuchten. Dazu Solvane und die Kampfhandschuhe von Arius.',
-        'Netherite in anthracite and steel blue, with old-gold stars and seams that glow ice blue. Plus Solvane and Arius’ gauntlets.',
+        'Die Rüstung von Eirholm als eigenes Modell: perlweiße Drachenschuppen mit Goldkante, eine Krone aus Eishörnern, Schwingenplatten an den Schultern und ein Herz-Juwel, das pulsiert. Dazu Solvane und die Kampfhandschuhe von Arius.',
+        'The Eirholm armor as a model of its own: pearl-white dragon scales with gold edging, a crown of ice horns, wing plates on the shoulders and a pulsing heart gem. Plus Solvane and Arius’ gauntlets.',
       ),
-      armor: 'eirholm',
+      armor: 'eirholm_armor', armor3d: true,
       weapon: 'solvane',
       items: [
         { tex: 'eirholm_helmet', name: S('Arius’ Helm', 'Arius’ Helmet') },
@@ -50,7 +52,7 @@ export default {
         { tex: 'solvane', name: S('Solvane', 'Solvane') },
         { tex: 'arius_gauntlets', name: S('Arius’ Kampfhandschuhe', 'Arius’ Gauntlets') },
         { tex: 'heartfrost', name: S('Herzfrost', 'Heartfrost') },
-        { tex: 'nivaris_scale', name: S('Nivaris-Schuppe', 'Nivaris scale') },
+        { tex: 'nivaris_scale', name: S('Schuppe des weißen Drachen', 'White dragon scale') },
       ],
     },
 
@@ -144,25 +146,25 @@ export default {
           ],
         },
         {
-          id: 'nivaris',
+          id: 'solvane',
           model: 'nivaris',
           texture: null,
-          name: S('Nivaris', 'Nivaris'),
-          sub: S('Die Alte vom Eirgletscher', 'The Old One of the Eir Glacier'),
+          name: S('Solvane', 'Solvane'),
+          sub: S('Herz des weißen Drachen', 'Heart of the White Dragon'),
           color: '#bfe6ff',
           segments: 1,
           desc: S(
-            'Eine uralte weiße Schlangendrachin, gewunden um eine Nadel aus Eis. Ihr Atem lässt Eisgrate zurück, und Arius sieht zu.',
-            'An ancient white serpent dragon coiled around a needle of ice. Her breath leaves ridges of ice behind, and Arius watches.',
+            'Arius lässt sein Schwert los, und es wird zu dem, was es einmal war: eine uralte weiße Drachin, gewunden um eine Nadel aus Eis. Ihr Atem lässt Eisgrate zurück, und Arius sieht ohne Klinge zu.',
+            'Arius lets go of his sword, and it becomes what it once was: an ancient white dragon coiled around a needle of ice. Her breath leaves ridges of ice behind, and Arius watches without a blade.',
           ),
           trick: S(
             'Lock ihren Sturzflug in einen Eisgrat, dann liegt sie am Boden. Treffer an die Kehle ersticken ihren Atem.',
             'Lure her dive into an ice ridge to bring her down. Hits to the throat choke her breath.',
           ),
           where: S('An der Gletscherschwelle, gleich hinter dem gebrochenen Tor.', 'At the Glacier Threshold, right behind the broken gate.'),
-          loot: S('Nivaris-Schuppen, aus denen sich Schwingenschuppen machen lassen.', 'Nivaris scales, which can be turned into wing scales.'),
+          loot: S('Schuppen des weißen Drachen, aus denen Solvanes Schwingenschuppe wird.', 'White dragon scales, which become Solvane’s Wingscale.'),
           phases: [
-            { name: S('III · Die Gletscherschwelle', 'III · The Glacier Threshold'), desc: S('Nivaris allein: Eisatem, Sturzflüge und harte Landungen, die du bestrafen kannst.', 'Nivaris alone: ice breath, dives and hard landings you can punish.') },
+            { name: S('III · Die Gletscherschwelle', 'III · The Glacier Threshold'), desc: S('Solvane allein: Eisatem, Sturzflüge und harte Landungen, die du bestrafen kannst.', 'Solvane alone: ice breath, dives and hard landings you can punish.') },
           ],
           moves: [
             { n: S('Schwingen spannen', 'Spread wings'), p: ['spread', 'wings_up', 'wings_down', 'spread'] },
@@ -180,18 +182,18 @@ export default {
           color: '#ffffff',
           segments: 2,
           desc: S(
-            'Er legt die dunkle Rüstung ab und kämpft in Weiß, Seite an Seite mit Nivaris. Die beiden kämpfen im Takt: einer führt, der andere stützt.',
-            'He sheds his dark armor and fights in white, side by side with Nivaris. The two fight in rhythm: one leads, the other supports.',
+            'Er legt die dunkle Rüstung ab und kämpft in Weiß, Seite an Seite mit Solvane. Die beiden kämpfen im Takt: einer führt, der andere stützt.',
+            'He sheds his dark armor and fights in white, side by side with Solvane. The two fight in rhythm: one leads, the other supports.',
           ),
           trick: S(
             'Brich den Takt, dann steht der Partner offen. Resonanzangriffe haben immer einen klaren sicheren Weg.',
             'Break the rhythm and the partner is open. Resonance attacks always have a clear safe path.',
           ),
-          where: S('Im Herzen des Gletschers, nachdem Nivaris durch das Eis gebrochen ist.', 'In the heart of the glacier, after Nivaris has crashed through the ice.'),
+          where: S('Im Herzen des Gletschers, nachdem Solvane durch das Eis gebrochen ist.', 'In the heart of the glacier, after Solvane has crashed through the ice.'),
           loot: S('Wer ohne K. o. gewinnt, bekommt die Schmiedevorlage „Weiße Klinge“.', 'Win without anyone getting knocked out and you get the “White Blade” smithing template.'),
           phases: [
-            { name: S('IV · Im Takt', 'IV · In Rhythm'), desc: S('Arius und Nivaris gemeinsam, und einmal im Kampf: das weiße Loch.', 'Arius and Nivaris together, and once per fight: the white hole.') },
-            { name: S('V · Der letzte klare Moment', 'V · The Last Clear Moment'), desc: S('Kein Sturm, keine Drachin. Drei Wechsel gegen seinen Schnitt aus der Scheide.', 'No storm, no dragon. Three exchanges against his cut from the sheath.') },
+            { name: S('IV · Im Takt', 'IV · In Rhythm'), desc: S('Arius mit einer Klinge aus Eislicht und Solvane gemeinsam, und einmal im Kampf: das weiße Loch.', 'Arius with a blade of ice light and Solvane together, and once per fight: the white hole.') },
+            { name: S('V · Der letzte klare Moment', 'V · The Last Clear Moment'), desc: S('Kein Sturm mehr: Die Drachin kehrt in die Scheide zurück. Drei Wechsel gegen seinen Schnitt aus der Scheide.', 'No more storm: the dragon returns to the scabbard. Three exchanges against his cut from the sheath.') },
           ],
           moves: [
             { n: S('White Null', 'White Null'), p: ['null_wind', 'null_hit', 'null_follow'] },
@@ -221,7 +223,7 @@ export default {
         },
         {
           name: S('Die Nadel', 'The Needle'),
-          desc: S('Eine gewaltige Eisspitze über einer tiefen Schlucht, Nivaris um sie gewunden.', 'A huge spire of ice above a deep canyon, with Nivaris coiled around it.'),
+          desc: S('Eine gewaltige Eisspitze über einer tiefen Schlucht, Solvane um sie gewunden.', 'A huge spire of ice above a deep canyon, with Solvane coiled around it.'),
           colors: ['#7fa3c8', '#a9c9e6', '#d2e4f4', '#f8f9fb', '#4f5663'],
         },
         {
