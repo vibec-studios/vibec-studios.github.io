@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T19:50:22Z",
+ "updated": "2026-11-17T20:14:49Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -417,6 +417,31 @@
   "arius": {
    "repo": "vibec-studios/hha-arius",
    "releases": [
+    {
+     "tag": "v1.3.0",
+     "version": "1.3.0",
+     "name": "HHA Arius 1.3.0 – storm, sky balcony and a new finale",
+     "date": "2026-11-17T20:10:03Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/hha-arius/releases/tag/v1.3.0",
+     "assets": [
+      {
+       "name": "HHA_Arius-1.3.0.jar",
+       "size": 9320269,
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.3.0/HHA_Arius-1.3.0.jar",
+       "sha256": "7adce01241396d22bcdb22ae112304df65dd1cde08cd384d5f1b9e706bc04dbf",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-17T20:13:34Z",
+        "checked": "2026-11-17T20:14:49Z"
+       }
+      }
+     ]
+    },
     {
      "tag": "v1.2.2",
      "version": "1.2.2",
