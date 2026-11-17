@@ -24,7 +24,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
+      # Immer den neuesten Stand von main holen (nicht den auslösenden Commit): so baut ein Lauf, der in der
+      # Warteschlange stand, auf den Scans des vorherigen Laufs auf und kommt ihm beim Pushen nicht in die Quere.
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Releases und VirusTotal
         env:
@@ -43,6 +47,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/downloads.json
           git commit -m "Update downloads"
-          git pull --rebase origin main
+          # Hat jemand dazwischen gepusht: die frisch erzeugte downloads.json gewinnt (beim Rebase ist das „theirs“)
+          git pull --rebase -X theirs origin main
           git push origin HEAD:main
           gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true
