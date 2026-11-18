@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T21:09:48Z",
+ "updated": "2026-11-18T08:16:35Z",
  "mods": {
   "hha": {
    "repo": "vibec-studios/HHA",
@@ -417,6 +417,31 @@
   "arius": {
    "repo": "vibec-studios/hha-arius",
    "releases": [
+    {
+     "tag": "v1.4.1",
+     "version": "1.4.1",
+     "name": "HHA Arius 1.4.1",
+     "date": "2026-11-18T08:10:10Z",
+     "prerelease": false,
+     "url": "https://github.com/vibec-studios/hha-arius/releases/tag/v1.4.1",
+     "assets": [
+      {
+       "name": "HHA_Arius-1.4.1.jar",
+       "size": 9356333,
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.4.1/HHA_Arius-1.4.1.jar",
+       "sha256": "7e4ff6561e81b6e1fc4855994568eb2cce9b33ff6cb516911151aa7ce79044c9",
+       "vt": {
+        "status": "done",
+        "malicious": 0,
+        "suspicious": 0,
+        "clean": 65,
+        "total": 65,
+        "date": "2026-11-18T08:15:20Z",
+        "checked": "2026-11-18T08:16:35Z"
+       }
+      }
+     ]
+    },
     {
      "tag": "v1.4.0",
      "version": "1.4.0",

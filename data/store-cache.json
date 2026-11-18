@@ -2446,6 +2446,50 @@
     "license": "MIT",
     "version": "1.4.0"
    }
+  },
+  "762516117": {
+   "name": "HHA_Arius-1.4.1.jar",
+   "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.4.1/HHA_Arius-1.4.1.jar",
+   "size": 9356333,
+   "updated_at": "2026-11-18T08:10:09Z",
+   "sha1": "a1ff0306bc74d96e293f85127c6a2e207103e8ce",
+   "sha256": "7e4ff6561e81b6e1fc4855994568eb2cce9b33ff6cb516911151aa7ce79044c9",
+   "meta": {
+    "mod_id": "hha_arius",
+    "loaders": [
+     "fabric"
+    ],
+    "mc": [
+     {
+      "kind": "fabric",
+      "pred": "1.21.11"
+     }
+    ],
+    "deps": [
+     {
+      "id": "fabricloader",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-language-kotlin",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "fabric-api",
+      "kind": "required",
+      "loader": "fabric"
+     },
+     {
+      "id": "hha",
+      "kind": "required",
+      "loader": "fabric"
+     }
+    ],
+    "license": "MIT",
+    "version": "1.4.1"
+   }
   }
  },
  "mc_releases": [

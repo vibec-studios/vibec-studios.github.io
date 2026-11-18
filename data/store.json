@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-18T01:02:13Z",
+ "updated": "2026-11-18T08:16:38Z",
  "projects": [
   {
    "id": "hha",
@@ -678,8 +678,49 @@
    },
    "license": "MIT",
    "published": "2026-11-16T16:42:21Z",
-   "updated": "2026-11-17T21:02:42Z",
+   "updated": "2026-11-18T08:10:10Z",
    "versions": [
+    {
+     "id": "1.4.1-HHA_Arius-1.4.1",
+     "version_number": "1.4.1",
+     "name": "HHA Arius 1.4.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-18T08:10:10Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "﻿**HHA Arius 1.4.1: highland field and white Yang.**\n\n### Final stage\n- Phase III and the finale now take place on an open, flat field in the highland east of the plateau.\n- The field has pillars along its edge, a viewing hill and the rock horn in the background.\n- The Sky Balcony is gone.\n- The far landscape is rebuilt once per world (version 6).\n\n### White Yang\n- The Yang orb is now a shaded white sphere with a highlight. Small white spheres orbit it, and it trails a curved white \"fish\" tail.\n- The shield, bridge, platform, glider and Yang construct block are also white or pearl.\n- The Yang HUD icons are white too.\n\n### Status\nBuilt and checked statically. Screenshots come from an in-game capture run. **Not play-tested by hand yet.** See `docs/TESTEN.md`.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.4.1/HHA_Arius-1.4.1.jar",
+       "filename": "HHA_Arius-1.4.1.jar",
+       "size": 9356333,
+       "sha1": "a1ff0306bc74d96e293f85127c6a2e207103e8ce",
+       "sha256": "7e4ff6561e81b6e1fc4855994568eb2cce9b33ff6cb516911151aa7ce79044c9",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
     {
      "id": "1.4.0-HHA_Arius-1.4.0",
      "version_number": "1.4.0",
