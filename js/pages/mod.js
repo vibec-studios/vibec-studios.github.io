@@ -96,8 +96,8 @@ const R = {
   leaks(s, mod) {
     // Viele echte Aufnahmen in Gruppen: Vorschaubilder (thumb/) im Raster, die Lightbox blättert durch alle
     let k = 0;
-    return `${s.badge ? `<p class="leak-badge mono"><i aria-hidden="true"></i>${t(s.badge)}</p>` : ''}${s.groups.map((g) => `<div class="leak-group">
-      <h3 class="leak-h">${t(g.name)}<i class="leak-n mono">${g.items.length}</i></h3>
+    return `${s.badge ? `<p class="pill leak-badge"><i aria-hidden="true"></i>${t(s.badge)}</p>` : ''}${s.groups.map((g) => `<div class="leak-group">
+      <h3 class="leak-h">${t(g.name)}<i class="leak-n">${g.items.length}</i></h3>
       <div class="leak-grid">${g.items.map((it) => `<figure class="shot leak">
         <button type="button" data-leak="${k++}"><img src="${mod.base}/${s.dir}/thumb/${it.img}.webp" alt="${esc(tx(it.name))}" loading="lazy" width="640" height="283"></button>
         <figcaption>${t(it.name)}</figcaption></figure>`).join('')}</div></div>`).join('')}`;
@@ -126,8 +126,8 @@ function heroShot(mod) {
   const h = mod.hero;
   return `<figure class="hero-shot">
     <div class="hero-shot-frame"><img src="${mod.base}/${h.img}" alt="${esc(tx(mod.tagline))}" width="1280" height="${h.play ? 720 : 800}">
-    ${h.play ? `<a class="hero-play mono" href="#${h.play}" data-anchor data-play="${h.play}"><i aria-hidden="true"></i>${t(L('Trailer ansehen', 'Watch the trailer'))}</a>` : ''}</div>
-    ${h.address ? `<figcaption class="addr-card"><span class="mono small">${t(L('Deine Adresse', 'Your address'))}</span><b class="mono">${esc(h.address)}</b><span class="addr-copy mono">${t(L('Kopieren', 'Copy'))}</span></figcaption>` : ''}
+    ${h.play ? `<a class="btn hero-play" href="#${h.play}" data-anchor data-play="${h.play}"><i aria-hidden="true"></i>${t(L('Trailer ansehen', 'Watch the trailer'))}</a>` : ''}</div>
+    ${h.address ? `<figcaption class="addr-card"><span class="small">${t(L('Deine Adresse', 'Your address'))}</span><b>${esc(h.address)}</b><span class="addr-copy">${t(L('Kopieren', 'Copy'))}</span></figcaption>` : ''}
   </figure>`;
 }
 
@@ -163,31 +163,30 @@ export function render(mod, dl) {
   const meta = [mod.status && t(mod.status), newer(rel?.version, mod.version) && `v${esc(newer(rel?.version, mod.version))}`, `Minecraft ${esc(mod.mc || '1.21.11')}`, esc(mod.loader || 'Fabric')].filter(Boolean);
   const cta = [
     download ? dlLink('primary') : '',
-    `<a class="btn ${download ? 'ghost' : 'primary'}" href="#${sections[0]?.id || ''}" data-anchor>${t(L('Ansehen', 'Take a look'))}</a>`,
-    mod.source ? `<a class="btn ghost" href="${mod.source}" target="_blank" rel="noopener">GitHub</a>` : '',
+    `<a class="btn${download ? '' : ' primary'}" href="#${sections[0]?.id || ''}" data-anchor>${t(L('Ansehen', 'Take a look'))}</a>`,
+    mod.source ? `<a class="btn" href="${mod.source}" target="_blank" rel="noopener">GitHub ↗</a>` : '',
   ].join('');
 
   const hero = `<section class="hero mod-hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <a class="back mono" href="/" data-link>← ${t(L('Alle Mods', 'All mods'))}</a>
+        <a class="back" href="/#projekte" data-link>← ${t(L('Alle Projekte', 'All projects'))}</a>
         <h1 class="display">${esc(mod.name)}</h1>
         <p class="lead strong">${t(mod.tagline)}</p>
         <p class="lead">${t(short(mod.intro, 2))}</p>
         ${(mod.highlights || []).length ? `<ul class="ticks">${mod.highlights.slice(0, 3).map((h) => `<li>${t(h)}</li>`).join('')}</ul>` : ''}
         <div class="cta">${cta}</div>
-        <p class="note mono">${meta.join(' <i>·</i> ')}</p>
-        ${mod.statusPage ? `<a class="live-strip mono" href="${mod.statusPage}" data-link data-state="wait"><i aria-hidden="true"></i><span>${t(L('Relay wird geprüft …', 'Checking relay …'))}</span><b>→</b></a>` : ''}
+        <ul class="pills mod-meta">${meta.map((m) => `<li class="pill">${m}</li>`).join('')}</ul>
+        ${mod.statusPage ? `<a class="pill live-strip" href="${mod.statusPage}" data-link data-state="wait"><i aria-hidden="true"></i><span>${t(L('Relay wird geprüft …', 'Checking relay …'))}</span><b>→</b></a>` : ''}
       </div>
       <div class="hero-art">${mod.hero?.kind === 'shot' ? heroShot(mod) : '<canvas class="hero-canvas" aria-hidden="true"></canvas>'}</div>
     </div>
   </section>`;
 
   const toc = sections.map((s) => `<a href="#${s.id}" data-anchor>${t(s.toc || LABEL[s.type] || s.title)}</a>`).join('');
-  const body = sections.map((s, i) => `<section class="section sec-${s.type}" id="${s.id}">
+  const body = sections.map((s) => `<section class="section sec-${s.type}" id="${s.id}">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <p class="eyebrow">${String(i + 1).padStart(2, '0')} · ${t(s.toc || LABEL[s.type] || s.title)}</p>
         <h2 class="display sm">${t(s.title)}</h2>
         ${s.lead ? `<p class="lead">${t(short(s.lead, 2))}</p>` : ''}
       </header>
@@ -195,20 +194,19 @@ export function render(mod, dl) {
     </div></section>`).join('');
 
   const reqs = [`Minecraft ${esc(mod.mc || '1.21.11')}`, `${esc(mod.loader || 'Fabric')} Loader`, ...(mod.requires || []).map((r) => (typeof r === 'object' ? t(r) : esc(r)))];
-  const outro = `<section class="section outro" id="${install?.id || 'download'}">
-    <div class="wrap outro-grid" data-reveal>
+  const outro = `<section class="outro" id="${install?.id || 'download'}">
+    <div class="wrap"><div class="card outro-grid" data-reveal>
       <div>
-        <p class="eyebrow">${t(L('Download', 'Download'))}</p>
         <h2 class="display sm">${download
           ? t(L(`${esc(mod.name)} ${rel ? `v${esc(rel.version)} ` : ''}herunterladen`, `Download ${esc(mod.name)}${rel ? ` v${esc(rel.version)}` : ''}`))
           : t(L(`${esc(mod.name)}: noch kein Release`, `${esc(mod.name)}: no release yet`))}</h2>
         <p class="lead">${download
           ? t(L(`Mod herunterladen, in den <code>mods</code>-Ordner legen, Minecraft mit ${esc(mod.loader || 'Fabric')} starten. Fertig.`, `Download the mod, drop it into your <code>mods</code> folder, start Minecraft with ${esc(mod.loader || 'Fabric')}. Done.`))
           : `${mod.downloadNote ? `${t(mod.downloadNote)} ` : ''}${t(L('Folge dem Projekt auf GitHub, dann verpasst du den Start nicht.', 'Follow the project on GitHub so you don’t miss the launch.'))}`}</p>
-        <div class="cta">${download ? `${dlLink('primary')}<a class="btn ghost" href="/downloads/" data-link>${t(L('Download-Center', 'Download center'))}</a>` : `<a class="btn primary" href="${mod.source || 'https://github.com/vibec-studios'}" target="_blank" rel="noopener">${mod.source ? t(L('Zum Repository', 'View repository')) : t(L('Studio auf GitHub', 'Studio on GitHub'))} ↗</a>`}</div>
+        <div class="cta">${download ? `${dlLink('primary')}<a class="btn" href="/downloads/" data-link>${t(L('Download-Center', 'Download center'))}</a>` : `<a class="btn primary" href="${mod.source || 'https://github.com/vibec-studios'}" target="_blank" rel="noopener">${mod.source ? t(L('Zum Repository', 'View repository')) : t(L('Studio auf GitHub', 'Studio on GitHub'))} ↗</a>`}</div>
       </div>
-      <ul class="req mono">${reqs.map((r) => `<li>${r}</li>`).join('')}</ul>
-    </div>
+      <ul class="req">${reqs.map((r) => `<li>${r}</li>`).join('')}</ul>
+    </div></div>
   </section>`;
 
   return `<div class="mod-page" style="--accent:${accent};--accent2:${accent2};--on-accent:${onColor(accent)}">

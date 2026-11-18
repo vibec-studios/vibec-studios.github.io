@@ -3,7 +3,7 @@ import { $, $$, t, tx, esc, animateIcons, onColor } from '../core.js';
 import { releasesOf, latestRelease, vtLink } from '../downloads.js';
 
 const L = (de, en) => ({ de, en });
-export const ACCENT = '#3fe0c5';
+export const ACCENT = '#3b82f6';
 
 const REQ_LINKS = {
   'fabric api': 'https://modrinth.com/mod/fabric-api',
@@ -62,18 +62,18 @@ function tile(mod, dl) {
       <h2><a href="${mod.path}" data-link>${esc(mod.name)}</a></h2></div></header>
     <p class="dl-tag">${t(mod.tagline)}</p>`;
   if (!rel) {
-    return `<article class="dl-tile soon" id="${mod.id}" style="--accent:${mod.accent}">${head}
-      <p class="mono small dl-meta">Minecraft ${esc(mod.mc || '1.21.11')} · ${esc(mod.loader || 'Fabric')}</p>
-      <div class="dl-tile-foot"><span class="mono small dl-soon-label">${t(L('Bald verfügbar', 'Coming soon'))}</span>
-        <a class="btn ghost" href="${mod.path}" data-link>${t(L('Zur Mod', 'View mod'))}</a></div></article>`;
+    return `<article class="dl-tile card soon" id="${mod.id}">${head}
+      <p class="dl-meta">Minecraft ${esc(mod.mc || '1.21.11')} · ${esc(mod.loader || 'Fabric')}</p>
+      <div class="dl-tile-foot"><span class="pill">${t(L('Bald verfügbar', 'Coming soon'))}</span>
+        <a class="btn sm" href="${mod.path}" data-link>${t(L('Zur Mod', 'View mod'))}</a></div></article>`;
   }
   const v = rel.assets.length > 1 ? variants(rel) : null;
   const loaders = v ? v.loaders.map((l) => LOADERS[l] || l).join(' & ') : esc(mod.loader || 'Fabric');
   const files = v ? t(L(`${rel.assets.length} Dateien`, `${rel.assets.length} files`)) : size(rel.assets[0].size);
-  return `<article class="dl-tile" id="${mod.id}" style="--accent:${mod.accent};--on-accent:${onColor(mod.accent)}">${head}
-    <p class="mono small dl-meta"><b>v${esc(rel.version)}</b> · ${date(rel.date)}<br>${loaders} · Minecraft ${esc(mod.mc || '1.21.11')} · ${files}</p>
+  return `<article class="dl-tile card" id="${mod.id}">${head}
+    <p class="dl-meta"><b>v${esc(rel.version)}</b> · ${date(rel.date)}<br>${loaders} · Minecraft ${esc(mod.mc || '1.21.11')} · ${files}</p>
     <div class="dl-tile-foot">${v ? vtSummary(rel.assets, true) : vtBadge(rel.assets[0], true)}
-      <button type="button" class="btn accent" data-open="${mod.id}">↓ ${t(L('Herunterladen', 'Download'))}</button></div>
+      <button type="button" class="btn sm accent" data-open="${mod.id}">↓ ${t(L('Herunterladen', 'Download'))}</button></div>
   </article>`;
 }
 
@@ -114,7 +114,7 @@ function vtSummary(assets, compact = false) {
 
 const DIALOG = `<dialog class="dl-dialog" aria-labelledby="dlg-title">
   <form method="dialog"><button class="icon-btn dlg-close" aria-label="${esc(tx(L('Schließen', 'Close')))}">✕</button></form>
-  <header class="dlg-head"><span class="px-icon dl-icon dlg-icon"></span><div><p class="eyebrow dlg-tag"></p><h2 id="dlg-title"></h2><p class="mono small dlg-ver"></p></div></header>
+  <header class="dlg-head"><span class="px-icon dl-icon dlg-icon"></span><div><p class="eyebrow dlg-tag"></p><h2 id="dlg-title"></h2><p class="small dlg-ver"></p></div></header>
   <div class="dlg-body"></div></dialog>`;
 
 const store = {
@@ -131,7 +131,7 @@ function filesOf(mod, rel) {
   });
 }
 
-const step = (n, label, group, extra = '') => `<div class="dlg-step" data-step="${group}"><p class="k mono"><span class="dlg-n">${n}</span> · ${label}</p>
+const step = (n, label, group, extra = '') => `<div class="dlg-step" data-step="${group}"><p class="k"><span class="dlg-n">${n}</span> ${label}</p>
   <div class="${group === 'loader' ? 'dlg-seg' : 'dlg-mc'}" role="radiogroup" data-group="${group}"></div>${extra}</div>`;
 
 /**
@@ -142,8 +142,8 @@ function openDialog(dialog, mod, dl, onOpen) {
   const releases = releasesOf(dl, mod.id).filter((r) => r.assets?.length);
   const latest = latestRelease(dl, mod.id);
   if (!latest || !releases.length) return;
-  dialog.style.setProperty('--accent', mod.accent);
-  dialog.style.setProperty('--on-accent', onColor(mod.accent));
+
+
   dialog.querySelector('.dlg-tag').innerHTML = tagOf(mod);
   dialog.querySelector('#dlg-title').textContent = mod.name;
   const icon = dialog.querySelector('.dlg-icon');
@@ -176,7 +176,7 @@ function openDialog(dialog, mod, dl, onOpen) {
     const show = (group, visible) => {
       const el = body.querySelector(`[data-step="${group}"]`);
       el.hidden = !visible;
-      if (visible) el.querySelector('.dlg-n').textContent = String(++n);
+      if (visible) el.querySelector('.dlg-n').textContent = `${++n}.`;
     };
     show('rel', releases.length > 1);
     show('loader', loaders.length > 1);
@@ -196,16 +196,16 @@ function openDialog(dialog, mod, dl, onOpen) {
     const req = reqList(mod);
     body.querySelector('.dlg-result').innerHTML = f ? `
       <div class="dlg-file">
-        <p class="mono dlg-name">${esc(f.name)}</p>
+        <p class="dlg-name">${esc(f.name)}</p>
         <p class="small">${size(f.size)} · ${LOADERS[f.loader] || esc(f.loader)} · Minecraft ${esc(mcLabel(f.mc))} · ${date(rel.date)}</p>
       </div>
       <div class="dlg-facts">
         ${vtBadge(f)}
-        <button type="button" class="sha small" data-copy="${f.sha256}" title="SHA-256"><code>SHA-256 ${f.sha256.slice(0, 16)}…</code><span class="copied mono">${t(L('Kopiert', 'Copied'))}</span></button>
+        <button type="button" class="sha small" data-copy="${f.sha256}" title="SHA-256"><code>SHA-256 ${f.sha256.slice(0, 16)}…</code><span class="copied">${t(L('Kopiert', 'Copied'))}</span></button>
       </div>
-      ${req ? `<div class="dlg-req"><p class="k mono">${t(L('Benötigt', 'Requires'))}</p><div class="req-links">${req}</div></div>` : ''}
+      ${req ? `<div class="dlg-req"><p class="k">${t(L('Benötigt', 'Requires'))}</p><div class="req-links">${req}</div></div>` : ''}
       <div class="dlg-actions"><a class="btn accent dlg-get" href="${f.url}" download>↓ ${t(L('Herunterladen', 'Download'))}</a>
-        <a class="btn ghost" href="${rel.url}" target="_blank" rel="noopener">${t(L('Änderungen', 'Changelog'))} ↗</a></div>` : '';
+        <a class="btn" href="${rel.url}" target="_blank" rel="noopener">${t(L('Änderungen', 'Changelog'))} ↗</a></div>` : '';
     store.set(key, { loader: pick.loader, mc: pick.mc });
   }
 
@@ -235,34 +235,33 @@ export function title() { return 'Downloads · Vibe Craft Studios'; }
 export function render(mods, dl) {
   const files = mods.reduce((n, m) => n + releasesOf(dl, m.id).length, 0);
   const updated = dl?.updated ? date(dl.updated) : '–';
-  return `<div class="dl-page" style="--accent:${ACCENT};--on-accent:#000">
+  return `<div class="dl-page" style="--accent:${ACCENT};--on-accent:#fff">
   <section class="hero dl-hero">
     <div class="wrap">
-      <p class="eyebrow">${t(L('Download-Center', 'Download center'))}</p>
-      <h1 class="display">Downloads</h1>
+      <h1 class="display">${t(L('Download-Center', 'Download center'))}</h1>
       <p class="lead">${t(L('Jede Datei kommt direkt aus unseren GitHub-Releases. Zu jeder Version gibt es die Prüfsumme und einen Scan mit rund 70 Virenscannern auf VirusTotal, damit du weißt, was du installierst.',
         'Every file comes straight from our GitHub releases. Each version comes with its checksum and a scan by about 70 antivirus engines on VirusTotal, so you know what you install.'))}</p>
-      <ul class="dl-trust mono">
-        <li>${t(L('Direkt von GitHub', 'Straight from GitHub'))}</li>
-        <li>SHA-256</li>
-        <li>VirusTotal</li>
-        <li>${t(L('Stand', 'Updated'))} ${updated}</li>
+      <ul class="pills dl-trust">
+        <li class="pill">${t(L('Direkt von GitHub', 'Straight from GitHub'))}</li>
+        <li class="pill">SHA-256</li>
+        <li class="pill">VirusTotal</li>
+        <li class="pill">${t(L('Stand', 'Updated'))} ${updated}</li>
       </ul>
     </div>
   </section>
   <section class="section dl-list"><div class="wrap">
-    <div class="dl-launcher" style="--accent:#8b6cff">
+    <div class="dl-launcher card">
       <img src="/logo.png" alt="" width="44" height="44">
       <div><h2><a href="/launcher/" data-link>Vibe Launcher</a></h2><p>${t(L('Unser Minecraft-Launcher für Windows. Installiert alle Mods hier direkt über den Vibe-Craft-Store.', 'Our Minecraft launcher for Windows. Installs every mod on this page straight from the Vibe Craft store.'))}</p></div>
-      <div class="dl-launcher-cta"><a class="btn accent" href="https://github.com/vibec-studios/vibe-launcher/releases/latest/download/Vibe-Launcher-Setup.exe" rel="noopener">↓ ${t(L('Für Windows', 'For Windows'))}</a><a class="btn ghost" href="/launcher/" data-link>${t(L('Mehr', 'More'))}</a></div>
+      <div class="dl-launcher-cta"><a class="btn sm accent" href="https://github.com/vibec-studios/vibe-launcher/releases/latest/download/Vibe-Launcher-Setup.exe" rel="noopener">↓ ${t(L('Für Windows', 'For Windows'))}</a><a class="btn sm" href="/launcher/" data-link>${t(L('Mehr', 'More'))}</a></div>
     </div>
     <div class="dl-grid">${mods.map((m) => tile(m, dl)).join('')}</div>
     ${files ? '' : `<p class="small">${t(L('Gerade sind keine Download-Daten erreichbar.', 'Download data is not available right now.'))}</p>`}
   </div></section>
   <section class="section dl-info"><div class="wrap">
-    <header class="sec-head"><p class="eyebrow">${t(L('Gut zu wissen', 'Good to know'))}</p><h2 class="display sm">${t(L('Installieren und prüfen', 'Install and verify'))}</h2></header>
+    <header class="sec-head"><h2 class="display sm">${t(L('Installieren und prüfen', 'Install and verify'))}</h2></header>
     <div class="tiles">
-      <article class="tile"><span class="tile-tag mono">01 · ${t(L('Installation', 'Installation'))}</span>
+      <article class="tile"><span class="tile-tag">${t(L('Installation', 'Installation'))}</span>
         <h3>${t(L('In drei Schritten', 'In three steps'))}</h3>
         <ol class="steps">
           <li>${t(L('<a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener">Fabric Loader</a> für die passende Minecraft-Version installieren.', 'Install the <a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener">Fabric Loader</a> for the matching Minecraft version.'))}</li>
@@ -270,13 +269,13 @@ export function render(mods, dl) {
           <li>${t(L('Die heruntergeladene Jar dazu und Minecraft mit Fabric starten.', 'Add the downloaded jar and start Minecraft with Fabric.'))}</li>
         </ol>
       </article>
-      <article class="tile"><span class="tile-tag mono">02 · SHA-256</span>
+      <article class="tile"><span class="tile-tag">SHA-256</span>
         <h3>${t(L('Datei selbst prüfen', 'Verify the file yourself'))}</h3>
         <p>${t(L('Die Prüfsumme deiner Datei muss genau der hier angezeigten entsprechen. So siehst du sie:', 'The checksum of your file must match the one shown here exactly. This is how you get it:'))}</p>
         <pre class="cmd"><span class="small">Windows</span>certutil -hashfile HHA.jar SHA256
 <span class="small">macOS / Linux</span>shasum -a 256 HHA.jar</pre>
       </article>
-      <article class="tile"><span class="tile-tag mono">03 · VirusTotal</span>
+      <article class="tile"><span class="tile-tag">VirusTotal</span>
         <h3>${t(L('Was der Scan bedeutet', 'What the scan means'))}</h3>
         <p>${t(L('Jede neue Version wird automatisch bei VirusTotal hochgeladen und dort von rund 70 Virenscannern geprüft. Ein Klick auf das Abzeichen öffnet den vollständigen Bericht. Meldet einmal ein einzelner Scanner etwas, ist das bei neuen Dateien meist ein Fehlalarm; im Zweifel frag uns auf GitHub.',
           'Every new version is uploaded to VirusTotal automatically and checked by about 70 antivirus engines. Click the badge to open the full report. If a single engine ever flags something, it is usually a false positive for new files; if in doubt, ask us on GitHub.'))}</p>

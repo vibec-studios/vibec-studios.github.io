@@ -9,7 +9,7 @@ const L = (de, en) => ({ de, en });
 const hex = (c) => parseInt(String(c).slice(1), 16);
 
 export const STUDIO = {
-  accent: '#8b6cff', accent2: '#3fe0c5',
+  accent: '#3b82f6', accent2: '#3b82f6',
   github: 'https://github.com/vibec-studios',
 };
 
@@ -42,15 +42,24 @@ function role(m) {
   return m.series ? `${esc(m.series)} · ${r}` : r;
 }
 
-/** Projekte als Katalog: eine Zeile je Mod mit Icon, Name, Kurztext, Rolle, Stand und Minecraft-Version. */
-function projectList(mods, dl) {
-  return `<ul class="catalog" data-reveal>${mods.map((m) => `<li><a href="${m.path}" data-link style="--accent:${m.accent}">
-      <span class="px-icon" data-src="${m.base}/${m.icon || 'icon.png'}"></span>
-      <span class="cat-name"><b>${esc(m.name)}</b><span>${t(short(m.short, 1))}</span></span>
-      <span class="cat-meta mono">${role(m)}</span>
-      <span class="cat-meta mono">${t(m.status)}</span>
-      <span class="cat-meta mono">MC ${esc(m.mc || '1.21.11')}</span>
-      <span class="cat-go" aria-hidden="true">→</span></a></li>`).join('')}</ul>`;
+/** Projekte als Karten wie Fenster im Spiel: 3D-Bühne oder Screenshot, Name, Kurztext, Stand und Minecraft-Version. */
+function projectCards(mods) {
+  return `<div class="proj-grid">${mods.map((m, i) => {
+    const boss = bossOf(m);
+    const stage = m.hero?.kind === 'shot'
+      ? `<img src="${m.base}/${m.hero.img}" alt="" loading="lazy">`
+      : `<canvas data-boss="${i}" aria-hidden="true"></canvas>`;
+    return `<article class="proj card" style="--accent:${m.accent};--on-accent:${onColor(m.accent)}" id="mod-${m.id}" data-reveal>
+      <a class="proj-stage" href="${m.path}" data-link tabindex="-1" aria-hidden="true">${stage}${boss?.name ? `<span class="pill proj-callout">${t(boss.name)}</span>` : ''}</a>
+      <div class="proj-body">
+        <div class="proj-head"><span class="px-icon" data-src="${m.base}/${m.icon || 'icon.png'}"></span>
+          <div><h3><a href="${m.path}" data-link>${esc(m.name)}</a></h3><p class="proj-role">${role(m)} · ${t(m.status)}</p></div></div>
+        <p>${t(short(m.short, 1))}</p>
+        <div class="proj-foot"><p class="small">Minecraft ${esc(m.mc || '1.21.11')}${m.version ? ` · v${esc(m.version)}` : ''}</p>
+          <a class="btn sm" href="${m.path}" data-link>${t(L('Ansehen', 'View'))}</a></div>
+      </div>
+    </article>`;
+  }).join('')}</div>`;
 }
 
 /** Text zu den Projekten: Reihen mit Hauptmod und Addons, dazu eigenständige Mods. */
@@ -102,62 +111,56 @@ export function render(mods) {
   heroMod = pickHeroMod(mods);
   const hm = heroMod;
 
-  const features = mods.map((m, i) => {
-    const boss = bossOf(m);
-    return `<section class="feature-sec" style="--accent:${m.accent};--accent2:${m.accent2 || m.accent};--on-accent:${onColor(m.accent)}" id="mod-${m.id}">
-      <div class="wrap feature-grid ${i % 2 ? 'flip' : ''}">
-        <div class="feature-copy" data-reveal>
-          <p class="eyebrow">${role(m)} · ${t(m.status)}</p>
-          <h2 class="display">${esc(m.name)}</h2>
-          <p class="lead">${t(m.short)}</p>
-          <ul class="ticks">${(m.highlights || []).slice(0, 3).map((h) => `<li>${t(h)}</li>`).join('')}</ul>
-          <div class="cta"><a class="btn accent" href="${m.path}" data-link>${t(L('Zur Mod', 'View mod'))} →</a></div>
-        </div>
-        <div class="feature-art" data-reveal>
-          ${m.hero?.kind === 'shot' ? `<img class="feature-shot" src="${m.base}/${m.hero.img}" alt="" loading="lazy">` : `<canvas data-boss="${i}" aria-hidden="true"></canvas>`}
-          ${boss?.name ? `<span class="callout mono">${t(boss.name)}</span>` : ''}
-        </div>
-      </div>
-    </section>`;
-  }).join('');
-
   return `<div class="home">
   <section class="hero home-hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <h1 class="display">${t(L('Minecraft-Mods mit eigenen Bossen, Welten und Werkzeugen.', 'Minecraft mods with their own bosses, worlds and tools.'))}</h1>
-        <p class="lead">${t(L('Vibe Craft Studios ist ein kleines Studio. Wir bauen die HHA-Reihe mit Bosskämpfen in eigenen Dimensionen, dazu Werkzeuge fürs Zusammenspielen: Vibey Multiplayer, Vibey Lyrics und den Vibe Launcher.', 'Vibe Craft Studios is a small studio. We make the HHA series with boss fights in dimensions of their own, plus tools for playing together: Vibey Multiplayer, Vibey Lyrics and the Vibe Launcher.'))}</p>
+        <h1 class="display">${t(L('Minecraft-Mods mit eigenen Bossen, Welten und Werkzeugen', 'Minecraft mods with their own bosses, worlds and tools'))}</h1>
+        <p class="lead">${t(L('Vibe Craft Studios ist ein kleines Studio. Wir bauen die HHA-Reihe mit Bosskämpfen in eigenen Dimensionen, dazu Werkzeuge fürs Zusammenspielen: Vibey Multiplayer, Vibey Lyrics, den Vibey Client und den Vibe Launcher.', 'Vibe Craft Studios is a small studio. We make the HHA series with boss fights in dimensions of their own, plus tools for playing together: Vibey Multiplayer, Vibey Lyrics, the Vibey Client and the Vibe Launcher.'))}</p>
         <div class="cta">
           <a class="btn primary" href="#projekte" data-anchor>${t(L('Alle Projekte', 'All projects'))}</a>
-          <a class="btn ghost" href="/launcher/" data-link>Vibe Launcher</a>
+          <a class="btn" href="/downloads/" data-link>Downloads</a>
         </div>
-        <p class="note mono">Fabric & NeoForge · ${t(L('Deutsch & Englisch', 'German & English'))} · ${t(L('jeder Download mit SHA-256 und VirusTotal', 'every download with SHA-256 and VirusTotal'))}</p>
+        <p class="note">Fabric & NeoForge · ${t(L('Deutsch & Englisch', 'German & English'))} · ${t(L('jeder Download mit SHA-256 und VirusTotal', 'every download with SHA-256 and VirusTotal'))}</p>
       </div>
       <div class="hero-art">
         <canvas class="hero-canvas" aria-hidden="true"></canvas>
-        <a class="hero-pick mono" href="${hm.path}" data-link>${esc(hm.name)} →</a>
+        <a class="pill hero-pick" href="${hm.path}" data-link>${esc(hm.name)} →</a>
       </div>
     </div>
     <div class="wrap stat-row">
       <div><b>${c.mods}</b><span>${t(L('Mods', 'Mods'))}</span></div>
       <div><b>${c.bosses}</b><span>${t(L('Bosse & Wächter', 'Bosses & guardians'))}</span></div>
       <div><b>${c.models}</b><span>${t(L('eigene 3D-Modelle', 'custom 3D models'))}</span></div>
-      <div><b>2</b><span>${t(L('Sprachen: Deutsch & Englisch', 'languages: German & English'))}</span></div>
+      <div><b>2</b><span>${t(L('Sprachen', 'languages'))}</span></div>
     </div>
   </section>
 
   <section class="section" id="projekte">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <p class="eyebrow">${t(L('Projekte', 'Projects'))}</p>
-        <h2 class="display sm">${t(L('Alle Projekte', 'All projects'))}</h2>
+        <h2 class="display sm">${t(L('Projekte', 'Projects'))}</h2>
         <p class="lead">${t(projectsLead(mods))}</p>
       </header>
-      ${projectList(mods)}
+      ${projectCards(mods)}
     </div>
   </section>
 
-  ${features}
+  <section class="section home-client">
+    <div class="wrap hl-grid hl-flip" data-reveal>
+      <div class="hl-shots">
+        <a class="hl-shot" href="/client/" data-link><img src="/assets/client/img/cosmetics-wings-crown.webp" alt="${esc(tx(L('Vibey Client: Kristall-Eisflügel und Eiskrone im Spiel', 'Vibey Client: crystal ice wings and ice crown in game')))}" loading="lazy"></a>
+        <a class="hl-shot" href="/client/#garderobe" data-link><img src="/assets/client/img/wardrobe.webp" alt="${esc(tx(L('Vibey Client: die Garderobe im Spiel', 'Vibey Client: the wardrobe in game')))}" loading="lazy"></a>
+      </div>
+      <div>
+        <p class="eyebrow">Vibey Client · Fabric · NeoForge</p>
+        <h2 class="display sm">${t(L('Cosmetics, Emotes und Freunde im Spiel', 'Cosmetics, emotes and friends in game'))}</h2>
+        <p class="lead">${t(L('Unsere Client-Mod: Umhänge, Flügel, Auren, Begleiter und Emotes, dazu Freundesliste und Einladungen. Alles kostenlos, nichts zu kaufen.', 'Our client mod: capes, wings, auras, pets and emotes, plus a friends list and invites. All free, nothing to buy.'))}</p>
+        <div class="home-cdl" data-home-cdl><span class="pill cl-soon">${t(L('Bald verfügbar', 'Coming soon'))}</span></div>
+        <div class="cta" data-home-cl-cta><a class="btn primary" href="/client/" data-link>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a></div>
+      </div>
+    </div>
+  </section>
 
   <section class="section home-launcher">
     <div class="wrap hl-grid" data-reveal>
@@ -171,40 +174,28 @@ export function render(mods) {
     </div>
   </section>
 
-  <section class="section home-client" style="--accent:#8b6cff">
-    <div class="wrap hl-grid hl-flip" data-reveal>
-      <a class="hl-shot" href="/client/" data-link><img src="/assets/client/img/cosmetics-wings-crown.webp" alt="${esc(tx(L('Vibey Client: Kristall-Eisflügel und Eiskrone im Spiel', 'Vibey Client: crystal ice wings and ice crown in game')))}" loading="lazy"></a>
+  <section class="section values">
+    <div class="wrap values-grid" data-reveal>
       <div>
-        <p class="eyebrow">Vibey Client · Fabric · NeoForge</p>
-        <h2 class="display sm">${t(L('Cosmetics, Emotes und Freunde im Spiel', 'Cosmetics, emotes and friends in game'))}</h2>
-        <p class="lead">${t(L('Unsere Client-Mod: Umhänge, Flügel, Auren, Begleiter und Emotes, dazu Freundesliste und Einladungen. Alles kostenlos, nichts zu kaufen.', 'Our client mod: capes, wings, auras, pets and emotes, plus a friends list and invites. All free, nothing to buy.'))}</p>
-        <div class="home-cdl" data-home-cdl><span class="cl-soon mono">${t(L('Bald verfügbar', 'Coming soon'))}</span></div>
-        <div class="cta" data-home-cl-cta><a class="btn primary" href="/client/" data-link>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a></div>
+        <h2 class="display sm">${t(L('So arbeiten wir', 'How we work'))}</h2>
+        <p class="lead">${t(L('Drei Regeln, an die sich jede Mod hält.', 'Three rules every mod follows.'))}</p>
+      </div>
+      <div class="values-list">
+        <article><h3>${t(L('Angriffe werden angesagt', 'Attacks are announced'))}</h3><p>${t(L('Jeder Bossangriff hat eine sichtbare Ankündigung am Boden, jeder Boss einen Trick. Wer verliert, behält sein Inventar.', 'Every boss attack shows a warning on the ground, every boss has a trick. Losing never costs your inventory.'))}</p></article>
+        <article><h3>${t(L('Eigene Modelle, Vanilla-Blöcke', 'Our own models, vanilla blocks'))}</h3><p>${t(L('Modelle, Animationen und Effekte bauen wir selbst. Welten und Arenen bestehen aus Vanilla-Blöcken.', 'We make our own models, animations and effects. Worlds and arenas are built from vanilla blocks.'))}</p></article>
+        <article><h3>${t(L('Offen und geprüft', 'Open and checked'))}</h3><p>${t(L('Der Quellcode der Mods liegt auf GitHub. Jede Datei im Download-Center hat eine Prüfsumme und einen VirusTotal-Scan.', 'The mods’ source code is on GitHub. Every file in the download center has a checksum and a VirusTotal scan.'))}</p></article>
       </div>
     </div>
   </section>
 
   <section class="section dl-teaser">
-    <div class="wrap dl-teaser-grid" data-reveal>
-      <div>
-        <p class="eyebrow">${t(L('Download-Center', 'Download center'))}</p>
-        <h2 class="display sm">${t(L('Jede Datei direkt aus GitHub', 'Every file straight from GitHub'))}</h2>
-        <p class="lead">${t(L('Alle Versionen aller Mods, mit SHA-256-Prüfsumme und dem VirusTotal-Ergebnis jeder Datei.', 'Every version of every mod, with the SHA-256 checksum and the VirusTotal result of each file.'))}</p>
-      </div>
-      <div class="cta"><a class="btn ghost" href="/downloads/" data-link>${t(L('Zum Download-Center', 'Open download center'))} →</a></div>
-    </div>
-  </section>
-
-  <section class="section values">
-    <div class="wrap values-grid" data-reveal>
-      <div>
-        <p class="eyebrow">Studio</p>
-        <h2 class="display sm">${t(L('So arbeiten wir', 'How we work'))}</h2>
-      </div>
-      <div class="values-list">
-        <article><h3>${t(L('Angriffe werden angesagt', 'Attacks are announced'))}</h3><p>${t(L('Jeder Bossangriff hat eine sichtbare Ankündigung am Boden, jeder Boss einen Trick. Wer verliert, behält sein Inventar.', 'Every boss attack shows a warning on the ground, every boss has a trick. Losing never costs your inventory.'))}</p></article>
-        <article><h3>${t(L('Eigene Modelle, Vanilla-Blöcke', 'Our own models, vanilla blocks'))}</h3><p>${t(L('Modelle, Animationen und Effekte bauen wir selbst. Welten und Arenen bestehen aus Vanilla-Blöcken.', 'We make our own models, animations and effects. Worlds and arenas are built from vanilla blocks.'))}</p></article>
-        <article><h3>${t(L('Offen und geprüft', 'Open and checked'))}</h3><p>${t(L('Der Quellcode liegt auf GitHub. Jede Datei im Download-Center hat eine Prüfsumme und einen VirusTotal-Scan.', 'The source code is on GitHub. Every file in the download center has a checksum and a VirusTotal scan.'))}</p></article>
+    <div class="wrap">
+      <div class="card dl-teaser-grid" data-reveal>
+        <div>
+          <h2 class="display sm">${t(L('Download-Center', 'Download center'))}</h2>
+          <p class="lead">${t(L('Alle Versionen aller Mods direkt aus GitHub, mit SHA-256-Prüfsumme und dem VirusTotal-Ergebnis jeder Datei.', 'Every version of every mod straight from GitHub, with the SHA-256 checksum and the VirusTotal result of each file.'))}</p>
+        </div>
+        <div class="cta"><a class="btn primary" href="/downloads/" data-link>${t(L('Zum Download-Center', 'Open download center'))}</a></div>
       </div>
     </div>
   </section>
@@ -218,7 +209,7 @@ export async function mount(root, mods, signal) {
     const host = $('[data-home-cdl]', root);
     if (!rel || !host || signal?.aborted) return;
     renderClientDownload(host, rel, { changelog: false });
-    $('[data-home-cl-cta]', root).innerHTML = `<a class="btn ghost" href="/client/" data-link>${t(L('Alle Cosmetics ansehen', 'See all cosmetics'))} →</a>`;
+    $('[data-home-cl-cta]', root).innerHTML = `<a class="btn" href="/client/" data-link>${t(L('Alle Cosmetics ansehen', 'See all cosmetics'))}</a>`;
   });
   heroScene($('.hero-canvas', root), heroMod || mods[0], signal).catch(console.error);
 

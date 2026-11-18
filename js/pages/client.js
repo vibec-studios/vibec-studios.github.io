@@ -8,7 +8,7 @@ import { wardrobeViewer, planFor } from '../vibey3d.js';
 import { fetchClientRelease, renderClientDownload, blockbenchLink } from '../client-dl.js';
 
 const L = (de, en) => ({ de, en });
-export const ACCENT = '#8b6cff';
+export const ACCENT = '#3b82f6';
 const BASE = '/assets/client';
 const API = 'https://vibe.henny.dev';
 const abs = (u) => (u && !/^https?:/.test(u) ? API + u : u);
@@ -77,21 +77,24 @@ export function title() { return 'Vibey Client · Vibe Craft Studios'; }
 
 export function render() {
   const shot = (k, cap, cls = '') => `<figure class="shot${cls}"><button type="button" data-cshot="${k}"><img src="${BASE}/img/${k}.webp" alt="${esc(tx(cap))}" loading="lazy"></button><figcaption>${t(cap)}</figcaption></figure>`;
-  return `<div class="client-page" style="--accent:${ACCENT};--accent2:#3fe0c5;--on-accent:#fff">
+  return `<div class="client-page" style="--accent:${ACCENT};--on-accent:#fff">
   <section class="hero mod-hero lp-hero">
     <div class="wrap lp-hero-grid">
       <div class="hero-copy">
         <div class="lp-brand"><img class="cl-icon" src="${BASE}/icon.png" alt="" width="104" height="104">
-          <div><h1 class="display">Vibey Client</h1><p class="lp-sub mono" data-cl-sub>${t(L('Client-Mod für Minecraft · in Arbeit', 'Client mod for Minecraft · in the works'))}</p></div></div>
+          <div><h1 class="display">Vibey Client</h1><p class="lp-sub" data-cl-sub>${t(L('Client-Mod für Minecraft · in Arbeit', 'Client mod for Minecraft · in the works'))}</p></div></div>
         <p class="lead strong">${t(L('Cosmetics, Emotes und Freunde direkt im Spiel. Alles kostenlos.', 'Cosmetics, emotes and friends right in the game. All free.'))}</p>
         <p class="lead">${t(L('Umhänge, Flügel, Auren, Begleiter, Schilde, Hüte und Rucksäcke, dazu Emotes über ein Rad. Es gibt nichts zu kaufen: Die Seltenheit ist nur ein Label.', 'Capes, wings, auras, pets, shields, hats and backpacks, plus emotes from a wheel. There is nothing to buy: rarity is only a label.'))}</p>
         <div class="lp-download cl-status" id="download" data-cdl>
-          <span class="cl-soon mono">${t(L('Bald verfügbar', 'Coming soon'))}</span>
-          <p class="lp-file mono">${t(L('Noch kein Download. Sobald es eine Version gibt, erscheint sie hier und im Vibe Launcher.', 'No download yet. As soon as there is a version, it will show up here and in the Vibe Launcher.'))}</p>
+          <span class="pill cl-soon">${t(L('Bald verfügbar', 'Coming soon'))}</span>
+          <p class="lp-file">${t(L('Noch kein Download. Sobald es eine Version gibt, erscheint sie hier und im Vibe Launcher.', 'No download yet. As soon as there is a version, it will show up here and in the Vibe Launcher.'))}</p>
         </div>
-        <div class="cta" data-cl-cta><a class="btn primary" href="#garderobe" data-anchor>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a><a class="btn ghost" href="/launcher/" data-link>Vibe Launcher</a></div>
+        <div class="cta" data-cl-cta><a class="btn primary" href="#garderobe" data-anchor>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a><a class="btn" href="/launcher/" data-link>Vibe Launcher</a></div>
       </div>
-      <figure class="lp-hero-shot"><button type="button" data-cshot="title-preview"><img src="${BASE}/img/title-preview.webp" alt="${esc(tx(L('Titelbildschirm mit Vibey Client', 'Title screen with Vibey Client')))}" width="854" height="480"></button></figure>
+      <div class="lp-hero-shots">
+        <figure class="lp-hero-shot"><button type="button" data-cshot="title-preview"><img src="${BASE}/img/title-preview.webp" alt="${esc(tx(L('Titelbildschirm mit Vibey Client', 'Title screen with Vibey Client')))}" width="854" height="480"></button></figure>
+        <figure class="lp-hero-shot"><button type="button" data-cshot="social-09-invite-toast-game"><img src="${BASE}/img/social-09-invite-toast-game.webp" alt="${esc(tx(L('Einladung eines Freundes als Hinweis im Spiel', 'A friend’s invite as a notice in game')))}" loading="lazy"></button></figure>
+      </div>
     </div>
   </section>
   <nav class="toc" aria-label="${esc(tx(L('Inhalt', 'Contents')))}"><div class="wrap toc-inner">
@@ -100,10 +103,10 @@ export function render() {
     <a href="#status" data-anchor class="toc-cta">${t(L('Verfügbarkeit', 'Availability'))}</a></div></nav>
 
   <section class="section" id="garderobe"><div class="wrap">
-    <header class="sec-head"><p class="eyebrow">${t(L('Garderobe', 'Wardrobe'))}</p>
+    <header class="sec-head">
       <h2 class="display sm">${t(L('Alle Cosmetics und Emotes', 'All cosmetics and emotes'))}</h2>
       <p class="lead">${t(L('Wähle eine Karte, dann erscheint sie in 3D am Spieler. Ziehen dreht die Ansicht, das Mausrad zoomt. Animationen laufen wie im Spiel.', 'Pick a card and it appears in 3D on the player. Drag to turn the view, scroll to zoom. Animations play like in game.'))}</p></header>
-    <div class="wardrobe">
+    <div class="wardrobe card">
       <nav class="wr-cats" aria-label="${esc(tx(L('Kategorien', 'Categories')))}"></nav>
       <div class="wr-grid" role="list"></div>
       <div class="wr-stage">
@@ -123,7 +126,7 @@ export function render() {
   </div></section>
 
   <section class="section" id="im-spiel"><div class="wrap">
-    <header class="sec-head"><p class="eyebrow">${t(L('Im Spiel', 'In game'))}</p>
+    <header class="sec-head">
       <h2 class="display sm">${t(L('So sieht es in Minecraft aus', 'How it looks in Minecraft'))}</h2>
       <p class="lead">${t(L('Screenshots aus dem automatischen Spieltest. Klicken zum Vergrößern.', 'Screenshots from the automated game test. Click to enlarge.'))}</p></header>
     <div class="gallery">${SHOTS.map(([k, c]) => shot(k, c)).join('')}</div>
@@ -131,7 +134,6 @@ export function render() {
 
   <section class="section lp-group" id="freunde"><div class="wrap lp-group-grid">
     <div>
-      <p class="eyebrow">${t(L('Freunde', 'Friends'))}</p>
       <h2 class="display sm">${t(L('Zusammen spielen', 'Playing together'))}</h2>
       <p class="lead">${t(L('Mit den Vibe-Diensten, optional und abschaltbar, wie im Vibe Launcher.', 'With the Vibe services, optional and switchable, just like in the Vibe Launcher.'))}</p>
       <dl class="specs">
@@ -145,7 +147,6 @@ export function render() {
 
   <section class="section lp-group no-shot" id="creator"><div class="wrap lp-group-grid">
     <div>
-      <p class="eyebrow">${t(L('Für Creator', 'For creators'))}</p>
       <h2 class="display sm">${t(L('Eigene Cosmetics bauen', 'Build your own cosmetics'))}</h2>
       <dl class="specs">
         <div><dt>${t(L('Eine Datei', 'One file'))}</dt><dd>${t(L('Jedes Cosmetic und jedes Emote ist eine <code>.vibey</code>-Datei mit Modell, Texturen, Animationen, Partikeln und Sounds.', 'Every cosmetic and emote is one <code>.vibey</code> file with model, textures, animations, particles and sounds.'))}</dd></div>
@@ -157,15 +158,14 @@ export function render() {
     </div>
   </div></section>
 
-  <section class="section outro" id="status"><div class="wrap outro-grid">
+  <section class="outro" id="status"><div class="wrap"><div class="card outro-grid">
     <div>
-      <p class="eyebrow">${t(L('Verfügbarkeit', 'Availability'))}</p>
       <h2 class="display sm" data-out-h>${t(L('Vibey Client: bald verfügbar', 'Vibey Client: coming soon'))}</h2>
       <p class="lead" data-out-p>${t(L('Der Client ist fast fertig. Sobald die erste Version erscheint, gibt es sie oben auf dieser Seite für Fabric und NeoForge, und der Vibe Launcher installiert sie mit einem Klick.', 'The client is almost done. As soon as the first version is out, it will be at the top of this page for Fabric and NeoForge, and the Vibe Launcher installs it in one click.'))}</p>
       <div class="cta" data-out-cta><a class="btn primary" href="/launcher/" data-link>Vibe Launcher</a></div>
     </div>
-    <ul class="req mono"><li>${t(L('Kostenlos, keine Käufe', 'Free, no purchases'))}</li><li>${t(L('Deutsch und Englisch', 'German and English'))}</li><li>${t(L('Cosmetics und Emotes', 'Cosmetics and emotes'))}</li><li>${t(L('Freunde über die Vibe-Dienste (optional)', 'Friends through the Vibe services (optional)'))}</li></ul>
-  </div></section>
+    <ul class="req"><li>${t(L('Kostenlos, keine Käufe', 'Free, no purchases'))}</li><li>${t(L('Deutsch und Englisch', 'German and English'))}</li><li>${t(L('Cosmetics und Emotes', 'Cosmetics and emotes'))}</li><li>${t(L('Freunde über die Vibe-Dienste (optional)', 'Friends through the Vibe services (optional)'))}</li></ul>
+  </div></div></section>
 </div>`;
 }
 

@@ -69,7 +69,7 @@ function routeOf(path) {
 }
 
 function setActiveNav(route) {
-  $$('.nav-links a, .mods-panel a').forEach((a) => a.classList.toggle('active', a.getAttribute('href') === route.path));
+  $$('.nav-links a, .mods-panel a.mp-item, .mods-panel a.mp-link').forEach((a) => a.classList.toggle('active', a.getAttribute('href') === route.path));
   $('.nav-menu-btn')?.classList.toggle('active', route.kind === 'mod');
   closeModsMenu();
 }
@@ -202,13 +202,14 @@ function modsPanel() {
     g.items.push(m);
   }
   groups.sort((a, b) => (a.key ? 0 : 1) - (b.key ? 0 : 1));
-  const item = (m) => `<a class="mp-item" href="${m.path}" data-link style="--accent:${m.accent}">
+  const item = (m) => `<a class="mp-item" href="${m.path}" data-link>
       <span class="px-icon" data-src="${m.base}/${m.icon || 'icon.png'}"></span>
       <span class="mp-text"><b>${esc(m.name)}</b><small>${t(ROLE[m.role] || { de: 'Mod', en: 'Mod' })} · ${t(m.status)}</small></span></a>`;
   const head = (g) => g.key ? t({ de: `${g.key}-Reihe`, en: `${g.key} series` }) : t({ de: 'Eigenständig', en: 'Standalone' });
   return `<div class="mods-panel-inner">${groups.map((g) => `<div class="mp-group${g.items.length > 2 ? ' wide' : ''}">
-      <p class="mp-head mono">${head(g)}</p><div class="mp-list">${g.items.map(item).join('')}</div></div>`).join('')}
-    <div class="mp-group mp-side"><p class="mp-head mono">${t({ de: 'Mehr', en: 'More' })}</p>
+      <p class="mp-head">${head(g)}</p><div class="mp-list">${g.items.map(item).join('')}</div></div>`).join('')}
+    <div class="mp-group mp-side"><p class="mp-head">${t({ de: 'Seiten', en: 'Pages' })}</p>
+      <a class="mp-link" href="/" data-link>${t({ de: 'Startseite', en: 'Home' })} <span>→</span></a>
       <a class="mp-link" href="/launcher/" data-link>Vibe Launcher <span>→</span></a>
       <a class="mp-link" href="/client/" data-link>Vibey Client <span>→</span></a>
       <a class="mp-link" href="/downloads/" data-link>${t({ de: 'Download-Center', en: 'Download center' })} <span>→</span></a>
@@ -230,9 +231,9 @@ function closeModsMenu() { openModsMenu(false); }
 
 function buildNav() {
   const links = $('.nav-links');
-  links.innerHTML = `<a href="/" data-link>${t({ de: 'Start', en: 'Home' })}</a>` +
-    `<button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="mods-panel">Mods <span class="caret" aria-hidden="true"></span></button>` +
-    `<a href="/launcher/" data-link>Launcher</a><a href="/downloads/" data-link>Downloads</a><a href="/status/" data-link>Status</a>`;
+  // Desktop: Mods-Menü und feste Seiten als Tabs; schmal nur ein „Menü“-Knopf, das Menü enthält dann alle Seiten
+  links.innerHTML = `<button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="mods-panel"><span class="lbl-d">Mods</span><span class="lbl-m">${t({ de: 'Menü', en: 'Menu' })}</span><span class="caret" aria-hidden="true"></span></button>` +
+    `<a href="/launcher/" data-link>Launcher</a><a href="/client/" data-link>Client</a><a href="/downloads/" data-link>Downloads</a><a href="/status/" data-link>Status</a>`;
   let panel = $('.mods-panel');
   if (!panel) {
     panel = document.createElement('div');

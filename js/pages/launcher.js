@@ -5,7 +5,7 @@ import { $, $$, t, tx, esc, openLightbox, animateIcons } from '../core.js';
 import { sealStage } from '../views.js';
 
 const L = (de, en) => ({ de, en });
-export const ACCENT = '#8b6cff';
+export const ACCENT = '#3b82f6';
 const REPO = 'vibec-studios/vibe-launcher';
 const STABLE = `https://github.com/${REPO}/releases/latest/download/Vibe-Launcher-Setup.exe`;
 const RELEASES = `https://github.com/${REPO}/releases`;
@@ -23,7 +23,7 @@ const SHOT_NAMES = {
 // Was er kann, nach Bereichen. Jede Zeile: Begriff und ein Satz.
 const GROUPS = [
   {
-    id: 'mods', shot: 'instance',
+    id: 'mods', shot: 'instance', toc: L('Mods', 'Mods'),
     title: L('Instanzen und Mods', 'Instances and mods'),
     rows: [
       [L('Instanzen', 'Instances'), L('Vanilla, Fabric, Quilt, Forge und NeoForge, jede mit eigenem Ordner, Arbeitsspeicher und Java. Java lädt der Launcher selbst.', 'Vanilla, Fabric, Quilt, Forge and NeoForge, each with its own folder, memory and Java. The launcher fetches Java itself.')],
@@ -36,7 +36,7 @@ const GROUPS = [
     ],
   },
   {
-    id: 'spielen', shot: 'home',
+    id: 'spielen', shot: 'home', toc: L('Spielen', 'Playing'),
     title: L('Spielen', 'Playing'),
     rows: [
       [L('Hotbar', 'Hotbar'), L('Die Startseite ist eine Minecraft-Hotbar mit deinen Instanzen. Ein Klick auf eine Welt startet das Spiel direkt darin.', 'The home screen is a Minecraft hotbar with your instances. Click a world and the game starts right inside it.')],
@@ -47,7 +47,7 @@ const GROUPS = [
     ],
   },
   {
-    id: 'server', shot: null,
+    id: 'server', shot: null, toc: L('Server', 'Servers'),
     title: L('Eigene Server', 'Your own servers'),
     lead: L('Ein Minecraft-Server auf deinem PC, ohne Router-Einstellungen.', 'A Minecraft server on your PC, without touching your router.'),
     rows: [
@@ -57,7 +57,7 @@ const GROUPS = [
     ],
   },
   {
-    id: 'dienste', shot: null,
+    id: 'dienste', shot: null, toc: L('Dienste', 'Services'),
     title: L('Vibe-Dienste', 'Vibe services'),
     lead: L('Optional und in den Einstellungen abschaltbar. Sie laufen über unser Backend auf vibe.henny.dev.', 'Optional and can be turned off in the settings. They run on our backend at vibe.henny.dev.'),
     rows: [
@@ -68,7 +68,7 @@ const GROUPS = [
     ],
   },
   {
-    id: 'profil', shot: 'skins',
+    id: 'profil', shot: 'skins', toc: L('Konto', 'Account'),
     title: L('Konto, Skins und Updates', 'Account, skins and updates'),
     rows: [
       [L('Skins und Capes', 'Skins and capes'), L('Vorschau in 3D, eigene Skin-Bibliothek, Skins per Datei oder Spielername, Capes umschalten.', '3D preview, your own skin library, skins from a file or a player name, switch capes.')],
@@ -95,20 +95,20 @@ function group(g) {
 
 export function render(mods) {
   const storeMods = mods.filter((m) => m.source);
-  const toc = GROUPS.map((g) => `<a href="#${g.id}" data-anchor>${t(g.title)}</a>`).join('');
-  return `<div class="launcher-page" style="--accent:${ACCENT};--accent2:#3fe0c5;--on-accent:#fff">
+  const toc = GROUPS.map((g) => `<a href="#${g.id}" data-anchor>${t(g.toc || g.title)}</a>`).join('');
+  return `<div class="launcher-page" style="--accent:${ACCENT};--on-accent:#fff">
   <section class="hero mod-hero lp-hero">
     <div class="wrap lp-hero-grid">
       <div class="hero-copy">
         <div class="lp-brand"><div class="lp-seal"><canvas class="lp-seal-canvas" aria-hidden="true"></canvas></div>
-          <div><h1 class="display">Vibe Launcher</h1><p class="lp-sub mono">Windows 10 / 11 · ${t(L('kostenlos', 'free'))} · ${t(L('Quellcode auf GitHub', 'source on GitHub'))}</p></div></div>
+          <div><h1 class="display">Vibe Launcher</h1><p class="lp-sub">Windows 10 / 11 · ${t(L('kostenlos', 'free'))} · ${t(L('Quellcode auf GitHub', 'source on GitHub'))}</p></div></div>
         <p class="lead strong">${t(L('Der Minecraft-Launcher von Vibe Craft Studios.', 'The Minecraft launcher by Vibe Craft Studios.'))}</p>
         <p class="lead">${t(L('Instanzen, Mods, Modpacks, Server und Skins in einem Programm. Unsere eigenen Mods sind über den Vibe-Craft-Store direkt installierbar.', 'Instances, mods, modpacks, servers and skins in one program. Our own mods install straight from the Vibe Craft store.'))}</p>
         <div class="lp-download">
           <a class="btn primary lp-get" href="${STABLE}" rel="noopener">↓ ${t(L('Für Windows herunterladen', 'Download for Windows'))}</a>
-          <p class="lp-file mono"><span class="lp-ver">Vibe-Launcher-Setup.exe</span><br><span class="lp-meta">${t(L('Installation ohne Admin-Rechte, aktualisiert sich selbst', 'Installs without admin rights, updates itself'))}</span></p>
+          <p class="lp-file"><span class="lp-ver">Vibe-Launcher-Setup.exe</span><br><span class="lp-meta">${t(L('Installation ohne Admin-Rechte, aktualisiert sich selbst', 'Installs without admin rights, updates itself'))}</span></p>
         </div>
-        <p class="note mono"><a href="${RELEASES}" target="_blank" rel="noopener">${t(L('Alle Versionen', 'All versions'))} ↗</a> · <a href="https://github.com/${REPO}" target="_blank" rel="noopener">${t(L('Quellcode', 'Source code'))} ↗</a> · <a href="#installation" data-anchor>${t(L('Hinweis zu Windows SmartScreen', 'About Windows SmartScreen'))}</a></p>
+        <p class="note"><a href="${RELEASES}" target="_blank" rel="noopener">${t(L('Alle Versionen', 'All versions'))} ↗</a> · <a href="https://github.com/${REPO}" target="_blank" rel="noopener">${t(L('Quellcode', 'Source code'))} ↗</a> · <a href="#installation" data-anchor>${t(L('Hinweis zu Windows SmartScreen', 'About Windows SmartScreen'))}</a></p>
       </div>
       <figure class="lp-hero-shot"><button type="button" data-lshot="home"><img src="${BASE}/img/home.webp" alt="${esc(tx(SHOT_NAMES.home))}" width="1280" height="800"></button></figure>
     </div>
@@ -127,7 +127,7 @@ export function render(mods) {
   </div></section>
 
   <section class="section"><div class="wrap">
-    <header class="sec-head" data-reveal><p class="eyebrow">${t(L('Screenshots', 'Screenshots'))}</p>
+    <header class="sec-head" data-reveal>
       <h2 class="display sm">${t(L('Weitere Ansichten', 'More views'))}</h2>
       <p class="lead">${t(L('Mit Beispieldaten. Klicken zum Vergrößern.', 'With demo data. Click to enlarge.'))}</p></header>
     <div class="gallery" data-reveal>${['discover', 'project', 'library'].map((k) => `<figure class="shot"><button type="button" data-lshot="${k}"><img src="${BASE}/img/${k}.webp" alt="${esc(tx(SHOT_NAMES[k]))}" loading="lazy"></button><figcaption>${t(SHOT_NAMES[k])}</figcaption></figure>`).join('')}</div>
@@ -135,7 +135,6 @@ export function render(mods) {
 
   <section class="section lp-install" id="installation"><div class="wrap lp-install-grid" data-reveal>
     <div>
-      <p class="eyebrow">${t(L('Installation', 'Installation'))}</p>
       <h2 class="display sm">${t(L('In einer Minute startklar', 'Ready in a minute'))}</h2>
       <ol class="steps">
         <li>${t(L(`<a href="${STABLE}" class="lp-get-link">Vibe-Launcher-Setup.exe</a> herunterladen und starten. Admin-Rechte braucht es nicht.`, `Download and run <a href="${STABLE}" class="lp-get-link">Vibe-Launcher-Setup.exe</a>. No admin rights needed.`))}</li>
@@ -144,20 +143,21 @@ export function render(mods) {
       </ol>
       <p class="small lp-req">${t(L('Voraussetzung: Windows 10 oder 11, 64 Bit. Die Daten liegen unter <code>%APPDATA%\\VibeLauncher</code>.', 'Requires Windows 10 or 11, 64-bit. Data lives in <code>%APPDATA%\\VibeLauncher</code>.'))}</p>
     </div>
-    <aside class="lp-note">
+    <aside class="lp-note card">
       <h3>${t(L('Windows warnt beim ersten Start?', 'Windows warns on first start?'))}</h3>
       <p>${t(L('Der Installer hat noch kein gekauftes Code-Signing-Zertifikat. Darum zeigt Windows eventuell „Der Computer wurde durch Windows geschützt“. Klick auf <b>Weitere Informationen</b> und dann auf <b>Trotzdem ausführen</b>.', 'The installer does not have a paid code signing certificate yet, so Windows may show “Windows protected your PC”. Click <b>More info</b>, then <b>Run anyway</b>.'))}</p>
       <p class="small">${t(L('Der Quellcode liegt offen auf GitHub.', 'The source code is open on GitHub.'))} <a href="https://github.com/${REPO}" target="_blank" rel="noopener">${REPO} ↗</a></p>
     </aside>
   </div></section>
 
-  <section class="section lp-next"><div class="wrap lp-next-grid" data-reveal>
-    <p class="eyebrow">${t(L('In Arbeit', 'In the works'))}</p>
+  <section class="section lp-next"><div class="wrap"><div class="card lp-next-grid" data-reveal>
     <div>
-      <h2 class="display sm"><a href="/client/" data-link>Vibey Client →</a></h2>
-      <p class="lead">${t(L('Eine Client-Mod mit Freunden und Social-Funktionen im Spiel, Cosmetics und Emotes. Noch ohne Termin, wir zeigen sie, wenn sie so weit ist.', 'A client mod with friends and social features in game, cosmetics and emotes. No date yet; we will show it when it is ready.'))}</p>
+      <p class="eyebrow">${t(L('Passt dazu', 'Goes with it'))}</p>
+      <h2 class="display sm"><a href="/client/" data-link>Vibey Client</a></h2>
+      <p class="lead">${t(L('Unsere Client-Mod mit Cosmetics, Emotes und Freunden im Spiel. Der Launcher installiert sie samt Abhängigkeiten mit einem Klick.', 'Our client mod with cosmetics, emotes and friends in game. The launcher installs it with its dependencies in one click.'))}</p>
     </div>
-  </div></section>
+    <a class="btn primary" href="/client/" data-link>${t(L('Zum Vibey Client', 'View Vibey Client'))}</a>
+  </div></div></section>
 </div>`;
 }
 

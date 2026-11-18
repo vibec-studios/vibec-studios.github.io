@@ -13,14 +13,14 @@ export function render() {
   return `<div class="status-page" style="--accent:${ACCENT};--on-accent:#fff">
   <section class="hero st-hero">
     <div class="wrap">
-      <a class="back mono" href="/mods/vibey/" data-link>← Vibey Multiplayer</a>
-      <p class="eyebrow">${t(L('Live-Status', 'Live status'))}</p>
+      <a class="back" href="/mods/vibey/" data-link>← Vibey Multiplayer</a>
+      <p class="eyebrow">${t(L('Live-Status des Vibey-Relays', 'Live status of the Vibey relay'))}</p>
       <div class="st-state" data-state="wait">
         <span class="st-light" aria-hidden="true"></span>
         <h1 class="display st-title">${t(L('Wird geprüft …', 'Checking …'))}</h1>
       </div>
       <p class="lead st-sub">${t(L('Der Relay verbindet gehostete Welten mit ihren Gästen. Hier siehst du, ob er läuft und wie viel gerade los ist.', 'The relay connects hosted worlds with their guests. Here you can see whether it is running and how busy it is right now.'))}</p>
-      <p class="note mono st-meta">&nbsp;</p>
+      <p class="note st-meta">&nbsp;</p>
     </div>
   </section>
 
@@ -32,7 +32,7 @@ export function render() {
         <div class="st-tile"><span class="k mono">${t(L('Relay läuft seit', 'Relay up for'))}</span><b data-k="uptime">–</b></div>
         <div class="st-tile"><span class="k mono">${t(L('Latenz', 'Latency'))}</span><b data-k="latency">–</b></div>
       </div>
-      <div class="st-minor mono">
+      <div class="st-minor">
         <div><span>${t(L('Feste Adressen', 'Fixed addresses'))}</span><b data-k="addresses">–</b></div>
         <div><span>${t(L('Joins seit Start', 'Joins since start'))}</span><b data-k="joins">–</b></div>
         <div><span>${t(L('Server-Listen-Pings', 'Server list pings'))}</span><b data-k="pings">–</b></div>
@@ -46,18 +46,17 @@ export function render() {
   <section class="section st-worlds">
     <div class="wrap">
       <header class="sec-head">
-        <p class="eyebrow">${t(L('Gerade online', 'Online right now'))}</p>
         <h2 class="display sm">${t(L('Gehostete Welten', 'Hosted worlds'))}</h2>
         <p class="lead">${t(L('Anonym: Die Liste zeigt nur, wie viele in einer Welt spielen, mit welcher Version und seit wann. Keine Namen, keine Adressen.', 'Anonymous: the list only shows how many people play in a world, on which version and since when. No names, no addresses.'))}</p>
       </header>
-      <div class="st-list" aria-live="polite"></div>
+      <div class="st-list card" aria-live="polite"></div>
     </div>
   </section>
 
   <section class="section st-history-sec">
     <div class="wrap st-history-grid">
       <div>
-        <p class="eyebrow">${t(L('Letzte Prüfungen', 'Recent checks'))}</p>
+        <h2 class="display sm">${t(L('Letzte Prüfungen', 'Recent checks'))}</h2>
         <p class="small">${t(L(`Alle ${POLL_MS / 1000} Sekunden, solange diese Seite offen ist. Jeder Block ist eine Prüfung.`, `Every ${POLL_MS / 1000} seconds while this page is open. Every block is one check.`))}</p>
       </div>
       <div class="st-history" aria-label="${t(L('Verlauf', 'History'))}"></div>
