@@ -103,11 +103,14 @@ const R = {
         <figcaption>${t(it.name)}</figcaption></figure>`).join('')}</div></div>`).join('')}`;
   },
   changes(s, mod) {
-    // Changelog einer Version: Gruppen als Flächen mit Punktliste (Text darf <code> enthalten, kommt nur aus der Inhaltsdatei)
-    return `<div class="changes">${s.groups.map((g) => `<article class="change-group">
+    // Changelog: neueste Version offen, ältere aufklappbar. Text darf <code> enthalten (kommt nur aus der Inhaltsdatei).
+    const versions = s.versions || [{ version: s.version, groups: s.groups }];
+    const grid = (v) => `<div class="changes">${v.groups.map((g) => `<article class="change-group">
       <h3>${t(g.name)}</h3>
-      <ul class="ticks">${g.items.map((it) => `<li>${t(it)}</li>`).join('')}</ul></article>`).join('')}</div>
-      ${s.version ? `<p class="small changes-note">${t(L(`Alle Änderungen im <a href="${mod.source}/releases/tag/v${s.version}" target="_blank" rel="noopener">Release v${s.version}</a> auf GitHub.`, `Full list in the <a href="${mod.source}/releases/tag/v${s.version}" target="_blank" rel="noopener">v${s.version} release</a> on GitHub.`))}</p>` : ''}`;
+      <ul class="ticks">${g.items.map((it) => `<li>${t(it)}</li>`).join('')}</ul></article>`).join('')}</div>`;
+    const link = (v) => (v.version && mod.source ? `<p class="small changes-note">${t(L(`Alle Änderungen im <a href="${mod.source}/releases/tag/v${v.version}" target="_blank" rel="noopener">Release v${v.version}</a> auf GitHub.`, `Full list in the <a href="${mod.source}/releases/tag/v${v.version}" target="_blank" rel="noopener">v${v.version} release</a> on GitHub.`))}</p>` : '');
+    const [first, ...older] = versions;
+    return `${grid(first)}${link(first)}${older.map((v) => `<details class="changes-older"><summary>${t(L(`Neu in ${v.version}`, `New in ${v.version}`))}</summary>${grid(v)}${link(v)}</details>`).join('')}`;
   },
   video(s, mod) {
     // Trailer: lädt erst beim Abspielen (preload none), WebM zuerst, MP4 als Ausweichquelle

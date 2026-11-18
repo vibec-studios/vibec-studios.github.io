@@ -800,3 +800,6 @@ main, .footer { position: relative; }
 .leak-old { position: absolute; left: 8px; top: 8px; padding: 4px 8px; font-size: 12px; color: var(--text); background: rgba(20, 20, 23, .92); }
 .shot.leak:has(.leak-old) img { filter: grayscale(.6) brightness(.8); }
 @media (max-width: 760px) { .changes { grid-template-columns: minmax(0, 1fr); } }
+.changes-older { margin-top: 16px; border-top: 1px solid var(--line); }
+.changes-older summary { padding: 14px 0; cursor: pointer; font: 18px var(--px); color: var(--muted); }
+.changes-older summary:hover, .changes-older[open] summary { color: var(--text); }
