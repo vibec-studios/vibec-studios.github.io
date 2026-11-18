@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-18T17:01:52Z",
+ "updated": "2026-11-18T17:25:13Z",
  "projects": [
   {
    "id": "hha",
@@ -678,8 +678,49 @@
    },
    "license": "MIT",
    "published": "2026-11-16T16:42:21Z",
-   "updated": "2026-11-18T16:59:00Z",
+   "updated": "2026-11-18T17:21:59Z",
    "versions": [
+    {
+     "id": "1.6.5-HHA_Arius-1.6.5",
+     "version_number": "1.6.5",
+     "name": "HHA Arius 1.6.5 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-18T17:21:59Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "﻿**HHA Arius 1.6.5: Frostbite, a solid mountain, an ice-spike plain, a new phase III arena, and shield, QTE, bridge and melee upgrades.**\n\n### Frostbite (like Elden Ring)\n- Hits from Arius and Solvane fill a frost bar shown above the hotbar. Breath attacks fill it fastest.\n- The gear's frost techniques also build up frost on enemies.\n- When the bar is full, the frost bursts: 10 % of max health + 3 damage at once.\n- After that comes **Frostbite** for 30 s: +20 % damage taken and 15 % slower attacks. It has its own status icon.\n\n### World\n- **Mountain:** no longer hollow. It has a thicker shell and is solid along the cut plane, so the cleft shows rock.\n- **Endless plain:**\n  - An ice-spike forest fills the far region.\n  - Further out the world generator continues it with ice spikes and ice patches.\n  - Fight areas stay clear.\n- **Phase III arena, redesigned:**\n  - a ring-patterned floor (not slippery);\n  - eight giant leaning ice crystals;\n  - a broken ring of stone pillars with arches;\n  - a great stone blade in the north.\n\n### Fight\n- Solvane's damage is reduced to about two thirds.\n- Ground attacks no longer hit players more than 12 blocks above the arena.\n- The **Yang Shield** blocks everything from the front, including the Warden's sonic boom and explosions. Arius and Solvane break it the way an axe breaks a shield: the hit is still blocked, then the shield breaks with a 5 s cooldown.\n- **QTEs** last much longer. Under the key it says in plain text what to press, for example \"Press Left Button as fast as you can: 3 / 8\".\n\n### Gear\n- **Yang Bridge:**\n  - While you aim, a hint shows how to set the size: mouse wheel for length, sneak + mouse wheel for width.\n  - Looking up or down tilts the bridge, up to 30°.\n  - The pillars always reach the ground.\n- **Glider:** a surfer pose on a larger light disc with runes and light trails.\n- **Yang Platform:** a round disc with a glowing cross that grows outward from the center.\n- **Melee (Dryleaf Dane style):**\n  - attack while sprinting: flying kick;\n  - attack in the air: dive kick with a frost shockwave;\n  - kick in the air: whirlwind kick all around.\n\n### Status\nBuilt and checked statically. Not play-tested in the running game yet. The far landscape rebuilds once (version 10).\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.6.5/HHA_Arius-1.6.5.jar",
+       "filename": "HHA_Arius-1.6.5.jar",
+       "size": 9510048,
+       "sha1": "75b282e9a8a3143f2a956e441ab911a0bdedd6d1",
+       "sha256": "09b6959dec29340a2e06ee7041e2c7e3b9f27f91ccfadc8d6e69ff92d7e3cbaf",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
     {
      "id": "1.6.4-HHA_Arius-1.6.4",
      "version_number": "1.6.4",
