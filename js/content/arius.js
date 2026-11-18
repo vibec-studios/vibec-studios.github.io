@@ -1,4 +1,4 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.6.2, Stand 18.11.2026).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.6.4, Stand 18.11.2026).
 // Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
 // Rüstung seit 1.2.2: Netherite-Form (armor/eirholm_armor_base*.png) plus 3D-Akzente (armor/eirholm_armor.json, armor3d).
 // Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
@@ -14,7 +14,7 @@ export default {
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.6.2',
+  version: '1.6.4',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -40,7 +40,29 @@ export default {
       type: 'changes', id: 'neu', toc: S('Neu in 1.6', 'New in 1.6'), title: S('Neu in 1.6', 'New in 1.6'),
       lead: S('Der Schnitt spaltet jetzt einen Berg, Solvane kämpft in der Luft, über allem liegt ein Wolkenmeer, und das erste Anlegen der Ausrüstung läuft ohne Ruckeln.', 'The Cut now splits a mountain, Solvane fights in the air, a sea of clouds lies over everything, and putting on the gear for the first time no longer stutters.'),
       versions: [{
-        version: '1.6.2',
+        version: '1.6.4',
+        groups: [
+          {
+            name: S('Handschuhe', 'Gauntlets'),
+            items: [
+              S('Animierte Finger im Zaubermodus: In Ruhe laufen die Finger als Welle, beim Aufladen wird die Hand zur Klaue, beim Wirken schnellen sie auf, beim Zielen zeigt der Zeigefinger, beim Schild ist die Hand gespreizt.', 'Animated fingers in spell mode: at rest the fingers ripple in a wave, charging curls the hand into a claw, casting makes them snap open, aiming points the index finger, and the shield spreads the hand.'),
+              S('Dazu eine leuchtende Eisrune auf der Handfläche.', 'Plus a glowing ice rune on the palm.'),
+            ],
+          },
+        ],
+      }, {
+        version: '1.6.3', open: true,
+        groups: [
+          {
+            name: S('Duell und Welt', 'Duel and world'),
+            items: [
+              S('Die Cutscenes nach dem Schnitt und zum Gipfel haben neue Kamerawinkel.', 'The cutscenes after the Cut and up to the summit have new camera angles.'),
+              S('Ranken hängen nur noch an echten Felsstufen.', 'Vines now only hang from real rock steps.'),
+            ],
+          },
+        ],
+      }, {
+        version: '1.6.2', open: true,
         groups: [
           {
             name: S('Fehlerbehebungen', 'Fixes'),
@@ -266,7 +288,7 @@ export default {
         },
         {
           name: S('Nahkampf', 'Melee'), icon: 'hud/art_mode_melee.png',
-          desc: S('Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle.', 'Gauntlets with dragon wings, spikes and a glowing ice band: fists and kicks, from an uppercut to an axe kick with a frost wave.'),
+          desc: S('Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle. Im Zaubermodus bewegen sich die Finger mit jedem Zauber, auf der Handfläche leuchtet eine Eisrune.', 'Gauntlets with dragon wings, spikes and a glowing ice band: fists and kicks, from an uppercut to an axe kick with a frost wave. In spell mode the fingers move with every spell, and an ice rune glows on the palm.'),
         },
         {
           name: S('Wind', 'Wind'), icon: 'hud/art_tornado.png',
