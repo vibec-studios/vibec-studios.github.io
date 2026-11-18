@@ -1,4 +1,4 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.6.0, Stand 18.11.2026).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.6.1, Stand 18.11.2026).
 // Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
 // Rüstung seit 1.2.2: Netherite-Form (armor/eirholm_armor_base*.png) plus 3D-Akzente (armor/eirholm_armor.json, armor3d).
 // Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
@@ -14,7 +14,7 @@ export default {
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.6.0',
+  version: '1.6.1',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -37,10 +37,20 @@ export default {
   sections: [
     // ------------------------------------------------------------------ Changelog (neueste Version zuerst, ältere aufklappbar)
     {
-      type: 'changes', id: 'neu', toc: S('Neu in 1.6.0', 'New in 1.6.0'), title: S('Neu in 1.6.0', 'New in 1.6.0'),
-      lead: S('Der Schnitt spaltet jetzt einen Berg, Solvane kämpft in der Luft, und über allem liegt ein Wolkenmeer.', 'The Cut now splits a mountain, Solvane fights in the air, and a sea of clouds lies over everything.'),
+      type: 'changes', id: 'neu', toc: S('Neu in 1.6', 'New in 1.6'), title: S('Neu in 1.6', 'New in 1.6'),
+      lead: S('Der Schnitt spaltet jetzt einen Berg, Solvane kämpft in der Luft, über allem liegt ein Wolkenmeer, und das erste Anlegen der Ausrüstung läuft ohne Ruckeln.', 'The Cut now splits a mountain, Solvane fights in the air, a sea of clouds lies over everything, and putting on the gear for the first time no longer stutters.'),
       versions: [{
-        version: '1.6.0',
+        version: '1.6.1',
+        groups: [
+          {
+            name: S('Leistung', 'Performance'),
+            items: [
+              S('Kein Ruckeln und keine hakenden Sounds mehr, wenn man das Rüstungs-Kit bekommt oder die Ausrüstung zum ersten Mal anlegt bzw. in die Hand nimmt. Modelle und Texturen werden beim Betreten der Welt vorgeladen, Soundeffekte schon beim Laden der Ressourcen.', 'No more stutter or hitching sounds when you receive the armor kit or put on or pick up the gear for the first time. Models and textures are preloaded when you enter the world, sound effects as soon as resources load.'),
+            ],
+          },
+        ],
+      }, {
+        version: '1.6.0', open: true,
         groups: [
           {
             name: S('Duell', 'Duel'),

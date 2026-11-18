@@ -109,8 +109,11 @@ const R = {
       <h3>${t(g.name)}</h3>
       <ul class="ticks">${g.items.map((it) => `<li>${t(it)}</li>`).join('')}</ul></article>`).join('')}</div>`;
     const link = (v) => (v.version && mod.source ? `<p class="small changes-note">${t(L(`Alle Änderungen im <a href="${mod.source}/releases/tag/v${v.version}" target="_blank" rel="noopener">Release v${v.version}</a> auf GitHub.`, `Full list in the <a href="${mod.source}/releases/tag/v${v.version}" target="_blank" rel="noopener">v${v.version} release</a> on GitHub.`))}</p>` : '');
-    const [first, ...older] = versions;
-    return `${grid(first)}${link(first)}${older.map((v) => `<details class="changes-older"><summary>${t(L(`Neu in ${v.version}`, `New in ${v.version}`))}</summary>${grid(v)}${link(v)}</details>`).join('')}`;
+    // Mehrere Versionen offen (open: true), z. B. ein Patch über dem großen Update: dann je Version eine Überschrift
+    const head = (v) => `<h3 class="changes-ver">${t(L(`Neu in ${v.version}`, `New in ${v.version}`))}</h3>`;
+    const shown = versions.filter((v, i) => i === 0 || v.open);
+    const older = versions.filter((v, i) => i > 0 && !v.open);
+    return `${shown.map((v) => `${shown.length > 1 ? head(v) : ''}${grid(v)}${link(v)}`).join('')}${older.map((v) => `<details class="changes-older"><summary>${t(L(`Neu in ${v.version}`, `New in ${v.version}`))}</summary>${grid(v)}${link(v)}</details>`).join('')}`;
   },
   video(s, mod) {
     // Trailer: lädt erst beim Abspielen (preload none), WebM zuerst, MP4 als Ausweichquelle

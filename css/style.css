@@ -803,3 +803,5 @@ main, .footer { position: relative; }
 .changes-older { margin-top: 16px; border-top: 1px solid var(--line); }
 .changes-older summary { padding: 14px 0; cursor: pointer; font: 18px var(--px); color: var(--muted); }
 .changes-older summary:hover, .changes-older[open] summary { color: var(--text); }
+.changes-ver { margin: 0 0 10px; font: 18px var(--px); color: var(--muted); }
+.changes-note + .changes-ver { margin-top: 28px; }
