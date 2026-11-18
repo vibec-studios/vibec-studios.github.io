@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-17T21:10:11Z",
+ "updated": "2026-11-18T01:02:13Z",
  "projects": [
   {
    "id": "hha",
@@ -1022,7 +1022,7 @@
     "utility",
     "social"
    ],
-   "body": "Welt im Pausenmenü öffnen, Adresse kopieren, Freunde einladen. Sie spielen mit ganz normalem Minecraft mit.\n\n- Eine feste Adresse, die bei jedem Hosting gleich bleibt\n- Keine Portfreigabe, kein eigener Server\n- Fabric und NeoForge, von 1.21 bis 26.3\n\n## Drei Klicks bis zum Multiplayer\n\n- **Welt hosten**: Im Pausenmenü steht „Welt hosten“, wo sonst „Im LAN öffnen“ steht.\n- **Adresse kopieren**: Deine eigene Adresse wie `giant-fox-65.vibey.henny.dev`. Sie bleibt bei jedem Hosting gleich.\n- **Freunde verbinden sich**: Mehrspieler, Direkt verbinden, Adresse einfügen. Ohne Mod, ohne Portfreigabe.\n\n## Du hast alles im Griff\n\nDas Hauptfenster bleibt minimal, alles Weitere liegt im Menü „Verwalten“. Verbindungen sind Ende-zu-Ende verschlüsselt.\n\n- **Feste Adresse**: Bleibt gleich, bis du sie erneuerst; dann ist die alte sofort tot.\n- **Spieler verwalten**: OP geben, rauswerfen, bannen und Abgewiesene mit einem Klick reinlassen.\n- **Sperren im Netz**: Whitelist und Bannliste nach Name oder IP: Der Relay blockt Gesperrte, bevor sie deinen Rechner erreichen.\n- **Mods erzwingen**: Wem eine Mod fehlt, bekommt eine klare Liste statt einer kryptischen Fehlermeldung.\n\n## Voraussetzungen\n\n- Fabric API (nur Fabric)\n- Nur im Client, Gäste brauchen nichts",
+   "body": "Welt im Pausenmenü öffnen, Adresse kopieren, Freunde einladen. Sie spielen mit ganz normalem Minecraft mit.\n\n- Eine feste Adresse, die bei jedem Hosting gleich bleibt\n- Keine Portfreigabe, kein eigener Server\n- Mehrere Welten gleichzeitig, auch Server aus dem Vibe Launcher\n\n## Drei Klicks bis zum Multiplayer\n\n- **Welt hosten**: Im Pausenmenü steht „Welt hosten“, wo sonst „Im LAN öffnen“ steht.\n- **Adresse kopieren**: Deine eigene Adresse wie `giant-fox-65.vibey.henny.dev`. Sie bleibt bei jedem Hosting gleich.\n- **Freunde verbinden sich**: Mehrspieler, Direkt verbinden, Adresse einfügen. Ohne Mod, ohne Portfreigabe.\n\n## Du hast alles im Griff\n\nDas Hauptfenster bleibt minimal, alles Weitere liegt im Menü „Verwalten“. Verbindungen sind Ende-zu-Ende verschlüsselt.\n\n- **Feste Adresse**: Bleibt gleich, bis du sie erneuerst; dann ist die alte sofort tot.\n- **Spieler verwalten**: OP geben, rauswerfen, bannen und Abgewiesene mit einem Klick reinlassen.\n- **Sperren im Netz**: Whitelist und Bannliste nach Name oder IP: Der Relay blockt Gesperrte, bevor sie deinen Rechner erreichen.\n- **Mods erzwingen**: Wem eine Mod fehlt, bekommt eine klare Liste statt einer kryptischen Fehlermeldung.\n- **Mehrere Welten**: Ein Konto kann standardmäßig zwei Welten oder Server gleichzeitig hosten, jede mit eigener fester Adresse.\n- **Server aus dem Launcher**: Lokale Server, die du im Vibe Launcher erstellst, laufen über denselben Relay und bekommen ebenfalls eine feste Adresse.\n- **Mit den Vibe-Diensten**: Optional mit Anbindung an die Vibe-Dienste: Freunde und Einladungen, Limits und Moderation.\n\n## Voraussetzungen\n\n- Fabric API (nur Fabric)\n- Nur im Client, Gäste brauchen nichts",
    "gallery": [
     {
      "url": "https://vibec-studios.github.io/assets/mods/vibey/img/admin-access.webp",
