@@ -173,53 +173,70 @@ export function render(mod, dl) {
   const sections = mod.sections.filter((s) => SHOWN.has(s.type));
   const install = mod.sections.find((s) => s.type === 'install');
   const accent = mod.accent, accent2 = mod.accent2 || mod.accent;
-  const meta = [mod.status && t(mod.status), newer(rel?.version, mod.version) && `v${esc(newer(rel?.version, mod.version))}`, `Minecraft ${esc(mod.mc || '1.21.11')}`, esc(mod.loader || 'Fabric')].filter(Boolean);
+  const ver = newer(rel?.version, mod.version);
+  const file = rel?.assets?.[0];
+  const size = file?.size ? (file.size >= 1048576 ? `${(file.size / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(file.size / 1024))} KB`) : '';
+  const facts = [ver && `v${esc(ver)}`, `Minecraft ${esc(mod.mc || '1.21.11')}`, esc(mod.loader || 'Fabric'), size && t(L(size.replace('.', ','), size))].filter(Boolean).join(' · ');
+  const relDate = rel?.date ? t(L(new Date(rel.date).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' }), new Date(rel.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }))) : '';
+  const kicker = mod.series ? `${esc(mod.series)}-${t(L('Reihe', 'series'))} · ${mod.role === 'core' ? t(L('Hauptmod', 'Core mod')) : 'Addon'}` : t(L('Eigenständige Mod', 'Standalone mod'));
   const cta = [
-    download ? dlLink('primary') : '',
-    `<a class="btn${download ? '' : ' primary'}" href="#${sections[0]?.id || ''}" data-anchor>${t(L('Ansehen', 'Take a look'))}</a>`,
-    mod.source ? `<a class="btn" href="${mod.source}" target="_blank" rel="noopener">GitHub ↗</a>` : '',
+    download ? dlLink('primary lg') : `<a class="btn primary lg" href="#${sections[0]?.id || ''}" data-anchor>${t(L('Ansehen', 'Take a look'))}</a>`,
+    download ? `<a class="btn lg" href="#${sections[0]?.id || ''}" data-anchor>${t(L('Ansehen', 'Take a look'))}</a>` : '',
   ].join('');
 
   const hero = `<section class="hero mod-hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <a class="back" href="/#projekte" data-link>← ${t(L('Alle Projekte', 'All projects'))}</a>
-        <h1 class="display">${esc(mod.name)}</h1>
-        <p class="lead strong">${t(mod.tagline)}</p>
+        <a class="back" href="/#${mod.series ? 'reihe' : `mod-${mod.id}`}" data-link>← ${t(L('Alle Projekte', 'All projects'))}</a>
+        <p class="kicker"><span class="px-icon" data-src="${mod.base}/${mod.icon || 'icon.png'}"></span>${kicker}</p>
+        <h1 class="display xl">${esc(mod.name)}</h1>
+        <p class="display tagline">${t(mod.tagline)}</p>
         <p class="lead">${t(short(mod.intro, 2))}</p>
         ${(mod.highlights || []).length ? `<ul class="ticks">${mod.highlights.slice(0, 3).map((h) => `<li>${t(h)}</li>`).join('')}</ul>` : ''}
         <div class="cta">${cta}</div>
-        <ul class="pills mod-meta">${meta.map((m) => `<li class="pill">${m}</li>`).join('')}</ul>
+        <p class="anno"><i aria-hidden="true"></i>${facts}</p>
         ${mod.statusPage ? `<a class="pill live-strip" href="${mod.statusPage}" data-link data-state="wait"><i aria-hidden="true"></i><span>${t(L('Relay wird geprüft …', 'Checking relay …'))}</span><b>→</b></a>` : ''}
       </div>
       <div class="hero-art">${mod.hero?.kind === 'shot' ? heroShot(mod) : '<canvas class="hero-canvas" aria-hidden="true"></canvas>'}</div>
     </div>
+    <div class="wrap hero-foot">
+      <span class="pill${/Veröffentlicht|Released/.test(mod.status?.de || '') ? ' ok' : ' warn'}">${t(mod.status)}</span>
+      ${relDate ? `<span>${t(L('Letztes Release', 'Latest release'))}: ${relDate}</span>` : ''}
+      ${mod.source ? `<a href="${mod.source}" target="_blank" rel="noopener">${t(L('Quellcode auf GitHub', 'Source on GitHub'))} ↗</a>` : ''}
+      ${mod.source ? `<a href="${mod.source}/issues" target="_blank" rel="noopener">${t(L('Fehler melden', 'Report a bug'))} ↗</a>` : ''}
+    </div>
   </section>`;
 
   const toc = sections.map((s) => `<a href="#${s.id}" data-anchor>${t(s.toc || LABEL[s.type] || s.title)}</a>`).join('');
-  const body = sections.map((s) => `<section class="section sec-${s.type}" id="${s.id}">
+  const body = sections.map((s) => `<section class="section band sec-${s.type}" id="${s.id}">
     <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <h2 class="display sm">${t(s.title)}</h2>
+      <header class="band-head${s.lead ? ' split' : ''}" data-reveal>
+        <div>${tx(s.toc || LABEL[s.type] || s.title) !== tx(s.title) ? `<p class="kicker">${t(s.toc || LABEL[s.type] || s.title)}</p>` : ''}
+        <h2 class="display">${t(s.title)}</h2></div>
         ${s.lead ? `<p class="lead">${t(short(s.lead, 2))}</p>` : ''}
       </header>
       <div data-reveal>${R[s.type](s, mod)}</div>
     </div></section>`).join('');
 
   const reqs = [`Minecraft ${esc(mod.mc || '1.21.11')}`, `${esc(mod.loader || 'Fabric')} Loader`, ...(mod.requires || []).map((r) => (typeof r === 'object' ? t(r) : esc(r)))];
-  const outro = `<section class="outro" id="${install?.id || 'download'}">
-    <div class="wrap"><div class="card outro-grid" data-reveal>
+  const outro = `<section class="band outro" id="${install?.id || 'download'}">
+    <div class="wrap outro-grid" data-reveal>
       <div>
-        <h2 class="display sm">${download
-          ? t(L(`${esc(mod.name)} ${rel ? `v${esc(rel.version)} ` : ''}herunterladen`, `Download ${esc(mod.name)}${rel ? ` v${esc(rel.version)}` : ''}`))
-          : t(L(`${esc(mod.name)}: noch kein Release`, `${esc(mod.name)}: no release yet`))}</h2>
+        <p class="kicker">${download ? 'Download' : t(L('Verfügbarkeit', 'Availability'))}</p>
+        <h2 class="display lg">${download
+          ? `${t(L(`${esc(mod.name)}`, `Download ${esc(mod.name)}`))}<br><span class="hl">${t(L(`v${esc(rel.version)} herunterladen.`, `v${esc(rel.version)}.`))}</span>`
+          : `${esc(mod.name)}<br><span class="hl">${t(L('kommt bald.', 'is coming.'))}</span>`}</h2>
         <p class="lead">${download
-          ? t(L(`Mod herunterladen, in den <code>mods</code>-Ordner legen, Minecraft mit ${esc(mod.loader || 'Fabric')} starten. Fertig.`, `Download the mod, drop it into your <code>mods</code> folder, start Minecraft with ${esc(mod.loader || 'Fabric')}. Done.`))
+          ? t(L(`Herunterladen, in den <code>mods</code>-Ordner legen, Minecraft mit ${esc(mod.loader || 'Fabric')} starten. Im Vibe Launcher geht es mit einem Klick.`, `Download, drop it into your <code>mods</code> folder, start Minecraft with ${esc(mod.loader || 'Fabric')}. In the Vibe Launcher it takes one click.`))
           : `${mod.downloadNote ? `${t(mod.downloadNote)} ` : ''}${t(L('Folge dem Projekt auf GitHub, dann verpasst du den Start nicht.', 'Follow the project on GitHub so you don’t miss the launch.'))}`}</p>
-        <div class="cta">${download ? `${dlLink('primary')}<a class="btn" href="/downloads/" data-link>${t(L('Download-Center', 'Download center'))}</a>` : `<a class="btn primary" href="${mod.source || 'https://github.com/vibec-studios'}" target="_blank" rel="noopener">${mod.source ? t(L('Zum Repository', 'View repository')) : t(L('Studio auf GitHub', 'Studio on GitHub'))} ↗</a>`}</div>
+        <div class="cta">${download ? `${dlLink('primary lg')}<a class="btn lg" href="/launcher/" data-link>Vibe Launcher</a>` : `<a class="btn primary lg" href="${mod.source || 'https://github.com/vibec-studios'}" target="_blank" rel="noopener">${mod.source ? t(L('Zum Repository', 'View repository')) : t(L('Studio auf GitHub', 'Studio on GitHub'))} ↗</a>`}</div>
+        ${download ? `<p class="anno"><i aria-hidden="true"></i>${facts}</p>` : ''}
       </div>
-      <ul class="req">${reqs.map((r) => `<li>${r}</li>`).join('')}</ul>
-    </div></div>
+      <div class="req-card card">
+        <p class="kicker">${t(L('Du brauchst', 'You need'))}</p>
+        <ul class="req">${reqs.map((r) => `<li>${r}</li>`).join('')}</ul>
+      </div>
+    </div>
   </section>`;
 
   return `<div class="mod-page" style="--accent:${accent};--accent2:${accent2};--on-accent:${onColor(accent)}">

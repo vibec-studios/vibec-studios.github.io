@@ -19,6 +19,7 @@ export default {
   icon: 'icon.png',
   categories: ['social', 'utility'], // Modrinth-Kategorien für den Vibe Store (tools/store.py)
   band: false,
+  spot: { img: 'img/flight-sunset.webp', h: 720, alt: S('Vibey Lyrics: Songzeile fliegt über den Abendhimmel', 'Vibey Lyrics: a lyric line flying across the sunset sky') }, // Screenshot im Band auf der Startseite
   hero: { kind: 'lyrics' }, // 3D-Flug: Wörter mit Tiefe bauen sich als Band im Himmel auf und fliegen dann auf dich zu
   intro: S('Drück K, wähl einen Song und sing mit. Jedes Wort ist ein eigenes 3D-Objekt: Die Zeile baut sich im Himmel auf, und wenn die nächste beginnt, fliegt die alte an dir vorbei.',
     'Press K, pick a song and sing along. Every word is its own 3D object: the line builds up in the sky, and when the next one starts, the old one flies past you.'),

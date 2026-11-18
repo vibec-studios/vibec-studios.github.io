@@ -107,7 +107,7 @@ function renderRoute(route) {
     setMeta(tx({ de: 'Alle Mods von Vibe Craft Studios zum Herunterladen, mit SHA-256-Prüfsumme und VirusTotal-Scan.', en: 'Download every Vibe Craft Studios mod, with SHA-256 checksum and VirusTotal scan.' }));
     Downloads.mount(app, mods, dl, signal).catch(console.error);
   } else {
-    app.innerHTML = Home.render(mods);
+    app.innerHTML = Home.render(mods, dl);
     document.title = 'Vibe Craft Studios · Minecraft Mods';
     setMeta(tx({ de: 'Vibe Craft Studios ist ein kleines Studio für Minecraft-Mods mit eigenen Modellen, Welten und Bosskämpfen.', en: 'Vibe Craft Studios is a small studio making Minecraft mods with their own models, worlds and boss fights.' }));
     Home.mount(app, mods, signal).catch(console.error);
@@ -233,7 +233,7 @@ function buildNav() {
   const links = $('.nav-links');
   // Desktop: Mods-Menü und feste Seiten als Tabs; schmal nur ein „Menü“-Knopf, das Menü enthält dann alle Seiten
   links.innerHTML = `<button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="mods-panel"><span class="lbl-d">Mods</span><span class="lbl-m">${t({ de: 'Menü', en: 'Menu' })}</span><span class="caret" aria-hidden="true"></span></button>` +
-    `<a href="/launcher/" data-link>Launcher</a><a href="/client/" data-link>Client</a><a href="/downloads/" data-link>Downloads</a><a href="/status/" data-link>Status</a>`;
+    `<a href="/launcher/" data-link>Launcher</a><a href="/client/" data-link>Client</a><a href="/status/" data-link>Status</a><a href="https://github.com/vibec-studios" target="_blank" rel="noopener">GitHub ↗</a>`;
   let panel = $('.mods-panel');
   if (!panel) {
     panel = document.createElement('div');

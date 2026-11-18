@@ -1,9 +1,12 @@
-// Startseite des Studios: das Studio und seine Projekte im Stil einer Produktseite. Die HHA-Reihe ist das erste
-// Projekt, nicht das einzige: Texte bleiben allgemein, Reihe und Rolle kommen aus den Inhaltsdateien (series, role).
+// Startseite des Studios als Landingpage: großer Hero, Kennzahlen, die HHA-Reihe als Tabs, eigenständige Mods als
+// Bänder in ihrer Farbe, Vibey Client, Vibe Launcher zum Durchklicken, FAQ und Download-Abschluss.
+// Reihe und Rolle kommen aus den Inhaltsdateien (series, role), neue Mods erscheinen von selbst.
 import { $, $$, t, tx, esc, short, onColor, animateIcons } from '../core.js';
 import { stageScene, linkStage, lyricsStage } from '../views.js';
 import { heldItem } from '../items.js';
-import { fetchClientRelease, renderClientDownload } from '../client-dl.js';
+import { latestRelease, releasesOf } from '../downloads.js';
+import { fetchStatus } from '../status-api.js';
+import { fetchClientRelease } from '../client-dl.js';
 
 const L = (de, en) => ({ de, en });
 const hex = (c) => parseInt(String(c).slice(1), 16);
@@ -13,14 +16,15 @@ export const STUDIO = {
   github: 'https://github.com/vibec-studios',
 };
 
-function count(mods) {
+function count(mods, dl) {
   let bosses = 0;
   const models = new Set();
   for (const m of mods) for (const s of m.sections) if (s.type === 'boss') for (const b of s.bosses) {
     bosses += 1;
     if (b.model) models.add(m.id + ':' + b.model);
   }
-  return { mods: mods.length, bosses, models: models.size };
+  const releases = mods.reduce((n, m) => n + releasesOf(dl, m.id).length, 0);
+  return { mods: mods.length, bosses, models: models.size, releases };
 }
 
 /** Rüstungen der Mod als Figuren: [{ set, color, weapon }] */
@@ -36,44 +40,6 @@ function armorsOf(m) {
   return sec.armor ? [{ set: sec.armor, armor3d: !!sec.armor3d, name: m.name.replace(/^HHA\s+/, ''), color: m.accent2 || m.accent, weapon: weapon(sec) }] : [];
 }
 
-/** „HHA · Hauptmod“, „HHA · Addon“ oder einfach „Mod“ für eigenständige Projekte. */
-function role(m) {
-  const r = m.role === 'core' ? t(L('Hauptmod', 'Core mod')) : m.role === 'addon' ? 'Addon' : 'Mod';
-  return m.series ? `${esc(m.series)} · ${r}` : r;
-}
-
-/** Projekte als Karten wie Fenster im Spiel: 3D-Bühne oder Screenshot, Name, Kurztext, Stand und Minecraft-Version. */
-function projectCards(mods) {
-  return `<div class="proj-grid">${mods.map((m, i) => {
-    const boss = bossOf(m);
-    const stage = m.hero?.kind === 'shot'
-      ? `<img src="${m.base}/${m.hero.img}" alt="" loading="lazy">`
-      : `<canvas data-boss="${i}" aria-hidden="true"></canvas>`;
-    return `<article class="proj card" style="--accent:${m.accent};--on-accent:${onColor(m.accent)}" id="mod-${m.id}" data-reveal>
-      <a class="proj-stage" href="${m.path}" data-link tabindex="-1" aria-hidden="true">${stage}${boss?.name ? `<span class="pill proj-callout">${t(boss.name)}</span>` : ''}</a>
-      <div class="proj-body">
-        <div class="proj-head"><span class="px-icon" data-src="${m.base}/${m.icon || 'icon.png'}"></span>
-          <div><h3><a href="${m.path}" data-link>${esc(m.name)}</a></h3><p class="proj-role">${role(m)} · ${t(m.status)}</p></div></div>
-        <p>${t(short(m.short, 1))}</p>
-        <div class="proj-foot"><p class="small">Minecraft ${esc(m.mc || '1.21.11')}${m.version ? ` · v${esc(m.version)}` : ''}</p>
-          <a class="btn sm" href="${m.path}" data-link>${t(L('Ansehen', 'View'))}</a></div>
-      </div>
-    </article>`;
-  }).join('')}</div>`;
-}
-
-/** Text zu den Projekten: Reihen mit Hauptmod und Addons, dazu eigenständige Mods. */
-function projectsLead(mods) {
-  const solo = mods.filter((m) => !m.series).map((m) => m.name);
-  const list = (arr, and) => arr.length > 1 ? `${arr.slice(0, -1).join(', ')} ${and} ${arr[arr.length - 1]}` : arr[0];
-  const de = 'Die HHA-Reihe besteht aus H&H Armors und Addons, die sich über eine eigene API einhängen.';
-  const en = 'The HHA series is H&H Armors plus addons that plug in through its own API.';
-  return solo.length
-    ? L(`${de} ${list(solo, 'und')} ${solo.length > 1 ? 'stehen' : 'steht'} für sich, und weitere Projekte kommen dazu, sobald sie bereit sind.`,
-      `${en} ${list(solo, 'and')} ${solo.length > 1 ? 'stand' : 'stands'} on ${solo.length > 1 ? 'their' : 'its'} own, and more projects join once they are ready.`)
-    : L(`${de} Weitere Projekte, auch abseits von HHA, kommen dazu, sobald sie bereit sind.`, `${en} More projects, beyond HHA too, will join once they are ready.`);
-}
-
 function bossOf(m) {
   const model = m.card?.model || (m.hero?.kind === 'boss' ? m.hero.model : null);
   const sec = m.sections.find((s) => s.type === 'boss');
@@ -81,7 +47,29 @@ function bossOf(m) {
   return entry ? { model: entry.model, texture: entry.texture, name: entry.name, yaw: m.card?.yaw } : (model ? { model, name: null } : null);
 }
 
-// Hero der Startseite: bei jedem Laden eine zufällige Mod, nie zweimal hintereinander dieselbe.
+function role(m) {
+  const r = m.role === 'core' ? t(L('Hauptmod', 'Core mod')) : m.role === 'addon' ? 'Addon' : 'Mod';
+  return m.series ? `${esc(m.series)} · ${r}` : r;
+}
+
+// Datum und Größe in beiden Sprachen (die Seite schaltet die Sprache ohne neues Rendern um)
+const fmtDate = (iso) => t(L(new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'short', year: 'numeric' }), new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })));
+const fmtSize = (b) => {
+  const s = b >= 1048576 ? `${(b / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(b / 1024))} KB`;
+  return t(L(s.replace('.', ','), s));
+};
+
+/** Version, Minecraft und Loader als Hinweiszeile unter einem Download-Knopf. */
+function factLine(m, dl) {
+  const rel = latestRelease(dl, m.id);
+  const parts = [rel ? `v${esc(rel.version)}` : (m.version ? `v${esc(m.version)}` : ''), `Minecraft ${esc(m.mc || '1.21.11')}`, esc(m.loader || 'Fabric')];
+  if (rel?.assets?.[0]?.size) parts.push(fmtSize(rel.assets[0].size));
+  return parts.filter(Boolean).join(' · ');
+}
+
+// ------------------------------------------------------------ Hero
+
+// Bei jedem Laden eine zufällige Mod im Hero, nie zweimal hintereinander dieselbe.
 let heroMod = null;
 function pickHeroMod(mods) {
   const usable = mods.filter((m) => m.hero?.kind === 'link' || m.hero?.kind === 'lyrics' || armorsOf(m).length || bossOf(m));
@@ -93,7 +81,7 @@ function pickHeroMod(mods) {
   return m;
 }
 
-function heroScene(canvas, m, signal) {
+function heroScene(canvas, m, signal, { zoomBoss = 0.9 } = {}) {
   if (m.hero?.kind === 'lyrics') return lyricsStage(canvas, { accent: m.accent, signal });
   if (m.hero?.kind === 'link') return linkStage(canvas, { glow: hex(m.accent), cable: hex(m.accent), zoom: 1.2, signal });
   const armors = armorsOf(m);
@@ -103,121 +91,330 @@ function heroScene(canvas, m, signal) {
     return stageScene(canvas, { figures, glow: hex(m.accent2 || m.accent), yaw: figures.length > 1 ? 0 : 0.3, zoom: figures.length > 1 ? 1.25 : 1.4, signal });
   }
   const boss = bossOf(m);
-  return stageScene(canvas, { boss: { base: m.base, model: boss.model, texture: boss.texture, yaw: boss.yaw ?? 0.5 }, glow: hex(m.accent2 || m.accent), zoom: 0.9, signal });
+  return stageScene(canvas, { boss: { base: m.base, model: boss.model, texture: boss.texture, yaw: boss.yaw ?? 0.5 }, glow: hex(m.accent2 || m.accent), zoom: zoomBoss, signal });
 }
 
-export function render(mods) {
-  const c = count(mods);
-  heroMod = pickHeroMod(mods);
+function hero(mods, dl) {
   const hm = heroMod;
-
-  return `<div class="home">
-  <section class="hero home-hero">
+  const c = count(mods, dl);
+  const mcs = [...new Set(mods.flatMap((m) => String(m.mc || '1.21.11').split(/\s*[–-]\s*/)))].sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+  return `<section class="hero home-hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <h1 class="display">${t(L('Minecraft-Mods mit eigenen Bossen, Welten und Werkzeugen', 'Minecraft mods with their own bosses, worlds and tools'))}</h1>
-        <p class="lead">${t(L('Vibe Craft Studios ist ein kleines Studio. Wir bauen die HHA-Reihe mit Bosskämpfen in eigenen Dimensionen, dazu Werkzeuge fürs Zusammenspielen: Vibey Multiplayer, Vibey Lyrics, den Vibey Client und den Vibe Launcher.', 'Vibe Craft Studios is a small studio. We make the HHA series with boss fights in dimensions of their own, plus tools for playing together: Vibey Multiplayer, Vibey Lyrics, the Vibey Client and the Vibe Launcher.'))}</p>
+        <p class="kicker">Vibe Craft Studios</p>
+        <h1 class="display xl">${t(L('Bosse, Welten und', 'Bosses, worlds and'))}<br><span class="hl">${t(L('Werkzeuge für Minecraft.', 'tools for Minecraft.'))}</span></h1>
+        <p class="lead">${t(L('Wir bauen die HHA-Reihe mit Bosskämpfen in eigenen Dimensionen und Werkzeuge fürs gemeinsame Spielen: Vibey Multiplayer, Vibey Lyrics, den Vibey Client und den Vibe Launcher.', 'We make the HHA series with boss fights in dimensions of their own, plus tools for playing together: Vibey Multiplayer, Vibey Lyrics, the Vibey Client and the Vibe Launcher.'))}</p>
         <div class="cta">
-          <a class="btn primary" href="#projekte" data-anchor>${t(L('Alle Projekte', 'All projects'))}</a>
-          <a class="btn" href="/downloads/" data-link>Downloads</a>
+          <a class="btn primary lg" href="#reihe" data-anchor>${t(L('Projekte ansehen', 'Explore projects'))}</a>
+          <a class="btn lg" href="/downloads/" data-link>Downloads</a>
         </div>
-        <p class="note">Fabric & NeoForge · ${t(L('Deutsch & Englisch', 'German & English'))} · ${t(L('jeder Download mit SHA-256 und VirusTotal', 'every download with SHA-256 and VirusTotal'))}</p>
+        <p class="anno"><i aria-hidden="true"></i>${t(L('Kostenlos · Fabric & NeoForge · Deutsch & Englisch', 'Free · Fabric & NeoForge · German & English'))}</p>
       </div>
       <div class="hero-art">
         <canvas class="hero-canvas" aria-hidden="true"></canvas>
-        <a class="pill hero-pick" href="${hm.path}" data-link>${esc(hm.name)} →</a>
+        <a class="callout hero-pick" href="${hm.path}" data-link><i aria-hidden="true"></i>${esc(hm.name)}</a>
       </div>
     </div>
-    <div class="wrap stat-row">
+    <div class="wrap hero-foot">
+      <span>Minecraft ${esc(mcs[0])} – ${esc(mcs[mcs.length - 1])}</span>
+      <a href="/downloads/" data-link>${t(L('Alle Versionen', 'All versions'))}</a>
+      <a class="live" href="/status/" data-link data-live hidden><i aria-hidden="true"></i><span></span></a>
+    </div>
+  </section>
+  <section class="stats-band">
+    <div class="wrap stats">
       <div><b>${c.mods}</b><span>${t(L('Mods', 'Mods'))}</span></div>
       <div><b>${c.bosses}</b><span>${t(L('Bosse & Wächter', 'Bosses & guardians'))}</span></div>
       <div><b>${c.models}</b><span>${t(L('eigene 3D-Modelle', 'custom 3D models'))}</span></div>
-      <div><b>2</b><span>${t(L('Sprachen', 'languages'))}</span></div>
+      <div><b>${c.releases || '–'}</b><span>${t(L('Releases auf GitHub', 'releases on GitHub'))}</span></div>
     </div>
-  </section>
+  </section>`;
+}
 
-  <section class="section" id="projekte">
+// ------------------------------------------------------------ HHA-Reihe als Tabs
+
+function seriesBand(mods, dl) {
+  const list = mods.filter((m) => m.series);
+  if (!list.length) return '';
+  const addons = list.filter((m) => m.role === 'addon').length;
+  const numDe = ['keine', 'ein', 'zwei', 'drei', 'vier', 'fünf', 'sechs'], numEn = ['no', 'one', 'two', 'three', 'four', 'five', 'six'];
+  const tabs = list.map((m, i) => `<button class="tab" role="tab" id="tab-${m.id}" aria-controls="pane-${m.id}" aria-selected="${i === 0}" style="--accent:${m.accent}"><span class="px-icon" data-src="${m.base}/${m.icon || 'icon.png'}"></span>${esc(m.name)}</button>`).join('');
+  const panes = list.map((m, i) => {
+    const rel = latestRelease(dl, m.id);
+    const armors = armorsOf(m);
+    const label = armors.length ? esc(armors.map((a) => a.name).join(' & ')) : (bossOf(m)?.name ? t(bossOf(m).name) : '');
+    return `<div class="pane" role="tabpanel" id="pane-${m.id}" aria-labelledby="tab-${m.id}"${i ? ' hidden' : ''} style="--accent:${m.accent};--on-accent:${onColor(m.accent)}">
+      <a class="pane-stage card" href="${m.path}" data-link tabindex="-1" aria-hidden="true"><canvas data-series="${m.id}"></canvas>${label ? `<span class="callout"><i></i>${label}</span>` : ''}</a>
+      <div class="pane-copy">
+        <p class="kicker">${role(m)} · ${t(m.status)}</p>
+        <h3 class="display">${esc(m.name)}</h3>
+        <p class="lead strong">${t(m.tagline)}</p>
+        <p class="lead">${t(short(m.short, 1))}</p>
+        ${(m.highlights || []).length ? `<ul class="ticks">${m.highlights.slice(0, 3).map((h) => `<li>${t(h)}</li>`).join('')}</ul>` : ''}
+        <div class="cta"><a class="btn primary" href="${m.path}" data-link>${t(L('Zur Seite', 'View page'))}</a>${rel ? `<a class="btn" href="/downloads/#${m.id}" data-link>↓ Download</a>` : ''}</div>
+        <p class="anno"><i aria-hidden="true"></i>${factLine(m, dl)}</p>
+      </div>
+    </div>`;
+  }).join('');
+  return `<section class="band series-band" id="reihe" style="--accent:${list[0].accent}">
     <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <h2 class="display sm">${t(L('Projekte', 'Projects'))}</h2>
-        <p class="lead">${t(projectsLead(mods))}</p>
+      <header class="band-head center" data-reveal>
+        <p class="kicker">${t(L('Die HHA-Reihe', 'The HHA series'))}</p>
+        <h2 class="display lg">${t(L('Eine Hauptmod,', 'One core mod,'))}<br><span class="hl">${t(L(`${numDe[addons] ?? addons} Addons.`, `${numEn[addons] ?? addons} addons.`))}</span></h2>
+        <p class="lead">${t(L('H&H Armors legt die Grundlage mit zwei Endgame-Rüstungen, Olymp und Tartaros. Die Addons hängen sich über eine eigene API ein und bringen neue Welten, Bosse und Ausrüstung mit.', 'H&H Armors lays the groundwork with two endgame armor sets, Olympus and Tartarus. The addons plug in through its own API and bring new worlds, bosses and gear.'))}</p>
       </header>
-      ${projectCards(mods)}
+      <div class="tabs" role="tablist" aria-label="HHA" data-reveal>${tabs}</div>
+      <div class="panes" data-reveal>${panes}</div>
     </div>
-  </section>
+  </section>`;
+}
 
-  <section class="section home-client">
-    <div class="wrap hl-grid hl-flip" data-reveal>
-      <div class="hl-shots">
-        <a class="hl-shot" href="/client/" data-link><img src="/assets/client/img/cosmetics-wings-crown.webp" alt="${esc(tx(L('Vibey Client: Kristall-Eisflügel und Eiskrone im Spiel', 'Vibey Client: crystal ice wings and ice crown in game')))}" loading="lazy"></a>
-        <a class="hl-shot" href="/client/#garderobe" data-link><img src="/assets/client/img/wardrobe.webp" alt="${esc(tx(L('Vibey Client: die Garderobe im Spiel', 'Vibey Client: the wardrobe in game')))}" loading="lazy"></a>
-      </div>
-      <div>
-        <p class="eyebrow">Vibey Client · Fabric · NeoForge</p>
-        <h2 class="display sm">${t(L('Cosmetics, Emotes und Freunde im Spiel', 'Cosmetics, emotes and friends in game'))}</h2>
-        <p class="lead">${t(L('Unsere Client-Mod: Umhänge, Flügel, Auren, Begleiter und Emotes, dazu Freundesliste und Einladungen. Alles kostenlos, nichts zu kaufen.', 'Our client mod: capes, wings, auras, pets and emotes, plus a friends list and invites. All free, nothing to buy.'))}</p>
-        <div class="home-cdl" data-home-cdl><span class="pill cl-soon">${t(L('Bald verfügbar', 'Coming soon'))}</span></div>
-        <div class="cta" data-home-cl-cta><a class="btn primary" href="/client/" data-link>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a></div>
-      </div>
+// ------------------------------------------------------------ Eigenständige Mods als Bänder
+
+function spotBand(m, dl, i) {
+  const rel = latestRelease(dl, m.id);
+  const spot = m.spot;
+  const media = spot
+    ? `<a class="spot-shot card" href="${m.path}" data-link><img src="${m.base}/${spot.img}" alt="${esc(tx(spot.alt || m.tagline))}" width="1280" height="${spot.h || 720}" loading="lazy"></a>`
+    : `<a class="spot-shot card spot-3d" href="${m.path}" data-link aria-hidden="true" tabindex="-1"><canvas data-spot="${m.id}"></canvas></a>`;
+  const notes = (m.highlights || []).slice(0, 3).map((h) => `<li><i aria-hidden="true"></i>${t(h)}</li>`).join('');
+  return `<section class="band spot-band${i % 2 ? ' flip' : ''}" id="mod-${m.id}" style="--accent:${m.accent};--on-accent:${onColor(m.accent)}">
+    <div class="wrap">
+      <header class="band-head split" data-reveal>
+        <div>
+          <p class="kicker"><span class="px-icon" data-src="${m.base}/${m.icon || 'icon.png'}"></span>${esc(m.name)}</p>
+          <h2 class="display lg">${t(m.tagline)}</h2>
+        </div>
+        <div>
+          <p class="lead">${t(short(m.short, 2))}</p>
+          <div class="cta"><a class="btn primary" href="${m.path}" data-link>${t(L('Mehr erfahren', 'Learn more'))}</a>${rel ? `<a class="btn" href="/downloads/#${m.id}" data-link>↓ Download</a>` : ''}</div>
+          <p class="anno"><i aria-hidden="true"></i>${factLine(m, dl)}</p>
+        </div>
+      </header>
+      <div class="spot-media" data-reveal>${media}${notes ? `<ul class="anno-list">${notes}</ul>` : ''}</div>
     </div>
-  </section>
+  </section>`;
+}
 
-  <section class="section home-launcher">
-    <div class="wrap hl-grid" data-reveal>
-      <div>
-        <p class="eyebrow">Vibe Launcher · Windows</p>
-        <h2 class="display sm">${t(L('Unser Launcher für Minecraft', 'Our launcher for Minecraft'))}</h2>
-        <p class="lead">${t(L('Instanzen mit Fabric, Quilt, Forge oder NeoForge, Mods von Modrinth, CurseForge und unserem eigenen Store, lokale Server über den Vibey-Relay und auf Wunsch Freunde und Einladungen über die Vibe-Dienste.', 'Instances with Fabric, Quilt, Forge or NeoForge, mods from Modrinth, CurseForge and our own store, local servers through the Vibey relay and, if you like, friends and invites through the Vibe services.'))}</p>
+// ------------------------------------------------------------ Vibey Client
+
+const CLIENT_CARDS = [
+  { img: 'cosmetics-wings-crown', name: L('Cosmetics', 'Cosmetics'), desc: L('Umhänge, Flügel, Auren, Hüte und Begleiter.', 'Capes, wings, auras, hats and pets.') },
+  { img: 'emote-wheel', name: L('Emotes', 'Emotes'), desc: L('Ein Rad mit Emotes, sichtbar für alle mit dem Client.', 'A wheel of emotes, visible to everyone with the client.') },
+  { img: 'social-03-friends-world', name: L('Freunde', 'Friends'), desc: L('Freundesliste mit Chats und Anfragen.', 'Friends list with chats and requests.') },
+  { img: 'social-09-invite-toast-game', name: L('Einladungen', 'Invites'), desc: L('Freunde mit einem Klick in deine Welt holen.', 'Bring friends into your world in one click.') },
+];
+
+function clientBand() {
+  return `<section class="band client-band" id="client" style="--accent:#8b5cf6;--on-accent:#fff">
+    <div class="wrap">
+      <header class="band-head split" data-reveal>
+        <div>
+          <p class="kicker">Vibey Client</p>
+          <h2 class="display lg">${t(L('Cosmetics, Emotes', 'Cosmetics, emotes'))}<br><span class="hl">${t(L('und Freunde.', 'and friends.'))}</span></h2>
+        </div>
+        <div>
+          <p class="lead">${t(L('Unsere Client-Mod für Fabric und NeoForge. Alles darin ist kostenlos, es gibt nichts zu kaufen.', 'Our client mod for Fabric and NeoForge. Everything in it is free, there is nothing to buy.'))}</p>
+          <div class="cta" data-home-cl-cta><a class="btn primary" href="/client/" data-link>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a></div>
+          <p class="anno" data-home-cl-note><i aria-hidden="true"></i>${t(L('Bald verfügbar · Fabric & NeoForge', 'Coming soon · Fabric & NeoForge'))}</p>
+        </div>
+      </header>
+      <div class="feature-cards" data-reveal>${CLIENT_CARDS.map((c) => `<a class="fcard" href="/client/" data-link>
+        <span class="fcard-img"><img src="/assets/client/img/${c.img}.webp" alt="" loading="lazy" width="1280" height="720"></span>
+        <b>${t(c.name)}</b><span>${t(c.desc)}</span></a>`).join('')}</div>
+    </div>
+  </section>`;
+}
+
+// ------------------------------------------------------------ Vibe Launcher zum Durchklicken
+
+const LAUNCHER_VIEWS = [
+  { img: 'home', name: L('Startseite', 'Home'), desc: L('Zuletzt gespielte Instanzen in einer Hotbar, ein Klick startet direkt in die Welt.', 'Recent instances in a hotbar, one click starts straight into your world.') },
+  { img: 'discover', name: L('Mods entdecken', 'Discover mods'), desc: L('Modrinth, CurseForge und unser eigener Store in einer Suche.', 'Modrinth, CurseForge and our own store in one search.') },
+  { img: 'instance', name: L('Instanzen', 'Instances'), desc: L('Fabric, Quilt, Forge oder NeoForge, jede Instanz mit eigenen Mods und Einstellungen.', 'Fabric, Quilt, Forge or NeoForge, each instance with its own mods and settings.') },
+  { img: 'skins', name: L('Skins und Capes', 'Skins and capes'), desc: L('Skins mit 3D-Vorschau wechseln und in einer Bibliothek sammeln.', 'Switch skins with a 3D preview and keep them in a library.') },
+];
+
+function launcherBand() {
+  return `<section class="band launcher-band" id="launcher" style="--accent:#3b82f6;--on-accent:#fff">
+    <div class="wrap lb-grid" data-reveal>
+      <div class="lb-copy">
+        <p class="kicker">Vibe Launcher · Windows</p>
+        <h2 class="display lg">${t(L('Der Launcher.', 'The launcher.'))}<br><span class="hl">${t(L('Schau rein.', 'Take a look.'))}</span></h2>
+        <div class="lb-list" role="tablist" aria-label="Vibe Launcher">${LAUNCHER_VIEWS.map((v, i) => `<button class="lb-item" role="tab" aria-selected="${i === 0}" data-lview="${i}">
+          <b>${t(v.name)}</b><span>${t(v.desc)}</span></button>`).join('')}</div>
         <div class="cta"><a class="btn primary" href="/launcher/" data-link>${t(L('Zum Launcher', 'View the launcher'))}</a></div>
       </div>
-      <a class="hl-shot" href="/launcher/" data-link><img src="/assets/launcher/img/home.webp" alt="${esc(tx(L('Vibe Launcher: Startseite mit Hotbar', 'Vibe Launcher: home screen with hotbar')))}" width="1280" height="800" loading="lazy"></a>
+      <div class="lb-window card">
+        <div class="lb-bar" aria-hidden="true"><i></i><i></i><i></i><span>Vibe Launcher</span></div>
+        <div class="lb-screen">${LAUNCHER_VIEWS.map((v, i) => `<img src="/assets/launcher/img/${v.img}.webp" alt="${esc(tx(L(`Vibe Launcher: ${v.name.de}`, `Vibe Launcher: ${v.name.en}`)))}" width="1280" height="800"${i ? ' loading="lazy" hidden' : ''} data-lshot="${i}">`).join('')}</div>
+      </div>
     </div>
-  </section>
+  </section>`;
+}
 
-  <section class="section values">
-    <div class="wrap values-grid" data-reveal>
+// ------------------------------------------------------------ FAQ und Abschluss
+
+function faq(mods) {
+  const byMc = new Map();
+  for (const m of mods) {
+    const k = `Minecraft ${m.mc || '1.21.11'} · ${m.loader || 'Fabric'}`;
+    if (!byMc.has(k)) byMc.set(k, []);
+    byMc.get(k).push(m.name);
+  }
+  const versions = [...byMc].map(([k, names]) => `<li><b>${esc(names.join(', '))}</b>: ${esc(k)}</li>`).join('');
+  const items = [
+    [L('Kostet etwas davon Geld?', 'Does any of it cost money?'),
+      L('Nein. Alle Mods, der Vibe Launcher und der Vibey Client sind kostenlos. Im Client gibt es keinen Shop.', 'No. Every mod, the Vibe Launcher and the Vibey Client are free. There is no shop in the client.')],
+    [L('Welche Minecraft-Version brauche ich?', 'Which Minecraft version do I need?'),
+      L(`Das hängt von der Mod ab:<ul class="faq-list">${versions}</ul>`, `It depends on the mod:<ul class="faq-list">${versions}</ul>`)],
+    [L('Wie installiere ich eine Mod?', 'How do I install a mod?'),
+      L('Am einfachsten im Vibe Launcher: Store öffnen, Mod wählen, installieren. Von Hand: Fabric Loader installieren, die <code>.jar</code> in den <code>mods</code>-Ordner legen und Minecraft starten.', 'The easiest way is the Vibe Launcher: open the store, pick a mod, install. By hand: install Fabric Loader, drop the <code>.jar</code> into your <code>mods</code> folder and start Minecraft.')],
+    [L('Woher kommen die Downloads?', 'Where do the downloads come from?'),
+      L('Direkt aus den GitHub-Releases der Projekte. Im <a href="/downloads/" data-link>Download-Center</a> steht zu jeder Datei die SHA-256-Prüfsumme und das Ergebnis von VirusTotal.', 'Straight from the projects’ GitHub releases. The <a href="/downloads/" data-link>download center</a> lists the SHA-256 checksum and the VirusTotal result for every file.')],
+    [L('Wo melde ich Fehler oder Wünsche?', 'Where do I report bugs or ideas?'),
+      L('Auf GitHub unter <a href="https://github.com/vibec-studios" target="_blank" rel="noopener">vibec-studios</a>, im Repository der jeweiligen Mod unter „Issues“.', 'On GitHub at <a href="https://github.com/vibec-studios" target="_blank" rel="noopener">vibec-studios</a>, under “Issues” in the mod’s repository.')],
+    [L('Ist das ein offizielles Minecraft-Produkt?', 'Is this an official Minecraft product?'),
+      L('Nein. Vibe Craft Studios ist ein unabhängiges Studio und nicht mit Mojang oder Microsoft verbunden.', 'No. Vibe Craft Studios is an independent studio and not associated with Mojang or Microsoft.')],
+  ];
+  return `<section class="band faq-band" id="faq">
+    <div class="wrap faq-grid">
+      <header class="band-head" data-reveal>
+        <p class="kicker">FAQ</p>
+        <h2 class="display lg">${t(L('Häufige', 'Common'))}<br><span class="hl">${t(L('Fragen.', 'questions.'))}</span></h2>
+        <p class="lead">${t(L('Etwas fehlt? Schreib uns auf GitHub.', 'Something missing? Ask us on GitHub.'))}</p>
+      </header>
+      <div class="faq" data-reveal>${items.map(([q, a], i) => `<details class="faq-item"${i === 0 ? ' open' : ''}><summary>${t(q)}</summary><div class="faq-a">${t(a)}</div></details>`).join('')}</div>
+    </div>
+  </section>`;
+}
+
+function finale(mods, dl) {
+  // Neuestes Release über alle Mods: zeigt, dass hier gearbeitet wird
+  let newest = null;
+  for (const m of mods) {
+    const r = latestRelease(dl, m.id);
+    if (r && (!newest || r.date > newest.r.date)) newest = { m, r };
+  }
+  return `<section class="band finale">
+    <div class="wrap finale-grid" data-reveal>
       <div>
-        <h2 class="display sm">${t(L('So arbeiten wir', 'How we work'))}</h2>
-        <p class="lead">${t(L('Drei Regeln, an die sich jede Mod hält.', 'Three rules every mod follows.'))}</p>
+        <h2 class="display lg">${t(L('Alle Downloads', 'Every download'))}<br><span class="hl">${t(L('an einem Ort.', 'in one place.'))}</span></h2>
+        <p class="lead">${t(L('Jede Version jeder Mod, direkt aus GitHub, mit Changelog und Prüfsumme.', 'Every version of every mod, straight from GitHub, with changelog and checksum.'))}</p>
       </div>
-      <div class="values-list">
-        <article><h3>${t(L('Angriffe werden angesagt', 'Attacks are announced'))}</h3><p>${t(L('Jeder Bossangriff hat eine sichtbare Ankündigung am Boden, jeder Boss einen Trick. Wer verliert, behält sein Inventar.', 'Every boss attack shows a warning on the ground, every boss has a trick. Losing never costs your inventory.'))}</p></article>
-        <article><h3>${t(L('Eigene Modelle, Vanilla-Blöcke', 'Our own models, vanilla blocks'))}</h3><p>${t(L('Modelle, Animationen und Effekte bauen wir selbst. Welten und Arenen bestehen aus Vanilla-Blöcken.', 'We make our own models, animations and effects. Worlds and arenas are built from vanilla blocks.'))}</p></article>
-        <article><h3>${t(L('Offen und geprüft', 'Open and checked'))}</h3><p>${t(L('Der Quellcode der Mods liegt auf GitHub. Jede Datei im Download-Center hat eine Prüfsumme und einen VirusTotal-Scan.', 'The mods’ source code is on GitHub. Every file in the download center has a checksum and a VirusTotal scan.'))}</p></article>
+      <div>
+        <a class="btn primary lg" href="/downloads/" data-link>${t(L('Zum Download-Center', 'Open download center'))}</a>
+        ${newest ? `<p class="anno"><i aria-hidden="true"></i>${t(L('Zuletzt erschienen', 'Latest release'))}: <a href="${newest.m.path}" data-link>${esc(newest.m.name)} ${esc(newest.r.version)}</a> · ${fmtDate(newest.r.date)}</p>` : ''}
       </div>
     </div>
-  </section>
+  </section>`;
+}
 
-  <section class="section dl-teaser">
-    <div class="wrap">
-      <div class="card dl-teaser-grid" data-reveal>
-        <div>
-          <h2 class="display sm">${t(L('Download-Center', 'Download center'))}</h2>
-          <p class="lead">${t(L('Alle Versionen aller Mods direkt aus GitHub, mit SHA-256-Prüfsumme und dem VirusTotal-Ergebnis jeder Datei.', 'Every version of every mod straight from GitHub, with the SHA-256 checksum and the VirusTotal result of each file.'))}</p>
-        </div>
-        <div class="cta"><a class="btn primary" href="/downloads/" data-link>${t(L('Zum Download-Center', 'Open download center'))}</a></div>
-      </div>
-    </div>
-  </section>
-</div>`;
+export function render(mods, dl) {
+  heroMod = pickHeroMod(mods);
+  const solo = mods.filter((m) => !m.series);
+  return `<div class="home">
+    ${hero(mods, dl)}
+    ${seriesBand(mods, dl)}
+    ${solo.map((m, i) => spotBand(m, dl, i)).join('')}
+    ${clientBand()}
+    ${launcherBand()}
+    ${faq(mods)}
+    ${finale(mods, dl)}
+  </div>`;
+}
+
+// ------------------------------------------------------------ Leben
+
+function liveLine(root, signal) {
+  const el = $('[data-live]', root);
+  if (!el) return;
+  fetchStatus(signal).then((res) => {
+    if (signal.aborted || res.state !== 'ok') return;
+    const p = res.data?.players ?? 0, w = res.data?.worlds ?? 0;
+    $('span', el).innerHTML = p > 0
+      ? t(L(`${p} Spieler gerade über Vibey online`, `${p} ${p === 1 ? 'player' : 'players'} online through Vibey right now`))
+      : w > 0 ? t(L(`${w} ${w === 1 ? 'Welt' : 'Welten'} gerade über Vibey gehostet`, `${w} ${w === 1 ? 'world' : 'worlds'} hosted through Vibey right now`))
+        : t(L('Vibey-Relay online', 'Vibey relay online'));
+    el.hidden = false;
+  }).catch(() => {});
+}
+
+function seriesTabs(root, mods, signal) {
+  const tabs = $$('.series-band .tab', root);
+  if (!tabs.length) return;
+  const started = new Set();
+  const start = (id) => {
+    if (started.has(id)) return;
+    started.add(id);
+    const m = mods.find((x) => x.id === id);
+    const c = $(`canvas[data-series="${id}"]`, root);
+    if (m && c) heroScene(c, m, signal, { zoomBoss: 0.85 }).catch(console.error);
+  };
+  const select = (tab, focus) => {
+    tabs.forEach((b) => {
+      const on = b === tab;
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+      $(`#${b.getAttribute('aria-controls')}`, root).hidden = !on;
+    });
+    if (focus) tab.focus();
+    start(tab.id.slice(4));
+  };
+  tabs.forEach((b, i) => {
+    b.tabIndex = i ? -1 : 0;
+    b.addEventListener('click', () => select(b), { signal });
+    b.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      select(tabs[(i + d + tabs.length) % tabs.length], true);
+    }, { signal });
+  });
+  // Erste 3D-Bühne erst laden, wenn der Abschnitt in Sicht kommt
+  const band = $('.series-band', root);
+  const io = new IntersectionObserver((es) => { if (es[0].isIntersecting) { io.disconnect(); start(tabs.find((b) => b.getAttribute('aria-selected') === 'true').id.slice(4)); } }, { rootMargin: '400px' });
+  io.observe(band);
+  signal.addEventListener('abort', () => io.disconnect());
+}
+
+function launcherViews(root, signal) {
+  const items = $$('.lb-item', root);
+  const shots = $$('.lb-screen img', root);
+  let timer = 0, user = false, cur = 0;
+  const show = (i) => {
+    cur = i;
+    items.forEach((b, k) => b.setAttribute('aria-selected', String(k === i)));
+    shots.forEach((s, k) => { s.hidden = k !== i; });
+  };
+  items.forEach((b, i) => b.addEventListener('click', () => { user = true; clearInterval(timer); show(i); }, { signal }));
+  // Ohne Klick wechselt die Ansicht von selbst, solange der Abschnitt sichtbar ist
+  const band = $('.launcher-band', root);
+  if (!band) return;
+  const io = new IntersectionObserver((es) => {
+    clearInterval(timer);
+    if (es[0].isIntersecting && !user && !matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => show((cur + 1) % items.length), 5000);
+  }, { threshold: 0.4 });
+  io.observe(band);
+  signal.addEventListener('abort', () => { io.disconnect(); clearInterval(timer); });
 }
 
 export async function mount(root, mods, signal) {
   animateIcons(root);
-  // Vibey Client: Download erscheint, sobald die API einen Release meldet (bei jedem Aufruf live geprüft)
+  liveLine(root, signal);
+  seriesTabs(root, mods, signal);
+  launcherViews(root, signal);
+  // Vibey Client: sobald die API ein Release meldet, führt der Knopf zum Download auf der Client-Seite
   fetchClientRelease(signal).then((rel) => {
-    const host = $('[data-home-cdl]', root);
-    if (!rel || !host || signal?.aborted) return;
-    renderClientDownload(host, rel, { changelog: false });
-    $('[data-home-cl-cta]', root).innerHTML = `<a class="btn" href="/client/" data-link>${t(L('Alle Cosmetics ansehen', 'See all cosmetics'))}</a>`;
+    if (!rel || signal?.aborted) return;
+    const loaders = [...new Set(rel.files.map((f) => f.loader))].map((l) => (l === 'neoforge' ? 'NeoForge' : l.charAt(0).toUpperCase() + l.slice(1)));
+    $('[data-home-cl-cta]', root).innerHTML = `<a class="btn primary" href="/client/#download" data-link>↓ Download</a><a class="btn" href="/client/#garderobe" data-link>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a>`;
+    $('[data-home-cl-note]', root).innerHTML = `<i aria-hidden="true"></i>v${esc(rel.version)} · ${esc(loaders.join(' & '))}`;
   });
   heroScene($('.hero-canvas', root), heroMod || mods[0], signal).catch(console.error);
-
-  $$('canvas[data-boss]', root).forEach((c) => {
-    const m = mods[+c.dataset.boss];
-    const boss = bossOf(m);
-    if (!boss && m.hero?.kind === 'lyrics') lyricsStage(c, { accent: m.accent, signal }).catch(console.error);
-    if (!boss && m.hero?.kind === 'link') linkStage(c, { glow: hex(m.accent), cable: hex(m.accent), zoom: 1.1, signal }).catch(console.error);
-    if (boss) stageScene(c, { boss: { base: m.base, model: boss.model, texture: boss.texture, yaw: boss.yaw ?? 0.5 }, glow: hex(m.accent2 || m.accent), zoom: 0.86, signal }).catch(console.error);
+  // Bänder ohne Screenshot zeigen ihre 3D-Bühne
+  $$('canvas[data-spot]', root).forEach((c) => {
+    const m = mods.find((x) => x.id === c.dataset.spot);
+    if (m) heroScene(c, m, signal).catch(console.error);
   });
 }

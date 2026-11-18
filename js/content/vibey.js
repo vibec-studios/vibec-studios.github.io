@@ -19,6 +19,7 @@ export default {
   categories: ['utility', 'social'], // Modrinth-Kategorien für den Vibe Store (tools/store.py)
   statusPage: '/status/',
   band: false,
+  spot: { img: 'img/host-online.webp', h: 800, alt: S('Vibey Multiplayer: Welt gehostet, mit fester Adresse', 'Vibey Multiplayer: world hosted, with a fixed address') }, // Screenshot im Band auf der Startseite
   hero: { kind: 'link' }, // zwei Spieler, verbunden mit einem blauen Pixelkabel (views.js linkStage)
   intro: S('Welt im Pausenmenü öffnen, Adresse kopieren, Freunde einladen. Sie spielen mit ganz normalem Minecraft mit.',
     'Open your world from the pause menu, copy your address, invite your friends. They join with plain Minecraft.'),
