@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-18T16:21:45Z",
+ "updated": "2026-11-18T16:29:01Z",
  "projects": [
   {
    "id": "hha",
@@ -678,8 +678,49 @@
    },
    "license": "MIT",
    "published": "2026-11-16T16:42:21Z",
-   "updated": "2026-11-18T16:15:24Z",
+   "updated": "2026-11-18T16:26:45Z",
    "versions": [
+    {
+     "id": "1.6.1-HHA_Arius-1.6.1",
+     "version_number": "1.6.1",
+     "name": "HHA Arius 1.6.1 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-18T16:26:45Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "﻿**HHA Arius 1.6.1: no more stutter when you receive the kit.**\n\n- Receiving the armour kit, putting on the armour or first holding the gauntlets or Solvane used to cause frame drops, and sounds would stutter.\n- The cause: models (armour, gauntlets, ghost dragon), entity textures and large animation classes were only loaded the first time they were drawn, in the middle of play.\n- These are now warmed up once when you join a world. The log shows \"HHA Arius vorgewärmt in … ms\".\n- All short sound effects are preloaded when resources load, so they no longer stutter on first play.\n\nBuilt and checked statically. Not play-tested in the running game yet.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.6.1/HHA_Arius-1.6.1.jar",
+       "filename": "HHA_Arius-1.6.1.jar",
+       "size": 9479869,
+       "sha1": "26ddb177d7c3aa9fcb996ac7210caee616585a06",
+       "sha256": "694789e64d2d62aa4d8c3016e3ac11e7b6d38e01b9c9f6bfed6f15faf67b5207",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
     {
      "id": "1.6.0-HHA_Arius-1.6.0",
      "version_number": "1.6.0",
