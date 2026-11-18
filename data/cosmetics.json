@@ -1,0 +1,658 @@
+{
+ "source": "https://vibe.henny.dev/api/v1/cosmetics/catalog",
+ "version": "20813003686f4cf8",
+ "items": [
+  {
+   "id": "vibey:aurora_cape",
+   "kind": "cosmetic",
+   "slot": "cape",
+   "name": {
+    "de": "Polarlicht-Umhang",
+    "en": "Aurora Cape"
+   },
+   "description": {
+    "de": "Nordlichter, die langsam über deinen Rücken wogen.",
+    "en": "Northern lights that slowly ripple across your back."
+   },
+   "rarity": "epic",
+   "tags": [
+    "aurora",
+    "animated",
+    "night",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/aurora_cape.vibey",
+   "thumb": "/assets/client/thumbs/aurora_cape.png",
+   "hash": "262470d2dd150aedc4300b7e456132b34e24ffdabac58240f06a6505179f0215",
+   "size": 12394
+  },
+  {
+   "id": "vibey:ice_floe_cape",
+   "kind": "cosmetic",
+   "slot": "cape",
+   "name": {
+    "de": "Eisscholle-Umhang",
+    "en": "Ice Floe Cape"
+   },
+   "description": {
+    "de": "Eine kleine Robbe döst auf ihrer Eisscholle unter der Polarnacht.",
+    "en": "A tiny seal napping on its ice floe under the polar night."
+   },
+   "rarity": "rare",
+   "tags": [
+    "seal",
+    "ice",
+    "winter",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/ice_floe_cape.vibey",
+   "thumb": "/assets/client/thumbs/ice_floe_cape.png",
+   "hash": "e8c0da51fb2a6668e585770ea237b164935e58f088f7083ef6eed4cf67345c7c",
+   "size": 3005
+  },
+  {
+   "id": "vibey:pixel_stars_cape",
+   "kind": "cosmetic",
+   "slot": "cape",
+   "name": {
+    "de": "Pixelsterne-Umhang",
+    "en": "Pixel Stars Cape"
+   },
+   "description": {
+    "de": "Ein klarer Nachthimmel voller funkelnder Pixelsterne.",
+    "en": "A clear night sky full of twinkling pixel stars."
+   },
+   "rarity": "rare",
+   "tags": [
+    "night",
+    "stars",
+    "animated",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/pixel_stars_cape.vibey",
+   "thumb": "/assets/client/thumbs/pixel_stars_cape.png",
+   "hash": "7deb0006478ce45737e51d44440199893484a56b78922cb32fcac96961141860",
+   "size": 7469
+  },
+  {
+   "id": "vibey:vibe_cape",
+   "kind": "cosmetic",
+   "slot": "cape",
+   "name": {
+    "de": "Vibe-Umhang",
+    "en": "Vibe Cape"
+   },
+   "description": {
+    "de": "Das klassische Vibe-Lila mit unserem Robben-Emblem und türkisem Saum.",
+    "en": "The classic Vibe purple with our seal emblem and a teal hem."
+   },
+   "rarity": "rare",
+   "tags": [
+    "vibe",
+    "seal",
+    "purple",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/vibe_cape.vibey",
+   "thumb": "/assets/client/thumbs/vibe_cape.png",
+   "hash": "13126d234cbb7270060f17692b6254589970896b5736bcfd0ef6c6537ecea6fb",
+   "size": 2666
+  },
+  {
+   "id": "vibey:crystal_wings",
+   "kind": "cosmetic",
+   "slot": "wings",
+   "name": {
+    "de": "Kristalleisflügel",
+    "en": "Crystal Ice Wings"
+   },
+   "description": {
+    "de": "Splitter aus Gletschereis, über die ein Lichtfunke wandert.",
+    "en": "Shards of glacier ice that shimmer as a glint runs along them."
+   },
+   "rarity": "legendary",
+   "tags": [
+    "ice",
+    "wings",
+    "crystal",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/crystal_wings.vibey",
+   "thumb": "/assets/client/thumbs/crystal_wings.png",
+   "hash": "fbfba6310d725c8dd4652a4e89306e298b10d124dea81562dedd0e823eae7b75",
+   "size": 12984
+  },
+  {
+   "id": "vibey:neon_wings",
+   "kind": "cosmetic",
+   "slot": "wings",
+   "name": {
+    "de": "Neon-Pixelflügel",
+    "en": "Neon Pixel Wings"
+   },
+   "description": {
+    "de": "Leuchtende Pixelflügel in Vibe-Lila und Türkis, an deren Kante ein Lichtpuls entlangläuft.",
+    "en": "Glowing pixel wings in Vibe purple and teal with a light pulse running along the edge."
+   },
+   "rarity": "epic",
+   "tags": [
+    "neon",
+    "wings",
+    "glow",
+    "vibe",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/neon_wings.vibey",
+   "thumb": "/assets/client/thumbs/neon_wings.png",
+   "hash": "3581825410aca9c2946a9f15ff80eb8314fc5ce3d26422ecfdf126f8d794697c",
+   "size": 7398
+  },
+  {
+   "id": "vibey:ember_sparks",
+   "kind": "cosmetic",
+   "slot": "aura",
+   "name": {
+    "de": "Glutfunken",
+    "en": "Ember Sparks"
+   },
+   "description": {
+    "de": "Ein leuchtender Runenring zu deinen Füßen, aus dem lila und türkise Funken aufsteigen.",
+    "en": "A glowing rune ring at your feet with purple and teal embers drifting up."
+   },
+   "rarity": "epic",
+   "tags": [
+    "aura",
+    "sparks",
+    "glow",
+    "vibe",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/ember_sparks.vibey",
+   "thumb": "/assets/client/thumbs/ember_sparks.png",
+   "hash": "f07e3975a1ce86ac7f986f9856615d463c1966251ebe1d56a66eabea0850773b",
+   "size": 12744
+  },
+  {
+   "id": "vibey:snowflake_orbit",
+   "kind": "cosmetic",
+   "slot": "aura",
+   "name": {
+    "de": "Schneeflocken-Orbit",
+    "en": "Snowflake Orbit"
+   },
+   "description": {
+    "de": "Fünf leuchtende Schneeflocken kreisen um dich und lassen kleine Flocken rieseln.",
+    "en": "Five glowing snowflakes circle around you and drop tiny flakes."
+   },
+   "rarity": "epic",
+   "tags": [
+    "aura",
+    "snow",
+    "winter",
+    "glow",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/snowflake_orbit.vibey",
+   "thumb": "/assets/client/thumbs/snowflake_orbit.png",
+   "hash": "ce6432fd02999ede674074d1a9d2ed7ca286b3d09883dccfea723923af0121f4",
+   "size": 10806
+  },
+  {
+   "id": "vibey:pixel_penguin",
+   "kind": "cosmetic",
+   "slot": "pet",
+   "name": {
+    "de": "Pixel-Pinguin",
+    "en": "Pixel Penguin"
+   },
+   "description": {
+    "de": "Ein kleiner Pinguin mit türkisem Schal, der dir hinterherwatschelt und vor Freude mit den Flügeln schlägt.",
+    "en": "A tiny penguin in a teal scarf that waddles after you and flaps when it gets excited."
+   },
+   "rarity": "rare",
+   "tags": [
+    "penguin",
+    "cute",
+    "winter",
+    "pet",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/pixel_penguin.vibey",
+   "thumb": "/assets/client/thumbs/pixel_penguin.png",
+   "hash": "efa02a6395ea4c6abd076a2ba2772541820d19337ff93eb97940f62c9edcb692",
+   "size": 8468
+  },
+  {
+   "id": "vibey:seal_buddy",
+   "kind": "cosmetic",
+   "slot": "pet",
+   "name": {
+    "de": "Robbenkumpel",
+    "en": "Seal Buddy"
+   },
+   "description": {
+    "de": "Unser Maskottchen als kleines Haustier. Blinzelt, wackelt mit den Flossen und robbt dir hinterher.",
+    "en": "Our mascot as a tiny pet. Blinks, wiggles its flippers and galumphs after you."
+   },
+   "rarity": "epic",
+   "tags": [
+    "seal",
+    "cute",
+    "mascot",
+    "pet",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/seal_buddy.vibey",
+   "thumb": "/assets/client/thumbs/seal_buddy.png",
+   "hash": "2649cb997d160b0683c4445c0be1257f077fd32a6c9fda6aa0b1a001a4a2034c",
+   "size": 10438
+  },
+  {
+   "id": "vibey:glacier_shield",
+   "kind": "cosmetic",
+   "slot": "shield",
+   "name": {
+    "de": "Gletscherschild",
+    "en": "Glacier Shield"
+   },
+   "description": {
+    "de": "Aus einem Gletscher geschnitten, poliert von einer sehr geduldigen Robbe.",
+    "en": "Cut from a glacier, polished by a very patient seal."
+   },
+   "rarity": "rare",
+   "tags": [
+    "ice",
+    "winter",
+    "snowflake",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/glacier_shield.vibey",
+   "thumb": "/assets/client/thumbs/glacier_shield.png",
+   "hash": "f6fd8935761f4d82e5dea509dbe3910a492730ea43c7e43b869879960396b837",
+   "size": 2475
+  },
+  {
+   "id": "vibey:seal_crest_shield",
+   "kind": "cosmetic",
+   "slot": "shield",
+   "name": {
+    "de": "Robbenwappen-Schild",
+    "en": "Seal Crest Shield"
+   },
+   "description": {
+    "de": "Trag die Robbe in den Kampf – Vibe-Lila mit türkisem Sparren.",
+    "en": "Carry the seal into battle – Vibe purple with a teal chevron."
+   },
+   "rarity": "rare",
+   "tags": [
+    "seal",
+    "vibe",
+    "crest",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/seal_crest_shield.vibey",
+   "thumb": "/assets/client/thumbs/seal_crest_shield.png",
+   "hash": "393b03017df65b5394fee85bf0017a8a4de61012bb6e3a6a41a470ced6c47dfb",
+   "size": 2366
+  },
+  {
+   "id": "vibey:vibe_chevron_shield",
+   "kind": "cosmetic",
+   "slot": "shield",
+   "name": {
+    "de": "Vibe-Sparren-Schild",
+    "en": "Vibe Chevron Shield"
+   },
+   "description": {
+    "de": "Kräftige lila und türkise Sparren – die Vibe-Farben, gemacht zum Blocken.",
+    "en": "Bold purple and teal chevrons – the Vibe colours, made to block."
+   },
+   "rarity": "common",
+   "tags": [
+    "vibe",
+    "chevron",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/vibe_chevron_shield.vibey",
+   "thumb": "/assets/client/thumbs/vibe_chevron_shield.png",
+   "hash": "ee54c7338fb3a9e760054ab26d4e8e4854ea2e6c3ed11d7cf73586e1082b1240",
+   "size": 2275
+  },
+  {
+   "id": "vibey:ice_crown",
+   "kind": "cosmetic",
+   "slot": "hat",
+   "name": {
+    "de": "Eiskrone",
+    "en": "Ice Crown"
+   },
+   "description": {
+    "de": "Ein Reif aus Gletschereis mit leuchtendem türkisen Edelstein. Funkelt ab und zu.",
+    "en": "A circlet of glacier ice with a glowing teal gem. Sparkles now and then."
+   },
+   "rarity": "epic",
+   "tags": [
+    "ice",
+    "crown",
+    "royal",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/ice_crown.vibey",
+   "thumb": "/assets/client/thumbs/ice_crown.png",
+   "hash": "2f9ba0fc5cc708d9156eff537c8f053035619a67f75149c76627d9bfcd663b31",
+   "size": 4244
+  },
+  {
+   "id": "vibey:seal_beanie",
+   "kind": "cosmetic",
+   "slot": "hat",
+   "name": {
+    "de": "Robbenmütze",
+    "en": "Seal Beanie"
+   },
+   "description": {
+    "de": "Kuschelige Strickmütze mit türkisem Streifen – und einer kleinen Robbe als Bommel.",
+    "en": "Cosy knitted beanie with a teal stripe – and a tiny seal as the pom-pom."
+   },
+   "rarity": "rare",
+   "tags": [
+    "seal",
+    "knitted",
+    "winter",
+    "cute",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/seal_beanie.vibey",
+   "thumb": "/assets/client/thumbs/seal_beanie.png",
+   "hash": "9cb173714d28e26eac9944c1f5d09c5f91e0d3fadf07ee0ea15708a124494385",
+   "size": 4414
+  },
+  {
+   "id": "vibey:seal_backpack",
+   "kind": "cosmetic",
+   "slot": "back",
+   "name": {
+    "de": "Robben-Rucksack",
+    "en": "Seal Backpack"
+   },
+   "description": {
+    "de": "Ein Mini-Rucksack in Vibe-Lila mit einem kleinen Robben-Anhänger, der beim Laufen schaukelt.",
+    "en": "A mini backpack in Vibe purple with a little seal keychain that swings as you walk."
+   },
+   "rarity": "rare",
+   "tags": [
+    "seal",
+    "backpack",
+    "cute",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/seal_backpack.vibey",
+   "thumb": "/assets/client/thumbs/seal_backpack.png",
+   "hash": "54e35286c532240d7f8459d1dbe7280c8e56fbf7d0abc6a9604af92cce384653",
+   "size": 4753
+  },
+  {
+   "id": "vibey:cheer",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Jubeln",
+    "en": "Cheer"
+   },
+   "description": {
+    "de": "Spring vor Freude – mit einer Ladung Konfetti!",
+    "en": "Jump for joy with a burst of confetti!"
+   },
+   "rarity": "common",
+   "tags": [
+    "celebrate",
+    "confetti",
+    "particles",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/cheer.vibey",
+   "thumb": "/assets/client/thumbs/cheer.png",
+   "hash": "f35944764f22a5b6b6cc59e60e94167164b9787294c1ff1ff3f46c3c971119c2",
+   "size": 6739
+  },
+  {
+   "id": "vibey:clap",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Klatschen",
+    "en": "Clap"
+   },
+   "description": {
+    "de": "Applaus! Vier Klatscher mit knackigem Beat.",
+    "en": "Give it up! Four claps with a snappy beat."
+   },
+   "rarity": "common",
+   "tags": [
+    "applause",
+    "sound",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/clap.vibey",
+   "thumb": "/assets/client/thumbs/clap.png",
+   "hash": "6acb10b1a6c468d79046da3efd2d5698c4ce23e3d57435ecceda9a1cf30116e9",
+   "size": 5046
+  },
+  {
+   "id": "vibey:facepalm",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Facepalm",
+    "en": "Facepalm"
+   },
+   "description": {
+    "de": "Wenn Worte nicht mehr reichen.",
+    "en": "When words are not enough."
+   },
+   "rarity": "common",
+   "tags": [
+    "reaction",
+    "funny",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/facepalm.vibey",
+   "thumb": "/assets/client/thumbs/facepalm.png",
+   "hash": "012462e7a06787ab064cece5db383c26bbd8e9798d529ed2609bae610aaf9d56",
+   "size": 2347
+  },
+  {
+   "id": "vibey:guitar",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Gitarrensolo",
+    "en": "Guitar Jam"
+   },
+   "description": {
+    "de": "Spiel ein kleines Riff auf der Vibe-Gitarre. Bewegen zum Beenden.",
+    "en": "Jam a little riff on the Vibe guitar. Move to stop."
+   },
+   "rarity": "rare",
+   "tags": [
+    "music",
+    "props",
+    "loop",
+    "sound",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/guitar.vibey",
+   "thumb": "/assets/client/thumbs/guitar.png",
+   "hash": "a609c4c75fc0e71e53df84446fd0e271dfb6e2b1c816f9a5a67cad3027331122",
+   "size": 6542
+  },
+  {
+   "id": "vibey:seal_flop",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Robben-Plumps",
+    "en": "Seal Flop"
+   },
+   "description": {
+    "de": "Lass dich fallen wie eine Robbe und klatsch mit den Flossen. Arf!",
+    "en": "Flop down like a seal and slap your flippers. Arf!"
+   },
+   "rarity": "rare",
+   "tags": [
+    "seal",
+    "funny",
+    "sound",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/seal_flop.vibey",
+   "thumb": "/assets/client/thumbs/seal_flop.png",
+   "hash": "61821718ba44648bd010a9920a93d3720d2403a6a3d9b55f783a501cf79269a7",
+   "size": 5491
+  },
+  {
+   "id": "vibey:seal_summon",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Robben-Beschwörung",
+    "en": "Seal Summon"
+   },
+   "description": {
+    "de": "Beschwöre eine Robbe in deine Arme – in einem Wirbel aus Schnee. Quiek!",
+    "en": "Conjure a seal into your arms in a flurry of snow. Squeak!"
+   },
+   "rarity": "epic",
+   "tags": [
+    "seal",
+    "magic",
+    "props",
+    "particles",
+    "sound",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/seal_summon.vibey",
+   "thumb": "/assets/client/thumbs/seal_summon.png",
+   "hash": "b0a4f343a182d5a8f5344ed7ddd22476e0073d1ea8912fc5226c10470afd046e",
+   "size": 39198
+  },
+  {
+   "id": "vibey:shrug",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Schulterzucken",
+    "en": "Shrug"
+   },
+   "description": {
+    "de": "Wer weiß das schon? Ich nicht.",
+    "en": "Who knows? Not me."
+   },
+   "rarity": "common",
+   "tags": [
+    "reaction",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/shrug.vibey",
+   "thumb": "/assets/client/thumbs/shrug.png",
+   "hash": "3bb4de1f9f54f8ffd5361afdfdb90ca2d7850f8f51319a8e7a7363bff2963189",
+   "size": 2138
+  },
+  {
+   "id": "vibey:sit",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Hinsetzen",
+    "en": "Sit"
+   },
+   "description": {
+    "de": "Setz dich hin und entspann dich. Bewegen zum Aufstehen.",
+    "en": "Take a seat and chill for a while. Move to get up."
+   },
+   "rarity": "common",
+   "tags": [
+    "chill",
+    "loop",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/sit.vibey",
+   "thumb": "/assets/client/thumbs/sit.png",
+   "hash": "caa1fbce1bd66b661dea5eae8d799e85e7c4ee013d52fb3f8721a41297d94efa",
+   "size": 2213
+  },
+  {
+   "id": "vibey:vibe_dance",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Vibe-Tanz",
+    "en": "Vibe Dance"
+   },
+   "description": {
+    "de": "Ein Groove in Dauerschleife mit 120 bpm. Bewegen zum Beenden.",
+    "en": "A looping groove at 120 bpm. Move to stop."
+   },
+   "rarity": "common",
+   "tags": [
+    "dance",
+    "loop",
+    "music",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/vibe_dance.vibey",
+   "thumb": "/assets/client/thumbs/vibe_dance.png",
+   "hash": "51e694abb72199bb2eb70dee53b999de72db67ee5bbaa8d9fcbadab8c530156b",
+   "size": 3538
+  },
+  {
+   "id": "vibey:wave",
+   "kind": "emote",
+   "slot": null,
+   "name": {
+    "de": "Winken",
+    "en": "Wave"
+   },
+   "description": {
+    "de": "Sag hallo! Ein großes, freundliches Winken.",
+    "en": "Say hi! A big friendly wave."
+   },
+   "rarity": "common",
+   "tags": [
+    "greeting",
+    "friendly",
+    "starter"
+   ],
+   "author": "Vibe Craft Studios",
+   "file": "/assets/client/items/wave.vibey",
+   "thumb": "/assets/client/thumbs/wave.png",
+   "hash": "809fa6ac13aa800b96b06cebfbbcf97210a4d8af8365649fa99dee2dfc5b88bc",
+   "size": 2060
+  }
+ ]
+}

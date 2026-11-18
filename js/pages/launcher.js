@@ -154,7 +154,7 @@ export function render(mods) {
   <section class="section lp-next"><div class="wrap lp-next-grid" data-reveal>
     <p class="eyebrow">${t(L('In Arbeit', 'In the works'))}</p>
     <div>
-      <h2 class="display sm">Vibey Client</h2>
+      <h2 class="display sm"><a href="/client/" data-link>Vibey Client →</a></h2>
       <p class="lead">${t(L('Eine Client-Mod mit Freunden und Social-Funktionen im Spiel, Cosmetics und Emotes. Noch ohne Termin, wir zeigen sie, wenn sie so weit ist.', 'A client mod with friends and social features in game, cosmetics and emotes. No date yet; we will show it when it is ready.'))}</p>
     </div>
   </div></section>

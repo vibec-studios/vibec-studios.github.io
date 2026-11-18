@@ -49,7 +49,7 @@ for mod in ids:
     with open(os.path.join(out, 'index.html'), 'w', encoding='utf8', newline='\n') as f:
         f.write(shell)
     built.append(mod)
-for page in ('downloads', 'status', 'launcher'):  # feste Seiten neben den Mods
+for page in ('downloads', 'status', 'launcher', 'client'):  # feste Seiten neben den Mods
     os.makedirs(os.path.join(HERE, page), exist_ok=True)
     with open(os.path.join(HERE, page, 'index.html'), 'w', encoding='utf8', newline='\n') as f:
         f.write(shell)
