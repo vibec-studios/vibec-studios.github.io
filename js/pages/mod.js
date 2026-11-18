@@ -53,8 +53,8 @@ const R = {
     </div>`;
   },
   abilities(s, mod) {
-    const n = Math.min(s.items.length, 9);
-    return `<div class="tiles${n === 4 ? ' four' : ''}">${s.items.slice(0, 9).map((a) => `<article class="tile">
+    const n = Math.min(s.items.length, 12);
+    return `<div class="tiles${n === 4 ? ' four' : ''}">${s.items.slice(0, 12).map((a) => `<article class="tile">
       ${a.icon ? icon(mod.base, a.icon, 'tile-icon') : ''}
       <h3>${t(a.name)}</h3>
       <p>${t(short(a.desc, 1))}</p>

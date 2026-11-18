@@ -1,4 +1,4 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.6.4, Stand 18.11.2026).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.6.5, Stand 18.11.2026).
 // Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
 // Rüstung seit 1.2.2: Netherite-Form (armor/eirholm_armor_base*.png) plus 3D-Akzente (armor/eirholm_armor.json, armor3d).
 // Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
@@ -14,7 +14,7 @@ export default {
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.6.4',
+  version: '1.6.5',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -40,7 +40,42 @@ export default {
       type: 'changes', id: 'neu', toc: S('Neu in 1.6', 'New in 1.6'), title: S('Neu in 1.6', 'New in 1.6'),
       lead: S('Der Schnitt spaltet jetzt einen Berg, Solvane kämpft in der Luft, über allem liegt ein Wolkenmeer, und das erste Anlegen der Ausrüstung läuft ohne Ruckeln.', 'The Cut now splits a mountain, Solvane fights in the air, a sea of clouds lies over everything, and putting on the gear for the first time no longer stutters.'),
       versions: [{
-        version: '1.6.4',
+        version: '1.6.5',
+        groups: [
+          {
+            name: S('Erfrierung', 'Frostbite'),
+            items: [
+              S('Erfrierung wie in Elden Ring: Ein Frostbalken füllt sich durch Frostangriffe. Ist er voll, gibt es einen Schadensausbruch und 30 s Erfrierung (+20 % erlittener Schaden).', 'Frostbite like in Elden Ring: a frost bar fills up from frost attacks. When it is full, a burst of damage follows and 30 s of frostbite (+20 % damage taken).'),
+            ],
+          },
+          {
+            name: S('Welt', 'World'),
+            items: [
+              S('Der Berg ist nicht mehr hohl.', 'The mountain is no longer hollow.'),
+              S('In der endlosen Weite steht ein Wald aus Eisnadeln.', 'A forest of ice needles stands in the endless expanse.'),
+              S('Die Arena der dritten Phase ist neu gestaltet: Ringmuster, riesige Eiskristalle, Pfeilerkreis, große Steinklinge.', 'The phase III arena is redesigned: ring patterns, giant ice crystals, a circle of pillars, a great stone blade.'),
+            ],
+          },
+          {
+            name: S('Kampf', 'Fight'),
+            items: [
+              S('Der Drache macht weniger Schaden.', 'The dragon deals less damage.'),
+              S('Das Yang-Schild blockt alles von vorn, auch den Wärter-Strahl. Arius zerschlägt es.', 'The Yang shield blocks everything from the front, the warden beam included. Arius smashes it.'),
+              S('Bodenangriffe treffen niemanden mehr hoch über der Arena.', 'Ground attacks no longer hit anyone high above the arena.'),
+              S('Die QTEs sind länger und zeigen die Tasten im Klartext.', 'QTEs are longer and show the keys in plain text.'),
+            ],
+          },
+          {
+            name: S('Ausrüstung', 'Gear'),
+            items: [
+              S('Die Brücke kann schräg nach oben oder unten gebaut werden, und ein Hinweis zeigt, wie man Länge und Breite einstellt.', 'The bridge can be built sloping up or down, and a hint shows how to set length and width.'),
+              S('Neue Gleiter-Haltung, runde Yang-Plattform.', 'New glider pose, round Yang platform.'),
+              S('Nahkampf im Stil von Dryleaf Dane: Flugtritt, Sturztritt, Wirbeltritt.', 'Melee in the style of Dryleaf Dane: flying kick, diving kick, spinning kick.'),
+            ],
+          },
+        ],
+      }, {
+        version: '1.6.4', open: true,
         groups: [
           {
             name: S('Handschuhe', 'Gauntlets'),
@@ -288,7 +323,7 @@ export default {
         },
         {
           name: S('Nahkampf', 'Melee'), icon: 'hud/art_mode_melee.png',
-          desc: S('Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle. Im Zaubermodus bewegen sich die Finger mit jedem Zauber, auf der Handfläche leuchtet eine Eisrune.', 'Gauntlets with dragon wings, spikes and a glowing ice band: fists and kicks, from an uppercut to an axe kick with a frost wave. In spell mode the fingers move with every spell, and an ice rune glows on the palm.'),
+          desc: S('Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle, dazu Flug-, Sturz- und Wirbeltritte im Stil von Dryleaf Dane. Im Zaubermodus bewegen sich die Finger mit jedem Zauber, auf der Handfläche leuchtet eine Eisrune.', 'Gauntlets with dragon wings, spikes and a glowing ice band: fists and kicks, from an uppercut to an axe kick with a frost wave, plus flying, diving and spinning kicks in the style of Dryleaf Dane. In spell mode the fingers move with every spell, and an ice rune glows on the palm.'),
         },
         {
           name: S('Wind', 'Wind'), icon: 'hud/art_tornado.png',
@@ -300,11 +335,15 @@ export default {
         },
         {
           name: S('Yang', 'Yang'), icon: 'hud/art_school_yang.png',
-          desc: S('Weißes Licht als Werkzeug: eine lebendige Yang-Kugel, eine Bogenbrücke aus Yang-Licht, deren Länge und Breite du per Mausrad einstellst, dazu Plattformen, ein Schild und ein Gleiter.', 'White light as a tool: a living Yang orb, an arched bridge of Yang light whose length and width you set with the mouse wheel, plus platforms, a shield and a glider.'),
+          desc: S('Weißes Licht als Werkzeug: eine lebendige Yang-Kugel, eine Bogenbrücke aus Yang-Licht, auch schräg nach oben oder unten, deren Länge und Breite du per Mausrad einstellst, dazu runde Plattformen, ein Schild, das alles von vorn blockt, und ein Gleiter.', 'White light as a tool: a living Yang orb, an arched bridge of Yang light, sloping up or down too, whose length and width you set with the mouse wheel, plus round platforms, a shield that blocks everything from the front, and a glider.'),
         },
         {
           name: S('Frostresonanz', 'Frost resonance'), icon: null,
           desc: S('Rüstung, Handschuhe und Solvane teilen sich eine Kraft, die nur durch gutes Kämpfen wächst.', 'Armor, gauntlets and Solvane share one power that only grows when you fight well.'),
+        },
+        {
+          name: S('Erfrierung', 'Frostbite'), icon: null,
+          desc: S('Wie in Elden Ring: Frostangriffe füllen einen Frostbalken. Ist er voll, folgt ein Schadensausbruch, und eine Weile lang nimmt das Ziel mehr Schaden.', 'Like in Elden Ring: frost attacks fill a frost bar. When it is full, a burst of damage follows, and for a while the target takes more damage.'),
         },
         {
           name: S('Frostspeicher', 'Frost Bank'), icon: 'item/frost_bank.png',
@@ -378,7 +417,7 @@ export default {
             'Lock ihren Sturzflug in einen Eisgrat, dann liegt sie am Boden. Treffer an die Kehle ersticken ihren Atem.',
             'Lure her dive into an ice ridge to bring her down. Hits to the throat choke her breath.',
           ),
-          where: S('Auf dem endlosen Schneefeld unter dem Bergmassiv, wohin sie alle aus dem Klingengrab trägt.', 'On the endless snowfield below the mountain massif, where she carries everyone from the Blade Grave.'),
+          where: S('In einer Arena auf dem endlosen Schneefeld unter dem Bergmassiv, mit Ringmustern, riesigen Eiskristallen, einem Pfeilerkreis und einer großen Steinklinge. Dorthin trägt sie alle aus dem Klingengrab.', 'In an arena on the endless snowfield below the mountain massif, with ring patterns, giant ice crystals, a circle of pillars and a great stone blade. She carries everyone there from the Blade Grave.'),
           loot: S('Schuppen des weißen Drachen, aus denen Solvanes Schwingenschuppe wird.', 'White dragon scales, which become Solvane’s Wingscale.'),
           phases: [
             { name: S('III · Die Gletscherschwelle', 'III · The Glacier Threshold'), desc: S('Solvane allein im Luftkampf: Himmelsstürze mit Eisdornenringen, Eisregen, Tiefflüge, Eisatem und harte Landungen, die du bestrafen kannst.', 'Solvane alone in an air fight: sky dives with rings of ice thorns, ice rain, low flights, ice breath and hard landings you can punish.') },
@@ -445,7 +484,7 @@ export default {
         },
         {
           name: S('Das Hochlandfeld', 'The Highland Field'),
-          desc: S('Ein endloses, ebenes Schneefeld, dahinter das Bergmassiv und am Horizont ein Wolkenmeer, wie ein Schlachtfeld über den Wolken. Hier fällt die Entscheidung.', 'An endless, flat snowfield, the mountain massif behind it and a sea of clouds on the horizon, like a battlefield above the clouds. This is where it ends.'),
+          desc: S('Ein endloses, ebenes Schneefeld mit einem Wald aus Eisnadeln, dahinter das Bergmassiv und am Horizont ein Wolkenmeer, wie ein Schlachtfeld über den Wolken. Hier fällt die Entscheidung.', 'An endless, flat snowfield with a forest of ice needles, the mountain massif behind it and a sea of clouds on the horizon, like a battlefield above the clouds. This is where it ends.'),
           colors: ['#3a3f48', '#62676f', '#a8b3c2', '#e3ebf4', '#7fd6f0'],
         },
       ],
