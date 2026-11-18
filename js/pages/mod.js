@@ -99,8 +99,15 @@ const R = {
     return `${s.badge ? `<p class="pill leak-badge"><i aria-hidden="true"></i>${t(s.badge)}</p>` : ''}${s.groups.map((g) => `<div class="leak-group">
       <h3 class="leak-h">${t(g.name)}<i class="leak-n">${g.items.length}</i></h3>
       <div class="leak-grid">${g.items.map((it) => `<figure class="shot leak">
-        <button type="button" data-leak="${k++}"><img src="${mod.base}/${s.dir}/thumb/${it.img}.webp" alt="${esc(tx(it.name))}" loading="lazy" width="640" height="283"></button>
+        <button type="button" data-leak="${k++}"><img src="${mod.base}/${s.dir}/thumb/${it.img}.webp" alt="${esc(tx(it.name))}" loading="lazy" width="640" height="283">${it.old ? `<span class="pill warn leak-old">${t(s.oldLabel || L('Frühere Version', 'Earlier version'))}</span>` : ''}</button>
         <figcaption>${t(it.name)}</figcaption></figure>`).join('')}</div></div>`).join('')}`;
+  },
+  changes(s, mod) {
+    // Changelog einer Version: Gruppen als Flächen mit Punktliste (Text darf <code> enthalten, kommt nur aus der Inhaltsdatei)
+    return `<div class="changes">${s.groups.map((g) => `<article class="change-group">
+      <h3>${t(g.name)}</h3>
+      <ul class="ticks">${g.items.map((it) => `<li>${t(it)}</li>`).join('')}</ul></article>`).join('')}</div>
+      ${s.version ? `<p class="small changes-note">${t(L(`Alle Änderungen im <a href="${mod.source}/releases/tag/v${s.version}" target="_blank" rel="noopener">Release v${s.version}</a> auf GitHub.`, `Full list in the <a href="${mod.source}/releases/tag/v${s.version}" target="_blank" rel="noopener">v${s.version} release</a> on GitHub.`))}</p>` : ''}`;
   },
   video(s, mod) {
     // Trailer: lädt erst beim Abspielen (preload none), WebM zuerst, MP4 als Ausweichquelle
@@ -116,7 +123,7 @@ const SHOWN = new Set(Object.keys(R));
 const LABEL = {
   versus: L('Rüstung', 'Armor'), armor: L('Rüstung', 'Armor'), abilities: L('Fähigkeiten', 'Abilities'), flow: L('So geht’s', 'How it works'),
   boss: L('Bosse', 'Bosses'), world: L('Welt', 'World'), gallery: L('Bauwerke', 'Structures'), video: L('Trailer', 'Trailer'),
-  leaks: L('Leaks / Gameplay', 'Leaks / Gameplay'),
+  leaks: L('Leaks / Gameplay', 'Leaks / Gameplay'), changes: L('Neu', 'New'),
 };
 
 // ------------------------------------------------------------ Seite
@@ -259,7 +266,7 @@ export async function mount(root, mod, signal) {
   // Leaks: Lightbox mit Blättern durch alle Aufnahmen der Seite
   $$('.sec-leaks', root).forEach((secEl) => {
     const s = mod.sections.find((x) => x.id === secEl.id);
-    const list = s.groups.flatMap((g) => g.items.map((it) => ({ src: `${base}/${s.dir}/${it.img}.webp`, caption: `<b>${t(it.name)}</b> · ${t(g.name)}` })));
+    const list = s.groups.flatMap((g) => g.items.map((it) => ({ src: `${base}/${s.dir}/${it.img}.webp`, caption: `<b>${t(it.name)}</b> · ${t(g.name)}${it.old ? ` · ${t(s.oldLabel || L('Frühere Version', 'Earlier version'))}` : ''}` })));
     $$('[data-leak]', secEl).forEach((b) => b.addEventListener('click', () => {
       const i = +b.dataset.leak;
       openLightbox(list[i].src, list[i].caption, { list, index: i });

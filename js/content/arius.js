@@ -1,4 +1,4 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.4.1, Stand 18.11.2026).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.5.0, Stand 18.11.2026).
 // Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
 // Rüstung seit 1.2.2: Netherite-Form (armor/eirholm_armor_base*.png) plus 3D-Akzente (armor/eirholm_armor.json, armor3d).
 // Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
@@ -14,7 +14,7 @@ export default {
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.4.1',
+  version: '1.5.0',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -29,17 +29,59 @@ export default {
     'HHA Arius is an endgame addon for H&H Armors. Arius is the hero of our own light novel “The White Blade”, and the mod is a free adaptation of it. Break the Seal of the White Blade somewhere cold and the snow starts falling upward: you stand in the Sanctum of the White Blade, facing a swordsman who sees every mistake. His sword Solvane was forged from the heart of an ancient white dragon, and when he lets go, it becomes her again.',
   ),
   highlights: [
-    S('Ein Duell in fünf Akten im Schneesturm, filmisch inszeniert vom Tempel bis zum Hochlandfeld', 'A duel in five acts in a snowstorm, staged like a film from the temple to the highland field'),
+    S('Ein Duell in fünf Akten im Schneesturm, filmisch inszeniert vom Klingengrab bis zum Hochlandfeld', 'A duel in five acts in a snowstorm, staged like a film from the Blade Grave to the highland field'),
     S('Solvane: Das Schwert wird zur Drachin und windet sich um den Gipfel eines Felshorns', 'Solvane: the sword becomes a dragon and coils around the summit of a rock horn'),
-    S('Der Schnitt: eine Linie durch den Tempel, dann gleitet er auseinander', 'The Cut: one line through the temple, then it slides apart'),
-    S('Die Drachenherz-Wacht, Solvane und Kampfhandschuhe mit Zauberrad', 'The Dragonheart Watch, Solvane and gauntlets with a spell wheel'),
+    S('Ein riesiges Bergmassiv mit Spiralweg bis zur Schulter, darüber das Felshorn', 'A huge mountain massif with a spiral path up to its shoulder, the rock horn above'),
+    S('Die Drachenherz-Wacht, Solvane, Kampfhandschuhe mit Zauberrad und der Frostspeicher', 'The Dragonheart Watch, Solvane, gauntlets with a spell wheel and the Frost Bank'),
   ],
   sections: [
+    // ------------------------------------------------------------------ Neu in 1.5.0 (Release vibec-studios/hha-arius v1.5.0)
+    {
+      type: 'changes', id: 'neu', version: '1.5.0', toc: S('Neu in 1.5.0', 'New in 1.5.0'), title: S('Neu in 1.5.0', 'New in 1.5.0'),
+      lead: S('Eine neue Welt rund um das Duell, ein überarbeiteter Kampf und neue Ausrüstung.', 'A new world around the duel, a reworked fight and new gear.'),
+      groups: [
+        {
+          name: S('Welt', 'World'),
+          items: [
+            S('Die Arena ist ein endloses Schneefeld ohne ansteigende Ränder.', 'The arena is an endless snowfield without rising edges.'),
+            S('Ein riesiges Bergmassiv mit einem Spiralweg von rund 650 Blöcken, gesäumt von Laternen, bis zur Schulter, darüber das Felshorn.', 'A huge mountain massif with a spiral path of about 650 blocks, lined with lanterns, up to its shoulder, the rock horn above.'),
+            S('Phase I spielt im Klingengrab, einer offenen Terrasse mit Steinklingen und der großen Ordensklinge hinter dem Thron. Den Kuppeltempel gibt es nicht mehr.', 'Phase I takes place in the Blade Grave, an open terrace with stone blades and the great order blade behind the throne. The domed temple is gone.'),
+            S('Von Phase II zu III ohne Einsturz: Solvane trägt alle aufs Feld.', 'From phase II to III without a collapse: Solvane carries everyone to the field.'),
+          ],
+        },
+        {
+          name: S('Kampf', 'Fight'),
+          items: [
+            S('Das QTE funktioniert.', 'The QTE works.'),
+            S('Der Drachenkörper knickt und faltet sich nicht mehr.', 'The dragon’s body no longer kinks or folds.'),
+            S('Arius hat neue Haare und einen neuen Kopf.', 'Arius has new hair and a new head.'),
+          ],
+        },
+        {
+          name: S('Ausrüstung', 'Gear'),
+          items: [
+            S('Drachenatem: Solvanes Geisterkopf speit Frost.', 'Dragon Breath: Solvane’s ghostly head breathes frost.'),
+            S('Der Drachenschweif ersetzt den Schwingensprung.', 'Dragon Tail replaces Wing Leap.'),
+            S('Weißes Loch neu gebaut, die Yang-Kugel wirkt lebendig.', 'White Hole rebuilt, the Yang orb feels alive.'),
+            S('Die Yang-Brücke ist eine Bogenbrücke aus Yang-Licht, Länge (bis 50) und Breite per Mausrad.', 'The Yang bridge is an arched bridge of Yang light, length (up to 50) and width by mouse wheel.'),
+            S('Neue Icons für Solvane und die Handschuhe, schlankeres Handschuhmodell.', 'New icons for Solvane and the gauntlets, a slimmer gauntlet model.'),
+          ],
+        },
+        {
+          name: S('Frostspeicher und Baupläne', 'Frost Bank and blueprints'),
+          items: [
+            S('Der Frostspeicher sammelt Resonanz aus Kills, auch an der Mobfarm, und aus Überschuss.', 'The Frost Bank collects resonance from kills, mob farms included, and from surplus.'),
+            S('Litematica-Baupläne: <code>.litematic</code>-Dateien lassen sich mit Resonanz aus dem Frostspeicher in echten Blöcken bauen (<code>/ariusc schematic …</code>).', 'Litematica blueprints: <code>.litematic</code> files can be built in real blocks with resonance from the Frost Bank (<code>/ariusc schematic …</code>).'),
+          ],
+        },
+      ],
+    },
+
     // ------------------------------------------------------------------ Trailer (Gameplay, HHA_Arius/tmp/trailer/out)
     {
       type: 'video', id: 'trailer', toc: S('Trailer', 'Trailer'), title: S('Das Duell in Bewegung', 'The duel in motion'),
-      lead: S('Vom Gletscher bis zum Gipfel: Arius im Tempel, deine Ausrüstung im Einsatz und Solvane, die sich als weißer Drache um den Gipfel windet.',
-        'From the glacier to the summit: Arius in the temple, your gear in action and Solvane coiling around the summit as a white dragon.'),
+      lead: S('Aufnahmen aus einer früheren Version: Arius im Tempel, deine Ausrüstung im Einsatz und Solvane, die sich als weißer Drache um den Gipfel windet.',
+        'Footage from an earlier version: Arius in the temple, your gear in action and Solvane coiling around the summit as a white dragon.'),
       webm: 'video/trailer.webm', mp4: 'video/trailer.mp4', poster: 'video/trailer-poster.webp',
       label: S('Gameplay-Trailer von HHA Arius', 'HHA Arius gameplay trailer'),
       // Musik ist CC0 (keine Namensnennung nötig), die Zeile ist eine freiwillige Geste
@@ -53,7 +95,8 @@ export default {
       type: 'leaks', id: 'leaks', toc: S('Leaks / Gameplay', 'Leaks / Gameplay'), title: S('Leaks aus dem Spiel', 'Leaks from the game'),
       lead: S('Schauplätze, Arius’ Formen, der Bosskampf, die Rüstung und alle Fähigkeiten, so wie sie im Spiel aussehen. Klicken zum Vergrößern.',
         'Locations, Arius’ forms, the boss fight, the armor and every ability, just as they look in game. Click to enlarge.'),
-      badge: S('Echte Ingame-Aufnahmen aus v1.4.1 · offener Schneesturm · Testmodus', 'Real in-game captures from v1.4.1 · open snowstorm · test mode'),
+      badge: S('Echte Ingame-Aufnahmen aus v1.4.1 · offener Schneesturm · Testmodus · neue Aufnahmen von 1.5.0 folgen', 'Real in-game captures from v1.4.1 · open snowstorm · test mode · new captures from 1.5.0 to follow'),
+      oldLabel: S('Frühere Version', 'Earlier version'),
       dir: 'leaks',
       groups: [
         {
@@ -61,8 +104,8 @@ export default {
           items: [
             { img: '01-landschaft-totale', name: S('Die Hochebene im Schneesturm mit dem Felshorn', 'The high plateau in the snowstorm with the rock horn') },
             { img: '02-felshorn', name: S('Das Felshorn: Grate, Gesteinsschichten, Eisrinnen', 'The rock horn: ridges, rock strata, ice gullies') },
-            { img: '03-heiligtum-aussen', name: S('Heiligtum der Weißen Klinge von außen', 'The Sanctum of the White Blade from outside') },
-            { img: '04-heiligtum-innen', name: S('Die Säulenhalle zum Thron', 'The pillared hall leading to the throne') },
+            { img: '03-heiligtum-aussen', old: true, name: S('Heiligtum der Weißen Klinge von außen', 'The Sanctum of the White Blade from outside') },
+            { img: '04-heiligtum-innen', old: true, name: S('Die Säulenhalle zum Thron', 'The pillared hall leading to the throne') },
             { img: '05-plateau', name: S('Das Plateau mit Obelisken und Ruinenbogen', 'The plateau with obelisks and a ruined arch') },
             { img: '06-hochland', name: S('Das offene Hochland ab dem Drachenkampf', 'The open highland from the dragon fight on') },
           ],
@@ -78,10 +121,10 @@ export default {
         {
           name: S('Bosskampf: Phase I, Solvane, Phase III und Finale', 'Boss fight: phase I, Solvane, phase III and finale'),
           items: [
-            { img: '10-einzug', name: S('Einzug in die Halle', 'Entering the hall') },
-            { img: '11-phase1-bannkreis', name: S('Phase I: Arius’ goldener Bannkreis', 'Phase I: Arius’ golden binding circle') },
-            { img: '12-phase1-schlagabtausch', name: S('Phase I: Schlagabtausch im Heiligtum', 'Phase I: trading blows in the Sanctum') },
-            { img: '13-phase1-klingenbogen', name: S('Klingenbogen im Bannkreis', 'Blade arc in the binding circle') },
+            { img: '10-einzug', old: true, name: S('Einzug in die Halle', 'Entering the hall') },
+            { img: '11-phase1-bannkreis', old: true, name: S('Phase I: Arius’ goldener Bannkreis', 'Phase I: Arius’ golden binding circle') },
+            { img: '12-phase1-schlagabtausch', old: true, name: S('Phase I: Schlagabtausch im Heiligtum', 'Phase I: trading blows in the Sanctum') },
+            { img: '13-phase1-klingenbogen', old: true, name: S('Klingenbogen im Bannkreis', 'Blade arc in the binding circle') },
             { img: '14-solvane-auftritt', name: S('Solvane, das Schwert in Drachenform', 'Solvane, the sword in dragon form') },
             { img: '15-solvane-am-horn', name: S('Solvane windet sich um das Felshorn', 'Solvane coils around the rock horn') },
             { img: '16-solvane-ruf', name: S('Arius ruft Solvane', 'Arius calls Solvane') },
@@ -111,12 +154,12 @@ export default {
             { img: '29-wirbelsturm', name: S('Wirbelsturm', 'Tornado') },
             { img: '30-eiswand', name: S('Eiswand', 'Ice Wall') },
             { img: '31-eisplattform', name: S('Eisplattform', 'Ice Platform') },
-            { img: '32-yang-bruecke', name: S('Yang-Brücke', 'Yang Bridge') },
+            { img: '32-yang-bruecke', old: true, name: S('Yang-Brücke', 'Yang Bridge') },
             { img: '33-gleiten', name: S('Gleiten über dem Heiligtum', 'Gliding above the Sanctum') },
             { img: '34-drachenatem', name: S('Brustpanzer: Drachenatem', 'Chestplate: Dragon Breath') },
-            { img: '35-schwingensprung', name: S('Beinschutz: Schwingensprung', 'Leggings: Wing Leap') },
-            { img: '36-weisses-loch', name: S('Setfähigkeit: Weißes Loch', 'Set ability: White Hole') },
-            { img: '37-yang-kugel', name: S('Yang-Kugel, jetzt weiß', 'Yang orb, now white') },
+            { img: '35-schwingensprung', old: true, name: S('Beinschutz: Schwingensprung', 'Leggings: Wing Leap') },
+            { img: '36-weisses-loch', old: true, name: S('Setfähigkeit: Weißes Loch', 'Set ability: White Hole') },
+            { img: '37-yang-kugel', old: true, name: S('Yang-Kugel, jetzt weiß', 'Yang orb, now white') },
             { img: '38-boe', name: S('Böe', 'Gust') },
             { img: '39-windzug', name: S('Windzug', 'Wind Pull') },
           ],
@@ -143,6 +186,7 @@ export default {
         { tex: 'arius_gauntlets', name: S('Arius’ Kampfhandschuhe', 'Arius’ Gauntlets') },
         { tex: 'heartfrost', name: S('Herzfrost', 'Heartfrost') },
         { tex: 'nivaris_scale', name: S('Schuppe des weißen Drachen', 'White dragon scale') },
+        { tex: 'frost_bank', name: S('Frostspeicher', 'Frost Bank') },
       ],
     },
 
@@ -153,11 +197,11 @@ export default {
       items: [
         {
           name: S('Drachenatem', 'Dragon Breath'), icon: 'hud/dragon_breath.png',
-          desc: S('Die Rüstung atmet einen Kegel aus Frost, genau wie Solvane.', 'The armor breathes a cone of frost, just like Solvane.'),
+          desc: S('Solvanes Geisterkopf erscheint über dir und speit einen Kegel aus Frost.', 'Solvane’s ghostly head appears above you and breathes a cone of frost.'),
         },
         {
-          name: S('Schwingensprung', 'Wing Leap'), icon: 'hud/wing_leap.png',
-          desc: S('Ein weiter Sprung auf Lichtschwingen, und bei der Landung rollt eine Frost-Schockwelle über den Boden.', 'A long leap on wings of light, and when you land a frost shockwave rolls across the ground.'),
+          name: S('Drachenschweif', 'Dragon Tail'), icon: 'hud/dragon_tail.png',
+          desc: S('Solvanes Geisterschwanz peitscht einmal um dich herum.', 'Solvane’s ghostly tail whips once around you.'),
         },
         {
           name: S('Weißes Loch', 'White Hole'), icon: 'hud/art_white_hole.png',
@@ -181,11 +225,19 @@ export default {
         },
         {
           name: S('Yang', 'Yang'), icon: 'hud/art_school_yang.png',
-          desc: S('Weißes Licht als Werkzeug: die Yang-Kugel, eine weiße Kugel mit kreisenden Kugeln und weißem Fischschweif, dazu Plattformen, eine echte Brücke mit Geländer, ein Schild und ein Gleiter, alles in Weiß.', 'White light as a tool: the Yang orb, a white sphere with orbiting spheres and a white fish tail, plus platforms, a real bridge with railings, a shield and a glider, all in white.'),
+          desc: S('Weißes Licht als Werkzeug: eine lebendige Yang-Kugel, eine Bogenbrücke aus Yang-Licht, deren Länge und Breite du per Mausrad einstellst, dazu Plattformen, ein Schild und ein Gleiter.', 'White light as a tool: a living Yang orb, an arched bridge of Yang light whose length and width you set with the mouse wheel, plus platforms, a shield and a glider.'),
         },
         {
           name: S('Frostresonanz', 'Frost resonance'), icon: null,
           desc: S('Rüstung, Handschuhe und Solvane teilen sich eine Kraft, die nur durch gutes Kämpfen wächst.', 'Armor, gauntlets and Solvane share one power that only grows when you fight well.'),
+        },
+        {
+          name: S('Frostspeicher', 'Frost Bank'), icon: 'item/frost_bank.png',
+          desc: S('Eine Manabank: Sie sammelt Resonanz aus Kills, auch an der Mobfarm, und aus Überschuss, und du ziehst sie bei Bedarf wieder heraus.', 'A mana bank: it collects resonance from kills, mob farms included, and from surplus, and you draw it back out when you need it.'),
+        },
+        {
+          name: S('Baupläne', 'Blueprints'), icon: null,
+          desc: S('Litematica-Dateien als echte Blöcke bauen, bezahlt mit Resonanz aus dem Frostspeicher. Vorher zeigt ein Umriss, was entsteht.', 'Build Litematica files as real blocks, paid for with resonance from the Frost Bank. An outline shows what will appear first.'),
         },
       ],
     },
@@ -204,7 +256,7 @@ export default {
           model: 'arius',
           texture: null,
           name: S('Arius', 'Arius'),
-          sub: S('Der Tempel der Weißen Klinge', 'The Temple of the White Blade'),
+          sub: S('Das Klingengrab', 'The Blade Grave'),
           color: '#6cc4ff',
           segments: 2,
           desc: S(
@@ -212,17 +264,17 @@ export default {
             'A swordsman with readable stances, wind steps and a parry that punishes greedy attacks. When he lets go of his blade, it whirls through the air on its own and hunts you while he follows up with kicks.',
           ),
           trick: S(
-            'Nicht immer dasselbe tun: Er passt sich an wiederholte Taktiken an. Und wenn eine Linie durch den Tempel läuft, nicht darauf stehen.',
-            'Don’t repeat yourself: he adapts to tactics you use again and again. And when a line runs through the temple, don’t stand on it.',
+            'Nicht immer dasselbe tun: Er passt sich an wiederholte Taktiken an. Und wenn eine Linie über die Terrasse läuft, nicht darauf stehen.',
+            'Don’t repeat yourself: he adapts to tactics you use again and again. And when a line runs across the terrace, don’t stand on it.',
           ),
           where: S(
-            'Im Heiligtum der Weißen Klinge, gerufen mit dem Siegel der Weißen Klinge in einem kalten Biom.',
-            'In the Sanctum of the White Blade, called with the Seal of the White Blade in a cold biome.',
+            'Im Klingengrab, einer offenen Terrasse mit Steinklingen und der großen Ordensklinge hinter dem Thron, gerufen mit dem Siegel der Weißen Klinge in einem kalten Biom.',
+            'In the Blade Grave, an open terrace with stone blades and the great order blade behind the throne, called with the Seal of the White Blade in a cold biome.',
           ),
           loot: S('Am Ende des Duells: Solvane, die Kampfhandschuhe, Herzfrost und die Schmiedevorlage Drachenherz.', 'At the end of the duel: Solvane, the gauntlets, Heartfrost and the Dragonheart smithing template.'),
           phases: [
-            { name: S('I · Der Tempel', 'I · The Temple'), desc: S('Arius allein im Schneesturm: Schwertkombos, Klingenflug, Frostdornen aus dem Boden und Frostwände, die Fluchtwege schließen.', 'Arius alone in the snowstorm: sword combos, the flying blade, frost thorns from the ground and frost walls that close escape routes.') },
-            { name: S('II · Der Schnitt', 'II · The Cut'), desc: S('Der Wind dreht, die Halle wird still, eine einzige Linie kreuzt den Tempel. Dann tritt er dich durch das brechende Tor.', 'The wind turns, the hall goes silent, a single line crosses the temple. Then he kicks you through the breaking gate.') },
+            { name: S('I · Das Klingengrab', 'I · The Blade Grave'), desc: S('Arius allein im Schneesturm: Schwertkombos, Klingenflug, Frostdornen aus dem Boden und Frostwände, die Fluchtwege schließen.', 'Arius alone in the snowstorm: sword combos, the flying blade, frost thorns from the ground and frost walls that close escape routes.') },
+            { name: S('II · Der Schnitt', 'II · The Cut'), desc: S('Der Wind dreht, alles wird still, eine einzige Linie kreuzt das Klingengrab. Danach trägt Solvane alle aufs Feld.', 'The wind turns, everything goes silent, a single line crosses the Blade Grave. Then Solvane carries everyone to the field.') },
           ],
           moves: [
             { n: S('Haltung', 'Stance'), p: ['guard', 'idle'] },
@@ -251,7 +303,7 @@ export default {
             'Lock ihren Sturzflug in einen Eisgrat, dann liegt sie am Boden. Treffer an die Kehle ersticken ihren Atem.',
             'Lure her dive into an ice ridge to bring her down. Hits to the throat choke her breath.',
           ),
-          where: S('Hinter dem gebrochenen Tor, auf einem weiten, offenen Hochland unter dem Felshorn.', 'Behind the broken gate, on a wide open highland below the rock horn.'),
+          where: S('Auf dem endlosen Schneefeld unter dem Bergmassiv, wohin sie alle aus dem Klingengrab trägt.', 'On the endless snowfield below the mountain massif, where she carries everyone from the Blade Grave.'),
           loot: S('Schuppen des weißen Drachen, aus denen Solvanes Schwingenschuppe wird.', 'White dragon scales, which become Solvane’s Wingscale.'),
           phases: [
             { name: S('III · Die Gletscherschwelle', 'III · The Glacier Threshold'), desc: S('Solvane allein: Eisatem, Sturzflüge und harte Landungen, die du bestrafen kannst.', 'Solvane alone: ice breath, dives and hard landings you can punish.') },
@@ -279,7 +331,7 @@ export default {
             'Brich den Takt, dann steht der Partner offen. Resonanzangriffe haben immer einen klaren sicheren Weg.',
             'Break the rhythm and the partner is open. Resonance attacks always have a clear safe path.',
           ),
-          where: S('Auf dem Hochlandfeld, einem offenen, ebenen Feld im Hochland östlich des Plateaus, gesäumt von Säulen, mit dem Felshorn im Hintergrund.', 'On the highland field, an open, flat field in the highland east of the plateau, lined with pillars, with the rock horn in the background.'),
+          where: S('Auf dem Hochlandfeld, einem endlosen, ebenen Schneefeld ohne ansteigende Ränder, mit dem Bergmassiv und dem Felshorn im Hintergrund.', 'On the highland field, an endless, flat snowfield without rising edges, with the mountain massif and the rock horn in the background.'),
           loot: S('Wer ohne K. o. gewinnt, bekommt die Schmiedevorlage „Weiße Klinge“.', 'Win without anyone getting knocked out and you get the “White Blade” smithing template.'),
           phases: [
             { name: S('IV · Im Takt', 'IV · In Rhythm'), desc: S('Arius mit einer Klinge aus Eislicht und Solvane gemeinsam, dazu ein Kranz aus Frostdornen und einmal im Kampf das weiße Loch.', 'Arius with a blade of ice light and Solvane together, plus a ring of frost thorns and, once per fight, the white hole.') },
@@ -307,18 +359,18 @@ export default {
       ),
       cards: [
         {
-          name: S('Der Tempel', 'The Temple'),
-          desc: S('Eine stille Halle aus Eis und altem Stein, bis eine Linie sie in zwei Hälften teilt.', 'A silent hall of ice and old stone, until a line splits it in two.'),
+          name: S('Das Klingengrab', 'The Blade Grave'),
+          desc: S('Eine offene Terrasse mit Steinklingen und der großen Ordensklinge hinter dem Thron. Hier beginnt das Duell.', 'An open terrace with stone blades and the great order blade behind the throne. This is where the duel begins.'),
           colors: ['#2b3446', '#5d6b82', '#a9bad0', '#e6eef7', '#c9a24e'],
         },
         {
-          name: S('Das Felshorn', 'The Rock Horn'),
-          desc: S('Ein alpines Horn aus Fels mit Graten, Schneebändern und Eisrinnen, darunter ein weites, offenes Hochland mit Obelisken und Ruinenbögen.', 'An alpine horn of rock with ridges, snow bands and ice gullies, below it a wide open highland with obelisks and ruined arches.'),
+          name: S('Bergmassiv und Felshorn', 'Mountain massif and rock horn'),
+          desc: S('Ein riesiges Bergmassiv, auf dem ein Spiralweg mit Laternen bis zur Schulter führt, darüber das Felshorn mit Graten und Eisrinnen.', 'A huge mountain massif with a lantern-lit spiral path up to its shoulder, above it the rock horn with ridges and ice gullies.'),
           colors: ['#4a4e57', '#6d717a', '#9a9ea6', '#e9eef4', '#a9c9e6'],
         },
         {
           name: S('Das Hochlandfeld', 'The Highland Field'),
-          desc: S('Ein offenes, ebenes Feld im Hochland mit Säulen am Rand, einem Aussichtshügel und dem Felshorn im Hintergrund. Hier fällt die Entscheidung.', 'An open, flat field in the highland with pillars along its edge, a viewing hill and the rock horn in the background. This is where it ends.'),
+          desc: S('Ein endloses, ebenes Schneefeld ohne ansteigende Ränder, dahinter das Bergmassiv. Hier fällt die Entscheidung.', 'An endless, flat snowfield without rising edges, the mountain massif behind it. This is where it ends.'),
           colors: ['#3a3f48', '#62676f', '#a8b3c2', '#e3ebf4', '#7fd6f0'],
         },
       ],
