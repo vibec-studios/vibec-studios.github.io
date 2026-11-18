@@ -1,6 +1,6 @@
 // Mod-Seite: kurze Vorstellungsseite aus der Inhaltsdatei (js/content/<id>.js). Details wie Werte, Befehle und
 // Einstellungen bleiben bewusst draußen; gezeigt wird, was die Mod ausmacht.
-import { $, $$, t, tx, esc, short, onColor, pixelURL, openLightbox, animateIcons } from '../core.js';
+import { $, $$, t, tx, esc, short, onColor, openLightbox, animateIcons } from '../core.js';
 import { stageScene, bossViewer, linkStage, lyricsStage } from '../views.js';
 import { heldItem } from '../items.js';
 import { latestRelease } from '../downloads.js';
@@ -78,7 +78,6 @@ const R = {
   },
   world(s) {
     return `<div class="tiles worlds">${s.cards.map((b, i) => `<article class="tile world">
-      <div class="world-tex" style="background-image:${pixelURL(b.colors, 16, 31 + i * 7)}"></div>
       <h3>${t(b.name)}</h3><p>${t(short(b.desc, 1))}</p></article>`).join('')}</div>`;
   },
   flow(s) {
@@ -165,16 +164,14 @@ export function render(mod, dl) {
         <h1 class="display">${esc(mod.name)}</h1>
         <p class="lead strong">${t(mod.tagline)}</p>
         <p class="lead">${t(short(mod.intro, 2))}</p>
+        ${(mod.highlights || []).length ? `<ul class="ticks">${mod.highlights.slice(0, 3).map((h) => `<li>${t(h)}</li>`).join('')}</ul>` : ''}
         <div class="cta">${cta}</div>
         <p class="note mono">${meta.join(' <i>·</i> ')}</p>
         ${mod.statusPage ? `<a class="live-strip mono" href="${mod.statusPage}" data-link data-state="wait"><i aria-hidden="true"></i><span>${t(L('Relay wird geprüft …', 'Checking relay …'))}</span><b>→</b></a>` : ''}
       </div>
       <div class="hero-art">${mod.hero?.kind === 'shot' ? heroShot(mod) : '<canvas class="hero-canvas" aria-hidden="true"></canvas>'}</div>
     </div>
-  </section>
-  ${mod.band === false ? '' : `<section class="band">
-    <div class="wrap highlight-row">${(mod.highlights || []).slice(0, 4).map((h, i) => `<div><span class="mono">0${i + 1}</span><p>${t(h)}</p></div>`).join('')}</div>
-  </section>`}`;
+  </section>`;
 
   const toc = sections.map((s) => `<a href="#${s.id}" data-anchor>${t(s.toc || LABEL[s.type] || s.title)}</a>`).join('');
   const body = sections.map((s, i) => `<section class="section sec-${s.type}" id="${s.id}">
@@ -191,8 +188,10 @@ export function render(mod, dl) {
   const outro = `<section class="section outro" id="${install?.id || 'download'}">
     <div class="wrap outro-grid" data-reveal>
       <div>
-        <p class="eyebrow">${t(L('Los geht’s', 'Get started'))}</p>
-        <h2 class="display sm">${download ? t(mod.outroTitle || L('Bereit für den Kampf?', 'Ready to fight?')) : t(L('Bald verfügbar.', 'Coming soon.'))}</h2>
+        <p class="eyebrow">${t(L('Download', 'Download'))}</p>
+        <h2 class="display sm">${download
+          ? t(L(`${esc(mod.name)} ${rel ? `v${esc(rel.version)} ` : ''}herunterladen`, `Download ${esc(mod.name)}${rel ? ` v${esc(rel.version)}` : ''}`))
+          : t(L(`${esc(mod.name)}: noch kein Release`, `${esc(mod.name)}: no release yet`))}</h2>
         <p class="lead">${download
           ? t(L(`Mod herunterladen, in den <code>mods</code>-Ordner legen, Minecraft mit ${esc(mod.loader || 'Fabric')} starten. Fertig.`, `Download the mod, drop it into your <code>mods</code> folder, start Minecraft with ${esc(mod.loader || 'Fabric')}. Done.`))
           : `${mod.downloadNote ? `${t(mod.downloadNote)} ` : ''}${t(L('Folge dem Projekt auf GitHub, dann verpasst du den Start nicht.', 'Follow the project on GitHub so you don’t miss the launch.'))}`}</p>

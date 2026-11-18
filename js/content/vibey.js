@@ -1,6 +1,7 @@
 // Vibey Multiplayer: erste eigenständige Mod außerhalb der HHA-Reihe (Quelle: vibec-studios/vibey-multiplayer, README,
 // Screenshots aus dem automatischen Client-Test). Bewusst kurz gehalten: drei Schritte, vier Features, drei Bilder.
 // Seit 17.11.2026 veröffentlicht (v1.0.0, 20 Jars); Downloads kommen über data/downloads.json und den Auswahl-Dialog.
+// Seit 18.11.2026 (Relay 1.3): mehrere Hosts pro Konto, lokale Server aus dem Vibe Launcher, optional Vibe-Dienste.
 const S = (de, en) => ({ de, en });
 
 export default {
@@ -13,7 +14,6 @@ export default {
   version: '1.0.0', mc: '1.21 – 26.3', loader: 'Fabric / NeoForge',
   requires: [S('Fabric API (nur Fabric)', 'Fabric API (Fabric only)'), S('Nur im Client, Gäste brauchen nichts', 'Client only, guests need nothing')],
   status: S('Veröffentlicht', 'Released'),
-  outroTitle: S('Bereit zum Hosten?', 'Ready to host?'),
   source: 'https://github.com/vibec-studios/vibey-multiplayer',
   icon: 'icon.png',
   categories: ['utility', 'social'], // Modrinth-Kategorien für den Vibe Store (tools/store.py)
@@ -25,7 +25,7 @@ export default {
   highlights: [
     S('Eine feste Adresse, die bei jedem Hosting gleich bleibt', 'One fixed address that stays the same every time you host'),
     S('Keine Portfreigabe, kein eigener Server', 'No port forwarding, no server of your own'),
-    S('Fabric und NeoForge, von 1.21 bis 26.3', 'Fabric and NeoForge, from 1.21 to 26.3'),
+    S('Mehrere Welten gleichzeitig, auch Server aus dem Vibe Launcher', 'Several worlds at once, servers from the Vibe Launcher too'),
   ],
   sections: [
     {
@@ -45,6 +45,9 @@ export default {
         { name: S('Spieler verwalten', 'Manage players'), desc: S('OP geben, rauswerfen, bannen und Abgewiesene mit einem Klick reinlassen.', 'Give OP, kick, ban and let turned-away players in with one click.') },
         { name: S('Sperren im Netz', 'Blocked at the network'), desc: S('Whitelist und Bannliste nach Name oder IP: Der Relay blockt Gesperrte, bevor sie deinen Rechner erreichen.', 'Whitelist and ban list by name or IP: the relay stops blocked players before they reach your computer.') },
         { name: S('Mods erzwingen', 'Force mods'), desc: S('Wem eine Mod fehlt, bekommt eine klare Liste statt einer kryptischen Fehlermeldung.', 'Anyone missing a mod gets a clear list instead of a cryptic error.') },
+        { name: S('Mehrere Welten', 'Several worlds'), desc: S('Ein Konto kann standardmäßig zwei Welten oder Server gleichzeitig hosten, jede mit eigener fester Adresse.', 'One account can host two worlds or servers at once by default, each with its own fixed address.') },
+        { name: S('Server aus dem Launcher', 'Servers from the launcher'), desc: S('Lokale Server, die du im Vibe Launcher erstellst, laufen über denselben Relay und bekommen ebenfalls eine feste Adresse.', 'Local servers you create in the Vibe Launcher go through the same relay and get a fixed address as well.') },
+        { name: S('Mit den Vibe-Diensten', 'With the Vibe services'), desc: S('Optional mit Anbindung an die Vibe-Dienste: Freunde und Einladungen, Limits und Moderation.', 'Optionally connected to the Vibe services: friends and invites, limits and moderation.') },
       ],
     },
     {

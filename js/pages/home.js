@@ -1,6 +1,6 @@
 // Startseite des Studios: das Studio und seine Projekte im Stil einer Produktseite. Die HHA-Reihe ist das erste
 // Projekt, nicht das einzige: Texte bleiben allgemein, Reihe und Rolle kommen aus den Inhaltsdateien (series, role).
-import { $, $$, t, esc, short, onColor } from '../core.js';
+import { $, $$, t, tx, esc, short, onColor, animateIcons } from '../core.js';
 import { stageScene, linkStage, lyricsStage } from '../views.js';
 import { heldItem } from '../items.js';
 
@@ -41,24 +41,23 @@ function role(m) {
   return m.series ? `${esc(m.series)} · ${r}` : r;
 }
 
-/** Projekt-Kacheln; die Kachel „Was als Nächstes kommt“ nur, wenn sie das Raster füllt statt eine Lücke zu lassen. */
-function projectTiles(mods) {
-  const tiles = mods.map((m) => `<a class="tile link" href="${m.path}" data-link style="--accent:${m.accent}">
-          <span class="tile-tag mono">${role(m)}</span>
-          <h3>${esc(m.name)}</h3><p>${t(short(m.tagline || m.short, 1))}</p><span class="tile-go">→</span></a>`);
-  const next = `<a class="tile ghost link" href="${STUDIO.github}" target="_blank" rel="noopener"><span class="tile-tag mono">${t(L('Demnächst', 'Coming up'))}</span><h3>${t(L('Was als Nächstes kommt', 'What comes next'))}</h3><p>${t(L('Neue Mods erscheinen zuerst hier und im Download-Center. Folge uns auf GitHub, dann verpasst du nichts.', 'New mods show up here and in the download center first. Follow us on GitHub so you miss nothing.'))}</p><span class="tile-go">↗</span></a>`;
-  const n = tiles.length;
-  const cols = (n + 1) % 4 === 0 || n % 4 === 0 ? 4 : 3;
-  if ((n + 1) % cols === 0) tiles.push(next);
-  return `<div class="tiles${cols === 4 ? ' four' : ''}" data-reveal>${tiles.join('')}</div>`;
+/** Projekte als Katalog: eine Zeile je Mod mit Icon, Name, Kurztext, Rolle, Stand und Minecraft-Version. */
+function projectList(mods, dl) {
+  return `<ul class="catalog" data-reveal>${mods.map((m) => `<li><a href="${m.path}" data-link style="--accent:${m.accent}">
+      <span class="px-icon" data-src="${m.base}/${m.icon || 'icon.png'}"></span>
+      <span class="cat-name"><b>${esc(m.name)}</b><span>${t(short(m.short, 1))}</span></span>
+      <span class="cat-meta mono">${role(m)}</span>
+      <span class="cat-meta mono">${t(m.status)}</span>
+      <span class="cat-meta mono">MC ${esc(m.mc || '1.21.11')}</span>
+      <span class="cat-go" aria-hidden="true">→</span></a></li>`).join('')}</ul>`;
 }
 
 /** Text zu den Projekten: Reihen mit Hauptmod und Addons, dazu eigenständige Mods. */
 function projectsLead(mods) {
   const solo = mods.filter((m) => !m.series).map((m) => m.name);
   const list = (arr, and) => arr.length > 1 ? `${arr.slice(0, -1).join(', ')} ${and} ${arr[arr.length - 1]}` : arr[0];
-  const de = 'Die HHA-Reihe ist unser erstes Universum: H&H Armors ist das Herz, die Addons hängen sich über eine eigene API ein.';
-  const en = 'The HHA series is our first universe: H&H Armors is the heart, the addons plug in through their own API.';
+  const de = 'Die HHA-Reihe besteht aus H&H Armors und Addons, die sich über eine eigene API einhängen.';
+  const en = 'The HHA series is H&H Armors plus addons that plug in through its own API.';
   return solo.length
     ? L(`${de} ${list(solo, 'und')} ${solo.length > 1 ? 'stehen' : 'steht'} für sich, und weitere Projekte kommen dazu, sobald sie bereit sind.`,
       `${en} ${list(solo, 'and')} ${solo.length > 1 ? 'stand' : 'stands'} on ${solo.length > 1 ? 'their' : 'its'} own, and more projects join once they are ready.`)
@@ -107,35 +106,35 @@ export function render(mods) {
     return `<section class="feature-sec" style="--accent:${m.accent};--accent2:${m.accent2 || m.accent};--on-accent:${onColor(m.accent)}" id="mod-${m.id}">
       <div class="wrap feature-grid ${i % 2 ? 'flip' : ''}">
         <div class="feature-copy" data-reveal>
-          <p class="eyebrow">${String(i + 1).padStart(2, '0')} · ${role(m)} · ${t(m.status)}</p>
-          <h2 class="display accent">${esc(m.name)}.</h2>
+          <p class="eyebrow">${role(m)} · ${t(m.status)}</p>
+          <h2 class="display">${esc(m.name)}</h2>
           <p class="lead">${t(m.short)}</p>
           <ul class="ticks">${(m.highlights || []).slice(0, 3).map((h) => `<li>${t(h)}</li>`).join('')}</ul>
-          <div class="cta"><a class="btn accent" href="${m.path}" data-link>${t(L('Mod ansehen', 'View mod'))} →</a></div>
+          <div class="cta"><a class="btn accent" href="${m.path}" data-link>${t(L('Zur Mod', 'View mod'))} →</a></div>
         </div>
         <div class="feature-art" data-reveal>
           ${m.hero?.kind === 'shot' ? `<img class="feature-shot" src="${m.base}/${m.hero.img}" alt="" loading="lazy">` : `<canvas data-boss="${i}" aria-hidden="true"></canvas>`}
-          ${boss?.name ? `<span class="callout mono">└─ ${t(boss.name)}</span>` : ''}
+          ${boss?.name ? `<span class="callout mono">${t(boss.name)}</span>` : ''}
         </div>
       </div>
     </section>`;
   }).join('');
 
   return `<div class="home">
-  <section class="hero home-hero" style="--hero-tint:${hm.accent}">
+  <section class="hero home-hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <h1 class="display">${t(L('Mods, die sich wie ein eigenes Spiel anfühlen.', 'Mods that feel like a game of their own.'))}</h1>
-        <p class="lead">${t(L('Vibe Craft Studios ist ein kleines Studio für Minecraft-Mods. Wir bauen Bosskämpfe mit Geschichte, eigene Welten und Ausrüstung, die man sich verdienen muss, und Werkzeuge, die das Zusammenspielen leichter machen.', 'Vibe Craft Studios is a small studio for Minecraft mods. We build boss fights with a story, worlds of their own and gear you have to earn, plus tools that make playing together easier.'))}</p>
+        <h1 class="display">${t(L('Minecraft-Mods mit eigenen Bossen, Welten und Werkzeugen.', 'Minecraft mods with their own bosses, worlds and tools.'))}</h1>
+        <p class="lead">${t(L('Vibe Craft Studios ist ein kleines Studio. Wir bauen die HHA-Reihe mit Bosskämpfen in eigenen Dimensionen, dazu Werkzeuge fürs Zusammenspielen: Vibey Multiplayer, Vibey Lyrics und den Vibe Launcher.', 'Vibe Craft Studios is a small studio. We make the HHA series with boss fights in dimensions of their own, plus tools for playing together: Vibey Multiplayer, Vibey Lyrics and the Vibe Launcher.'))}</p>
         <div class="cta">
-          <a class="btn primary" href="#mod-${mods[0]?.id || 'hha'}" data-anchor>${t(L('Mods entdecken', 'Explore mods'))}</a>
-          <a class="btn ghost" href="/downloads/" data-link>${t(L('Downloads', 'Downloads'))}</a>
+          <a class="btn primary" href="#projekte" data-anchor>${t(L('Alle Projekte', 'All projects'))}</a>
+          <a class="btn ghost" href="/launcher/" data-link>Vibe Launcher</a>
         </div>
-        <p class="note mono">└─ Fabric & NeoForge · ${t(L('Deutsch & Englisch', 'German & English'))} · ${t(L('alle Downloads geprüft', 'every download checked'))}</p>
+        <p class="note mono">Fabric & NeoForge · ${t(L('Deutsch & Englisch', 'German & English'))} · ${t(L('jeder Download mit SHA-256 und VirusTotal', 'every download with SHA-256 and VirusTotal'))}</p>
       </div>
       <div class="hero-art">
         <canvas class="hero-canvas" aria-hidden="true"></canvas>
-        <a class="hero-pick mono" href="${hm.path}" data-link style="--c:${hm.accent}">└─ ${esc(hm.name)} <span>→</span></a>
+        <a class="hero-pick mono" href="${hm.path}" data-link>${esc(hm.name)} →</a>
       </div>
     </div>
     <div class="wrap stat-row">
@@ -146,16 +145,28 @@ export function render(mods) {
     </div>
   </section>
 
-  ${features}
-
-  <section class="section universe">
+  <section class="section" id="projekte">
     <div class="wrap">
-      <header class="sec-head center" data-reveal>
+      <header class="sec-head" data-reveal>
         <p class="eyebrow">${t(L('Projekte', 'Projects'))}</p>
-        <h2 class="display sm">${t(L('Mehr als eine Reihe.', 'More than one series.'))}</h2>
+        <h2 class="display sm">${t(L('Alle Projekte', 'All projects'))}</h2>
         <p class="lead">${t(projectsLead(mods))}</p>
       </header>
-      ${projectTiles(mods)}
+      ${projectList(mods)}
+    </div>
+  </section>
+
+  ${features}
+
+  <section class="section home-launcher">
+    <div class="wrap hl-grid" data-reveal>
+      <div>
+        <p class="eyebrow">Vibe Launcher · Windows</p>
+        <h2 class="display sm">${t(L('Unser Launcher für Minecraft', 'Our launcher for Minecraft'))}</h2>
+        <p class="lead">${t(L('Instanzen mit Fabric, Quilt, Forge oder NeoForge, Mods von Modrinth, CurseForge und unserem eigenen Store, lokale Server über den Vibey-Relay und auf Wunsch Freunde und Einladungen über die Vibe-Dienste.', 'Instances with Fabric, Quilt, Forge or NeoForge, mods from Modrinth, CurseForge and our own store, local servers through the Vibey relay and, if you like, friends and invites through the Vibe services.'))}</p>
+        <div class="cta"><a class="btn primary" href="/launcher/" data-link>${t(L('Zum Launcher', 'View the launcher'))}</a></div>
+      </div>
+      <a class="hl-shot" href="/launcher/" data-link><img src="/assets/launcher/img/home.webp" alt="${esc(tx(L('Vibe Launcher: Startseite mit Hotbar', 'Vibe Launcher: home screen with hotbar')))}" width="1280" height="800" loading="lazy"></a>
     </div>
   </section>
 
@@ -163,20 +174,23 @@ export function render(mods) {
     <div class="wrap dl-teaser-grid" data-reveal>
       <div>
         <p class="eyebrow">${t(L('Download-Center', 'Download center'))}</p>
-        <h2 class="display sm">${t(L('Alle Mods an einem Ort.', 'Every mod in one place.'))}</h2>
-        <p class="lead">${t(L('Jede Version direkt aus GitHub, mit Prüfsumme und VirusTotal-Scan. Kein Umweg, keine fremden Spiegel.', 'Every version straight from GitHub, with checksum and VirusTotal scan. No detours, no third-party mirrors.'))}</p>
+        <h2 class="display sm">${t(L('Jede Datei direkt aus GitHub', 'Every file straight from GitHub'))}</h2>
+        <p class="lead">${t(L('Alle Versionen aller Mods, mit SHA-256-Prüfsumme und dem VirusTotal-Ergebnis jeder Datei.', 'Every version of every mod, with the SHA-256 checksum and the VirusTotal result of each file.'))}</p>
       </div>
-      <div class="cta"><a class="btn primary" href="/downloads/" data-link>↓ ${t(L('Zum Download-Center', 'Open download center'))}</a></div>
+      <div class="cta"><a class="btn ghost" href="/downloads/" data-link>${t(L('Zum Download-Center', 'Open download center'))} →</a></div>
     </div>
   </section>
 
   <section class="section values">
     <div class="wrap values-grid" data-reveal>
-      <h2 class="display">${t(L('Fair.<br>Erzählt.<br>Handgemacht.', 'Fair.<br>Told.<br>Handmade.'))}</h2>
+      <div>
+        <p class="eyebrow">Studio</p>
+        <h2 class="display sm">${t(L('So arbeiten wir', 'How we work'))}</h2>
+      </div>
       <div class="values-list">
-        <article><h3>${t(L('Fair statt frustrierend', 'Fair, not frustrating'))}</h3><p>${t(L('Jeder Angriff wird angesagt, jeder Boss hat einen Trick, und wer verliert, behält sein Inventar.', 'Every attack is announced, every boss has a trick, and losing never costs your inventory.'))}</p></article>
-        <article><h3>${t(L('Geschichten statt Gegner', 'Stories, not just enemies'))}</h3><p>${t(L('Gegner mit Vorgeschichte, vertonte Cutscenes und Orte, die erzählen, was dort passiert ist.', 'Foes with a backstory, voiced cutscenes and places that tell what happened there.'))}</p></article>
-        <article><h3>${t(L('Alles selbst gebaut', 'Built by hand'))}</h3><p>${t(L('Eigene Modelle, Animationen und Effekte. Gebaut wird mit Vanilla-Blöcken, damit sich alles nach Minecraft anfühlt.', 'Our own models, animations and effects. We build with vanilla blocks, so everything still feels like Minecraft.'))}</p></article>
+        <article><h3>${t(L('Angriffe werden angesagt', 'Attacks are announced'))}</h3><p>${t(L('Jeder Bossangriff hat eine sichtbare Ankündigung am Boden, jeder Boss einen Trick. Wer verliert, behält sein Inventar.', 'Every boss attack shows a warning on the ground, every boss has a trick. Losing never costs your inventory.'))}</p></article>
+        <article><h3>${t(L('Eigene Modelle, Vanilla-Blöcke', 'Our own models, vanilla blocks'))}</h3><p>${t(L('Modelle, Animationen und Effekte bauen wir selbst. Welten und Arenen bestehen aus Vanilla-Blöcken.', 'We make our own models, animations and effects. Worlds and arenas are built from vanilla blocks.'))}</p></article>
+        <article><h3>${t(L('Offen und geprüft', 'Open and checked'))}</h3><p>${t(L('Der Quellcode liegt auf GitHub. Jede Datei im Download-Center hat eine Prüfsumme und einen VirusTotal-Scan.', 'The source code is on GitHub. Every file in the download center has a checksum and a VirusTotal scan.'))}</p></article>
       </div>
     </div>
   </section>
@@ -184,6 +198,7 @@ export function render(mods) {
 }
 
 export async function mount(root, mods, signal) {
+  animateIcons(root);
   heroScene($('.hero-canvas', root), heroMod || mods[0], signal).catch(console.error);
 
   $$('canvas[data-boss]', root).forEach((c) => {

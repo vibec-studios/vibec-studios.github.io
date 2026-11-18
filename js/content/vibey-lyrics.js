@@ -15,7 +15,6 @@ export default {
   version: '1.1.0', mc: '1.21 – 26.3', loader: 'Fabric',
   requires: ['Fabric API', S('Nur im Client', 'Client only')],
   status: S('Veröffentlicht', 'Released'),
-  outroTitle: S('Bereit zum Mitsingen?', 'Ready to sing along?'),
   source: 'https://github.com/vibec-studios/vibey-lyrics',
   icon: 'icon.png',
   categories: ['social', 'utility'], // Modrinth-Kategorien für den Vibe Store (tools/store.py)

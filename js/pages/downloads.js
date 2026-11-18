@@ -239,7 +239,7 @@ export function render(mods, dl) {
   <section class="hero dl-hero">
     <div class="wrap">
       <p class="eyebrow">${t(L('Download-Center', 'Download center'))}</p>
-      <h1 class="display">${t(L('Alle Mods.<br>Geprüft und sicher.', 'Every mod.<br>Checked and safe.'))}</h1>
+      <h1 class="display">Downloads</h1>
       <p class="lead">${t(L('Jede Datei kommt direkt aus unseren GitHub-Releases. Zu jeder Version gibt es die Prüfsumme und einen Scan mit rund 70 Virenscannern auf VirusTotal, damit du weißt, was du installierst.',
         'Every file comes straight from our GitHub releases. Each version comes with its checksum and a scan by about 70 antivirus engines on VirusTotal, so you know what you install.'))}</p>
       <ul class="dl-trust mono">
@@ -251,6 +251,11 @@ export function render(mods, dl) {
     </div>
   </section>
   <section class="section dl-list"><div class="wrap">
+    <div class="dl-launcher" style="--accent:#8b6cff">
+      <img src="/logo.png" alt="" width="44" height="44">
+      <div><h2><a href="/launcher/" data-link>Vibe Launcher</a></h2><p>${t(L('Unser Minecraft-Launcher für Windows. Installiert alle Mods hier direkt über den Vibe-Craft-Store.', 'Our Minecraft launcher for Windows. Installs every mod on this page straight from the Vibe Craft store.'))}</p></div>
+      <div class="dl-launcher-cta"><a class="btn accent" href="https://github.com/vibec-studios/vibe-launcher/releases/latest/download/Vibe-Launcher-Setup.exe" rel="noopener">↓ ${t(L('Für Windows', 'For Windows'))}</a><a class="btn ghost" href="/launcher/" data-link>${t(L('Mehr', 'More'))}</a></div>
+    </div>
     <div class="dl-grid">${mods.map((m) => tile(m, dl)).join('')}</div>
     ${files ? '' : `<p class="small">${t(L('Gerade sind keine Download-Daten erreichbar.', 'Download data is not available right now.'))}</p>`}
   </div></section>

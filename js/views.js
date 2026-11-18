@@ -104,7 +104,7 @@ export function particles(count, color, area, size) {
 
 function rand(seed) { let s = seed; return () => ((s = (s * 16807) % 2147483647) / 2147483647); }
 
-/** Weiches Leuchten am Boden (radialer Verlauf). */
+/** Weicher Kontaktschatten am Boden (radialer Verlauf). Früher ein farbiges Leuchten; die Farbe wird bewusst ignoriert. */
 function glowDisc(color, radius) {
   const c = document.createElement('canvas');
   c.width = c.height = 128;
@@ -117,7 +117,7 @@ function glowDisc(color, radius) {
   g.fillRect(0, 0, 128, 128);
   const tex = new THREE.CanvasTexture(c);
   const m = new THREE.Mesh(new THREE.PlaneGeometry(radius * 2, radius * 2),
-    new THREE.MeshBasicMaterial({ map: tex, color, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false }));
+    new THREE.MeshBasicMaterial({ map: tex, color: 0x000000, transparent: true, opacity: 0.45, depthWrite: false }));
   m.rotation.x = -Math.PI / 2;
   m.position.y = 0.002;
   return m;
@@ -439,9 +439,7 @@ export async function lyricsStage(canvas, { accent = '#d946ef', zoom = 1, signal
   const sparks = particles(40, new THREE.Color(accent), { x: [-5, 5], y: [3.4, 7.4], z: [-8.4, -6.6] }, 0.06);
   sparks.material.opacity = 0.8;
   scene.add(sparks);
-  const stars = particles(90, 0xbfb6ff, { x: [-14, 14], y: [1, 13], z: [-16, -9] }, 0.06);
-  stars.material.opacity = 0.5;
-  scene.add(stars);
+
 
   let mx = 0, my = 0;
   addEventListener('pointermove', (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; }, { passive: true, signal });
@@ -493,7 +491,6 @@ export async function lyricsStage(canvas, { accent = '#d946ef', zoom = 1, signal
     camera.lookAt(target);
     pose(s);
     sparks.userData.tick(dt, now);
-    stars.userData.tick(dt * 0.15, now);
   };
   return view;
 }
@@ -524,9 +521,7 @@ export function sealStage(canvas, { glow = 0x8b6cff, hoverEl = canvas.parentElem
   scene.add(pivot);
   const disc = glowDisc(glow, 1.7);
   scene.add(disc);
-  const motes = particles(40, 0xd9ecff, { x: [-2.2, 2.2], y: [0, 2.2], z: [-1.6, 1.6] }, 0.025);
-  motes.material.opacity = 0.7;
-  scene.add(motes);
+
 
   const LOGO_YAW = -1.05, HOVER_YAW = -1.4;
   let hovered = false, joy = 0, yaw = LOGO_YAW, tt = 0, tapUntil = 0;
@@ -555,7 +550,6 @@ export function sealStage(canvas, { glow = 0x8b6cff, hoverEl = canvas.parentElem
     const a = (reduceMotion ? 0 : Math.sin(tt * 0.25) * 0.08) + mx * 0.15;
     camera.position.set(Math.sin(a) * dist, 2.2 + my * 0.4, Math.cos(a) * dist);
     camera.lookAt(target);
-    motes.userData.tick(dt * 0.4, now);
   };
   return Promise.resolve(view);
 }
@@ -640,11 +634,6 @@ export async function stageScene(canvas, { figures = [], boss = null, glow = 0xf
   scene.add(key.target);
   key.shadow.camera.updateProjectionMatrix();
 
-  const motes = particles(Math.round(26 + span * 4), glow,
-    { x: [center.x - size.x * 0.7 - 0.5, center.x + size.x * 0.7 + 0.5], y: [0, size.y * 1.05], z: [center.z - size.z * 0.6 - 0.4, center.z + size.z * 0.6 + 0.4] },
-    Math.max(0.03, Math.max(size.x, size.y) * 0.01));
-  motes.material.opacity = 0.65;
-  scene.add(motes);
 
   let wire = null;
   const handA = new THREE.Vector3(), handB = new THREE.Vector3();
@@ -675,7 +664,6 @@ export async function stageScene(canvas, { figures = [], boss = null, glow = 0xf
     }
     tickers.forEach((f) => f(now));
     if (bossModel) bossModel.update(now);
-    motes.userData.tick(dt, now);
   };
   view.bossModel = bossModel;
   return view;
@@ -768,8 +756,6 @@ export async function bossViewer(root, base, bosses, signal, accent = 0xffc94a) 
   rune.rotation.x = -Math.PI / 2;
   rune.position.y = 0.01;
   scene.add(rune);
-  const motes = particles(60, accent, { x: [-7, 7], y: [0, 9], z: [-7, 4] }, 0.05);
-  scene.add(motes);
 
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
@@ -934,7 +920,6 @@ export async function bossViewer(root, base, bosses, signal, accent = 0xffc94a) 
     }
     rune.rotation.z += dt * 0.25;
     rune.material.opacity = 0.35 + Math.sin(now / 500) * 0.15;
-    motes.userData.tick(dt, now);
   };
 
   const fromHash = bosses.findIndex((b) => location.hash === '#boss-' + b.id);
