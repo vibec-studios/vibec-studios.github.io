@@ -801,7 +801,8 @@ main, .footer { position: relative; }
 .shot.leak:has(.leak-old) img { filter: grayscale(.6) brightness(.8); }
 @media (max-width: 760px) { .changes { grid-template-columns: minmax(0, 1fr); } }
 .changes-older { margin-top: 16px; border-top: 1px solid var(--line); }
-.changes-older summary { padding: 14px 0; cursor: pointer; font: 18px var(--px); color: var(--muted); }
+.changes-older summary { padding: 10px 0; cursor: pointer; font: 18px var(--px); color: var(--muted); }
 .changes-older summary:hover, .changes-older[open] summary { color: var(--text); }
 .changes-ver { margin: 0 0 10px; font: 18px var(--px); color: var(--muted); }
 .changes-note + .changes-ver { margin-top: 28px; }
+.changes-older + .changes-older { margin-top: 0; }

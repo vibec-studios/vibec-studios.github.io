@@ -1,4 +1,4 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.6.5, Stand 18.11.2026).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.7.0, Stand 18.11.2026).
 // Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
 // Rüstung seit 1.2.2: Netherite-Form (armor/eirholm_armor_base*.png) plus 3D-Akzente (armor/eirholm_armor.json, armor3d).
 // Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
@@ -14,7 +14,7 @@ export default {
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.6.5',
+  version: '1.7.0',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -29,17 +29,63 @@ export default {
     'HHA Arius is an endgame addon for H&H Armors. Arius is the hero of our own light novel “The White Blade”, and the mod is a free adaptation of it. Break the Seal of the White Blade somewhere cold and the snow starts falling upward: you stand in the Sanctum of the White Blade, facing a swordsman who sees every mistake. His sword Solvane was forged from the heart of an ancient white dragon, and when he lets go, it becomes her again.',
   ),
   highlights: [
-    S('Ein Duell in fünf Akten im Schneesturm, filmisch inszeniert vom Klingengrab bis zum Hochlandfeld', 'A duel in five acts in a snowstorm, staged like a film from the Blade Grave to the highland field'),
+    S('Ein Duell im Schneesturm, filmisch inszeniert vom Klingengrab bis zum Finale auf dem Gipfel', 'A duel in a snowstorm, staged like a film from the Blade Grave to the finale on the summit'),
     S('Solvane: Das Schwert wird zur Drachin und windet sich um den Gipfel eines Felshorns', 'Solvane: the sword becomes a dragon and coils around the summit of a rock horn'),
+    S('Die Jagd: Arius verfolgt dich im Supermodus den Spiralberg hinauf, jeder Treffer kostet drei Herzen', 'The Hunt: Arius chases you up the spiral mountain in super mode, every hit costs three hearts'),
     S('Der Schnitt: Arius lädt eine riesige Lichtklinge auf und spaltet damit einen Berg der Länge nach', 'The Cut: Arius charges a giant blade of light and splits a mountain lengthwise with it'),
     S('Die Drachenherz-Wacht, Solvane, Kampfhandschuhe mit Zauberrad und der Frostspeicher', 'The Dragonheart Watch, Solvane, gauntlets with a spell wheel and the Frost Bank'),
   ],
   sections: [
-    // ------------------------------------------------------------------ Changelog (neueste Version zuerst, ältere aufklappbar)
+    // ------------------------------------------------------------------ Changelog (neueste Version zuerst, ältere aufklappbar; open: true hält eine Version offen)
     {
-      type: 'changes', id: 'neu', toc: S('Neu in 1.6', 'New in 1.6'), title: S('Neu in 1.6', 'New in 1.6'),
-      lead: S('Der Schnitt spaltet jetzt einen Berg, Solvane kämpft in der Luft, über allem liegt ein Wolkenmeer, und das erste Anlegen der Ausrüstung läuft ohne Ruckeln.', 'The Cut now splits a mountain, Solvane fights in the air, a sea of clouds lies over everything, and putting on the gear for the first time no longer stutters.'),
+      type: 'changes', id: 'neu', toc: S('Neu in 1.7', 'New in 1.7'), title: S('Neu in 1.7', 'New in 1.7'),
+      lead: S('Die Jagd den Spiralberg hinauf, ein Finale auf dem Gipfel, Arius’ Feats, echtes Blocken und neue Handschuh-Techniken. Die Änderungen aus 1.6 und 1.5 lassen sich unten aufklappen.', 'The Hunt up the spiral mountain, a finale on the summit, Arius’ feats, real blocking and new gauntlet techniques. The changes from 1.6 and 1.5 can be expanded below.'),
       versions: [{
+        version: '1.7.0',
+        groups: [
+          {
+            name: S('Die Jagd', 'The Hunt'),
+            items: [
+              S('Nach Phase III jagt dich Arius im Supermodus den Spiralberg hinauf.', 'After phase III, Arius chases you up the spiral mountain in super mode.'),
+              S('Jeder Treffer kostet genau 3 Herzen.', 'Every hit costs exactly 3 hearts.'),
+              S('Enderperlen sind gesperrt.', 'Ender pearls are blocked.'),
+              S('Das Finale findet auf dem Gipfel statt.', 'The finale takes place on the summit.'),
+            ],
+          },
+          {
+            name: S('Arius’ Feats', 'Arius’ feats'),
+            items: [
+              S('Der Weiße Horizont: Titelkarte beim Schnitt.', 'The White Horizon: a title card during the Cut.'),
+              S('Der gefrorene Stern: Ein Stern gefriert über dem Ziel und stürzt herab.', 'The Frozen Star: a star freezes above the target and comes crashing down.'),
+              S('Absoluter Nullpunkt: Seele: ein Kegel mit sofortiger Erfrierung.', 'Absolute Zero: Soul: a cone that inflicts frostbite instantly.'),
+            ],
+          },
+          {
+            name: S('Blocken', 'Blocking'),
+            items: [
+              S('Normale Schilde blocken Arius und Solvane; schwere Treffer schlagen den Schild 5 s weg.', 'Regular shields block Arius and Solvane; heavy hits knock the shield away for 5 s.'),
+              S('Solvanes Konter wirkt gegen Bosse und Mobs.', 'Solvane’s counter works against bosses and mobs.'),
+            ],
+          },
+          {
+            name: S('Handschuh-Techniken', 'Gauntlet techniques'),
+            items: [
+              S('Klingensturm ersetzt Windzug.', 'Blade Storm replaces Wind Pull.'),
+              S('Neu: Eisgefängnis, Full-Pot (Stärke II, Schnelligkeit II, Feuerresistenz, Regeneration II) und Tank-Mode (Resistenz IV).', 'New: Ice Prison, Full Pot (Strength II, Speed II, Fire Resistance, Regeneration II) and Tank Mode (Resistance IV).'),
+              S('Stärkeres Frostfeld, neue Optik der Gletscherlanze.', 'Stronger Frost Field, new look for the Glacier Lance.'),
+              S('Brücke hält 30 s, Plattform 45 s.', 'The bridge lasts 30 s, the platform 45 s.'),
+            ],
+          },
+          {
+            name: S('Nahkampf und Bedienung', 'Melee and controls'),
+            items: [
+              S('Neue Nahkampf-Moves: Schlaghagel und Handflächenstoß.', 'New melee moves: Flurry and Palm Strike.'),
+              S('Ruhigere Hände beim Zaubern.', 'Steadier hands while casting.'),
+              S('Meldungen in der Aktionsleiste werden nicht mehr von Resonanzleiste und Abklingzeit-Icons verdeckt.', 'Action bar messages are no longer covered by the resonance bar and cooldown icons.'),
+            ],
+          },
+        ],
+      }, {
         version: '1.6.5',
         groups: [
           {
@@ -75,7 +121,7 @@ export default {
           },
         ],
       }, {
-        version: '1.6.4', open: true,
+        version: '1.6.4',
         groups: [
           {
             name: S('Handschuhe', 'Gauntlets'),
@@ -86,7 +132,7 @@ export default {
           },
         ],
       }, {
-        version: '1.6.3', open: true,
+        version: '1.6.3',
         groups: [
           {
             name: S('Duell und Welt', 'Duel and world'),
@@ -97,7 +143,7 @@ export default {
           },
         ],
       }, {
-        version: '1.6.2', open: true,
+        version: '1.6.2',
         groups: [
           {
             name: S('Fehlerbehebungen', 'Fixes'),
@@ -108,7 +154,7 @@ export default {
           },
         ],
       }, {
-        version: '1.6.1', open: true,
+        version: '1.6.1',
         groups: [
           {
             name: S('Leistung', 'Performance'),
@@ -118,7 +164,7 @@ export default {
           },
         ],
       }, {
-        version: '1.6.0', open: true,
+        version: '1.6.0',
         groups: [
           {
             name: S('Duell', 'Duel'),
@@ -260,7 +306,7 @@ export default {
             { img: '25-klarer-schnitt', name: S('Klarer Schnitt', 'Clear Cut') },
             { img: '26-windklinge', name: S('Windklinge', 'Wind Blade') },
             { img: '27-frostsplitter', name: S('Frostsplitter', 'Frost Shards') },
-            { img: '28-gletscherlanze', name: S('Gletscherlanze', 'Glacier Lance') },
+            { img: '28-gletscherlanze', old: true, name: S('Gletscherlanze', 'Glacier Lance') },
             { img: '29-wirbelsturm', old: true, name: S('Wirbelsturm', 'Tornado') },
             { img: '30-eiswand', name: S('Eiswand', 'Ice Wall') },
             { img: '31-eisplattform', name: S('Eisplattform', 'Ice Platform') },
@@ -271,7 +317,7 @@ export default {
             { img: '36-weisses-loch', old: true, name: S('Setfähigkeit: Weißes Loch', 'Set ability: White Hole') },
             { img: '37-yang-kugel', old: true, name: S('Yang-Kugel, jetzt weiß', 'Yang orb, now white') },
             { img: '38-boe', name: S('Böe', 'Gust') },
-            { img: '39-windzug', name: S('Windzug', 'Wind Pull') },
+            { img: '39-windzug', old: true, name: S('Windzug', 'Wind Pull') },
           ],
         },
       ],
@@ -323,15 +369,15 @@ export default {
         },
         {
           name: S('Nahkampf', 'Melee'), icon: 'hud/art_mode_melee.png',
-          desc: S('Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle, dazu Flug-, Sturz- und Wirbeltritte im Stil von Dryleaf Dane. Im Zaubermodus bewegen sich die Finger mit jedem Zauber, auf der Handfläche leuchtet eine Eisrune.', 'Gauntlets with dragon wings, spikes and a glowing ice band: fists and kicks, from an uppercut to an axe kick with a frost wave, plus flying, diving and spinning kicks in the style of Dryleaf Dane. In spell mode the fingers move with every spell, and an ice rune glows on the palm.'),
+          desc: S('Kampfhandschuhe mit Drachenschwingen, Dornen und leuchtendem Eisband: Fäuste und Tritte, vom Aufwärtshaken bis zum Axttritt mit Frostwelle, dazu Flug-, Sturz- und Wirbeltritte im Stil von Dryleaf Dane, Schlaghagel und Handflächenstoß. Im Zaubermodus bewegen sich die Finger mit jedem Zauber, auf der Handfläche leuchtet eine Eisrune.', 'Gauntlets with dragon wings, spikes and a glowing ice band: fists and kicks, from an uppercut to an axe kick with a frost wave, plus flying, diving and spinning kicks in the style of Dryleaf Dane, a flurry and a palm strike. In spell mode the fingers move with every spell, and an ice rune glows on the palm.'),
         },
         {
           name: S('Wind', 'Wind'), icon: 'hud/art_tornado.png',
-          desc: S('Windklingen, Sturmstöße, ein großer, wandernder Wirbelsturm und Sprünge, die dich hoch und weit tragen.', 'Wind blades, gusts, a huge roaming tornado and leaps that carry you high and far.'),
+          desc: S('Windklingen, Sturmstöße, ein Klingensturm, ein großer, wandernder Wirbelsturm und Sprünge, die dich hoch und weit tragen.', 'Wind blades, gusts, a blade storm, a huge roaming tornado and leaps that carry you high and far.'),
         },
         {
           name: S('Eis', 'Ice'), icon: 'hud/art_glacier_lance.png',
-          desc: S('Frostsplitter, Eiswände, eine Gletscherlanze und ein Panzer aus Eis, der Treffer abfängt.', 'Frost shards, ice walls, a glacier lance and a shell of ice that catches hits.'),
+          desc: S('Frostsplitter, Eiswände, ein Eisgefängnis, ein Frostfeld, eine Gletscherlanze und ein Panzer aus Eis, der Treffer abfängt.', 'Frost shards, ice walls, an ice prison, a frost field, a glacier lance and a shell of ice that catches hits.'),
         },
         {
           name: S('Yang', 'Yang'), icon: 'hud/art_school_yang.png',
@@ -346,12 +392,12 @@ export default {
           desc: S('Wie in Elden Ring: Frostangriffe füllen einen Frostbalken. Ist er voll, folgt ein Schadensausbruch, und eine Weile lang nimmt das Ziel mehr Schaden.', 'Like in Elden Ring: frost attacks fill a frost bar. When it is full, a burst of damage follows, and for a while the target takes more damage.'),
         },
         {
-          name: S('Frostspeicher', 'Frost Bank'), icon: 'item/frost_bank.png',
-          desc: S('Eine Manabank: Sie sammelt Resonanz aus Kills, auch an der Mobfarm, und aus Überschuss, und du ziehst sie bei Bedarf wieder heraus.', 'A mana bank: it collects resonance from kills, mob farms included, and from surplus, and you draw it back out when you need it.'),
+          name: S('Frostspeicher und Baupläne', 'Frost Bank and blueprints'), icon: 'item/frost_bank.png',
+          desc: S('Der Frostspeicher sammelt Resonanz aus Kills, auch an der Mobfarm, und damit baust du Litematica-Baupläne als echte Blöcke.', 'The Frost Bank collects resonance from kills, mob farms included, and you use it to build Litematica blueprints as real blocks.'),
         },
         {
-          name: S('Baupläne', 'Blueprints'), icon: null,
-          desc: S('Litematica-Dateien als echte Blöcke bauen, bezahlt mit Resonanz aus dem Frostspeicher. Vorher zeigt ein Umriss, was entsteht.', 'Build Litematica files as real blocks, paid for with resonance from the Frost Bank. An outline shows what will appear first.'),
+          name: S('Full-Pot und Tank-Mode', 'Full Pot and Tank Mode'), icon: 'hud/art_full_pot.png',
+          desc: S('Full-Pot gibt dir Stärke, Schnelligkeit, Feuerresistenz und Regeneration auf einmal, der Tank-Mode macht dich mit starker Resistenz zur Wand.', 'Full Pot gives you strength, speed, fire resistance and regeneration at once, Tank Mode turns you into a wall with strong resistance.'),
         },
       ],
     },
@@ -374,8 +420,8 @@ export default {
           color: '#6cc4ff',
           segments: 2,
           desc: S(
-            'Ein Schwertkämpfer mit lesbaren Haltungen, Windschritten und einer Parade, die gierige Angriffe bestraft. Lässt er die Klinge los, wirbelt sie allein durch die Luft und jagt dich, während er mit Tritten nachsetzt.',
-            'A swordsman with readable stances, wind steps and a parry that punishes greedy attacks. When he lets go of his blade, it whirls through the air on its own and hunts you while he follows up with kicks.',
+            'Ein Schwertkämpfer mit lesbaren Haltungen, Windschritten, einer Parade, die gierige Angriffe bestraft, und einer Klinge, die allein durch die Luft jagt. Dazu kommen seine Feats: der Weiße Horizont beim Schnitt, ein gefrorener Stern, der über dir gefriert und herabstürzt, und Absoluter Nullpunkt: Seele, ein Kegel mit sofortiger Erfrierung.',
+            'A swordsman with readable stances, wind steps, a parry that punishes greedy attacks and a blade that hunts through the air on its own. On top come his feats: the White Horizon during the Cut, a frozen star that freezes above you and comes crashing down, and Absolute Zero: Soul, a cone that inflicts frostbite instantly.',
           ),
           trick: S(
             'Nicht immer dasselbe tun: Er passt sich an wiederholte Taktiken an.',
@@ -445,11 +491,11 @@ export default {
             'Brich den Takt, dann steht der Partner offen. Resonanzangriffe haben immer einen klaren sicheren Weg.',
             'Break the rhythm and the partner is open. Resonance attacks always have a clear safe path.',
           ),
-          where: S('Auf dem Hochlandfeld, einem endlosen, ebenen Schneefeld mit dem Bergmassiv im Rücken und einem Wolkenmeer am Horizont.', 'On the highland field, an endless, flat snowfield with the mountain massif behind it and a sea of clouds on the horizon.'),
+          where: S('Nach Phase III jagt er dich im Supermodus den Spiralberg hinauf, ohne Enderperlen und mit drei Herzen Schaden je Treffer. Das Finale steigt auf dem Gipfel.', 'After phase III he chases you up the spiral mountain in super mode, without ender pearls and with three hearts of damage per hit. The finale takes place on the summit.'),
           loot: S('Wer ohne K. o. gewinnt, bekommt die Schmiedevorlage „Weiße Klinge“.', 'Win without anyone getting knocked out and you get the “White Blade” smithing template.'),
           phases: [
             { name: S('IV · Im Takt', 'IV · In Rhythm'), desc: S('Arius mit einer Klinge aus Eislicht und Solvane gemeinsam, dazu ein Kranz aus Frostdornen und einmal im Kampf das weiße Loch.', 'Arius with a blade of ice light and Solvane together, plus a ring of frost thorns and, once per fight, the white hole.') },
-            { name: S('V · Der letzte klare Moment', 'V · The Last Clear Moment'), desc: S('Die Drachin kehrt als Licht in die Scheide zurück. Der letzte Austausch läuft in Zeitlupe: ausweichen, die Klingen binden, kontern und Arius entwaffnen.', 'The dragon returns to the scabbard as light. The last exchange plays in slow motion: dodge, bind the blades, counter and disarm Arius.') },
+            { name: S('V · Der letzte klare Moment', 'V · The Last Clear Moment'), desc: S('Auf dem Gipfel kehrt die Drachin als Licht in die Scheide zurück. Der letzte Austausch läuft in Zeitlupe: ausweichen, die Klingen binden, kontern und Arius entwaffnen.', 'On the summit the dragon returns to the scabbard as light. The last exchange plays in slow motion: dodge, bind the blades, counter and disarm Arius.') },
           ],
           moves: [
             { n: S('White Null', 'White Null'), p: ['null_wind', 'null_hit', 'null_follow'] },
@@ -479,7 +525,7 @@ export default {
         },
         {
           name: S('Bergmassiv und Felshorn', 'Mountain massif and rock horn'),
-          desc: S('Ein gewaltiges Bergmassiv mit einem Kletterweg aus Felsstufen und Ranken, der sich etwa dreimal um den Berg windet, darüber das Felshorn. Im Duell spaltet Arius es mit dem Schnitt der Länge nach.', 'A massive mountain with a climbing path of rock steps and vines that winds around it about three times, the rock horn above. In the duel Arius splits it lengthwise with the Cut.'),
+          desc: S('Ein gewaltiges Bergmassiv mit einem Spiralweg aus Felsstufen und Ranken bis zum Gipfel, den Arius dich im Supermodus hinaufjagt, bis das Finale oben steigt.', 'A massive mountain with a spiral path of rock steps and vines up to the summit, which Arius chases you up in super mode until the finale breaks out at the top.'),
           colors: ['#4a4e57', '#6d717a', '#9a9ea6', '#e9eef4', '#a9c9e6'],
         },
         {
