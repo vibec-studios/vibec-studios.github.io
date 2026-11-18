@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-18T16:37:35Z",
+ "updated": "2026-11-18T17:01:20Z",
  "projects": [
   {
    "id": "hha",
@@ -678,8 +678,49 @@
    },
    "license": "MIT",
    "published": "2026-11-16T16:42:21Z",
-   "updated": "2026-11-18T16:34:00Z",
+   "updated": "2026-11-18T16:59:00Z",
    "versions": [
+    {
+     "id": "1.6.4-HHA_Arius-1.6.4",
+     "version_number": "1.6.4",
+     "name": "HHA Arius 1.6.4 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-18T16:59:00Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "﻿**HHA Arius 1.6.4: animated fingers in spell mode, cutscene cameras, vines.**\n\n### Gauntlets in spell mode\n- Every finger moves on its own, in first and third person:\n  - **Idle:** a slow ripple across the fingers.\n  - **Charging:** a trembling claw that closes as the charge builds.\n  - **Casting and release:** the fingers flick open.\n  - **Aiming a construct:** the index finger points.\n  - **Shield:** a flat, spread hand.\n  - **Switching mode:** the fist opens.\n- The palm is now light with a glowing ice rune instead of dark leather, and the fingertips glow.\n\n### Cutscenes and mountain (from 1.6.3)\n- **After the Cut:** a wide shot from high above and to the side shows the mountain flank with the cleft and the sky. Before, the mountain wall filled the frame and it looked like the camera was inside the mountain.\n- **Shot towards the summit:** the camera is higher and aims at the summit.\n- **Vines:** they only hang as a narrow strip at real rock steps, and only up to the height of the step. The far landscape rebuilds once.\n\nBuilt and checked statically. Not play-tested in the running game yet.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.6.4/HHA_Arius-1.6.4.jar",
+       "filename": "HHA_Arius-1.6.4.jar",
+       "size": 9486942,
+       "sha1": "8330b2550153dabe5b938ac46b61dc5425693a44",
+       "sha256": "de03056bdc3dd37dc2b55be46a5b91a4359bd8e65203b40cdf1b2a5c24848522",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
     {
      "id": "1.6.2-HHA_Arius-1.6.2",
      "version_number": "1.6.2",
