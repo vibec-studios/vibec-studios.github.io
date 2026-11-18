@@ -820,3 +820,40 @@ body[data-route="home"] .nav-cta { background: var(--brand); color: #fff; }
   .wr-cat.on { border-bottom-color: var(--accent); }
   .wr-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); max-height: none; }
 }
+
+/* Vibey-Client-Download (js/client-dl.js), auf Client-Seite und Startseite */
+.hl-flip { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+.home-cdl { margin: 22px 0 0; }
+.home-cdl:not(.cdl) + .cta { margin-top: 18px; }
+.cdl { display: grid; gap: 14px; padding: 18px 20px 20px; border: 1px solid var(--line); background: var(--surface); }
+.cdl > [hidden] { display: none; }
+.cdl-ver { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.cdl-live { width: 8px; height: 8px; background: #3fe0c5; flex: none; }
+.cdl-easy { display: flex; gap: 16px; align-items: center; justify-content: space-between; padding: 12px 14px; border: 1px solid var(--line2); border-left: 2px solid var(--accent); background: #08080b; }
+.cdl-easy p { margin: 0; font-size: 14px; line-height: 1.45; }
+.cdl-easy p span { color: var(--muted); font-size: 13px; }
+.cdl-easy .btn { flex: none; height: 40px; padding: 0 14px; }
+.cdl-or { margin: 4px 0 -4px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.cdl-step .k { margin: 0 0 8px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.cdl .dlg-mc { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+.cdl .dlg-seg button, .cdl .dlg-mc button { height: 40px; }
+.cdl-result { display: grid; gap: 8px; }
+.cdl-get { width: 100%; justify-content: center; gap: 10px; }
+.cdl-meta { font-size: 11px; opacity: .85; letter-spacing: .04em; text-transform: none; }
+.cdl-file { margin: 0; color: var(--dim); word-break: break-all; }
+.cdl-req { margin: 0; font-size: 13px; color: #ffb547; }
+.cdl-req a { color: #fff; }
+.cdl-log { border-top: 1px solid var(--line); padding-top: 12px; }
+.cdl-log summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+.cdl-log summary:hover { color: #fff; }
+.cdl-log .md { margin-top: 10px; font-size: 14px; line-height: 1.55; color: var(--muted); }
+.cdl-log .md p { margin: 0 0 8px; }
+.cdl-log .md .md-h { margin-top: 12px; color: #fff; font-weight: 600; }
+.cdl-log .md ul { margin: 0 0 8px; padding-left: 18px; }
+.cdl-log .md code { font: 12px var(--mono); padding: 1px 4px; background: #000; border: 1px solid var(--line); }
+.cdl-log .md a { color: var(--accent); }
+.cl-bb { margin-top: 20px; }
+@media (max-width: 900px) { .hl-flip { grid-template-columns: 1fr; } .hl-flip .hl-shot { order: 1; } }
+@media (max-width: 520px) { .cdl-easy { flex-direction: column; align-items: stretch; } .cdl-easy .btn { justify-content: center; } }
+.hl-flip:has(.cdl) { align-items: start; }
+.lp-hero-grid:has(.cdl) { align-items: start; }

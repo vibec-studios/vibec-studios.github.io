@@ -3,6 +3,7 @@
 import { $, $$, t, tx, esc, short, onColor, animateIcons } from '../core.js';
 import { stageScene, linkStage, lyricsStage } from '../views.js';
 import { heldItem } from '../items.js';
+import { fetchClientRelease, renderClientDownload } from '../client-dl.js';
 
 const L = (de, en) => ({ de, en });
 const hex = (c) => parseInt(String(c).slice(1), 16);
@@ -170,6 +171,19 @@ export function render(mods) {
     </div>
   </section>
 
+  <section class="section home-client" style="--accent:#8b6cff">
+    <div class="wrap hl-grid hl-flip" data-reveal>
+      <a class="hl-shot" href="/client/" data-link><img src="/assets/client/img/cosmetics-wings-crown.webp" alt="${esc(tx(L('Vibey Client: Kristall-Eisflügel und Eiskrone im Spiel', 'Vibey Client: crystal ice wings and ice crown in game')))}" loading="lazy"></a>
+      <div>
+        <p class="eyebrow">Vibey Client · Fabric · NeoForge</p>
+        <h2 class="display sm">${t(L('Cosmetics, Emotes und Freunde im Spiel', 'Cosmetics, emotes and friends in game'))}</h2>
+        <p class="lead">${t(L('Unsere Client-Mod: Umhänge, Flügel, Auren, Begleiter und Emotes, dazu Freundesliste und Einladungen. Alles kostenlos, nichts zu kaufen.', 'Our client mod: capes, wings, auras, pets and emotes, plus a friends list and invites. All free, nothing to buy.'))}</p>
+        <div class="home-cdl" data-home-cdl><span class="cl-soon mono">${t(L('Bald verfügbar', 'Coming soon'))}</span></div>
+        <div class="cta" data-home-cl-cta><a class="btn primary" href="/client/" data-link>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section dl-teaser">
     <div class="wrap dl-teaser-grid" data-reveal>
       <div>
@@ -199,6 +213,13 @@ export function render(mods) {
 
 export async function mount(root, mods, signal) {
   animateIcons(root);
+  // Vibey Client: Download erscheint, sobald die API einen Release meldet (bei jedem Aufruf live geprüft)
+  fetchClientRelease(signal).then((rel) => {
+    const host = $('[data-home-cdl]', root);
+    if (!rel || !host || signal?.aborted) return;
+    renderClientDownload(host, rel, { changelog: false });
+    $('[data-home-cl-cta]', root).innerHTML = `<a class="btn ghost" href="/client/" data-link>${t(L('Alle Cosmetics ansehen', 'See all cosmetics'))} →</a>`;
+  });
   heroScene($('.hero-canvas', root), heroMod || mods[0], signal).catch(console.error);
 
   $$('canvas[data-boss]', root).forEach((c) => {

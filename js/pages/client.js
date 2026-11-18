@@ -1,9 +1,11 @@
 // Seite des Vibey Client: Garderobe mit allen Cosmetics und Emotes, 3D-Vorschau am Referenz-Spieler (vibey3d.js).
 // Daten: live aus der öffentlichen Katalog-API (vibe.henny.dev, CORS für GET erlaubt). Fällt sie aus, nimmt die Seite
 // das gebündelte Paket aus tools/cosmetics.py (data/cosmetics.json + assets/client/). Kein Shop, keine Preise: alles kostenlos,
-// die Seltenheit ist nur ein Label. Das Repo ist privat: kein Download-Link, nur „Bald verfügbar“.
+// die Seltenheit ist nur ein Label. Download live über /api/v1/client/latest (client-dl.js), sonst „Bald verfügbar“.
+// Das Repo ist privat: keine Links darauf.
 import { $, $$, t, tx, esc, openLightbox } from '../core.js';
 import { wardrobeViewer, planFor } from '../vibey3d.js';
+import { fetchClientRelease, renderClientDownload, blockbenchLink } from '../client-dl.js';
 
 const L = (de, en) => ({ de, en });
 export const ACCENT = '#8b6cff';
@@ -80,14 +82,14 @@ export function render() {
     <div class="wrap lp-hero-grid">
       <div class="hero-copy">
         <div class="lp-brand"><img class="cl-icon" src="${BASE}/icon.png" alt="" width="104" height="104">
-          <div><h1 class="display">Vibey Client</h1><p class="lp-sub mono">${t(L('Client-Mod für Minecraft · in Arbeit', 'Client mod for Minecraft · in the works'))}</p></div></div>
+          <div><h1 class="display">Vibey Client</h1><p class="lp-sub mono" data-cl-sub>${t(L('Client-Mod für Minecraft · in Arbeit', 'Client mod for Minecraft · in the works'))}</p></div></div>
         <p class="lead strong">${t(L('Cosmetics, Emotes und Freunde direkt im Spiel. Alles kostenlos.', 'Cosmetics, emotes and friends right in the game. All free.'))}</p>
         <p class="lead">${t(L('Umhänge, Flügel, Auren, Begleiter, Schilde, Hüte und Rucksäcke, dazu Emotes über ein Rad. Es gibt nichts zu kaufen: Die Seltenheit ist nur ein Label.', 'Capes, wings, auras, pets, shields, hats and backpacks, plus emotes from a wheel. There is nothing to buy: rarity is only a label.'))}</p>
-        <div class="lp-download cl-status">
+        <div class="lp-download cl-status" id="download" data-cdl>
           <span class="cl-soon mono">${t(L('Bald verfügbar', 'Coming soon'))}</span>
-          <p class="lp-file mono">${t(L('Noch kein Download. Sobald es eine Version gibt, steht sie im Download-Center und im Vibe Launcher.', 'No download yet. As soon as there is a version, it will be in the download center and the Vibe Launcher.'))}</p>
+          <p class="lp-file mono">${t(L('Noch kein Download. Sobald es eine Version gibt, erscheint sie hier und im Vibe Launcher.', 'No download yet. As soon as there is a version, it will show up here and in the Vibe Launcher.'))}</p>
         </div>
-        <div class="cta"><a class="btn primary" href="#garderobe" data-anchor>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a><a class="btn ghost" href="/launcher/" data-link>Vibe Launcher</a></div>
+        <div class="cta" data-cl-cta><a class="btn primary" href="#garderobe" data-anchor>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a><a class="btn ghost" href="/launcher/" data-link>Vibe Launcher</a></div>
       </div>
       <figure class="lp-hero-shot"><button type="button" data-cshot="title-preview"><img src="${BASE}/img/title-preview.webp" alt="${esc(tx(L('Titelbildschirm mit Vibey Client', 'Title screen with Vibey Client')))}" width="854" height="480"></button></figure>
     </div>
@@ -151,15 +153,16 @@ export function render() {
         <div><dt>${t(L('Live testen', 'Test live'))}</dt><dd>${t(L('Im Creator-Modus schiebt Blockbench Änderungen direkt ins laufende Spiel.', 'In creator mode, Blockbench pushes changes straight into the running game.'))}</dd></div>
         <div><dt>${t(L('Keine Preise', 'No prices'))}</dt><dd>${t(L('Felder für Preise werden beim Prüfen abgelehnt. Alles bleibt kostenlos.', 'Price fields are rejected by the validator. Everything stays free.'))}</dd></div>
       </dl>
+      <div class="cta cl-bb" data-bb hidden></div>
     </div>
   </div></section>
 
   <section class="section outro" id="status"><div class="wrap outro-grid">
     <div>
       <p class="eyebrow">${t(L('Verfügbarkeit', 'Availability'))}</p>
-      <h2 class="display sm">${t(L('Vibey Client: bald verfügbar', 'Vibey Client: coming soon'))}</h2>
-      <p class="lead">${t(L('Der Client ist noch in Arbeit und hat noch keinen Termin. Sobald es eine Version gibt, steht sie im Download-Center mit Prüfsumme und Virenscan und lässt sich im Vibe Launcher installieren.', 'The client is still in the works and has no date yet. As soon as there is a version, it will be in the download center with checksum and virus scan and installable in the Vibe Launcher.'))}</p>
-      <div class="cta"><a class="btn primary" href="/launcher/" data-link>Vibe Launcher</a><a class="btn ghost" href="/downloads/" data-link>${t(L('Download-Center', 'Download center'))}</a></div>
+      <h2 class="display sm" data-out-h>${t(L('Vibey Client: bald verfügbar', 'Vibey Client: coming soon'))}</h2>
+      <p class="lead" data-out-p>${t(L('Der Client ist fast fertig. Sobald die erste Version erscheint, gibt es sie oben auf dieser Seite für Fabric und NeoForge, und der Vibe Launcher installiert sie mit einem Klick.', 'The client is almost done. As soon as the first version is out, it will be at the top of this page for Fabric and NeoForge, and the Vibe Launcher installs it in one click.'))}</p>
+      <div class="cta" data-out-cta><a class="btn primary" href="/launcher/" data-link>Vibe Launcher</a></div>
     </div>
     <ul class="req mono"><li>${t(L('Kostenlos, keine Käufe', 'Free, no purchases'))}</li><li>${t(L('Deutsch und Englisch', 'German and English'))}</li><li>${t(L('Cosmetics und Emotes', 'Cosmetics and emotes'))}</li><li>${t(L('Freunde über die Vibe-Dienste (optional)', 'Friends through the Vibe services (optional)'))}</li></ul>
   </div></section>
@@ -183,7 +186,25 @@ function info(it) {
     <p class="wr-tags mono">${(it.tags || []).filter((x) => x !== 'starter').map((x) => `<span>${esc(x)}</span>`).join('')}</p>`;
 }
 
+/** Live-Prüfung bei jedem Aufruf: gibt es einen Release, ersetzen Download-Auswahl und Texte das „Bald verfügbar“. */
+async function mountDownload(root, signal) {
+  const rel = await fetchClientRelease(signal);
+  if (!rel || signal?.aborted) return;
+  const v = `v${esc(rel.version)}`;
+  const set = (sel, html) => { const el = $(sel, root); if (el) el.innerHTML = html; };
+  set('[data-cl-sub]', `${t(L('Client-Mod für Minecraft', 'Client mod for Minecraft'))} · ${v}`);
+  renderClientDownload($('[data-cdl]', root), rel);
+  $('[data-cdl]', root).classList.remove('cl-status');
+  set('[data-cl-cta]', `<a class="btn ghost" href="#garderobe" data-anchor>${t(L('Zur Garderobe', 'Open the wardrobe'))}</a>`);
+  const bb = blockbenchLink(rel);
+  if (bb) { const el = $('[data-bb]', root); el.innerHTML = bb; el.hidden = false; }
+  set('[data-out-h]', `${t(L('Vibey Client herunterladen', 'Download Vibey Client'))} ${v}`);
+  set('[data-out-p]', t(L('Am einfachsten installierst du den Client über den Vibe Launcher, der Fabric API und Co. gleich mitbringt. Das Jar für Fabric oder NeoForge gibt es oben auch direkt.', 'The easiest way to install the client is the Vibe Launcher, which brings Fabric API and friends along. The jar for Fabric or NeoForge is also available directly above.')));
+  set('[data-out-cta]', `<a class="btn primary" href="#download" data-anchor>${t(L('Zum Download', 'Go to download'))}</a><a class="btn ghost" href="/launcher/" data-link>Vibe Launcher</a>`);
+}
+
 export async function mount(root, signal) {
+  mountDownload(root, signal).catch(console.error);
   $$('[data-cshot]', root).forEach((b) => b.addEventListener('click', () => {
     const img = $('img', b);
     openLightbox(img.src, `<b>${esc(img.alt)}</b>`);
