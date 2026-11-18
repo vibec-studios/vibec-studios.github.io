@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-18T15:23:59Z",
+ "updated": "2026-11-18T16:20:58Z",
  "projects": [
   {
    "id": "hha",
@@ -678,8 +678,49 @@
    },
    "license": "MIT",
    "published": "2026-11-16T16:42:21Z",
-   "updated": "2026-11-18T15:16:48Z",
+   "updated": "2026-11-18T16:15:24Z",
    "versions": [
+    {
+     "id": "1.6.0-HHA_Arius-1.6.0",
+     "version_number": "1.6.0",
+     "name": "HHA Arius 1.6.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-18T16:15:24Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "﻿**HHA Arius 1.6.0: Arius cleaves the mountain, a climbable massif, a sea of clouds and a Kang-Jin-style dragon.**\n\n### The Cut\n- Arius charges a giant blade of light above his head while the sky behind him fills with light.\n- The strike cleaves the mountain in the south lengthwise; the sanctum is no longer split.\n- After the fight the mountain is whole again.\n- Cutscene cameras never end up inside the mountain, which fixes the camera in Solvane's entrance.\n\n### World\n- **Mountain:** much bigger, with a 170-block foot and the shoulder at y 172.\n  - The path makes about three turns.\n  - It has 27 rock steps with vines that you have to climb, plus lanterns.\n- **Arena:** a sea of clouds lines the horizon, with warm sky light, like a battlefield above the clouds.\n\n### Solvane\n- Smooth body motion (no more stepping) and stronger self-separation.\n- Larger hit areas on the body.\n- Air phase in the style of Kang-Jin Loong:\n  - longer flights;\n  - **Sky Plunge**: circles high, dives straight down, then three ice thorn rings;\n  - **Ice Volley**: ice falls on marked spots while she circles;\n  - **Body Sweep**: a low pass where her whole body sweeps across the field.\n\n### Gear\n- **Ice Armor** now works properly. Ice plates circle you for the whole duration, it absorbs 5 hearts and shatters when used up.\n- **Tornado** is much bigger. It lifts targets, carries debris and flings everything away at the end.\n- **White Hole** now looks like a white Gargantua: a glowing disk, a dark ring, a bright light ring, a flat cloudy accretion disk and stars.\n- New Dragon Tail cooldown icon.\n\n### Status\nBuilt and checked statically. **Not play-tested in the running game yet.** See `docs/TESTEN.md`. The far landscape is rebuilt once per instance.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.6.0/HHA_Arius-1.6.0.jar",
+       "filename": "HHA_Arius-1.6.0.jar",
+       "size": 9475925,
+       "sha1": "721d034851e8eea268123141216e6cc16e1b24c3",
+       "sha256": "0e8b3f4e2215b4e4948a78ac54e9903d9316ac8bd040fd348aef5fedb5c5bb61",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
     {
      "id": "1.5.0-HHA_Arius-1.5.0",
      "version_number": "1.5.0",
