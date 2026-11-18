@@ -39,6 +39,8 @@ function markdown(src) {
     const line = raw.trimEnd();
     const li = line.match(/^\s*[-*+]\s+(.*)$/);
     if (li) { if (!list) { out.push('<ul>'); list = true; } out.push(`<li>${inline(li[1])}</li>`); continue; }
+    // eingerückte Fortsetzungszeile eines Listenpunkts
+    if (list && /^\s+\S/.test(line)) { out[out.length - 1] = out[out.length - 1].replace(/<\/li>$/, ` ${inline(line.trim())}</li>`); continue; }
     if (list) { out.push('</ul>'); list = false; }
     const h = line.match(/^(#{1,6})\s+(.*)$/);
     if (h) out.push(`<p class="md-h">${inline(h[2])}</p>`);
