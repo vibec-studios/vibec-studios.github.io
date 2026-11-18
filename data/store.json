@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-18T17:25:48Z",
+ "updated": "2026-11-18T19:00:12Z",
  "projects": [
   {
    "id": "hha",
@@ -678,8 +678,49 @@
    },
    "license": "MIT",
    "published": "2026-11-16T16:42:21Z",
-   "updated": "2026-11-18T17:21:59Z",
+   "updated": "2026-11-18T18:56:50Z",
    "versions": [
+    {
+     "id": "1.7.0-HHA_Arius-1.7.0",
+     "version_number": "1.7.0",
+     "name": "HHA Arius 1.7.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-18T18:56:50Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "## HHA Arius 1.7.0\n\n### The Hunt\n- After phase III, a powered-up Arius chases you up the spiral mountain.\n  - He blinks in behind you with a ring warning.\n  - Every hit deals exactly three hearts.\n  - Ender pearls and chorus fruit are blocked.\n- The path crosses the cleft over rock bridges.\n- Once someone reaches the summit shoulder, he calms down and the finale (exchanges, QTE, ending) takes place on top.\n\n### Arius' feats\n- **The White Horizon:** title card during the mountain-splitting Cut.\n- **The Frozen Star:** a star forms above the target, freezes and crashes down (radius 9, heavy frost).\n- **Absolute Zero: Soul:** a cone that freezes your soul and leaves you frostbitten instantly.\n\n### Blocking\n- Vanilla shields block Arius and Solvane from the front.\n  - The shield loses durability.\n  - Heavy hits knock the shield aside for 5 s.\n- Solvane's counter (right click) works against bosses and mobs and strikes back.\n\n### Gauntlets\n- Blade Storm (wind) replaces Wind Pull.\n- New: Ice Prison (ice), Full-Pot and Tank Mode (Yang, mana buffs).\n- Frost Field now deals damage, builds frost and ends in ice spikes.\n- Glacier Lance has a new visual: a large rotating ice spear.\n- Bridges last 30 s and platforms 45 s.\n- Melee: Flurry (sneak + attack) and Palm Blast (sprint + right click).\n- Calmer hands while charging spells.\n\n### HUD\n- Action bar messages are no longer covered by the resonance bar and cooldown icons.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.7.0/HHA_Arius-1.7.0.jar",
+       "filename": "HHA_Arius-1.7.0.jar",
+       "size": 9547836,
+       "sha1": "7d276a86856bbc9217eb70daf7774d33be322397",
+       "sha256": "690d9ee8e277bf081f5fb1ceda0ae6122622db5771b637125c5327e8cb8a260c",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
     {
      "id": "1.6.5-HHA_Arius-1.6.5",
      "version_number": "1.6.5",
