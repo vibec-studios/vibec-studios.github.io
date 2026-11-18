@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-18T16:29:39Z",
+ "updated": "2026-11-18T16:37:35Z",
  "projects": [
   {
    "id": "hha",
@@ -678,8 +678,49 @@
    },
    "license": "MIT",
    "published": "2026-11-16T16:42:21Z",
-   "updated": "2026-11-18T16:26:45Z",
+   "updated": "2026-11-18T16:34:00Z",
    "versions": [
+    {
+     "id": "1.6.2-HHA_Arius-1.6.2",
+     "version_number": "1.6.2",
+     "name": "HHA Arius 1.6.2 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-18T16:34:00Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "﻿**HHA Arius 1.6.2: gauntlet textures in first person, Dragon Tail icon.**\n\n- **Gauntlets in first person:** fixed flickering, striped textures on the plates.\n  - Several plates (vambrace, band, ice band, hand plate, fist) sat almost exactly on top of each other or on the skin sleeve, which caused z-fighting.\n  - All overlapping surfaces now keep a clear distance.\n  - In first person the sleeve layer is no longer drawn under the gauntlets.\n- **Leggings cooldown icon:** the HHA ability bar now really shows the Dragon Tail. The new icon had only been drawn in the preview and never written to the mod.\n\nBuilt and checked statically. Not play-tested in the running game yet.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.6.2/HHA_Arius-1.6.2.jar",
+       "filename": "HHA_Arius-1.6.2.jar",
+       "size": 9479818,
+       "sha1": "7493fb118894706cdf4124b3a5ca3a57404c23f4",
+       "sha256": "ef12c021a536512e715940790f83a65637b7d349e976ecc8ab4e940581618ba3",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
     {
      "id": "1.6.1-HHA_Arius-1.6.1",
      "version_number": "1.6.1",
