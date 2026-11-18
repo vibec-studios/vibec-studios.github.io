@@ -631,7 +631,7 @@ body[data-route="home"] .nav-cta { background: var(--brand); color: #fff; }
 /* ------------------------------------------------------------------ Tooltip, Lightbox */
 
 .mc-tooltip { position: fixed; z-index: 70; pointer-events: none; padding: 8px 10px; max-width: min(360px, calc(100vw - 16px)); font: 14px/1.4 var(--sans); background: var(--tt-bg); border: 2px solid transparent; border-image: linear-gradient(var(--tt-b1), var(--tt-b2)) 1; color: #fff; }
-.lightbox { position: fixed; inset: 0; z-index: 80; background: rgba(0,0,0,.92); display: grid; place-items: center; align-content: center; gap: 14px; padding: 56px 16px 16px; }
+.lightbox { position: fixed; inset: 0; z-index: 80; background: rgba(0,0,0,.97); display: grid; place-items: center; align-content: center; gap: 14px; padding: 56px 16px 16px; }
 .lightbox[hidden] { display: none; }
 .lightbox img { max-width: min(1200px, 100%); max-height: 80vh; border: 1px solid var(--line2); }
 .lb-close { position: absolute; top: 16px; right: 16px; }
@@ -857,3 +857,25 @@ body[data-route="home"] .nav-cta { background: var(--brand); color: #fff; }
 @media (max-width: 520px) { .cdl-easy { flex-direction: column; align-items: stretch; } .cdl-easy .btn { justify-content: center; } }
 .hl-flip:has(.cdl) { align-items: start; }
 .lp-hero-grid:has(.cdl) { align-items: start; }
+
+/* Leaks / Gameplay: viele echte Aufnahmen in Gruppen (mod.js leaks), Lightbox mit Blättern */
+.leak-badge { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 28px; padding: 8px 12px; font-size: 12px; letter-spacing: .06em; color: #fff; border: 1px solid var(--line2); background: var(--surface); }
+.leak-badge i { width: 8px; height: 8px; background: #ff5a5a; flex: none; }
+.leak-group + .leak-group { margin-top: 40px; }
+.leak-h { display: flex; align-items: baseline; gap: 10px; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); font: 600 17px var(--sans); color: #fff; }
+.leak-n { font-style: normal; font-size: 12px; color: var(--dim); font-weight: 400; }
+.leak-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 14px; }
+.shot.leak img { aspect-ratio: 1600 / 707; object-fit: cover; }
+.shot.leak figcaption { font-size: 12.5px; }
+.lb-nav { position: absolute; top: 50%; width: 44px; height: 56px; margin-top: -28px; font-size: 26px; line-height: 1; display: none; }
+.lightbox.has-nav .lb-nav { display: grid; }
+.lb-prev { left: 12px; }
+.lb-next { right: 12px; }
+.lb-count { margin-left: 8px; font-size: 12px; color: var(--dim); }
+@media (max-width: 1100px) { .leak-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 720px) {
+  .leak-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px; }
+  .lb-nav { top: auto; bottom: 16px; margin-top: 0; }
+  .lb-prev { left: 16px; }
+  .lb-next { right: 16px; }
+}

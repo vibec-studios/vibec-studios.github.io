@@ -1,4 +1,4 @@
-// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.4.0, Stand 17.11.2026).
+// HHA Arius – The White Blade: Inhalte der Mod-Seite (Quelle: vibec-studios/hha-arius, Version 1.4.1, Stand 18.11.2026).
 // Seit 1.2.0 heißt die Drachin Solvane (Drachenform von Arius' Schwert, im Code weiter `nivaris`), die Rüstung ist die
 // Rüstung seit 1.2.2: Netherite-Form (armor/eirholm_armor_base*.png) plus 3D-Akzente (armor/eirholm_armor.json, armor3d).
 // Modelle: HHA/tmp/studio/tools/export_arius_models.py (arius, arius_white, nivaris als zusammengerollter Schlangendrache, Rüstung).
@@ -14,7 +14,7 @@ export default {
   tagline: S('Eine Linie. Ein Schnitt. Dann Stille.', 'One line. One cut. Then silence.'),
   accent: '#6cc4ff',
   accent2: '#d6f0ff',
-  version: '1.4.0',
+  version: '1.4.1',
   mc: '1.21.11',
   loader: 'Fabric',
   requires: ['H&H Armors 0.8.0', 'Fabric API', 'Fabric Language Kotlin'],
@@ -29,7 +29,7 @@ export default {
     'HHA Arius is an endgame addon for H&H Armors. Arius is the hero of our own light novel “The White Blade”, and the mod is a free adaptation of it. Break the Seal of the White Blade somewhere cold and the snow starts falling upward: you stand in the Sanctum of the White Blade, facing a swordsman who sees every mistake. His sword Solvane was forged from the heart of an ancient white dragon, and when he lets go, it becomes her again.',
   ),
   highlights: [
-    S('Ein Duell in fünf Akten im Schneesturm, filmisch inszeniert vom Tempel bis zum Himmelsbalkon', 'A duel in five acts in a snowstorm, staged like a film from the temple to the Sky Balcony'),
+    S('Ein Duell in fünf Akten im Schneesturm, filmisch inszeniert vom Tempel bis zum Hochlandfeld', 'A duel in five acts in a snowstorm, staged like a film from the temple to the highland field'),
     S('Solvane: Das Schwert wird zur Drachin und windet sich um den Gipfel eines Felshorns', 'Solvane: the sword becomes a dragon and coils around the summit of a rock horn'),
     S('Der Schnitt: eine Linie durch den Tempel, dann gleitet er auseinander', 'The Cut: one line through the temple, then it slides apart'),
     S('Die Drachenherz-Wacht, Solvane und Kampfhandschuhe mit Zauberrad', 'The Dragonheart Watch, Solvane and gauntlets with a spell wheel'),
@@ -45,6 +45,83 @@ export default {
       // Musik ist CC0 (keine Namensnennung nötig), die Zeile ist eine freiwillige Geste
       credit: S('Musik: „Fall of Nightmares“ und „Production Theme Intro“ von nene (Stimmen: Helena Kesti, Matias Lindgren), „Cinematic percussion loop“ von Marwan Antonios, alle CC0 via <a href="https://opengameart.org/content/fall-of-nightmares-epic-orchestral" target="_blank" rel="noopener">OpenGameArt</a>',
         'Music: “Fall of Nightmares” and “Production Theme Intro” by nene (vocals: Helena Kesti, Matias Lindgren), “Cinematic percussion loop” by Marwan Antonios, all CC0 via <a href="https://opengameart.org/content/fall-of-nightmares-epic-orchestral" target="_blank" rel="noopener">OpenGameArt</a>'),
+    },
+
+    // ------------------------------------------------------------------ Leaks / Gameplay (echte Aufnahmen aus v1.4.1,
+    // Quelle HHA_Arius/tmp/shots/leaks, als WebP unter leaks/ und leaks/thumb/; Reihenfolge wie captions.tsv)
+    {
+      type: 'leaks', id: 'leaks', toc: S('Leaks / Gameplay', 'Leaks / Gameplay'), title: S('Leaks aus dem Spiel', 'Leaks from the game'),
+      lead: S('Schauplätze, Arius’ Formen, der Bosskampf, die Rüstung und alle Fähigkeiten, so wie sie im Spiel aussehen. Klicken zum Vergrößern.',
+        'Locations, Arius’ forms, the boss fight, the armor and every ability, just as they look in game. Click to enlarge.'),
+      badge: S('Echte Ingame-Aufnahmen aus v1.4.1 · offener Schneesturm · Testmodus', 'Real in-game captures from v1.4.1 · open snowstorm · test mode'),
+      dir: 'leaks',
+      groups: [
+        {
+          name: S('Schauplätze', 'Locations'),
+          items: [
+            { img: '01-landschaft-totale', name: S('Die Hochebene im Schneesturm mit dem Felshorn', 'The high plateau in the snowstorm with the rock horn') },
+            { img: '02-felshorn', name: S('Das Felshorn: Grate, Gesteinsschichten, Eisrinnen', 'The rock horn: ridges, rock strata, ice gullies') },
+            { img: '03-heiligtum-aussen', name: S('Heiligtum der Weißen Klinge von außen', 'The Sanctum of the White Blade from outside') },
+            { img: '04-heiligtum-innen', name: S('Die Säulenhalle zum Thron', 'The pillared hall leading to the throne') },
+            { img: '05-plateau', name: S('Das Plateau mit Obelisken und Ruinenbogen', 'The plateau with obelisks and a ruined arch') },
+            { img: '06-hochland', name: S('Das offene Hochland ab dem Drachenkampf', 'The open highland from the dragon fight on') },
+          ],
+        },
+        {
+          name: S('Arius’ Formen', 'Arius’ forms'),
+          items: [
+            { img: '07-arius-dunkel', name: S('Arius in seiner dunklen Form', 'Arius in his dark form') },
+            { img: '08-arius-ernst', name: S('Arius, ernste Form', 'Arius, serious form') },
+            { img: '09-arius-weiss', name: S('Arius, Erbe des Weißen Drachen', 'Arius, Heir of the White Dragon') },
+          ],
+        },
+        {
+          name: S('Bosskampf: Phase I, Solvane, Phase III und Finale', 'Boss fight: phase I, Solvane, phase III and finale'),
+          items: [
+            { img: '10-einzug', name: S('Einzug in die Halle', 'Entering the hall') },
+            { img: '11-phase1-bannkreis', name: S('Phase I: Arius’ goldener Bannkreis', 'Phase I: Arius’ golden binding circle') },
+            { img: '12-phase1-schlagabtausch', name: S('Phase I: Schlagabtausch im Heiligtum', 'Phase I: trading blows in the Sanctum') },
+            { img: '13-phase1-klingenbogen', name: S('Klingenbogen im Bannkreis', 'Blade arc in the binding circle') },
+            { img: '14-solvane-auftritt', name: S('Solvane, das Schwert in Drachenform', 'Solvane, the sword in dragon form') },
+            { img: '15-solvane-am-horn', name: S('Solvane windet sich um das Felshorn', 'Solvane coils around the rock horn') },
+            { img: '16-solvane-ruf', name: S('Arius ruft Solvane', 'Arius calls Solvane') },
+            { img: '17-solvane-ueber-dem-heiligtum', name: S('Solvane über dem Heiligtum', 'Solvane above the Sanctum') },
+            { img: '18-phase3-klingenprall', name: S('Phase III auf dem Hochland: Klingenprall', 'Phase III on the highland: blade clash') },
+            { img: '18b-hochlandfeld', name: S('Das Feld für Phase III und das Finale', 'The field for phase III and the finale') },
+            { img: '19-phase3-hochland', name: S('Phase III: Das offene Feld', 'Phase III: the open field') },
+            { img: '20-finale', name: S('Finale im Schneesturm', 'Finale in the snowstorm') },
+            { img: '21-ende', name: S('Nach dem Kampf', 'After the fight') },
+          ],
+        },
+        {
+          name: S('Rüstung', 'Armor'),
+          items: [
+            { img: '22-ruestung', name: S('Drachenherz-Wacht, die Rüstung', 'The Dragonheart Watch, the armor') },
+            { img: '23-ruestung-nah', name: S('Rüstung und Solvane aus der Nähe', 'Armor and Solvane up close') },
+          ],
+        },
+        {
+          name: S('Handschuh- und Rüstungsfähigkeiten', 'Gauntlet and armor abilities'),
+          items: [
+            { img: '24-zauberrad', name: S('Das Zauberrad der Handschuhe', 'The gauntlets’ spell wheel') },
+            { img: '25-klarer-schnitt', name: S('Klarer Schnitt', 'Clear Cut') },
+            { img: '26-windklinge', name: S('Windklinge', 'Wind Blade') },
+            { img: '27-frostsplitter', name: S('Frostsplitter', 'Frost Shards') },
+            { img: '28-gletscherlanze', name: S('Gletscherlanze', 'Glacier Lance') },
+            { img: '29-wirbelsturm', name: S('Wirbelsturm', 'Tornado') },
+            { img: '30-eiswand', name: S('Eiswand', 'Ice Wall') },
+            { img: '31-eisplattform', name: S('Eisplattform', 'Ice Platform') },
+            { img: '32-yang-bruecke', name: S('Yang-Brücke', 'Yang Bridge') },
+            { img: '33-gleiten', name: S('Gleiten über dem Heiligtum', 'Gliding above the Sanctum') },
+            { img: '34-drachenatem', name: S('Brustpanzer: Drachenatem', 'Chestplate: Dragon Breath') },
+            { img: '35-schwingensprung', name: S('Beinschutz: Schwingensprung', 'Leggings: Wing Leap') },
+            { img: '36-weisses-loch', name: S('Setfähigkeit: Weißes Loch', 'Set ability: White Hole') },
+            { img: '37-yang-kugel', name: S('Yang-Kugel, jetzt weiß', 'Yang orb, now white') },
+            { img: '38-boe', name: S('Böe', 'Gust') },
+            { img: '39-windzug', name: S('Windzug', 'Wind Pull') },
+          ],
+        },
+      ],
     },
 
     // ------------------------------------------------------------------ Rüstung und Waffen
@@ -104,7 +181,7 @@ export default {
         },
         {
           name: S('Yang', 'Yang'), icon: 'hud/art_school_yang.png',
-          desc: S('Licht als Werkzeug: Plattformen, eine echte Brücke aus Licht mit Geländer, ein Schild und ein Gleiter.', 'Light as a tool: platforms, a real bridge of light with railings, a shield and a glider.'),
+          desc: S('Weißes Licht als Werkzeug: die Yang-Kugel, eine weiße Kugel mit kreisenden Kugeln und weißem Fischschweif, dazu Plattformen, eine echte Brücke mit Geländer, ein Schild und ein Gleiter, alles in Weiß.', 'White light as a tool: the Yang orb, a white sphere with orbiting spheres and a white fish tail, plus platforms, a real bridge with railings, a shield and a glider, all in white.'),
         },
         {
           name: S('Frostresonanz', 'Frost resonance'), icon: null,
@@ -191,7 +268,7 @@ export default {
           model: 'arius_white',
           texture: null,
           name: S('Arius, Erbe des Weißen Drachen', 'Arius, Heir of the White Dragon'),
-          sub: S('Der Himmelsbalkon', 'The Sky Balcony'),
+          sub: S('Das Hochlandfeld', 'The Highland Field'),
           color: '#ffffff',
           segments: 2,
           desc: S(
@@ -202,7 +279,7 @@ export default {
             'Brich den Takt, dann steht der Partner offen. Resonanzangriffe haben immer einen klaren sicheren Weg.',
             'Break the rhythm and the partner is open. Resonance attacks always have a clear safe path.',
           ),
-          where: S('Auf dem Himmelsbalkon, einem Felsschelf hoch am Horn. Beim Gletschersturz trägt Solvanes Lichtstrom alle hinauf.', 'On the Sky Balcony, a rock shelf high on the horn. When the glacier collapses, Solvane’s stream of light carries everyone up.'),
+          where: S('Auf dem Hochlandfeld, einem offenen, ebenen Feld im Hochland östlich des Plateaus, gesäumt von Säulen, mit dem Felshorn im Hintergrund.', 'On the highland field, an open, flat field in the highland east of the plateau, lined with pillars, with the rock horn in the background.'),
           loot: S('Wer ohne K. o. gewinnt, bekommt die Schmiedevorlage „Weiße Klinge“.', 'Win without anyone getting knocked out and you get the “White Blade” smithing template.'),
           phases: [
             { name: S('IV · Im Takt', 'IV · In Rhythm'), desc: S('Arius mit einer Klinge aus Eislicht und Solvane gemeinsam, dazu ein Kranz aus Frostdornen und einmal im Kampf das weiße Loch.', 'Arius with a blade of ice light and Solvane together, plus a ring of frost thorns and, once per fight, the white hole.') },
@@ -240,8 +317,8 @@ export default {
           colors: ['#4a4e57', '#6d717a', '#9a9ea6', '#e9eef4', '#a9c9e6'],
         },
         {
-          name: S('Der Himmelsbalkon', 'The Sky Balcony'),
-          desc: S('Ein weites Felsschelf hoch über der Schlucht, mit Kristallsäulen und Eiszapfen. Hier fällt die Entscheidung.', 'A wide rock shelf high above the canyon, with crystal pillars and icicles. This is where it ends.'),
+          name: S('Das Hochlandfeld', 'The Highland Field'),
+          desc: S('Ein offenes, ebenes Feld im Hochland mit Säulen am Rand, einem Aussichtshügel und dem Felshorn im Hintergrund. Hier fällt die Entscheidung.', 'An open, flat field in the highland with pillars along its edge, a viewing hill and the rock horn in the background. This is where it ends.'),
           colors: ['#3a3f48', '#62676f', '#a8b3c2', '#e3ebf4', '#7fd6f0'],
         },
       ],

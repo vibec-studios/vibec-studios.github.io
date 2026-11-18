@@ -93,6 +93,15 @@ const R = {
       <button type="button" data-shot="${i}"><img src="${mod.base}/${g.img}" alt="${esc(tx(g.name))}" loading="lazy"></button>
       <figcaption>${t(g.name)}</figcaption></figure>`).join('')}</div>`;
   },
+  leaks(s, mod) {
+    // Viele echte Aufnahmen in Gruppen: Vorschaubilder (thumb/) im Raster, die Lightbox blättert durch alle
+    let k = 0;
+    return `${s.badge ? `<p class="leak-badge mono"><i aria-hidden="true"></i>${t(s.badge)}</p>` : ''}${s.groups.map((g) => `<div class="leak-group">
+      <h3 class="leak-h">${t(g.name)}<i class="leak-n mono">${g.items.length}</i></h3>
+      <div class="leak-grid">${g.items.map((it) => `<figure class="shot leak">
+        <button type="button" data-leak="${k++}"><img src="${mod.base}/${s.dir}/thumb/${it.img}.webp" alt="${esc(tx(it.name))}" loading="lazy" width="640" height="283"></button>
+        <figcaption>${t(it.name)}</figcaption></figure>`).join('')}</div></div>`).join('')}`;
+  },
   video(s, mod) {
     // Trailer: lädt erst beim Abspielen (preload none), WebM zuerst, MP4 als Ausweichquelle
     return `<figure class="video-frame">
@@ -107,6 +116,7 @@ const SHOWN = new Set(Object.keys(R));
 const LABEL = {
   versus: L('Rüstung', 'Armor'), armor: L('Rüstung', 'Armor'), abilities: L('Fähigkeiten', 'Abilities'), flow: L('So geht’s', 'How it works'),
   boss: L('Bosse', 'Bosses'), world: L('Welt', 'World'), gallery: L('Bauwerke', 'Structures'), video: L('Trailer', 'Trailer'),
+  leaks: L('Leaks / Gameplay', 'Leaks / Gameplay'),
 };
 
 // ------------------------------------------------------------ Seite
@@ -245,6 +255,16 @@ export async function mount(root, mod, signal) {
     $$('[data-shot]', secEl).forEach((b) => b.addEventListener('click', () => {
       const g = s.items[+b.dataset.shot];
       openLightbox(`${base}/${g.img}`, `<b>${t(g.name)}</b> · ${t(short(g.desc, 1))}`);
+    }, { signal }));
+  });
+
+  // Leaks: Lightbox mit Blättern durch alle Aufnahmen der Seite
+  $$('.sec-leaks', root).forEach((secEl) => {
+    const s = mod.sections.find((x) => x.id === secEl.id);
+    const list = s.groups.flatMap((g) => g.items.map((it) => ({ src: `${base}/${s.dir}/${it.img}.webp`, caption: `<b>${t(it.name)}</b> · ${t(g.name)}` })));
+    $$('[data-leak]', secEl).forEach((b) => b.addEventListener('click', () => {
+      const i = +b.dataset.leak;
+      openLightbox(list[i].src, list[i].caption, { list, index: i });
     }, { signal }));
   });
 

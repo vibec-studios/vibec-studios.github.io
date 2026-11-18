@@ -161,15 +161,50 @@ export function tipFor(el, html, signal) {
 
 // ------------------------------------------------------------ Lightbox
 
-export function openLightbox(src, captionHTML) {
+// nav = { list: [{ src, caption }], index }: Blättern mit Pfeilen, Pfeiltasten und Wischen
+let lbNav = null;
+function lbShow(src, captionHTML) {
   const lb = $('#lightbox');
   $('img', lb).src = src;
-  $('.lb-caption', lb).innerHTML = captionHTML;
+  $('.lb-caption', lb).innerHTML = captionHTML + (lbNav ? ` <span class="lb-count mono">${lbNav.index + 1} / ${lbNav.list.length}</span>` : '');
+}
+function lbStep(d) {
+  if (!lbNav) return;
+  const n = lbNav.list.length;
+  lbNav.index = (lbNav.index + d + n) % n;
+  const it = lbNav.list[lbNav.index];
+  lbShow(it.src, it.caption);
+  new Image().src = lbNav.list[(lbNav.index + d + n) % n].src; // nächstes Bild vorladen
+}
+export function openLightbox(src, captionHTML, nav = null) {
+  const lb = $('#lightbox');
+  lbNav = nav && nav.list?.length > 1 ? nav : null;
+  lb.classList.toggle('has-nav', !!lbNav);
+  lbShow(src, captionHTML);
   lb.hidden = false;
   $('.lb-close', lb).focus();
+  if (lbNav) new Image().src = lbNav.list[(lbNav.index + 1) % lbNav.list.length].src;
 }
 export function initLightbox() {
   const lb = $('#lightbox');
-  lb.addEventListener('click', (e) => { if (e.target === lb || e.target.closest('.lb-close')) lb.hidden = true; });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { lb.hidden = true; hideTip(); } });
+  if (!$('.lb-prev', lb)) {
+    lb.insertAdjacentHTML('beforeend', '<button class="icon-btn lb-nav lb-prev" aria-label="Zurück / Previous">‹</button><button class="icon-btn lb-nav lb-next" aria-label="Weiter / Next">›</button>');
+  }
+  lb.addEventListener('click', (e) => {
+    if (e.target.closest('.lb-prev')) return lbStep(-1);
+    if (e.target.closest('.lb-next')) return lbStep(1);
+    if (e.target === lb || e.target.closest('.lb-close')) lb.hidden = true;
+  });
+  let x0 = null;
+  lb.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', (e) => {
+    if (x0 == null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    x0 = null;
+    if (Math.abs(dx) > 50) lbStep(dx < 0 ? 1 : -1);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { lb.hidden = true; hideTip(); }
+    if (!lb.hidden && lbNav && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { e.preventDefault(); lbStep(e.key === 'ArrowLeft' ? -1 : 1); }
+  });
 }
