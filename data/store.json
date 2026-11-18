@@ -6,7 +6,7 @@
  "icon": "https://vibec-studios.github.io/favicon.svg",
  "homepage": "https://vibec-studios.github.io/",
  "description": "Mods von Vibe Craft Studios",
- "updated": "2026-11-18T08:17:21Z",
+ "updated": "2026-11-18T15:22:31Z",
  "projects": [
   {
    "id": "hha",
@@ -678,8 +678,49 @@
    },
    "license": "MIT",
    "published": "2026-11-16T16:42:21Z",
-   "updated": "2026-11-18T08:10:10Z",
+   "updated": "2026-11-18T15:16:48Z",
    "versions": [
+    {
+     "id": "1.5.0-HHA_Arius-1.5.0",
+     "version_number": "1.5.0",
+     "name": "HHA Arius 1.5.0 (Fabric 1.21.11)",
+     "release_type": "release",
+     "date": "2026-11-18T15:16:48Z",
+     "game_versions": [
+      "1.21.11"
+     ],
+     "loaders": [
+      "fabric"
+     ],
+     "changelog": "﻿**HHA Arius 1.5.0: endless highland, spiral mountain, Blade Grave, Frost Reservoir and blueprints.**\n\n### World\n- **The arena is endless.** It is now a separate dimension (`hha_arius:highland`) with an endless snow plain and no rising edges.\n- **A giant mountain.** The massif's foot is 120 blocks around the axis. A spiral path about 650 blocks long, lit by lanterns, leads up to the shoulder, and the rock horn rises above it.\n- **Phase I in the Blade Grave.** Instead of the domed temple, the fight starts on an open terrace with ten stone swords and the Order's great blade behind the throne. The Cut splits the terrace and the great blade.\n- **From phase II to III without a hole.** Solvane circles, swoops low over the players, and her light stream carries everyone onto the field.\n\n### Fight\n- **The QTE works.** HHA hid the whole HUD during cutscenes, which also hid the QTE prompt. The time windows are also longer.\n- **Dragon.** The body has a bend limit and its segments push each other apart, so there is no more folding or 90° kinking. Head turns are smoothed and banking is limited.\n- **Arius.** A narrower head and close-fitting hair with bangs and side strands (no more round puff). His seated pose in phase II now watches the fight.\n\n### Gear\n- **Dragon Breath** (chestplate), like Elden Ring's dragon incantations: Solvane's ghostly head appears, opens its jaws and breathes rolling frost.\n- **Dragon Tail** (leggings), replacing Wing Leap: a ghostly tail lashes once around you.\n- **White Hole** rebuilt: hard white core, photon ring, banded disk, spiral arms, jets and a light dome on collapse.\n- **Yang Orb** is lively: it breathes and shimmers, has companion orbs with trails and a white fish swimming behind it.\n- **Yang Bridge**: an arch bridge of glowing Yang light.\n  - Mouse wheel sets the length (4–50), sneak + mouse wheel sets the width (3–9).\n  - Cost grows with the size. The bridge vanishes after 8 s.\n- New Solvane and gauntlet icons and a slimmer gauntlet model with a proper fist.\n\n### Frost Reservoir (mana bank)\n- Recipe: glass, amethyst and Heartfrost.\n- Stores resonance from every creature you kill (mob farms included, no armour needed) and from any overflow of your resonance bar.\n- Automatically covers missing resonance. Right-click fills the bar.\n\n### Litematica blueprints\n- Put `.litematic` files in `.minecraft/schematics`.\n- `/ariusc schematic list`, `build <name>` (shows the outline in front of you and the cost), `confirm`, `cancel`.\n- Built from real blocks, paid from the Frost Reservoir.\n- Blocks are placed only into air, never inside the arena. Forbidden blocks are skipped, and anything that cannot be placed is refunded.\n\n### Status\nBuilt and checked statically. **Not play-tested in the running game yet.** See `docs/TESTEN.md`.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+     "files": [
+      {
+       "url": "https://github.com/vibec-studios/hha-arius/releases/download/v1.5.0/HHA_Arius-1.5.0.jar",
+       "filename": "HHA_Arius-1.5.0.jar",
+       "size": 9438596,
+       "sha1": "64fee39940d9a1b44712fd97845c6471b0d68619",
+       "sha256": "b664186560d4b1b4bf8f41ce67054fb0508a99d528108434e92ab5c331fb305c",
+       "primary": true
+      }
+     ],
+     "dependencies": [
+      {
+       "source": "modrinth",
+       "project_id": "Ha28R6CL",
+       "kind": "required"
+      },
+      {
+       "source": "modrinth",
+       "project_id": "P7dR8mSH",
+       "kind": "required"
+      },
+      {
+       "source": "self",
+       "project_id": "hha",
+       "kind": "required"
+      }
+     ]
+    },
     {
      "id": "1.4.1-HHA_Arius-1.4.1",
      "version_number": "1.4.1",
