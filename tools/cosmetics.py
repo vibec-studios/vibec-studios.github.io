@@ -1,8 +1,8 @@
 """Vibey-Client-Cosmetics für die Website übernehmen.
 
-Die öffentliche Katalog-API (https://vibe.henny.dev/api/v1/cosmetics/catalog) sendet keine CORS-Header für
-vibec-studios.github.io, die Seite kann sie also nicht live laden. Dieses Skript holt Katalog, `.vibey`-Dateien und
-Vorschaubilder und legt sie neben die Seite:
+Die Seite lädt den Katalog live aus der öffentlichen API (https://vibe.henny.dev/api/v1/cosmetics/catalog, CORS
+für GET erlaubt). Dieses Skript legt ein Ersatzpaket daneben, das die Seite nimmt, wenn die API nicht erreichbar ist
+(offline, Backend down). Es holt Katalog, `.vibey`-Dateien und Vorschaubilder:
 
     data/cosmetics.json                       gekürzter Katalog (Namen, Slot, Seltenheit, Tags, Pfade)
     assets/client/items/<name>.vibey          die Bundles unverändert (Prüfsumme wird kontrolliert)

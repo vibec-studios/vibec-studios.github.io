@@ -120,7 +120,7 @@ function childNode(parent, pivotSpec, restRot, anim) {
 /** Alle Knoten (Spielerteile + Bones des Bundles) zu einem Zeitpunkt. opts: { anims, worldOffset, petScale } */
 function computeNodes(B, opts = {}) {
   const anims = (opts.anims ?? []).filter((a) => B?.json.animations?.[a.name]).map((a) => evalAnim(B.json.animations[a.name], a.t));
-  const { pose, vis } = mergePoses(anims);
+  const { pose, vis } = mergePoses(opts.basePose ? [{ pose: opts.basePose, vis: new Map() }, ...anims] : anims);
   const nodes = new Map();
   const root = childNode({ M: WORLD, pivot: [0, 0, 0] }, [0, 0, 0], [0, 0, 0], pose.root);
   nodes.set('root', root);
@@ -367,7 +367,7 @@ export function loadBundle(url) {
         sprites: new Map((json.sprites ?? []).map((s) => [s.id, s])),
         locators: json.model?.locators ?? {},
       };
-    }));
+    }).catch((e) => { bundleCache.delete(url); throw e; }));
   }
   return bundleCache.get(url);
 }
@@ -423,15 +423,17 @@ function buildBundleScene(B, opts) {
       pushCube(out, { min: [-5, 0, -1], max: [5, 16, 0] }, [0, 0, 0], Object.fromEntries(Object.entries(boxRects(0, 0, 10, 16, 1)).map(([k, r]) => [k, { rect: r }])), t, [sc, sc]);
       addMesh(out, material(t), (nodes) => mul(mul(mul(nodes.get('body').M, T(0, 0, 2)), Rx(deg(opts.capeAngle ?? 6))), Ry(Math.PI)), [0, 0, 0]);
     }
-    // Schild aus Textur: Vanilla-Schild, links vorn neben dem Spieler (ohne Spieler mittig)
+    // Schild aus Textur: Vanilla-Schild in der Offhand (linke Hand), Kette wie ItemInHandLayer + shield.json
+    // (thirdperson_lefthand: rotation [0,90,0] gespiegelt, translation [10,6,12] gespiegelt) + ShieldSpecialRenderer
     if (slot === 'shield' && B.json.cosmetic.shield?.texture && B.tex.get(B.json.cosmetic.shield.texture)) {
       const t = B.tex.get(B.json.cosmetic.shield.texture);
       const sc = t.w / 64;
-      const M = opts.player === false ? mul(WORLD, T(0, 8, 0)) : mul(mul(WORLD, T(11, 9, -5)), Ry(deg(-12)));
+      const HAND = mul(mul(mul(mul(mul(mul(Rx(deg(-90)), Ry(Math.PI)), T(-1, 2, -10)), T(-10, 6, 12)), Ry(deg(-90))), T(-8, -8, -8)), S(1, -1, -1));
+      const M = opts.player === false ? () => mul(WORLD, T(0, 8, 0)) : (nodes) => mul(nodes.get('left_arm').M, HAND);
       for (const [mn, mx, rects] of [[[-6, -11, -2], [6, 11, -1], boxRects(0, 0, 12, 22, 1)], [[-1, -3, -1], [1, 3, 5], boxRects(26, 0, 2, 6, 6)]]) {
         const out = { pos: [], uv: [], nrm: [] };
         pushCube(out, { min: mn, max: mx }, [0, 0, 0], Object.fromEntries(Object.entries(rects).map(([k, r]) => [k, { rect: r }])), t, [sc, sc]);
-        addMesh(out, material(t), () => M, [0, 0, 0]);
+        addMesh(out, material(t), M, [0, 0, 0]);
       }
     }
     // Bones des Modells
@@ -541,6 +543,8 @@ export function planFor(json) {
     yaw: back ? 205 : slot === 'pet' ? 40 : 30,
     worldOffset: slot === 'pet' ? [20, 0, 6] : [0, 0, 0],
     petScale: slot === 'pet' ? json.cosmetic.pet?.scale ?? 1 : 1,
+    // Schild in der Offhand: linker Arm leicht nach vorn wie beim Halten eines Gegenstands (Blockbench-Grad)
+    basePose: slot === 'shield' ? { left_arm: { rot: [18, 0, 0] } } : null,
     modes: ['idle', ...(json.animations?.fly ? ['fly'] : []), ...(json.animations?.walk ? ['walk'] : [])].filter((n) => n === 'idle' || json.animations?.[n]),
   };
 }
@@ -583,13 +587,16 @@ export function wardrobeViewer(canvas, { signal } = {}) {
   };
   placeCamera(205);
 
-  const show = async (url) => {
+  const show = async (url, fallback = null) => {
     const my = ++token;
-    const B = url ? await loadBundle(url) : null;
+    let B = null;
+    if (url) {
+      try { B = await loadBundle(url); } catch (e) { if (!fallback) throw e; B = await loadBundle(fallback); }
+    }
     if (my !== token || signal?.aborted) return;
     const plan = planFor(B?.json);
     if (current) { holder.remove(current.sc.group); current.sc.group.traverse((o) => o.geometry?.dispose()); }
-    const sc = buildBundleScene(B, { player: true, worldOffset: plan.worldOffset, petScale: plan.petScale });
+    const sc = buildBundleScene(B, { player: true, worldOffset: plan.worldOffset, petScale: plan.petScale, basePose: plan.basePose });
     holder.add(sc.group);
     current = { B, sc, plan, mode: 'idle', t0: performance.now() };
     // Bildausschnitt aus der echten Größe (Flügel, Auren und Begleiter sind breiter als der Spieler)

@@ -1,6 +1,6 @@
 // Seite des Vibey Client: Garderobe mit allen Cosmetics und Emotes, 3D-Vorschau am Referenz-Spieler (vibey3d.js).
-// Daten: data/cosmetics.json + assets/client/items/*.vibey, übernommen per tools/cosmetics.py aus der öffentlichen
-// Katalog-API (vibe.henny.dev sendet keine CORS-Header, darum nicht live). Kein Shop, keine Preise: alles kostenlos,
+// Daten: live aus der öffentlichen Katalog-API (vibe.henny.dev, CORS für GET erlaubt). Fällt sie aus, nimmt die Seite
+// das gebündelte Paket aus tools/cosmetics.py (data/cosmetics.json + assets/client/). Kein Shop, keine Preise: alles kostenlos,
 // die Seltenheit ist nur ein Label. Das Repo ist privat: kein Download-Link, nur „Bald verfügbar“.
 import { $, $$, t, tx, esc, openLightbox } from '../core.js';
 import { wardrobeViewer, planFor } from '../vibey3d.js';
@@ -8,6 +8,40 @@ import { wardrobeViewer, planFor } from '../vibey3d.js';
 const L = (de, en) => ({ de, en });
 export const ACCENT = '#8b6cff';
 const BASE = '/assets/client';
+const API = 'https://vibe.henny.dev';
+const abs = (u) => (u && !/^https?:/.test(u) ? API + u : u);
+
+/** Katalog live laden (ohne eigene Header, also ohne Preflight); bei Fehler oder nach 6 s das gebündelte Paket. */
+async function loadCatalog(signal) {
+  const local = fetch('/data/cosmetics.json', { cache: 'no-cache', signal }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  try {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 6000);
+    signal?.addEventListener('abort', () => ctl.abort(), { once: true });
+    const r = await fetch(`${API}/api/v1/cosmetics/catalog`, { signal: ctl.signal });
+    clearTimeout(timer);
+    if (!r.ok) throw new Error(`catalog ${r.status}`);
+    const cat = await r.json();
+    const bundled = new Map(((await local)?.items ?? []).map((it) => [it.id, it]));
+    const items = cat.items.filter((it) => it.asset?.url)
+      .sort((a, b) => (a.kind !== 'cosmetic') - (b.kind !== 'cosmetic') || (a.sort ?? 0) - (b.sort ?? 0))
+      .map((it) => {
+        const b = bundled.get(it.id);
+        return {
+          id: it.id, kind: it.kind, slot: it.slot, name: it.name, description: it.description, rarity: it.rarity ?? 'common',
+          tags: it.tags ?? [], author: it.author, file: abs(it.asset.url), fallback: b?.file ?? null,
+          thumb: abs(it.thumbnailUrl) ?? b?.thumb ?? null, thumbFallback: b?.thumb ?? null,
+        };
+      });
+    if (!items.length) throw new Error('catalog empty');
+    return items;
+  } catch (e) {
+    if (signal?.aborted) throw e;
+    const l = await local;
+    if (!l) throw e;
+    return l.items;
+  }
+}
 
 const SLOTS = [
   ['cape', L('Umhänge', 'Capes'), L('Umhang', 'Cape')],
@@ -135,7 +169,7 @@ export function render() {
 function card(it) {
   const [rl, rc] = RARITY[it.rarity] || RARITY.common;
   return `<button type="button" class="wr-card" role="listitem" data-id="${esc(it.id)}" style="--rc:${rc}">
-    <span class="wr-thumb">${it.thumb ? `<img src="${it.thumb}" alt="" loading="lazy" width="256" height="256">` : ''}</span>
+    <span class="wr-thumb">${it.thumb ? `<img src="${esc(it.thumb)}" alt="" loading="lazy" width="256" height="256"${it.thumbFallback && it.thumbFallback !== it.thumb ? ` data-fb="${esc(it.thumbFallback)}"` : ''}>` : ''}</span>
     <span class="wr-name">${name(it)}</span>
     <span class="wr-meta mono">${slotLabel(it)} · <b>${t(rl)}</b></span></button>`;
 }
@@ -155,14 +189,13 @@ export async function mount(root, signal) {
     openLightbox(img.src, `<b>${esc(img.alt)}</b>`);
   }, { signal }));
 
-  let data;
+  let items;
   try {
-    data = await (await fetch('/data/cosmetics.json', { cache: 'no-cache', signal })).json();
+    items = await loadCatalog(signal);
   } catch (e) {
     if (e.name !== 'AbortError') $('.wr-grid', root).innerHTML = `<p class="small">${t(L('Der Katalog ist gerade nicht erreichbar.', 'The catalog is not available right now.'))}</p>`;
     return;
   }
-  const items = data.items;
   const cats = $('.wr-cats', root);
   const grid = $('.wr-grid', root);
   const counts = Object.fromEntries(SLOTS.map(([k]) => [k, items.filter((it) => catOf(it) === k).length]));
@@ -181,7 +214,7 @@ export async function mount(root, signal) {
     selected = it;
     $$('.wr-card', grid).forEach((c) => c.classList.toggle('on', c.dataset.id === it.id));
     $('.wr-info', root).innerHTML = info(it);
-    const B = await viewer.show(it.file);
+    const B = await viewer.show(it.file, it.fallback).catch(() => null);
     if (!B || selected !== it) return;
     const plan = planFor(B.json);
     modes.innerHTML = plan.emote
@@ -197,6 +230,11 @@ export async function mount(root, signal) {
     $$('.wr-cat', cats).forEach((x) => x.classList.toggle('on', x === b));
     paint();
   }, { signal });
+  // Vorschaubild aus der API nicht erreichbar: gebündeltes nehmen
+  grid.addEventListener('error', (e) => {
+    const img = e.target;
+    if (img.tagName === 'IMG' && img.dataset.fb) { img.src = img.dataset.fb; delete img.dataset.fb; }
+  }, { capture: true, signal });
   grid.addEventListener('click', (e) => {
     const b = e.target.closest('[data-id]');
     if (b) select(items.find((it) => it.id === b.dataset.id), true);
