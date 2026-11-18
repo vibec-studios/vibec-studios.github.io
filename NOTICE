@@ -1,0 +1,23 @@
+Vibe Craft Studios Website (vibec-studios.github.io)
+Copyright 2026 Vibe Craft Studios
+
+The source code (HTML scaffolding, CSS, JavaScript, build.py, tools/, workflows) is licensed under the
+Apache License, Version 2.0 (see LICENSE).
+
+Not covered by that license – see https://github.com/vibec-studios/.github/blob/main/LICENSING.md :
+  - our names and logos ("Vibe", "Vibe Launcher", "Vibey", "Vibey Client", "Vibey Multiplayer", "Vibey Lyrics",
+    "H&H Armors", "Vibe Craft Studios", the seal) – TRADEMARKS.md,
+  - artwork, models, textures, animations and sounds – ASSETS-POLICY.md, in this repository in particular:
+      the texts of the website (page texts in index.html and its copies mods/*/index.html, 404.html, client/,
+      launcher/, downloads/, status/, and the mod texts in js/content/**),
+      assets/** (images, renders, screenshots, videos, textures, icons, item and armor art, 3D models such as
+      assets/mods/*/models/** and assets/mods/*/item3d/**, cosmetics in assets/client/items/**),
+      logo.png, favicon.png, favicon.svg, apple-touch-icon.png,
+      data/cosmetics.json (copy of the Vibe cosmetics catalog),
+      the seal built by js/seal3d.js
+  - access to the Vibe online services (vibe.henny.dev, vibey.henny.dev) – SERVICES.md.
+
+The images, renders and models under assets/mods/arius/, assets/mods/blood/ and assets/mods/void/ show mods made
+by or together with Crix05z; their rights stay with the respective authors.
+
+Forks must use their own name, their own artwork and texts and their own backend services.
